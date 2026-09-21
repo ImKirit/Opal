@@ -1,0 +1,104 @@
+{
+  "id": "filme",
+  "name": "Filme & Serien",
+  "desc": "Blockbuster, Kultserien, Marvel, Disney und Hogwarts.",
+  "icon": "clapperboard",
+  "hue": 22,
+  "sections": [
+    {
+      "id": "filme",
+      "name": "Filme",
+      "questions": [
+        { "q": "Wer führte Regie bei „Titanic“ von 1997?", "a": "James Cameron", "w": ["Steven Spielberg", "Ridley Scott", "Christopher Nolan"], "alt": ["Cameron"], "d": 1 },
+        { "q": "Welcher Film hat weltweit das meiste Geld eingespielt?", "a": "Avatar", "w": ["Avengers: Endgame", "Titanic", "Star Wars: Das Erwachen der Macht"], "alt": ["Avatar (2009)", "Avatar: Aufbruch nach Pandora"], "fact": "Er holte sich die Spitze 2021 durch eine Wiederaufführung in China von Endgame zurück.", "d": 2 },
+        { "q": "Womit vergleicht Forrest Gump das Leben?", "a": "Mit einer Schachtel Pralinen", "w": ["Mit einer Achterbahn", "Mit einer Feder im Wind", "Mit einem langen Lauf"], "alt": ["Pralinen", "Schachtel Pralinen", "Pralinenschachtel"], "d": 1 },
+        { "q": "Wie schnell muss der DeLorean in „Zurück in die Zukunft“ fahren?", "a": "88 Meilen pro Stunde", "w": ["66 Meilen pro Stunde", "100 Meilen pro Stunde", "121 Meilen pro Stunde"], "alt": ["88", "88 mph", "88 Meilen"], "fact": "Dazu braucht er 1,21 Gigawatt.", "d": 2 },
+        { "q": "In welchem Land wurde „Der Herr der Ringe“ gedreht?", "a": "Neuseeland", "w": ["Irland", "Schottland", "Norwegen"], "d": 1 },
+        { "q": "Wer ist Luke Skywalkers Vater?", "a": "Darth Vader", "w": ["Obi-Wan Kenobi", "Imperator Palpatine", "Han Solo"], "alt": ["Anakin Skywalker", "Anakin", "Vader"], "d": 1 },
+        { "q": "Welche Pille schluckt Neo in „Matrix“?", "a": "Die rote", "w": ["Die blaue", "Die grüne", "Die weiße"], "alt": ["rot", "rote", "rote Pille"], "d": 1 },
+        { "q": "Wie heißt Shreks Frau?", "a": "Fiona", "w": ["Aurora", "Rapunzel", "Belle"], "alt": ["Prinzessin Fiona"], "d": 1 },
+        { "q": "Was für ein Fisch ist Nemo?", "a": "Clownfisch", "w": ["Doktorfisch", "Kugelfisch", "Goldfisch"], "alt": ["Anemonenfisch"], "fact": "Dorie ist dagegen ein Paletten-Doktorfisch.", "d": 1 },
+        { "q": "Wer führte Regie bei „Barbie“ von 2023?", "a": "Greta Gerwig", "w": ["Sofia Coppola", "Olivia Wilde", "Chloé Zhao"], "alt": ["Gerwig"], "d": 2 },
+        { "q": "Wer führte Regie bei „Oppenheimer“?", "a": "Christopher Nolan", "w": ["Denis Villeneuve", "Steven Spielberg", "David Fincher"], "alt": ["Nolan"], "d": 1 },
+        { "q": "Welcher Gegenstand verrät in „Inception“, ob man träumt?", "a": "Ein Kreisel", "w": ["Ein Würfel", "Eine Münze", "Eine Schachfigur"], "alt": ["Kreisel", "Totem"], "d": 2 },
+        { "q": "Wer spielte Kevin in „Kevin allein zu Haus“?", "a": "Macaulay Culkin", "w": ["Elijah Wood", "Haley Joel Osment", "Jonathan Taylor Thomas"], "alt": ["Culkin"], "d": 2 },
+        { "q": "Wie heißt Steven Spielbergs Hai-Film von 1975?", "a": "Der weiße Hai", "w": ["Deep Blue Sea", "Meg", "Open Water"], "alt": ["Jaws", "Der weisse Hai"], "d": 1 },
+        { "q": "Wer spielt Jack in „Titanic“?", "a": "Leonardo DiCaprio", "w": ["Brad Pitt", "Matt Damon", "Johnny Depp"], "alt": ["DiCaprio"], "d": 1 }
+      ]
+    },
+    {
+      "id": "serien",
+      "name": "Serien",
+      "questions": [
+        { "q": "Welchen Beruf hat Walter White zu Beginn von Breaking Bad?", "a": "Chemielehrer", "w": ["Apotheker", "Arzt", "Polizist"], "alt": ["Lehrer", "Chemie-Lehrer"], "d": 1 },
+        { "q": "In welcher Kleinstadt spielt Stranger Things?", "a": "Hawkins", "w": ["Derry", "Riverdale", "Twin Peaks"], "d": 1 },
+        { "q": "Wie heißt das Stammcafé in Friends?", "a": "Central Perk", "w": ["MacLaren's", "Monk's Café", "Luke's Diner"], "alt": ["Central Perk Cafe"], "d": 1 },
+        { "q": "Wie viele Staffeln hat Friends?", "a": "10", "w": ["8", "9", "12"], "d": 2 },
+        { "q": "Aus welchem Land stammt Squid Game?", "a": "Südkorea", "w": ["Japan", "China", "Thailand"], "alt": ["Korea"], "d": 1 },
+        { "q": "Welche Masken tragen die Räuber in „Haus des Geldes“?", "a": "Dalí-Masken", "w": ["Guy-Fawkes-Masken", "Clownmasken", "Totenkopfmasken"], "alt": ["Dali", "Dalí", "Salvador Dalí", "Dali-Masken"], "d": 1 },
+        { "q": "In welcher Stadt leben die Simpsons?", "a": "Springfield", "w": ["Shelbyville", "Quahog", "South Park"], "d": 1 },
+        { "q": "Wo wohnt SpongeBob?", "a": "In einer Ananas", "w": ["Unter einem Stein", "In einem Moai-Kopf", "In einem Anker"], "alt": ["Ananas", "eine Ananas"], "fact": "Patrick lebt unter dem Stein, Thaddäus im Moai-Kopf und Mr. Krabs im Anker.", "d": 1 },
+        { "q": "Auf welche Schule geht Wednesday Addams in der Netflix-Serie?", "a": "Nevermore Academy", "w": ["Hogwarts", "Riverdale High", "Hawkins High"], "alt": ["Nevermore"], "d": 1 },
+        { "q": "In welcher fiktiven Kleinstadt spielt die deutsche Serie Dark?", "a": "Winden", "w": ["Wetzlar", "Hawkins", "Weiler"], "d": 2 },
+        { "q": "Wer spielt Sherlock in der BBC-Serie?", "a": "Benedict Cumberbatch", "w": ["Martin Freeman", "Tom Hiddleston", "Robert Downey Jr."], "alt": ["Cumberbatch"], "d": 1 },
+        { "q": "Was ruft Sheldon Cooper, nachdem er jemanden reingelegt hat?", "a": "Bazinga", "w": ["Gotcha", "Boom", "Schnapp"], "d": 1 },
+        { "q": "In welcher Stadt spielt Peaky Blinders?", "a": "Birmingham", "w": ["London", "Manchester", "Liverpool"], "d": 2 },
+        { "q": "Wie heißt die Papierfirma in der US-Version von The Office?", "a": "Dunder Mifflin", "w": ["Wernham Hogg", "Vance Refrigeration", "Sabre"], "d": 2 },
+        { "q": "Welches Haus hat in Game of Thrones das Motto „Der Winter naht“?", "a": "Stark", "w": ["Lannister", "Targaryen", "Baratheon"], "alt": ["Haus Stark", "Starks"], "d": 1 }
+      ]
+    },
+    {
+      "id": "marvel",
+      "name": "Marvel & DC",
+      "questions": [
+        { "q": "Wer steckt hinter Iron Man?", "a": "Tony Stark", "w": ["Bruce Wayne", "Steve Rogers", "Peter Parker"], "alt": ["Stark"], "d": 1 },
+        { "q": "Wie heißt Thors Hammer?", "a": "Mjölnir", "w": ["Stormbreaker", "Gungnir", "Excalibur"], "alt": ["Mjolnir"], "d": 1 },
+        { "q": "Aus welchem Metall ist Captain Americas Schild?", "a": "Vibranium", "w": ["Adamantium", "Uru", "Titan"], "d": 1 },
+        { "q": "In welcher Stadt kämpft Batman?", "a": "Gotham City", "w": ["Metropolis", "Star City", "Central City"], "alt": ["Gotham"], "d": 1 },
+        { "q": "Was schwächt Superman?", "a": "Kryptonit", "w": ["Vibranium", "Silber", "Magnetismus"], "alt": ["Kryptonite"], "d": 1 },
+        { "q": "Wie viele Infinity-Steine gibt es?", "a": "6", "w": ["5", "7", "9"], "d": 1 },
+        { "q": "Wer verwandelt sich in den Hulk?", "a": "Bruce Banner", "w": ["Bruce Wayne", "Clint Barton", "Nick Fury"], "alt": ["Banner"], "d": 1 },
+        { "q": "Wie heißt das Land von Black Panther?", "a": "Wakanda", "w": ["Genosha", "Latveria", "Sokovia"], "d": 1 },
+        { "q": "Mit welchem Film startete 2008 das Marvel Cinematic Universe?", "a": "Iron Man", "w": ["Der unglaubliche Hulk", "Thor", "Captain America"], "d": 2 },
+        { "q": "Was sagt Groot eigentlich immer?", "a": "Ich bin Groot", "w": ["Wir sind Groot", "Groot ist da", "Hallo Groot"], "alt": ["I am Groot"], "d": 1 },
+        { "q": "Wie heißt Spider-Man mit bürgerlichem Namen?", "a": "Peter Parker", "w": ["Miles Morales", "Harry Osborn", "Ben Reilly"], "alt": ["Parker"], "d": 1 },
+        { "q": "Von welcher Insel stammt Wonder Woman?", "a": "Themyscira", "w": ["Atlantis", "Krypton", "Asgard"], "alt": ["Paradiesinsel", "Paradise Island"], "d": 3 }
+      ]
+    },
+    {
+      "id": "disney",
+      "name": "Disney & Pixar",
+      "questions": [
+        { "q": "Welcher Film war 1995 der erste komplett am Computer animierte Kinofilm?", "a": "Toy Story", "w": ["Shrek", "Das große Krabbeln", "Findet Nemo"], "d": 1 },
+        { "q": "Wie heißt der Astronaut in Toy Story?", "a": "Buzz Lightyear", "w": ["Woody", "Zurg", "Rex"], "alt": ["Buzz"], "d": 1 },
+        { "q": "Was bedeutet „Hakuna Matata“ im König der Löwen?", "a": "Keine Sorgen", "w": ["Viel Glück", "Gute Nacht", "Lang lebe der König"], "alt": ["Es gibt keine Sorgen", "sorgenfrei"], "d": 1 },
+        { "q": "Wie heißt der Schneemann in „Die Eiskönigin“?", "a": "Olaf", "w": ["Sven", "Kristoff", "Hans"], "d": 1 },
+        { "q": "Womit lässt Carl in „Oben“ sein Haus fliegen?", "a": "Luftballons", "w": ["Einem Propeller", "Einem Zeppelin", "Raketen"], "alt": ["Ballons", "Ballone"], "d": 1 },
+        { "q": "In welcher Stadt spielt „Ratatouille“?", "a": "Paris", "w": ["Rom", "Lyon", "Marseille"], "d": 1 },
+        { "q": "Wie heißt der rote Rennwagen aus „Cars“?", "a": "Lightning McQueen", "w": ["Hook", "Doc Hudson", "Francesco Bernoulli"], "alt": ["McQueen"], "d": 1 },
+        { "q": "In welchem Kurzfilm wurde Micky Maus 1928 berühmt?", "a": "Steamboat Willie", "w": ["Plane Crazy", "The Skeleton Dance", "Fantasia"], "alt": ["Dampfschiff Willie"], "d": 3 },
+        { "q": "Was für ein Tier ist Sebastian in „Arielle, die Meerjungfrau“?", "a": "Eine Krabbe", "w": ["Ein Fisch", "Eine Möwe", "Ein Seestern"], "alt": ["Krabbe", "Krebs"], "d": 1 },
+        { "q": "Über wen reden sie in Encanto angeblich nicht?", "a": "Bruno", "w": ["Mirabel", "Isabela", "Camilo"], "d": 1 },
+        { "q": "Welches Fest steht im Mittelpunkt von „Coco“?", "a": "Día de los Muertos", "w": ["Halloween", "Karneval", "Cinco de Mayo"], "alt": ["Tag der Toten", "Dia de los Muertos", "Día de Muertos"], "d": 2 },
+        { "q": "Wie heißt die blaue Emotion in „Alles steht Kopf“?", "a": "Kummer", "w": ["Angst", "Ekel", "Wut"], "alt": ["Traurigkeit", "Sadness", "Trauer"], "d": 2 }
+      ]
+    },
+    {
+      "id": "harrypotter",
+      "name": "Harry Potter",
+      "questions": [
+        { "q": "Wer schrieb die Harry-Potter-Bücher?", "a": "J. K. Rowling", "w": ["Cornelia Funke", "Suzanne Collins", "Stephenie Meyer"], "alt": ["Rowling", "JK Rowling", "J.K. Rowling", "Joanne K. Rowling"], "d": 1 },
+        { "q": "Wie heißt Harrys Eule?", "a": "Hedwig", "w": ["Errol", "Pigwidgeon", "Fawkes"], "d": 1 },
+        { "q": "Wie heißt Voldemort mit bürgerlichem Namen?", "a": "Tom Riddle", "w": ["Tom Marvolo", "Gellert Grindelwald", "Salazar Slytherin"], "alt": ["Tom Vorlost Riddle", "Tom Marvolo Riddle", "Riddle"], "d": 1 },
+        { "q": "Von welchem Gleis fährt der Hogwarts-Express ab?", "a": "9 3/4", "w": ["7 1/2", "10 1/4", "13"], "alt": ["9¾", "Neundreiviertel", "Gleis 9 3/4", "neun dreiviertel"], "d": 1 },
+        { "q": "In welches Haus kommt Harry?", "a": "Gryffindor", "w": ["Slytherin", "Ravenclaw", "Hufflepuff"], "d": 1 },
+        { "q": "Wie heißt der kleine goldene Ball beim Quidditch?", "a": "Goldener Schnatz", "w": ["Klatscher", "Quaffel", "Goldener Flitzer"], "alt": ["Schnatz"], "d": 1 },
+        { "q": "Wodurch wird Dobby befreit?", "a": "Durch eine Socke", "w": ["Durch einen Zauberstab", "Durch ein Buch", "Durch einen Schal"], "alt": ["Socke", "eine Socke"], "d": 1 },
+        { "q": "Welche Gestalt hat Harrys Patronus?", "a": "Hirsch", "w": ["Hirschkuh", "Wolf", "Phönix"], "alt": ["ein Hirsch"], "fact": "Die Hirschkuh ist der Patronus von Snape und Harrys Mutter Lily.", "d": 2 },
+        { "q": "Welches Tier ist Krätze, das Haustier von Ron?", "a": "Ratte", "w": ["Kröte", "Katze", "Eule"], "fact": "In Wahrheit ist Krätze der Verräter Peter Pettigrew.", "d": 1 },
+        { "q": "Welcher Zauberspruch entwaffnet den Gegner?", "a": "Expelliarmus", "w": ["Stupor", "Wingardium Leviosa", "Lumos"], "d": 1 },
+        { "q": "Wie heißt der Wildhüter von Hogwarts?", "a": "Rubeus Hagrid", "w": ["Argus Filch", "Remus Lupin", "Horace Slughorn"], "alt": ["Hagrid"], "d": 1 }
+      ]
+    }
+  ]
+}

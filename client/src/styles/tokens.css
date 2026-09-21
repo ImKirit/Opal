@@ -1,0 +1,71 @@
+/* Opal Design-Tokens.
+   Alle Farben haengen an zwei Farbtoenen (--bg-h, --accent-h) und einem Saettigungsfaktor
+   (--chroma). Die Werte setzt lib/theme.ts aus den Einstellungen. */
+
+@property --hl {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+:root {
+  --bg-h: 250;
+  --accent-h: 232;
+  --chroma: 1;
+
+  /* Flaechen */
+  --bg-0: oklch(0.165 calc(0.05 * var(--chroma)) var(--bg-h));
+  --bg-1: oklch(0.215 calc(0.065 * var(--chroma)) var(--bg-h));
+  --bg-2: oklch(0.29 calc(0.075 * var(--chroma)) var(--bg-h));
+
+  /* Schrift */
+  --ink: oklch(0.97 calc(0.012 * var(--chroma)) var(--bg-h));
+  --ink-2: oklch(0.83 calc(0.03 * var(--chroma)) var(--bg-h));
+  --ink-3: oklch(0.66 calc(0.04 * var(--chroma)) var(--bg-h));
+
+  /* Akzent: helles, leicht kuehles Blau im Standardthema */
+  --accent: oklch(0.86 calc(0.09 * var(--chroma) + 0.015) var(--accent-h));
+  --accent-strong: oklch(0.76 calc(0.14 * var(--chroma) + 0.02) var(--accent-h));
+  --accent-deep: oklch(0.52 calc(0.14 * var(--chroma) + 0.02) var(--accent-h));
+  --accent-ink: oklch(0.2 calc(0.06 * var(--chroma)) var(--accent-h));
+  --accent-glow: oklch(0.8 calc(0.13 * var(--chroma) + 0.02) var(--accent-h) / 0.35);
+
+  /* Signale */
+  --good: oklch(0.86 0.14 160);
+  --good-deep: oklch(0.6 0.14 160);
+  --bad: oklch(0.73 0.16 18);
+  --bad-deep: oklch(0.52 0.16 18);
+  --gold: oklch(0.87 0.12 88);
+
+  --line: oklch(1 0 0 / 0.08);
+  --line-strong: oklch(1 0 0 / 0.16);
+
+  /* Schriften */
+  --font-display: 'Bricolage Grotesque Variable', 'Onest Variable', system-ui, sans-serif;
+  --font-ui: 'Onest Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Martian Mono Variable', ui-monospace, 'Cascadia Mono', monospace;
+
+  /* Schriftgroessen, Faktor 1.25 */
+  --t-xs: 0.75rem;
+  --t-sm: 0.845rem;
+  --t-md: 0.95rem;
+  --t-lg: 1.1rem;
+  --t-xl: 1.375rem;
+  --t-2xl: 1.72rem;
+  --t-3xl: 2.15rem;
+  --t-4xl: 2.7rem;
+
+  /* Bewegung: leicht ueberschiessend wie eine Fluessigkeit */
+  --ease-liquid: cubic-bezier(0.2, 0.9, 0.25, 1.12);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-glass: 0 1px 1px oklch(0 0 0 / 0.18), 0 14px 34px -14px oklch(0 0 0 / 0.6);
+  --page-w: 1180px;
+  --gutter: 16px;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --gutter: 24px;
+  }
+}

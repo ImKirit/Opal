@@ -1,0 +1,45 @@
+{
+  "id": "promis",
+  "name": "Bekanntheiten",
+  "desc": "Hollywood, Stars und die Creator und Streamer, die man kennen sollte.",
+  "icon": "star",
+  "hue": 45,
+  "sections": [
+    {
+      "id": "stars",
+      "name": "Stars",
+      "questions": [
+        { "q": "Für welchen Film gewann Leonardo DiCaprio seinen ersten Oscar?", "a": "The Revenant", "w": ["Titanic", "The Wolf of Wall Street", "Inception"], "alt": ["Revenant", "The Revenant: Der Rückkehrer"], "d": 1 },
+        { "q": "Unter welchem Namen wurde Dwayne Johnson als Wrestler bekannt?", "a": "The Rock", "w": ["The Stone", "Stone Cold", "The Giant"], "alt": ["Rock"], "d": 1 },
+        { "q": "In welchem Land wurde Elon Musk geboren?", "a": "Südafrika", "w": ["Kanada", "USA", "Australien"], "d": 2 },
+        { "q": "Welches Amt hatte Arnold Schwarzenegger von 2003 bis 2011?", "a": "Gouverneur von Kalifornien", "w": ["Bürgermeister von Los Angeles", "US-Senator", "Botschafter in Österreich"], "alt": ["Gouverneur", "Governor"], "d": 1 },
+        { "q": "Welche Castingshow moderiert Heidi Klum in Deutschland?", "a": "Germany's Next Topmodel", "w": ["Deutschland sucht den Superstar", "The Voice of Germany", "Das Supertalent"], "alt": ["GNTM", "Germanys Next Topmodel"], "d": 1 },
+        { "q": "In welcher Filmreihe rächt Keanu Reeves seinen getöteten Hund?", "a": "John Wick", "w": ["Matrix", "Speed", "Constantine"], "d": 1 },
+        { "q": "Wer spielt Spider-Man im Marvel Cinematic Universe?", "a": "Tom Holland", "w": ["Andrew Garfield", "Tobey Maguire", "Timothée Chalamet"], "alt": ["Holland"], "d": 1 },
+        { "q": "Wen ohrfeigte Will Smith bei der Oscarverleihung 2022?", "a": "Chris Rock", "w": ["Kevin Hart", "Jimmy Kimmel", "Ricky Gervais"], "d": 1 },
+        { "q": "In welcher Girlgroup wurde Beyoncé bekannt?", "a": "Destiny's Child", "w": ["TLC", "Spice Girls", "Sugababes"], "alt": ["Destinys Child"], "d": 1 },
+        { "q": "Welche Figur spielt Johnny Depp in „Fluch der Karibik“?", "a": "Jack Sparrow", "w": ["Will Turner", "Hector Barbossa", "Davy Jones"], "alt": ["Captain Jack Sparrow", "Käpt'n Jack Sparrow"], "d": 1 },
+        { "q": "Wer spielte Barbie im Film von 2023?", "a": "Margot Robbie", "w": ["Emma Stone", "Florence Pugh", "Zendaya"], "alt": ["Robbie"], "d": 1 },
+        { "q": "Wer spielt Paul Atreides in „Dune“?", "a": "Timothée Chalamet", "w": ["Austin Butler", "Tom Holland", "Oscar Isaac"], "alt": ["Chalamet", "Timothee Chalamet"], "d": 1 },
+        { "q": "Welche Person hat die meisten Follower auf Instagram?", "a": "Cristiano Ronaldo", "w": ["Lionel Messi", "Selena Gomez", "Kylie Jenner"], "alt": ["Ronaldo", "CR7"], "d": 1 },
+        { "q": "Wer gründete die Marke SKIMS?", "a": "Kim Kardashian", "w": ["Kylie Jenner", "Rihanna", "Hailey Bieber"], "alt": ["Kardashian"], "fact": "Rihanna gründete dagegen Fenty Beauty und Savage X Fenty.", "d": 1 }
+      ]
+    },
+    {
+      "id": "creator",
+      "name": "Creator & Streamer",
+      "questions": [
+        { "q": "Wie heißt MrBeast mit bürgerlichem Namen?", "a": "Jimmy Donaldson", "w": ["Jimmy Fallon", "James Charles", "Logan Paul"], "alt": ["James Donaldson", "Donaldson"], "d": 1 },
+        { "q": "Aus welchem Land stammt PewDiePie?", "a": "Schweden", "w": ["Norwegen", "Dänemark", "Niederlande"], "d": 1 },
+        { "q": "Welcher Streamer wurde mit Fortnite und blauen Haaren weltberühmt?", "a": "Ninja", "w": ["Shroud", "Tfue", "Dr Disrespect"], "alt": ["Tyler Blevins"], "d": 1 },
+        { "q": "Welcher Streamer hält mit seinen „Mafiathon“-Subathons den Twitch-Abo-Rekord?", "a": "Kai Cenat", "w": ["xQc", "Ibai", "IShowSpeed"], "alt": ["Kai"], "d": 2 },
+        { "q": "Wie heißt das große Box-Event des spanischen Streamers Ibai?", "a": "La Velada del Año", "w": ["Creator Clash", "Misfits Boxing", "Knossi Kings"], "alt": ["La Velada", "Velada", "La Velada del Ano"], "d": 2 },
+        { "q": "Welcher deutsche Entertainer nennt sich „König des Internets“?", "a": "Knossi", "w": ["MontanaBlack", "Trymacs", "Papaplatte"], "alt": ["Jens Knossalla"], "d": 1 },
+        { "q": "Welcher YouTuber veröffentlichte 2019 „Die Zerstörung der CDU“?", "a": "Rezo", "w": ["LeFloid", "Julien Bam", "Unge"], "d": 1 },
+        { "q": "Welcher deutsche Streamer heißt eigentlich Marcel Eris?", "a": "MontanaBlack", "w": ["Trymacs", "Papaplatte", "Rewinside"], "alt": ["Montana Black", "Monte"], "d": 1 },
+        { "q": "Welcher Streamer ist für Bellen und Saltos bekannt und heißt eigentlich Darren Watkins Jr.?", "a": "IShowSpeed", "w": ["Kai Cenat", "Duke Dennis", "Adin Ross"], "alt": ["Speed", "iShowSpeed", "I Show Speed"], "d": 1 },
+        { "q": "Aus welchem Land stammt der Streamer xQc?", "a": "Kanada", "w": ["USA", "Frankreich", "Belgien"], "d": 2 }
+      ]
+    }
+  ]
+}

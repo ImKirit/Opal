@@ -1,0 +1,47 @@
+{
+  "id": "musik",
+  "name": "Musik",
+  "desc": "Pop-Legenden, K-Pop und alles zwischen Neue Deutsche Welle und Deutschrap.",
+  "icon": "music",
+  "hue": 285,
+  "sections": [
+    {
+      "id": "pop",
+      "name": "Pop & Welt",
+      "questions": [
+        { "q": "Wer wird „King of Pop“ genannt?", "a": "Michael Jackson", "w": ["Prince", "Elvis Presley", "Justin Timberlake"], "alt": ["Jackson"], "d": 1 },
+        { "q": "Welches Album gilt als das meistverkaufte aller Zeiten?", "a": "Thriller", "w": ["Back in Black", "The Dark Side of the Moon", "Bad"], "d": 2 },
+        { "q": "Aus welcher Stadt stammen die Beatles?", "a": "Liverpool", "w": ["London", "Manchester", "Birmingham"], "d": 1 },
+        { "q": "Wer war der Sänger von Queen?", "a": "Freddie Mercury", "w": ["Brian May", "David Bowie", "Elton John"], "alt": ["Mercury"], "d": 1 },
+        { "q": "Mit welchem Song gewann ABBA 1974 den Eurovision Song Contest?", "a": "Waterloo", "w": ["Dancing Queen", "Mamma Mia", "Fernando"], "d": 2 },
+        { "q": "Aus welchem Land stammt Rihanna?", "a": "Barbados", "w": ["Jamaika", "Trinidad und Tobago", "Bahamas"], "d": 2 },
+        { "q": "Wie heißt Eminem mit bürgerlichem Namen?", "a": "Marshall Mathers", "w": ["Curtis Jackson", "Calvin Broadus", "Shawn Carter"], "alt": ["Marshall Bruce Mathers", "Marshall Mathers III"], "d": 2 },
+        { "q": "Woraus bestand Lady Gagas berühmtes Kleid bei den MTV VMAs 2010?", "a": "Aus rohem Fleisch", "w": ["Aus Plastiktüten", "Aus Spielkarten", "Aus Glas"], "alt": ["Fleisch", "Fleischkleid"], "d": 1 },
+        { "q": "Was tragen Daft Punk bei ihren Auftritten?", "a": "Roboterhelme", "w": ["Clownsnasen", "Tiermasken", "Sonnenbrillen"], "alt": ["Helme", "Helm", "Roboterhelm"], "d": 1 },
+        { "q": "Wer sang „Despacito“ zusammen mit Daddy Yankee?", "a": "Luis Fonsi", "w": ["Enrique Iglesias", "J Balvin", "Bad Bunny"], "alt": ["Fonsi"], "d": 1 },
+        { "q": "Wie heißt Billie Eilishs Bruder und Produzent?", "a": "Finneas", "w": ["Jonas", "Declan", "Marcus"], "alt": ["Finneas O'Connell"], "d": 2 },
+        { "q": "Wie heißt Taylor Swifts Rekord-Tournee?", "a": "The Eras Tour", "w": ["Reputation Stadium Tour", "The 1989 World Tour", "Lover Fest"], "alt": ["Eras Tour", "Eras"], "d": 1 },
+        { "q": "Welche koreanische Girlgroup sang „How You Like That“?", "a": "Blackpink", "w": ["Twice", "aespa", "NewJeans"], "alt": ["Black Pink"], "d": 1 },
+        { "q": "Wie wird Elvis Presley auch genannt?", "a": "King of Rock ’n’ Roll", "w": ["King of Pop", "Queen of Soul", "The Boss"], "alt": ["King of Rock n Roll", "King of Rock and Roll", "The King", "King"], "d": 1 }
+      ]
+    },
+    {
+      "id": "deutsch",
+      "name": "Deutsch & Deutschrap",
+      "questions": [
+        { "q": "Aus welcher Stadt stammen Die Fantastischen Vier?", "a": "Stuttgart", "w": ["Hamburg", "Berlin", "Frankfurt"], "d": 2 },
+        { "q": "Mit welchem Song wurde Nena 1983 international bekannt?", "a": "99 Luftballons", "w": ["Irgendwie, irgendwo, irgendwann", "Leuchtturm", "Nur geträumt"], "alt": ["99 Red Balloons", "Neunundneunzig Luftballons"], "d": 1 },
+        { "q": "Mit wem nahm RAF Camora „Palmen aus Plastik“ auf?", "a": "Bonez MC", "w": ["Gzuz", "Capital Bra", "Luciano"], "alt": ["Bonez"], "d": 1 },
+        { "q": "Wie heißt die Hamburger Crew von Bonez MC und Gzuz?", "a": "187 Strassenbande", "w": ["Ersguterjunge", "Aggro Berlin", "Banger Musik"], "alt": ["187", "187 Straßenbande"], "d": 1 },
+        { "q": "Was trug Sido früher bei seinen Auftritten?", "a": "Eine Totenkopfmaske", "w": ["Eine Pandamaske", "Eine Sturmhaube", "Eine Gasmaske"], "alt": ["Maske", "Totenkopfmaske", "Totenkopf-Maske"], "d": 1 },
+        { "q": "Welches Tier zeigt Cros Maske?", "a": "Panda", "w": ["Tiger", "Waschbär", "Koala"], "alt": ["Pandabär"], "d": 1 },
+        { "q": "Wofür steht JBG bei Kollegah und Farid Bang?", "a": "Jung, brutal, gutaussehend", "w": ["Jetzt bin ich Gangster", "Junge Berliner Gang", "Jeder bleibt gleich"], "typed": false, "d": 1 },
+        { "q": "Welcher Song wurde 2019 der erste Nummer-eins-Hit von Apache 207?", "a": "Roller", "w": ["Bläulich", "200 km/h", "Komet"], "d": 2 },
+        { "q": "Aus welcher Stadt stammt Haftbefehl?", "a": "Offenbach", "w": ["Frankfurt", "Darmstadt", "Mannheim"], "alt": ["Offenbach am Main"], "d": 2 },
+        { "q": "Welche Band sang „Ein Kompliment“?", "a": "Sportfreunde Stiller", "w": ["Die Toten Hosen", "Wir sind Helden", "Juli"], "d": 2 },
+        { "q": "Welche Düsseldorfer Band sang „Tage wie diese“?", "a": "Die Toten Hosen", "w": ["Die Ärzte", "Kraftklub", "Silbermond"], "alt": ["Toten Hosen"], "d": 1 },
+        { "q": "Welche Band sang „Du hast“?", "a": "Rammstein", "w": ["Oomph!", "Eisbrecher", "Die Ärzte"], "d": 1 }
+      ]
+    }
+  ]
+}

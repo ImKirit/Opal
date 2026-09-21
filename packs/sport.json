@@ -1,0 +1,49 @@
+{
+  "id": "sport",
+  "name": "Sport",
+  "desc": "Fußball zuerst, dann alles von Tennis bis Snooker.",
+  "icon": "trophy",
+  "hue": 140,
+  "sections": [
+    {
+      "id": "fussball",
+      "name": "Fußball",
+      "questions": [
+        { "q": "Wie oft wurden die deutschen Männer Fußball-Weltmeister?", "a": "4", "w": ["3", "5", "2"], "fact": "1954, 1974, 1990 und 2014.", "d": 1 },
+        { "q": "Wer schoss Deutschland im WM-Finale 2014 zum Titel?", "a": "Mario Götze", "w": ["Thomas Müller", "Miroslav Klose", "André Schürrle"], "alt": ["Götze", "Goetze"], "d": 1 },
+        { "q": "Gegen wen gewann Deutschland das WM-Finale 2014?", "a": "Argentinien", "w": ["Brasilien", "Niederlande", "Frankreich"], "d": 1 },
+        { "q": "In welchem Land fand die WM 2022 statt?", "a": "Katar", "w": ["Saudi-Arabien", "Vereinigte Arabische Emirate", "Russland"], "alt": ["Qatar"], "d": 1 },
+        { "q": "Welcher Spieler hat die meisten Ballon-d'Or-Titel?", "a": "Lionel Messi", "w": ["Cristiano Ronaldo", "Michel Platini", "Johan Cruyff"], "alt": ["Messi"], "fact": "Messi gewann ihn achtmal.", "d": 1 },
+        { "q": "Welcher Verein hat die meisten deutschen Meistertitel?", "a": "FC Bayern München", "w": ["Borussia Dortmund", "1. FC Nürnberg", "Schalke 04"], "alt": ["Bayern", "Bayern München", "FCB"], "d": 1 },
+        { "q": "Wie nennt man den Champions-League-Pokal umgangssprachlich?", "a": "Henkelpott", "w": ["Salatschüssel", "Silberkanne", "Meisterschale"], "fact": "Die „Salatschüssel“ ist dagegen der Spitzname der Bundesliga-Meisterschale.", "d": 2 },
+        { "q": "Welcher Verein gewann die Champions League am häufigsten?", "a": "Real Madrid", "w": ["AC Mailand", "FC Barcelona", "FC Bayern München"], "alt": ["Real"], "d": 1 },
+        { "q": "Seit welchem Jahr gibt es die Bundesliga?", "a": "1963", "w": ["1949", "1954", "1974"], "d": 2 },
+        { "q": "Wie lange dauert ein reguläres Fußballspiel ohne Nachspielzeit?", "a": "90 Minuten", "w": ["80 Minuten", "100 Minuten", "120 Minuten"], "alt": ["90"], "d": 1 },
+        { "q": "Wie nennt man den deutschen WM-Sieg von 1954?", "a": "Das Wunder von Bern", "w": ["Das Märchen von Rom", "Das Wunder von Wembley", "Die Nacht von Paris"], "alt": ["Wunder von Bern"], "d": 1 },
+        { "q": "Wer gewann die Europameisterschaft 2024 in Deutschland?", "a": "Spanien", "w": ["England", "Deutschland", "Frankreich"], "d": 1 },
+        { "q": "Wie viele WM-Titel gewann Pelé als Spieler?", "a": "3", "w": ["1", "2", "4"], "d": 2 },
+        { "q": "Welche Rückennummer steckt in Cristiano Ronaldos Kürzel CR7?", "a": "7", "w": ["9", "10", "11"], "d": 1 }
+      ]
+    },
+    {
+      "id": "sportarten",
+      "name": "Weitere Sportarten",
+      "questions": [
+        { "q": "Wie viele Spieler pro Team stehen beim Basketball auf dem Feld?", "a": "5", "w": ["4", "6", "7"], "d": 1 },
+        { "q": "Welche Rückennummer trug Michael Jordan bei den Chicago Bulls meistens?", "a": "23", "w": ["24", "32", "33"], "d": 1 },
+        { "q": "Wie viele Grand-Slam-Turniere gibt es im Tennis pro Jahr?", "a": "4", "w": ["3", "5", "6"], "d": 1 },
+        { "q": "Auf welchem Belag wird in Wimbledon gespielt?", "a": "Rasen", "w": ["Sand", "Hartplatz", "Teppich"], "alt": ["Gras"], "d": 1 },
+        { "q": "Wie viele WM-Titel holte Michael Schumacher in der Formel 1?", "a": "7", "w": ["5", "6", "8"], "d": 1 },
+        { "q": "In welcher Zeit lief Usain Bolt seinen 100-Meter-Weltrekord?", "a": "9,58 Sekunden", "w": ["9,63 Sekunden", "9,69 Sekunden", "9,49 Sekunden"], "alt": ["9,58", "9.58"], "fact": "Das war 2009 bei der WM in Berlin.", "d": 2 },
+        { "q": "Wie lang ist ein Marathon?", "a": "42,195 km", "w": ["40 km", "42,5 km", "45 km"], "alt": ["42,195", "42.195", "42 km"], "d": 1 },
+        { "q": "Wo fanden die Olympischen Sommerspiele 2024 statt?", "a": "Paris", "w": ["Los Angeles", "Tokio", "Madrid"], "d": 1 },
+        { "q": "Welche Farbe hat das Trikot des Führenden bei der Tour de France?", "a": "Gelb", "w": ["Grün", "Rosa", "Weiß"], "d": 1 },
+        { "q": "Wie viele Spieler hat ein Volleyball-Team auf dem Feld?", "a": "6", "w": ["5", "7", "8"], "d": 2 },
+        { "q": "Wie heißt die Scheibe beim Eishockey?", "a": "Puck", "w": ["Disk", "Stone", "Chip"], "d": 1 },
+        { "q": "Was ist das höchstmögliche reguläre Break im Snooker?", "a": "147", "w": ["100", "155", "180"], "d": 3 },
+        { "q": "Wie heißt das Finale der NFL?", "a": "Super Bowl", "w": ["World Series", "Grey Cup", "Big Game Final"], "alt": ["Superbowl"], "d": 1 },
+        { "q": "Welcher Boxer sagte „Schwebe wie ein Schmetterling, stich wie eine Biene“?", "a": "Muhammad Ali", "w": ["Mike Tyson", "Joe Frazier", "George Foreman"], "alt": ["Ali", "Cassius Clay"], "d": 1 }
+      ]
+    }
+  ]
+}

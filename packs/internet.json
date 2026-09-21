@@ -1,0 +1,80 @@
+{
+  "id": "internet",
+  "name": "Apps & Internet",
+  "desc": "Handy-Apps, Social Media, Memes und die Tech-Firmen dahinter.",
+  "icon": "smartphone",
+  "hue": 178,
+  "sections": [
+    {
+      "id": "apps",
+      "name": "Handy-Apps",
+      "questions": [
+        { "q": "Welches Unternehmen kaufte 2014 WhatsApp?", "a": "Facebook", "w": ["Google", "Microsoft", "Apple"], "alt": ["Meta", "Facebook (heute Meta)"], "d": 1 },
+        { "q": "Aus welchem Land stammt Spotify?", "a": "Schweden", "w": ["Norwegen", "USA", "Niederlande"], "d": 1 },
+        { "q": "Welche Firma steckt hinter TikTok?", "a": "ByteDance", "w": ["Tencent", "Alibaba", "Huawei"], "d": 2 },
+        { "q": "Was zeigt das Snapchat-Logo?", "a": "Einen Geist", "w": ["Einen Hund", "Eine Kamera", "Einen Vogel"], "alt": ["Geist", "Gespenst"], "d": 1 },
+        { "q": "Welche App erkennt Songs, indem sie zuhört?", "a": "Shazam", "w": ["SoundHound", "Genius", "Deezer"], "fact": "Shazam gehört seit 2018 zu Apple.", "d": 1 },
+        { "q": "Wer gründete Telegram gemeinsam mit seinem Bruder?", "a": "Pavel Durov", "w": ["Jan Koum", "Evan Spiegel", "Kevin Systrom"], "alt": ["Durov", "Pawel Durow"], "d": 3 },
+        { "q": "Welche Firma steckt hinter Candy Crush?", "a": "King", "w": ["Supercell", "Rovio", "Zynga"], "d": 2 },
+        { "q": "Was bedeutet bei Tinder ein Wisch nach rechts?", "a": "Gefällt mir", "w": ["Ablehnen", "Profil melden", "Später ansehen"], "alt": ["Like", "gefällt mir", "Interesse"], "d": 1 },
+        { "q": "Wie oft am Tag fordert BeReal zu einem Foto auf?", "a": "Einmal", "w": ["Zweimal", "Dreimal", "Stündlich"], "alt": ["1", "1 mal", "einmal"], "d": 1 },
+        { "q": "Aus welchem Land kommt Angry Birds?", "a": "Finnland", "w": ["Schweden", "Dänemark", "Kanada"], "d": 2 },
+        { "q": "Welche Firma steckt hinter Clash of Clans?", "a": "Supercell", "w": ["King", "Rovio", "Niantic"], "fact": "Supercell kommt wie Rovio aus Finnland.", "d": 2 },
+        { "q": "Warum verschwand Flappy Bird 2014 aus den App-Stores?", "a": "Der Entwickler nahm es selbst heraus", "w": ["Apple verbot es", "Nintendo klagte", "Es hatte einen Virus"], "typed": false, "fact": "Er sagte, das Spiel mache zu süchtig.", "d": 2 },
+        { "q": "In welchem Handyspiel rennt man über Gleise vor einem Wachmann davon?", "a": "Subway Surfers", "w": ["Temple Run", "Jetpack Joyride", "Crossy Road"], "d": 1 }
+      ]
+    },
+    {
+      "id": "social",
+      "name": "Social Media",
+      "questions": [
+        { "q": "Wie heißt Twitter seit 2023?", "a": "X", "w": ["Threads", "Bluesky", "Tweeter"], "d": 1 },
+        { "q": "In welchem Jahr wurde Facebook gegründet?", "a": "2004", "w": ["2001", "2006", "2008"], "d": 2 },
+        { "q": "Wer gründete Facebook?", "a": "Mark Zuckerberg", "w": ["Jack Dorsey", "Larry Page", "Evan Spiegel"], "alt": ["Zuckerberg"], "d": 1 },
+        { "q": "Wie heißt das allererste YouTube-Video?", "a": "Me at the zoo", "w": ["Hello World", "First Upload", "Charlie bit my finger"], "d": 2 },
+        { "q": "Welche Firma kaufte 2006 YouTube?", "a": "Google", "w": ["Yahoo", "Microsoft", "Facebook"], "d": 1 },
+        { "q": "Wer hat den YouTube-Kanal mit den meisten Abonnenten?", "a": "MrBeast", "w": ["T-Series", "PewDiePie", "Cocomelon"], "alt": ["Mr Beast", "Mr. Beast"], "d": 1 },
+        { "q": "In welchem Format durfte man auf Instagram anfangs nur Fotos posten?", "a": "Quadratisch", "w": ["Rund", "Hochkant", "Breitbild"], "alt": ["Quadrat", "1:1"], "d": 2 },
+        { "q": "Wie viele Zeichen hatte ein Tweet ursprünglich maximal?", "a": "140", "w": ["160", "280", "500"], "fact": "Seit 2017 sind es 280.", "d": 2 },
+        { "q": "Wie heißt das Alien-Maskottchen von Reddit?", "a": "Snoo", "w": ["Clyde", "Tux", "Wumpus"], "d": 2 },
+        { "q": "Wie heißt die Figur im Discord-Logo?", "a": "Clyde", "w": ["Wumpus", "Snoo", "Nelly"], "d": 3 },
+        { "q": "Welche Farbe hat das Twitch-Logo?", "a": "Lila", "w": ["Blau", "Grün", "Rot"], "alt": ["violett", "purple"], "d": 1 },
+        { "q": "Zu welcher Firma gehört LinkedIn?", "a": "Microsoft", "w": ["Google", "Meta", "Amazon"], "d": 2 },
+        { "q": "In welchem Jahr ging Discord an den Start?", "a": "2015", "w": ["2012", "2017", "2019"], "d": 2 }
+      ]
+    },
+    {
+      "id": "memes",
+      "name": "Memes",
+      "questions": [
+        { "q": "Welche Hunderasse ist der Doge?", "a": "Shiba Inu", "w": ["Akita", "Corgi", "Pomeranian"], "alt": ["Shiba"], "d": 1 },
+        { "q": "Wer singt „Never Gonna Give You Up“?", "a": "Rick Astley", "w": ["Rick Springfield", "George Michael", "Phil Collins"], "alt": ["Astley"], "d": 1 },
+        { "q": "Woraus besteht der Körper der Nyan Cat?", "a": "Einem Pop-Tart", "w": ["Einem Donut", "Einer Waffel", "Einem Toast"], "alt": ["Pop-Tart", "Pop Tart", "Poptart"], "d": 2 },
+        { "q": "Welches Video knackte 2012 als erstes eine Milliarde Aufrufe auf YouTube?", "a": "Gangnam Style", "w": ["Baby", "Despacito", "Harlem Shake"], "alt": ["PSY Gangnam Style", "PSY"], "d": 1 },
+        { "q": "Was sagt der Hund im brennenden Zimmer?", "a": "This is fine", "w": ["Help me", "Such wow", "Stonks"], "alt": ["this is fine"], "d": 1 },
+        { "q": "Wofür sammelte die Ice Bucket Challenge 2014 Spenden?", "a": "Für die ALS-Forschung", "w": ["Für die Krebsforschung", "Für den Klimaschutz", "Für sauberes Trinkwasser"], "alt": ["ALS", "ALS-Forschung"], "d": 2 },
+        { "q": "Wie heißt das Meme mit dem Anzugmann vor einem steigenden Kurs?", "a": "Stonks", "w": ["Money Man", "Big Brain", "Mr. Chart"], "d": 1 },
+        { "q": "Was bedeutet „sus“ in Among-Us-Sprache?", "a": "Verdächtig", "w": ["Süß", "Super", "Sicher"], "alt": ["suspicious", "verdaechtig"], "d": 1 },
+        { "q": "In welcher YouTube-Serie singen Köpfe aus Toiletten?", "a": "Skibidi Toilet", "w": ["Toilet Wars", "Flush Squad", "Poop Patrol"], "d": 1 },
+        { "q": "Wie hieß die mürrisch schauende Katze, die als Meme berühmt wurde?", "a": "Grumpy Cat", "w": ["Nyan Cat", "Keyboard Cat", "Longcat"], "fact": "Mit echtem Namen hieß sie Tardar Sauce.", "d": 1 }
+      ]
+    },
+    {
+      "id": "tech",
+      "name": "Tech-Firmen",
+      "questions": [
+        { "q": "In welchem Jahr wurde Apple gegründet?", "a": "1976", "w": ["1971", "1984", "1990"], "d": 2 },
+        { "q": "Wie hieß Google ursprünglich?", "a": "BackRub", "w": ["Googol", "PageRank", "Searchy"], "alt": ["Back Rub"], "d": 3 },
+        { "q": "Was verkaufte Amazon am Anfang?", "a": "Bücher", "w": ["CDs", "Elektronik", "Spielzeug"], "alt": ["Buch"], "d": 1 },
+        { "q": "Wer gründete Microsoft gemeinsam mit Paul Allen?", "a": "Bill Gates", "w": ["Steve Jobs", "Steve Wozniak", "Larry Ellison"], "alt": ["Gates"], "d": 1 },
+        { "q": "In welchem Jahr erschien das erste iPhone?", "a": "2007", "w": ["2005", "2008", "2010"], "d": 1 },
+        { "q": "Aus welchem Land stammt Samsung?", "a": "Südkorea", "w": ["Japan", "China", "Taiwan"], "alt": ["Korea"], "d": 1 },
+        { "q": "Wofür steht QR in QR-Code?", "a": "Quick Response", "w": ["Quality Read", "Quick Reader", "Query Result"], "d": 2 },
+        { "q": "Wie viele Bit hat ein Byte?", "a": "8", "w": ["4", "16", "10"], "d": 1 },
+        { "q": "Welche Farbe hat das Android-Maskottchen?", "a": "Grün", "w": ["Blau", "Grau", "Orange"], "alt": ["gruen"], "d": 1 },
+        { "q": "Wofür steht CPU?", "a": "Central Processing Unit", "w": ["Computer Power Unit", "Core Processing Utility", "Central Program Upload"], "alt": ["Prozessor", "Hauptprozessor"], "d": 2 },
+        { "q": "Wofür ist Nvidia vor allem bekannt?", "a": "Grafikkarten", "w": ["Smartphones", "Festplatten", "Router"], "alt": ["GPUs", "Grafikkarte", "Grafikchips"], "d": 1 }
+      ]
+    }
+  ]
+}

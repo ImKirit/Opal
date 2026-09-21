@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="b" cx="0.36" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#f3f9ff"/>
+      <stop offset="0.45" stop-color="#9fd6ff"/>
+      <stop offset="1" stop-color="#2f6fc0"/>
+    </radialGradient>
+    <clipPath id="c">
+      <ellipse cx="32" cy="32.8" rx="23" ry="18.7" transform="rotate(-18 32 32.8)"/>
+    </clipPath>
+    <filter id="f" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.4"/>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#0b1629"/>
+  <g clip-path="url(#c)">
+    <rect width="64" height="64" fill="url(#b)"/>
+    <g filter="url(#f)" opacity="0.85">
+      <ellipse cx="42" cy="39" rx="9.4" ry="5.2" fill="#ff9fd8" transform="rotate(-30 42 39)"/>
+      <ellipse cx="22.5" cy="40.5" rx="8" ry="4.6" fill="#8ef2d2"/>
+      <ellipse cx="41" cy="21.5" rx="7" ry="3.8" fill="#b7a2ff"/>
+    </g>
+    <ellipse cx="23" cy="22.5" rx="7.5" ry="3.6" fill="#fff" opacity="0.78" transform="rotate(-24 23 22.5)"/>
+  </g>
+  <ellipse cx="32" cy="32.8" rx="23" ry="18.7" transform="rotate(-18 32 32.8)" fill="none" stroke="#fff" stroke-opacity="0.55" stroke-width="1.7"/>
+</svg>

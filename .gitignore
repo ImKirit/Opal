@@ -1,0 +1,16 @@
+node_modules/
+client/dist/
+server/data/
+server/.env
+desktop/node_modules/
+desktop/dist/
+*.log
+.DS_Store
+Thumbs.db
+
+# Nur lokal: Arbeitsanweisung, Wissens-Vault und Protokolle enthalten Betriebsdetails
+# (VPS, Ports). Das Repo ist oeffentlich.
+CLAUDE.md
+Opal-Vault/
+Claude/deploys/
+Claude/drafts/

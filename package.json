@@ -1,0 +1,26 @@
+{
+  "name": "opal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Opal: Wissens-Duelle in Echtzeit. Wer zuerst richtig antwortet, holt den Punkt.",
+  "author": "Kirit <main@kirit.xyz>",
+  "license": "UNLICENSED",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c cyan,magenta \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client",
+    "build:live": "npm run build -w client -- --base=/opal/",
+    "start": "npm run start -w server",
+    "check:packs": "node server/scripts/check-packs.js",
+    "typecheck": "npm run typecheck -w client"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}

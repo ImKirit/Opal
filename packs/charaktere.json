@@ -1,0 +1,32 @@
+{
+  "id": "charaktere",
+  "name": "Charaktere",
+  "desc": "Cartoon-Figuren, Comic-Helden und Kultfiguren, die jeder schon mal gesehen hat.",
+  "icon": "drama",
+  "hue": 192,
+  "sections": [
+    {
+      "id": "figuren",
+      "name": "Kultfiguren",
+      "questions": [
+        { "q": "Wer ist SpongeBobs bester Freund?", "a": "Patrick", "w": ["Thaddäus", "Plankton", "Sandy"], "alt": ["Patrick Star"], "d": 1 },
+        { "q": "Welche Hunderasse ist Scooby-Doo?", "a": "Deutsche Dogge", "w": ["Bernhardiner", "Dobermann", "Boxer"], "alt": ["Dogge"], "d": 2 },
+        { "q": "Welches Essen liebt Garfield?", "a": "Lasagne", "w": ["Pizza", "Spaghetti", "Fischstäbchen"], "d": 1 },
+        { "q": "Wo arbeitet Homer Simpson?", "a": "Im Atomkraftwerk", "w": ["In der Bar von Moe", "In der Schule", "Im Kwik-E-Mart"], "alt": ["Atomkraftwerk", "AKW", "Kernkraftwerk"], "d": 1 },
+        { "q": "Was macht Popeye so stark?", "a": "Spinat", "w": ["Brokkoli", "Fisch", "Karotten"], "d": 1 },
+        { "q": "Warum braucht Obelix keinen Zaubertrank?", "a": "Er fiel als Baby hinein", "w": ["Er ist ein Riese", "Er isst so viele Wildschweine", "Ein Druide verbot es"], "typed": false, "d": 1 },
+        { "q": "Wie heißt der Hund von Tim in „Tim und Struppi“?", "a": "Struppi", "w": ["Idefix", "Pluto", "Snoopy"], "alt": ["Snowy"], "d": 1 },
+        { "q": "Welches Tier ist Tails, der Freund von Sonic?", "a": "Fuchs", "w": ["Igel", "Echidna", "Hase"], "alt": ["ein Fuchs"], "fact": "Mit seinen zwei Schwänzen kann er fliegen wie ein Propeller.", "d": 1 },
+        { "q": "Welche Hunderasse ist Snoopy?", "a": "Beagle", "w": ["Dackel", "Pudel", "Jack Russell"], "d": 2 },
+        { "q": "Woher stammt Paddington Bär?", "a": "Peru", "w": ["Kanada", "Chile", "Brasilien"], "fact": "Er liebt Orangenmarmelade.", "d": 2 },
+        { "q": "In welcher Straße wohnt Sherlock Holmes?", "a": "Baker Street", "w": ["Downing Street", "Oxford Street", "Abbey Road"], "alt": ["221B Baker Street", "Bakerstreet"], "d": 1 },
+        { "q": "Was passiert mit Pinocchios Nase, wenn er lügt?", "a": "Sie wächst", "w": ["Sie wird rot", "Sie juckt", "Sie verschwindet"], "alt": ["wächst", "sie wird länger", "länger"], "d": 1 },
+        { "q": "Was lieben die Minions über alles?", "a": "Bananen", "w": ["Äpfel", "Donuts", "Kekse"], "alt": ["Banane"], "d": 1 },
+        { "q": "Was nennt Gollum „mein Schatz“?", "a": "Den Ring", "w": ["Einen Fisch", "Eine Höhle", "Ein Schwert"], "alt": ["Ring", "den einen Ring"], "d": 1 },
+        { "q": "Welcher Figur fraß ein Krokodil die Hand ab?", "a": "Captain Hook", "w": ["Peter Pan", "Jack Sparrow", "Long John Silver"], "alt": ["Hook", "Käpt'n Hook", "Kapitän Hook"], "d": 1 },
+        { "q": "Welches Tier ist Kermit?", "a": "Frosch", "w": ["Eidechse", "Schildkröte", "Raupe"], "alt": ["ein Frosch"], "d": 1 },
+        { "q": "Wie heißt der Hund von Micky Maus?", "a": "Pluto", "w": ["Goofy", "Max", "Rex"], "fact": "Goofy ist auch ein Hund, aber Mickys Freund, nicht sein Haustier.", "d": 1 }
+      ]
+    }
+  ]
+}
