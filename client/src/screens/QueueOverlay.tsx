@@ -5,6 +5,7 @@ import { Button } from '../components/Button';
 import { Goo } from '../components/Goo';
 import { Glass } from '../glass/Glass';
 import { ANSWER_MODE_LABEL, clock } from '../lib/format';
+import { ladderName, useLadders } from '../lib/ladders';
 import { actions, useGame } from '../lib/store';
 
 const MotionGlass = motion.create(Glass);
@@ -12,6 +13,7 @@ const MotionGlass = motion.create(Glass);
 export function QueueOverlay() {
   const queue = useGame((s) => s.queue);
   const found = useGame((s) => s.found);
+  const ladders = useLadders();
   const [now, setNow] = useState(Date.now());
 
   useEffect(() => {
@@ -39,7 +41,11 @@ export function QueueOverlay() {
             transition={{ type: 'spring', stiffness: 320, damping: 26 }}
           >
             <Goo size={132} />
-            <p className="eyebrow">{queue.kind === 'ranked' ? 'Ranked' : `Unranked · ${ANSWER_MODE_LABEL[queue.answerMode]}`}</p>
+            <p className="eyebrow">
+              {queue.kind === 'ranked'
+                ? `Ranked ${ladderName(ladders, queue.ladder)}`.trim()
+                : `Unranked · ${ANSWER_MODE_LABEL[queue.answerMode]}`}
+            </p>
             <h2>{found ? 'Gegner gefunden' : 'Suche Gegner'}</h2>
             <p className="queue__time num">{clock(waited)}</p>
             <p className="muted">

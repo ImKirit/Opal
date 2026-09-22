@@ -8,14 +8,41 @@ export type OptionCount = 3 | 4;
 export type TimeLimit = 'kurz' | 'normal' | 'lang';
 export type ContinueMode = 'button' | 'auto';
 
+/** Rang in einem Ranked-Modus */
+export interface Rank {
+  rating: number;
+  peak: number;
+  games: number;
+  wins: number;
+}
+
 export interface User {
   id: string;
   name: string;
   avatar: string | null;
   guest: boolean;
-  rating: number;
-  peakRating: number;
-  rankedGames: number;
+  /** Macher von Opal (Server legt das per Discord-ID fest) */
+  owner?: boolean;
+  /** Rang pro Ranked-Modus (Schluessel wie in AppConfig.ladders) */
+  ranks: Record<string, Rank>;
+}
+
+/** Ein Ranked-Modus mit eigenem Rang, zum Beispiel Standard oder Tippen */
+export interface LadderInfo {
+  id: string;
+  name: string;
+  desc: string;
+}
+
+export type BoardFormat = 'rating' | 'count' | 'duration' | 'ms';
+
+export interface BoardInfo {
+  id: string;
+  name: string;
+  format: BoardFormat;
+  /** true = Rangliste eines Ranked-Modus */
+  ladder: boolean;
+  desc: string;
 }
 
 export interface Stats {
@@ -32,6 +59,7 @@ export interface Stats {
   avgMs: number | null;
   bestStreak: number;
   survivalBest: number;
+  playMs: number;
 }
 
 export interface PackSection {
@@ -56,6 +84,8 @@ export interface AppConfig {
   discordEnabled: boolean;
   allowGuests: boolean;
   rankedSections: string[];
+  ladders: LadderInfo[];
+  boards: BoardInfo[];
 }
 
 export interface MatchPlayer {
@@ -64,6 +94,7 @@ export interface MatchPlayer {
   avatar: string | null;
   isBot: boolean;
   guest: boolean;
+  owner?: boolean;
   rating: number | null;
   connected: boolean;
   left: boolean;
@@ -89,6 +120,8 @@ export interface MatchInfo {
   optionCount?: OptionCount;
   timeLimit?: TimeLimit;
   continueMode?: ContinueMode;
+  /** Ranked-Modus, nur bei Ranked */
+  ladder?: string | null;
   total: number | null;
   players: MatchPlayer[];
 }
@@ -140,6 +173,7 @@ export interface EndSummary {
   id: string;
   name: string;
   isBot: boolean;
+  owner?: boolean;
   score: number;
   correct: number;
   wrong: number;
@@ -149,6 +183,7 @@ export interface EndSummary {
 }
 
 export interface RatingChange {
+  ladder: string;
   before: number;
   after: number;
   delta: number;
@@ -158,6 +193,7 @@ export interface RatingChange {
 export interface MatchEnd {
   id: string;
   kind: MatchKind;
+  ladder?: string | null;
   reason: 'complete' | 'forfeit' | 'abandoned';
   winnerId: string | null;
   questionsPlayed: number;
@@ -183,12 +219,13 @@ export interface LobbyState {
   playing: boolean;
   locked: boolean;
   settings: LobbySettings;
-  members: { id: string; name: string; avatar: string | null; guest: boolean; connected: boolean }[];
+  members: { id: string; name: string; avatar: string | null; guest: boolean; connected: boolean; owner?: boolean }[];
   bots: { id: string; name: string; difficulty: BotDifficulty }[];
 }
 
 export interface QueueStatus {
   kind: 'ranked' | 'unranked';
+  ladder: string | null;
   since: number;
   waiting: number;
   answerMode: AnswerMode;
@@ -196,15 +233,24 @@ export interface QueueStatus {
   optionCount: OptionCount;
 }
 
-export interface LeaderboardEntry {
+/** Eintrag einer Rangliste. `value` je nach Liste: Punkte, Siege, Millisekunden ... */
+export interface BoardEntry {
   rank: number;
   id: string;
   name: string;
   avatar: string | null;
-  rating: number;
-  peakRating: number;
-  rankedGames: number;
-  wins: number;
+  owner?: boolean;
+  value: number;
+  games: number | null;
+  wins: number | null;
+  peak: number | null;
+}
+
+export interface BoardResponse {
+  board: string;
+  entries: BoardEntry[];
+  /** eigener Platz, auch ausserhalb der ersten 100, sonst null */
+  me: BoardEntry | null;
 }
 
 export interface RecentMatch {
@@ -212,13 +258,14 @@ export interface RecentMatch {
   kind: MatchKind;
   variant: string | null;
   answerMode: AnswerMode;
+  ladder: string | null;
   endedAt: number;
   result: 'win' | 'loss' | 'draw' | 'solo';
   reason: string;
   score: number;
   placement: number;
   ratingDelta: number | null;
-  opponents: { id: string; name: string; isBot: boolean; score: number }[];
+  opponents: { id: string; name: string; isBot: boolean; owner?: boolean; score: number }[];
 }
 
 export interface Profile {
@@ -237,8 +284,7 @@ export interface FriendCard {
   name: string;
   avatar: string | null;
   guest: boolean;
-  rating: number;
-  rankedGames: number;
+  owner?: boolean;
   /** Kurzes Kennzeichen aus der ID, fuer gleichnamige Leute */
   tag: string;
   presence?: Presence;
@@ -255,6 +301,7 @@ export interface InvitePerson {
   id: string;
   name: string;
   avatar: string | null;
+  owner?: boolean;
 }
 
 export interface Invite {

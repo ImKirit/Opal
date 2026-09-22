@@ -4,8 +4,10 @@ import { useEffect } from 'react';
 import { Avatar } from '../components/Avatar';
 import { Button } from '../components/Button';
 import { TierBadge } from '../components/TierBadge';
+import { AddFriendButton, UserName } from '../components/UserName';
 import { Glass } from '../glass/Glass';
 import { KIND_LABEL, percent, seconds, signed } from '../lib/format';
+import { ladderName, useLadders } from '../lib/ladders';
 import { navigate } from '../lib/route';
 import { actions, useGame, useSession } from '../lib/store';
 import { PLACEMENT_GAMES, tierFor } from '../lib/tiers';
@@ -28,6 +30,7 @@ export function Result() {
   const lobby = useGame((s) => s.lobby);
   const replay = useGame((s) => s.replay);
   const me = useSticky(useSession((s) => s.user));
+  const ladders = useLadders();
   if (!result || !me) return null;
 
   const mine = result.summary.find((s) => s.id === me.id);
@@ -73,7 +76,10 @@ export function Result() {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ type: 'spring', stiffness: 260, damping: 26 }}
       >
-        <p className="eyebrow">{KIND_LABEL[result.kind]}</p>
+        <p className="eyebrow">
+          {KIND_LABEL[result.kind]}
+          {result.ladder ? ` ${ladderName(ladders, result.ladder)}` : ''}
+        </p>
         <h1 className="result__title">{title}</h1>
 
         {rating && (
@@ -83,6 +89,7 @@ export function Result() {
             <span className="result__points">
               <RatingCounter from={rating.before} to={rating.after} /> Punkte
             </span>
+            <span className="muted">Rang {ladderName(ladders, rating.ladder)}</span>
             {rating.games === PLACEMENT_GAMES && <span className="muted">Einstufung abgeschlossen: {tierFor(rating.after).name}</span>}
           </div>
         )}
@@ -114,9 +121,10 @@ export function Result() {
               <li key={p.id} className={p.id === me.id ? 'is-me' : ''}>
                 <span className="result__place num">{p.placement}.</span>
                 <Avatar name={p.name} isBot={p.isBot} size={32} />
-                <span className="result__name">{p.name}</span>
+                <UserName className="result__name" name={p.name} owner={p.owner} />
                 <span className="result__score num">{p.score}</span>
                 <span className="muted num">{seconds(p.avgMs)}</span>
+                <span className="result__add">{!p.isBot && <AddFriendButton userId={p.id} name={p.name} />}</span>
               </li>
             ))}
           </ol>

@@ -1,7 +1,7 @@
 // Warteschlangen fuer Ranked und Unranked (jeweils 1v1).
 //
-// Ranked: fester Fragenpool, Gegner nach Elo. Das erlaubte Elo-Fenster waechst mit der
-// Wartezeit, damit bei wenig Betrieb trotzdem Spiele zustande kommen.
+// Ranked: fester Fragenpool, Gegner nach Elo im selben Ranked-Modus (ladder). Das erlaubte
+// Elo-Fenster waechst mit der Wartezeit, damit bei wenig Betrieb trotzdem Spiele zustande kommen.
 // Unranked: eigene Themenauswahl. Gespielt wird die Schnittmenge beider Auswahlen.
 // Antwortmodus, Schwierigkeit und Zahl der Optionen muessen passen. Nach 20 Sekunden
 // Wartezeit werden sie egal (dann gemischt, gemischt und 3 Optionen).
@@ -23,10 +23,11 @@ export class Matchmaker {
     return this.entries.has(userId);
   }
 
-  join(user, { kind, sections, answerMode, difficulty = 'gemischt', optionCount = 3 }) {
+  join(user, { kind, ladder = null, sections, answerMode, difficulty = 'gemischt', optionCount = 3 }) {
     const entry = {
       user,
       kind,
+      ladder,
       sections: new Set(sections),
       answerMode,
       difficulty,
@@ -59,7 +60,8 @@ export class Matchmaker {
       if (other === entry || other.kind !== entry.kind) continue;
 
       if (entry.kind === 'ranked') {
-        const diff = Math.abs(this.getRating(entry.user.id) - this.getRating(other.user.id));
+        if (other.ladder !== entry.ladder) continue;
+        const diff = Math.abs(this.getRating(entry.user.id, entry.ladder) - this.getRating(other.user.id, other.ladder));
         if (diff > this.window(entry, now) || diff > this.window(other, now)) continue;
         if (diff < bestScore) {
           best = other;
@@ -92,6 +94,7 @@ export class Matchmaker {
     const pick = (key, fallback) => (entry[key] === best[key] ? entry[key] : fallback);
     this.onMatch({
       kind: entry.kind,
+      ladder: entry.ladder,
       users: [best.user, entry.user],
       sections: entry.kind === 'ranked' ? [...entry.sections] : shared,
       answerMode: pick('answerMode', 'mixed'),
@@ -112,9 +115,10 @@ export class Matchmaker {
 
   emitStatus(entry) {
     let waiting = 0;
-    for (const e of this.entries.values()) if (e.kind === entry.kind) waiting += 1;
+    for (const e of this.entries.values()) if (e.kind === entry.kind && e.ladder === entry.ladder) waiting += 1;
     this.emitToUser(entry.user.id, 'queue:status', {
       kind: entry.kind,
+      ladder: entry.ladder,
       since: entry.joinedAt,
       waiting,
       answerMode: entry.answerMode,

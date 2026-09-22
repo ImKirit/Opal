@@ -2,15 +2,18 @@ import { randomUUID } from 'node:crypto';
 import { userFromCookieHeader } from '../auth.js';
 import { friendIds, relation } from '../friends.js';
 import { countQuestions, rankedSections } from '../packs.js';
+import { rankOf } from '../ratings.js';
+import { isOwner } from '../roles.js';
 import { getUser, touchUser } from '../users.js';
 import { createBot, isBotDifficulty } from './bot.js';
 import { LOBBY_MAX, LobbyRegistry } from './lobbies.js';
 import { Match } from './match.js';
 import { Matchmaker } from './matchmaker.js';
+import { DEFAULT_LADDER, isLadder, LADDERS } from './ladders.js';
 import { DEFAULT_SETTINGS, readSettings, SOLO_MODES } from './settings.js';
 
-// Ranked ist fuer alle gleich: fester Pool, gemischter Antwortmodus, feste Schwierigkeit
-const RANKED_SETTINGS = { ...DEFAULT_SETTINGS, answerMode: 'mixed', questionCount: 9 };
+// Ranked ist fuer alle gleich: fester Pool (Allgemein), feste Regeln je Modus (ladders.js)
+const rankedSettings = (ladder) => ({ ...DEFAULT_SETTINGS, ...LADDERS[ladder].settings, sections: rankedSections(), ladder });
 const UNRANKED_COUNT = 10;
 /** Was man vor Training und Unranked selbst waehlen darf */
 const PLAYER_FIELDS = ['sections', 'answerMode', 'questionCount', 'difficulty', 'optionCount'];
@@ -25,13 +28,14 @@ const MAX_OUTGOING_INVITES = 3;
 const fail = (ack, error) => typeof ack === 'function' && ack({ ok: false, error });
 const done = (ack, data = {}) => typeof ack === 'function' && ack({ ok: true, ...data });
 
-function playerFromUser(row) {
+/** Spieler fuer ein Match. Bei Ranked traegt er die Punkte seines Modus mit (Anzeige im Duell). */
+function playerFromUser(row, ladder = null) {
   return {
     id: row.id,
     name: row.name,
     avatar: row.avatar ?? null,
     guest: Boolean(row.is_guest),
-    rating: row.rating,
+    rating: ladder ? rankOf(row.id, ladder).rating : null,
     isBot: false,
   };
 }
@@ -86,13 +90,13 @@ export function attachHub(io) {
 
   const matchmaker = new Matchmaker({
     emitToUser,
-    getRating: (userId) => getUser(userId)?.rating ?? 1000,
-    onMatch: ({ kind, users, sections, answerMode, difficulty, optionCount }) => {
-      const players = users.map((u) => playerFromUser(getUser(u.id) ?? u));
-      const settings =
-        kind === 'ranked'
-          ? { ...RANKED_SETTINGS, sections }
-          : { ...DEFAULT_SETTINGS, sections, answerMode, difficulty, optionCount, questionCount: UNRANKED_COUNT };
+    getRating: (userId, ladder) => rankOf(userId, ladder).rating,
+    onMatch: ({ kind, ladder, users, sections, answerMode, difficulty, optionCount }) => {
+      const ranked = kind === 'ranked';
+      const players = users.map((u) => playerFromUser(getUser(u.id) ?? u, ranked ? ladder : null));
+      const settings = ranked
+        ? rankedSettings(ladder)
+        : { ...DEFAULT_SETTINGS, sections, answerMode, difficulty, optionCount, questionCount: UNRANKED_COUNT };
       for (const u of users) emitToUser(u.id, 'queue:found', { kind });
       startMatch({ kind, players, settings });
     },
@@ -170,8 +174,8 @@ export function attachHub(io) {
     const to = getUser(inv.toId);
     return {
       id: inv.id,
-      from: { id: inv.fromId, name: from?.name ?? '?', avatar: from?.avatar ?? null },
-      to: { id: inv.toId, name: to?.name ?? '?', avatar: to?.avatar ?? null },
+      from: { id: inv.fromId, name: from?.name ?? '?', avatar: from?.avatar ?? null, owner: isOwner(inv.fromId) },
+      to: { id: inv.toId, name: to?.name ?? '?', avatar: to?.avatar ?? null, owner: isOwner(inv.toId) },
       intoLobby: inv.intoLobby,
       expiresInMs: Math.max(0, inv.expiresAt - Date.now()),
     };
@@ -236,17 +240,16 @@ export function attachHub(io) {
       if (activeMatch(userId)) return fail(ack, 'Du bist gerade in einem Spiel.');
       const kind = payload?.kind === 'ranked' ? 'ranked' : 'unranked';
       if (kind === 'ranked' && user.is_guest) return fail(ack, 'Ranked braucht einen Discord-Login.');
+      const ladder = kind === 'ranked' ? (isLadder(payload?.ladder) ? payload.ladder : DEFAULT_LADDER) : null;
 
-      const wanted =
-        kind === 'ranked'
-          ? { ...RANKED_SETTINGS, sections: rankedSections() }
-          : readSettings(payload, { sections: [] }, PLAYER_FIELDS);
+      const wanted = ladder ? rankedSettings(ladder) : readSettings(payload, { sections: [] }, PLAYER_FIELDS);
       if (kind === 'unranked' && countQuestions(wanted.sections) < MIN_POOL) {
         return fail(ack, `Wähle Themen mit mindestens ${MIN_POOL} Fragen aus.`);
       }
       clearActivity(userId);
       matchmaker.join(user, {
         kind,
+        ladder,
         sections: wanted.sections,
         answerMode: wanted.answerMode,
         difficulty: wanted.difficulty,

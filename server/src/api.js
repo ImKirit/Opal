@@ -3,7 +3,8 @@ import { config, discordEnabled } from './config.js';
 import { requireUser, userFromCookieHeader } from './auth.js';
 import { acceptFriend, friendCard, listFriends, relation, removeFriendship, requestFriend, searchUsers } from './friends.js';
 import { getPackMeta, rankedSections } from './packs.js';
-import { leaderboard, recentMatches, userStats } from './game/persist.js';
+import { ladderMeta } from './game/ladders.js';
+import { boardList, isBoard, leaderboard, recentMatches, userStats } from './game/persist.js';
 import { getUser, publicUser } from './users.js';
 
 export function createApiRouter(hub) {
@@ -15,6 +16,8 @@ export function createApiRouter(hub) {
       discordEnabled: discordEnabled(),
       allowGuests: config.allowGuests,
       rankedSections: rankedSections(),
+      ladders: ladderMeta(),
+      boards: boardList(),
     });
   });
 
@@ -29,8 +32,11 @@ export function createApiRouter(hub) {
     res.json({ packs: getPackMeta() });
   });
 
-  api.get('/api/leaderboard', (_req, res) => {
-    res.json({ entries: leaderboard(100) });
+  // ?board=standard | tippen | siege | spielzeit | tempo | ueberleben (siehe boardList)
+  api.get('/api/leaderboard', (req, res) => {
+    const board = isBoard(req.query.board) ? req.query.board : boardList()[0].id;
+    const me = userFromCookieHeader(req.headers.cookie);
+    res.json({ board, ...leaderboard(board, { limit: 100, userId: me?.id ?? null }) });
   });
 
   api.get('/api/users/:id', (req, res) => {

@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { buildRound, pickQuestions } from '../packs.js';
 import { isCorrectTyped } from './answer.js';
 import { planBotAnswer } from './bot.js';
+import { isOwner } from '../roles.js';
 import { recentExclusions, rememberQuestions, saveMatch } from './persist.js';
 import { durationFor } from './settings.js';
 
@@ -111,6 +112,7 @@ export class Match {
       avatar: p.avatar ?? null,
       isBot: Boolean(p.isBot),
       guest: Boolean(p.guest),
+      owner: !p.isBot && isOwner(p.id),
       rating: this.kind === 'ranked' ? p.rating : null,
       connected: p.connected,
       left: p.left,
@@ -136,6 +138,7 @@ export class Match {
       optionCount: this.settings.optionCount ?? 3,
       timeLimit: this.settings.timeLimit ?? 'normal',
       continueMode: this.settings.continueMode ?? 'button',
+      ladder: this.kind === 'ranked' ? (this.settings.ladder ?? null) : null,
       total: this.survival ? null : this.planned,
       players: this.publicPlayers(),
     };
@@ -589,6 +592,7 @@ export class Match {
         id: p.id,
         name: p.name,
         isBot: Boolean(p.isBot),
+        owner: !p.isBot && isOwner(p.id),
         score: s.score,
         correct: s.correct,
         wrong: s.wrong,
@@ -614,6 +618,7 @@ export class Match {
     this.emit('match:end', {
       id: this.id,
       kind: this.kind,
+      ladder: this.kind === 'ranked' ? (this.settings.ladder ?? null) : null,
       reason,
       winnerId,
       questionsPlayed: this.index + 1,

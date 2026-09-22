@@ -2,11 +2,12 @@ import { Check, Search, Swords, UserMinus, UserPlus, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Avatar } from '../components/Avatar';
 import { Button } from '../components/Button';
+import { OwnerBadge } from '../components/UserName';
 import { Glass } from '../glass/Glass';
 import { api } from '../lib/api';
 import { loadFriends, useFriends } from '../lib/friends';
 import { navigate } from '../lib/route';
-import { actions, toast, useGame } from '../lib/store';
+import { actions, toast, useGame, useSession } from '../lib/store';
 import type { FriendCard, Presence } from '../lib/types';
 
 const PRESENCE_LABEL: Record<Presence, string> = {
@@ -28,7 +29,8 @@ function Who({ person, presence }: { person: FriendCard; presence?: Presence }) 
       </span>
       <span className="friend__text">
         <span className="friend__name">
-          {person.name}
+          <span className="friend__nametext">{person.name}</span>
+          {person.owner && <OwnerBadge />}
           <span className="friend__tag mono">#{person.tag}</span>
           {person.guest && <span className="friend__guest">Gast</span>}
         </span>
@@ -63,10 +65,12 @@ function SearchCard() {
   const { busy, run } = useBusy();
   const seq = useRef(0);
   const list = useFriends();
+  const myId = useSession((s) => s.user?.id ?? '');
+  const myTag = myId.replace(/-/g, '').slice(0, 4).toUpperCase();
 
   useEffect(() => {
     const q = query.trim();
-    if (q.length < 2) {
+    if (!q) {
       setResults(null);
       setError(null);
       return;
@@ -77,7 +81,7 @@ function SearchCard() {
         .searchUsers(q)
         .then((r) => id === seq.current && (setResults(r.users), setError(null)))
         .catch((e: Error) => id === seq.current && setError(e.message));
-    }, 280);
+    }, 140);
     return () => window.clearTimeout(t);
   }, [query]);
 
@@ -97,14 +101,20 @@ function SearchCard() {
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Name eingeben"
-          maxLength={20}
+          placeholder="Name oder #Kürzel"
+          maxLength={40}
           aria-label="Nach Namen suchen"
           autoComplete="off"
           spellCheck={false}
         />
       </Glass>
-      {query.trim().length < 2 && <p className="friends__hint">Mindestens zwei Buchstaben. Das Kürzel mit # hilft, wenn mehrere gleich heißen.</p>}
+      {!query.trim() && (
+        <p className="friends__hint">
+          Schon beim ersten Buchstaben kommen Vorschläge. Discord-Konten heißen hier wie ihr Discord-Benutzername, so findet
+          ihr euch auch auf Discord. Gleiche Namen unterscheidet das Kürzel: <span className="mono">#AB12</span> oder{' '}
+          <span className="mono">Name#AB12</span>. Dein Kürzel ist <strong className="mono">#{myTag}</strong>.
+        </p>
+      )}
       {error && <p className="empty">{error}</p>}
       {results?.length === 0 && <p className="empty">Niemand mit diesem Namen gefunden.</p>}
       {results && results.length > 0 && (

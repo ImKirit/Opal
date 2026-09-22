@@ -5,12 +5,15 @@ import { PackIcon } from '../components/PackIcon';
 import { selectionSummary } from '../components/PackPicker';
 import { Segmented } from '../components/Segmented';
 import { TierBadge, TierLadder } from '../components/TierBadge';
+import { OwnerBadge } from '../components/UserName';
 import { Glass } from '../glass/Glass';
 import { percent, seconds } from '../lib/format';
+import { rankIn, useLadders } from '../lib/ladders';
 import { usePrefs, type TrainingMode } from '../lib/prefs';
 import { navigate } from '../lib/route';
 import { actions, useSession } from '../lib/store';
 import type { AnswerMode, BotDifficulty, Difficulty, OptionCount, User } from '../lib/types';
+import { useSticky } from '../lib/useSticky';
 
 export const DIFFICULTY_EXPLAIN: Record<Difficulty, string> = {
   gemischt: 'Fragen aller Stufen, bunt gemischt.',
@@ -18,7 +21,6 @@ export const DIFFICULTY_EXPLAIN: Record<Difficulty, string> = {
   mittel: 'Vor allem mittelschwere Fragen.',
   schwer: 'Alle schweren Fragen zuerst, danach mittelschwere.',
 };
-import { useSticky } from '../lib/useSticky';
 
 function ModeCard({
   title,
@@ -57,7 +59,10 @@ function HubView({ user }: { user: User }) {
   const stats = useSession((s) => s.stats);
   const packs = useSession((s) => s.packs);
   const discordEnabled = useSession((s) => s.config?.discordEnabled);
+  const ladders = useLadders();
   const prefs = usePrefs();
+  const ladder = ladders.find((l) => l.id === prefs.rankedLadder) ?? ladders[0];
+  const rank = rankIn(user, ladder?.id ?? 'standard');
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState<string | null>(null);
 
@@ -81,7 +86,9 @@ function HubView({ user }: { user: User }) {
       <section className="hub__hello">
         <div>
           <p className="eyebrow">Spielen</p>
-          <h1>Hallo {user.name}.</h1>
+          <h1>
+            Hallo {user.name}.{user.owner && <OwnerBadge />}
+          </h1>
         </div>
         {stats && stats.duels + stats.trainingPlayed > 0 && (
           <dl className="hub__stats">
@@ -113,8 +120,19 @@ function HubView({ user }: { user: User }) {
 
       <div className="hub__grid">
         <ModeCard title="Ranked" icon={<Swords size={20} />} className="mode--ranked" accent tour="ranked">
+          {ladders.length > 1 && (
+            <Segmented<string>
+              label="Ranked-Modus"
+              size="sm"
+              block
+              value={ladder?.id ?? ''}
+              onChange={(v) => prefs.set({ rankedLadder: v })}
+              options={ladders.map((l) => ({ value: l.id, label: l.name }))}
+            />
+          )}
           <p className="mode__desc">
-            1 gegen 1 um Punkte. Alle spielen dieselben Fragen aus dem Thema Allgemein, Auswahl und Tippen gemischt, neun Fragen.
+            1 gegen 1 um Punkte, neun Fragen aus dem Thema Allgemein. {ladder ? `${ladder.name}: ${ladder.desc}.` : ''} Jeder
+            Modus hat seinen eigenen Rang.
           </p>
           <div className="mode__rank">
             {user.guest ? (
@@ -122,10 +140,10 @@ function HubView({ user }: { user: User }) {
                 <Lock size={15} /> Ranked braucht einen Discord-Login.
               </span>
             ) : (
-              <TierBadge rating={user.rating} games={user.rankedGames} />
+              <TierBadge rating={rank.rating} games={rank.games} />
             )}
           </div>
-          <TierLadder rating={user.rating} active={!user.guest && user.rankedGames >= 5} />
+          <TierLadder rating={rank.rating} active={!user.guest && rank.games >= 5} />
           <Button
             variant="primary"
             size="lg"
@@ -136,7 +154,7 @@ function HubView({ user }: { user: User }) {
             onClick={() => act('ranked', () => actions.joinQueue('ranked'))}
             title={user.guest && !discordEnabled ? 'Discord-Login ist noch nicht eingerichtet' : undefined}
           >
-            Ranked suchen
+            {ladder && ladders.length > 1 ? `Ranked ${ladder.name} suchen` : 'Ranked suchen'}
           </Button>
         </ModeCard>
 

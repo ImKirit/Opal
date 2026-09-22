@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import { Avatar } from '../components/Avatar';
 import { Button } from '../components/Button';
 import { TierBadge } from '../components/TierBadge';
+import { UserName } from '../components/UserName';
 import { Glass } from '../glass/Glass';
 import { api } from '../lib/api';
 import { loadFriends, useFriends } from '../lib/friends';
-import { ago, KIND_LABEL, percent, seconds, signed } from '../lib/format';
+import { ago, duration, KIND_LABEL, percent, seconds, signed } from '../lib/format';
+import { ladderName, rankIn, useLadders } from '../lib/ladders';
 import { useRoute } from '../lib/route';
 import { logout, toast, useSession } from '../lib/store';
 import type { Profile as ProfileData } from '../lib/types';
@@ -56,6 +58,7 @@ export function Profile() {
   const route = useRoute();
   const me = useSession((s) => s.user);
   const myStats = useSession((s) => s.stats);
+  const ladders = useLadders();
   const id = route.param ?? me?.id ?? '';
   const isMe = id === me?.id;
   const [data, setData] = useState<ProfileData | null>(null);
@@ -94,6 +97,7 @@ export function Profile() {
     ['Ø Antwortzeit', seconds(stats.avgMs, 2)],
     ['Beste Serie', String(stats.bestStreak)],
     ['Überleben-Rekord', String(stats.survivalBest)],
+    ['Spielzeit', duration(stats.playMs)],
   ];
 
   return (
@@ -102,16 +106,32 @@ export function Profile() {
         <Avatar name={user.name} src={user.avatar} size={84} />
         <div className="profile__who">
           <p className="eyebrow">{user.guest ? 'Gast' : 'Discord'}</p>
-          <h1>{user.name}</h1>
-          {!user.guest && <p className="muted num">Bestwert {user.peakRating} Punkte</p>}
+          <h1>
+            <UserName name={user.name} owner={user.owner} />
+          </h1>
         </div>
-        {!user.guest && <TierBadge rating={user.rating} games={user.rankedGames} />}
         {isMe ? (
           <Button size="sm" variant="ghost" onClick={() => void logout()}>
             Abmelden
           </Button>
         ) : (
           me && <FriendButton userId={user.id} name={user.name} />
+        )}
+        {!user.guest && (
+          <div className="profile__ranks">
+            {ladders.map((l) => {
+              const r = rankIn(user, l.id);
+              return (
+                <div key={l.id} className="profile__rank">
+                  <span className="eyebrow">Ranked {l.name}</span>
+                  <TierBadge rating={r.rating} games={r.games} />
+                  <span className="muted num">
+                    {r.games ? `Bestwert ${r.peak} · ${r.wins} von ${r.games} gewonnen` : 'Noch nicht gespielt'}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         )}
       </Glass>
 
@@ -131,7 +151,10 @@ export function Profile() {
           {matches.map((m) => (
             <li key={m.id} className={`history__row history__row--${m.result}`}>
               <span className="history__result">{RESULT_LABEL[m.result]}</span>
-              <span className="history__kind">{KIND_LABEL[m.kind]}</span>
+              <span className="history__kind">
+                {KIND_LABEL[m.kind]}
+                {m.ladder ? ` ${ladderName(ladders, m.ladder)}` : ''}
+              </span>
               <span className="history__vs">
                 {m.opponents.length
                   ? `gegen ${m.opponents

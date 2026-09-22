@@ -6,8 +6,8 @@
 
 **Wer zuerst richtig liegt, holt den Punkt.**
 
-Fun-Fact-Quizduelle in Echtzeit im Browser: Ranked mit Elo, Unranked, private Lobbys per Code,
-Duelle gegen Freunde und Training allein oder gegen Bots. Die Fragen stellst du dir aus Themen
+Fun-Fact-Quizduelle in Echtzeit im Browser: Ranked mit Elo in zwei Modi, Unranked, private Lobbys
+per Code, Duelle gegen Freunde und Training allein oder gegen Bots. Die Fragen stellst du dir aus Themen
 zusammen, von Allgemeinwissen über Anime bis Parfüm. Oberfläche in echtem Liquid Glass mit
 Lichtbrechung.
 
@@ -31,7 +31,8 @@ vor langen Wörtern heißt oder welches Tier würfelförmigen Kot hinterlässt.
 Die Fragen kommen aus **Themen statt fester Kategorien**. Du nimmst ein ganzes Thema oder nur
 die Bereiche, die du wirklich kennst, zum Beispiel bei Anime nur One Piece und Naruto. Im
 Unranked spielst du die Schnittmenge mit deinem Gegner, im Ranked alle dasselbe Thema
-Allgemein, damit nicht die zufällige Nische entscheidet.
+Allgemein, damit nicht die zufällige Nische entscheidet. Ranked gibt es als **Standard** (aus drei
+Antworten wählen) und **Tippen**, jeweils mit eigenem Rang und eigener Rangliste.
 
 ## Getting started
 
@@ -59,9 +60,10 @@ Allgemein, damit nicht die zufällige Nische entscheidet.
 
    <img src="docs/tour-4-aufloesung.png" width="620" alt="Auflösung: Punkt für dich, mit grünem Weiter-Knopf">
 
-5. **Mit Freunden spielen:** unter `Freunde` Leute per Name suchen, Anfrage schicken und sie
-   danach direkt herausfordern. Oder eine Lobby erstellen und den fünfstelligen Code schicken.
-   Mit Discord-Login geht es ins Ranked.
+5. **Mit Freunden spielen:** unter `Freunde` Leute suchen, Vorschläge kommen ab dem ersten
+   Buchstaben. Anfrage schicken (auch direkt aus der Rangliste oder nach einem Spiel) und
+   Freunde danach direkt herausfordern. Oder eine Lobby
+   erstellen und den fünfstelligen Code schicken. Mit Discord-Login geht es ins Ranked.
 
 ## Features
 
@@ -80,17 +82,24 @@ Allgemein, damit nicht die zufällige Nische entscheidet.
   steht jedes Mal auf einem zufälligen Platz.
 - **Tippen mit Nachsicht.** Groß/Klein, Umlaute (`ü`, `ue`, `u`), Akzente, Artikel und kleine
   Tippfehler werden verziehen, Zahlen müssen exakt stimmen.
-- **Ranked mit Elo.** 1 gegen 1, neun Fragen, Start bei 1000 Punkten, Rangstufen von Sand über
-  Quarz, Kristall, Saphir und Diamant bis Prisma. Die ersten fünf Spiele sind die Einstufung.
+- **Ranked mit Elo, zwei Modi.** 1 gegen 1, neun Fragen aus Allgemein, Start bei 1000 Punkten.
+  **Standard** heißt Auswahl aus drei Antworten, **Tippen** heißt selbst eintippen. Jeder Modus
+  hat seinen eigenen Rang (Sand, Quarz, Kristall, Saphir, Diamant, Prisma) und seine eigene
+  Warteschlange, die ersten fünf Spiele sind jeweils die Einstufung. Unranked, Lobbys und
+  Duelle unter Freunden zählen nicht für den Rang.
 - **Unranked.** 1 gegen 1 mit deinen Themen, gespielt wird, was ihr beide ausgewählt habt.
   Dauert die Suche, kannst du nach ein paar Sekunden stattdessen gegen einen Bot spielen.
 - **Private Lobbys.** Bis zu acht Teilnehmer per Code, Bots in drei Stärken. Der Host stellt
   alles ein: Themen, Antwortmodus, drei oder vier Antworten, Schwierigkeit, 5 bis 30 Fragen,
   Zeit pro Frage, Weiter-Knopf oder automatisch, und kann die Lobby abschließen. Nach dem Spiel
   bleibt die Lobby offen.
-- **Freunde.** Leute per Name suchen (ein kurzes Kürzel hilft bei gleichen Namen), Anfrage
-  schicken, sehen wer online ist oder gerade spielt, und Freunde direkt herausfordern. Nimmt
-  die andere Person an, startet sofort ein Duell mit deinen Regeln.
+- **Freunde.** Suche mit Vorschlägen ab dem ersten Buchstaben, dazu Kürzel für gleiche Namen
+  (`#AB12` oder `Name#AB12`, dein Kürzel steht auf der Freunde-Seite). Hinzufügen geht auch aus
+  der Rangliste, nach einem Spiel und im Profil. Sehen, wer online ist oder gerade spielt, und
+  Freunde direkt herausfordern: nimmt die andere Person an, startet sofort ein Duell mit deinen Regeln.
+- **Namen wie auf Discord.** Discord-Konten heißen auf Opal wie ihr Discord-Benutzername
+  (nicht der Anzeigename), damit man sich auch auf Discord findet. Gäste können sich keinen
+  Namen geben, den schon ein Discord-Konto trägt.
 - **Training.** Klassisch mit 10, 20 oder 30 Fragen, Überleben mit drei Leben, oder gegen
   Kiesel, Prisma oder Obsidian (Bots leicht, mittel, schwer).
 - **Gleichstand.** Bis zu drei Entscheidungsfragen, danach unentschieden.
@@ -114,8 +123,11 @@ Allgemein, damit nicht die zufällige Nische entscheidet.
   Chrome, Edge und der Desktop-App voll, in Firefox und Safari automatisch als mattes Glas.
 - **Farbthemen.** Tiefsee (Standard), Mitternacht, Lagune, Amethyst, Rosé, Glut, Graphit oder
   eigene Farbtöne für Hintergrund und Akzent.
-- **Profil und Rangliste.** Duelle, Siege, Trefferquote, Antwortzeit, beste Serie,
-  Überleben-Rekord und die letzten Spiele.
+- **Ranglisten.** Ranked Standard, Ranked Tippen, Siege gegen Menschen, Spielzeit, Tempo
+  (schnellste richtige Antworten im Training, ab 30 richtigen) und Überleben. Dein eigener Platz
+  steht immer dabei, auch hinter Platz 100. Gäste stehen in keiner Liste.
+- **Profil.** Beide Ränge mit Bestwert, Duelle, Siege, Trefferquote, Antwortzeit, beste Serie,
+  Überleben-Rekord, Spielzeit und die letzten Spiele.
 - **Rundgang.** Beim ersten Besuch zeigt ein Lichtkegel mit Pfeilen, wo Ranked, Training,
   Themen, Freunde, Rangliste und Einstellungen sind. Jederzeit wieder über die Einstellungen.
 - **Handy-tauglich.** Unter 880 px wandert die Navigation als Tab-Leiste nach unten.
@@ -174,6 +186,7 @@ Wer als Gast gespielt hat und dann Discord verbindet, behält seine Statistiken.
 | `DISCORD_REDIRECT_URI` | `${PUBLIC_URL}/auth/discord/callback` | muss im Discord-Portal stehen |
 | `ALLOW_GUESTS` | `true` | `false` erlaubt nur Discord |
 | `RANKED_SECTIONS` | alle Bereiche von `allgemein` | Ranked-Pool als Komma-Liste `paket/bereich` |
+| `OWNER_DISCORD_IDS` | leer | Discord-IDs, die auf der Seite ein rotes „Owner“-Schild bekommen (per ID, damit es kein Gast kopieren kann) |
 | `DATA_DIR` | `server/data` | Ort der Datenbank |
 | `PACKS_DIR` | `packs` | Ort der Fragenpakete |
 
@@ -181,7 +194,7 @@ Wer als Gast gespielt hat und dann Discord verbindet, behält seine Statistiken.
 
 ```
 server/data/
-└─ opal.db           SQLite: Spieler, Sessions, beendete Spiele, Elo, Freundschaften
+└─ opal.db           SQLite: Spieler, Sessions, beendete Spiele, Rang pro Ranked-Modus, Freundschaften
 packs/
 └─ *.json             Fragenpakete, werden beim Serverstart geladen
 Browser
@@ -225,12 +238,14 @@ npm run typecheck       # TypeScript im Client
 npm run check:packs     # Fragen prüfen: Form, Dubletten, Gedankenstriche
 npm test -w server      # Tipp-Erkennung, Zufallsplatz der richtigen Antwort, Schwierigkeit
 node Claude/scripts/e2e-duel.mjs       # Ende-zu-Ende: Duell, Lobby, Training, Freunde (Server muss laufen)
+node Claude/scripts/e2e-ranked.mjs <url> <db>   # Ranked Standard und Tippen, Ranglisten, Suche (nur Test-DB)
 node Claude/scripts/readme-shots.mjs   # README-Bilder neu erzeugen (Server und Client müssen laufen)
 ```
 
 `server/` ist Node mit Express 5 und Socket.IO. Eine einzige Spiel-Engine (`game/match.js`)
 trägt alle Modi, Matchmaking, Lobbys, Bots, Elo und die Rundeneinstellungen (`game/settings.js`)
-liegen daneben in `game/`, Freundschaften in `friends.js`. `client/` ist
+liegen daneben in `game/`, Freundschaften in `friends.js`. Ranked-Modi stehen in
+`game/ladders.js`: ein neuer Eintrag dort ergibt Warteschlange, Rang und Rangliste. `client/` ist
 React 19 mit Vite und TypeScript, die Glas-Engine steckt in `client/src/glass/`. Die Fragen
 sind reine JSON-Dateien in `packs/`.
 

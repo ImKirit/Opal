@@ -38,6 +38,8 @@ export const config = {
     redirectUri: env.DISCORD_REDIRECT_URI || `${publicUrl}/auth/discord/callback`,
   },
   rankedSections: list(env.RANKED_SECTIONS),
+  /** Discord-IDs, die auf der Seite als "Owner" markiert werden */
+  ownerDiscordIds: list(env.OWNER_DISCORD_IDS),
   dataDir: env.DATA_DIR || path.join(serverRoot, 'data'),
   packsDir: env.PACKS_DIR || path.join(repoRoot, 'packs'),
   clientDist: env.CLIENT_DIST || path.join(repoRoot, 'client', 'dist'),

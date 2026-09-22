@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useAnimate } from 'motion/react';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Avatar } from '../components/Avatar';
 import { Button } from '../components/Button';
+import { UserName } from '../components/UserName';
 import { Glass } from '../glass/Glass';
 import { ANSWER_MODE_LABEL, KIND_LABEL, seconds } from '../lib/format';
 import { sound } from '../lib/sound';
@@ -34,7 +35,7 @@ function PlayerSide({ player, score, match, align, isMe }: { player: MatchPlayer
       <Avatar name={player.name} src={player.avatar} isBot={player.isBot} size={52} dim={!player.connected} />
       <div className="side__info">
         <span className="side__name">
-          {player.name}
+          <UserName name={player.name} owner={player.owner} />
           {isMe && <span className="muted"> (du)</span>}
         </span>
         <span className="side__status">
@@ -136,7 +137,7 @@ function Scoreboard({ match, meId }: { match: MatchView; meId: string }) {
         {ranked.map((p) => (
           <li key={p.id} className={`${p.id === meId ? 'is-me' : ''}${match.reveal?.winnerId === p.id ? ' is-scored' : ''}${p.left ? ' is-gone' : ''}`}>
             <Avatar name={p.name} src={p.avatar} isBot={p.isBot} size={30} dim={!p.connected} />
-            <span className="group__name">{p.name}</span>
+            <UserName className="group__name" name={p.name} owner={p.owner} />
             <span className="group__score num">{scores[p.id]?.score ?? 0}</span>
           </li>
         ))}

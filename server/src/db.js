@@ -72,6 +72,31 @@ const migrations = [
   );
   CREATE INDEX idx_friendships_friend ON friendships(friend_id);
   `,
+  // v3: ein Rang pro Person und Ranked-Modus (ladder). Die alten Spalten users.rating,
+  // peak_rating und ranked_games bleiben stehen, werden aber nicht mehr benutzt.
+  // Bisherige Ranked-Spiele (Antwortmodus gemischt) zaehlen fuer "standard".
+  // Dazu der Discord-Benutzername, damit man Freunde auch darueber findet.
+  `
+  CREATE TABLE ratings (
+    user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    ladder TEXT NOT NULL,
+    rating INTEGER NOT NULL DEFAULT 1000,
+    peak_rating INTEGER NOT NULL DEFAULT 1000,
+    games INTEGER NOT NULL DEFAULT 0,
+    wins INTEGER NOT NULL DEFAULT 0,
+    updated_at INTEGER NOT NULL,
+    PRIMARY KEY (user_id, ladder)
+  );
+  CREATE INDEX idx_ratings_board ON ratings(ladder, rating DESC);
+  INSERT INTO ratings (user_id, ladder, rating, peak_rating, games, wins, updated_at)
+    SELECT u.id, 'standard', u.rating, u.peak_rating, u.ranked_games,
+           (SELECT COUNT(*) FROM matches m WHERE m.kind = 'ranked' AND m.winner_id = u.id), u.last_seen
+      FROM users u WHERE u.ranked_games > 0;
+  ALTER TABLE matches ADD COLUMN ladder TEXT;
+  UPDATE matches SET ladder = 'standard' WHERE kind = 'ranked';
+  ALTER TABLE users ADD COLUMN discord_username TEXT;
+  CREATE INDEX idx_users_discord_username ON users(discord_username COLLATE NOCASE);
+  `,
 ];
 
 const current = db.prepare('PRAGMA user_version').get().user_version;

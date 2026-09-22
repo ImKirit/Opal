@@ -7,6 +7,7 @@ import { PackIcon } from '../components/PackIcon';
 import { PackPicker, selectionSummary } from '../components/PackPicker';
 import { Segmented } from '../components/Segmented';
 import { Toggle } from '../components/Toggle';
+import { UserName } from '../components/UserName';
 import { Glass } from '../glass/Glass';
 import { ANSWER_MODE_LABEL, CONTINUE_MODE_LABEL, DIFFICULTY_LABEL, TIME_LIMIT_LABEL } from '../lib/format';
 import { usePrefs } from '../lib/prefs';
@@ -81,7 +82,7 @@ function LobbyView({ lobby, meId }: { lobby: LobbyState; meId: string }) {
               <li key={m.id} className={m.connected ? '' : 'is-away'}>
                 <Avatar name={m.name} src={m.avatar} size={40} dim={!m.connected} />
                 <span className="lobby__name">
-                  {m.name}
+                  <UserName name={m.name} owner={m.owner} />
                   {m.id === me.id && <span className="muted"> (du)</span>}
                 </span>
                 {m.id === lobby.hostId && (

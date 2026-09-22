@@ -1,4 +1,5 @@
 import { randomInt } from 'node:crypto';
+import { isOwner } from '../roles.js';
 import { createBot, isBotDifficulty } from './bot.js';
 
 // Private Lobbys: bis zu 8 Teilnehmer (Menschen plus Bots), beitreten per 5-stelligem Code.
@@ -59,7 +60,7 @@ export class Lobby {
       playing: Boolean(this.match),
       locked: Boolean(this.settings.locked),
       settings: this.settings,
-      members: [...this.members.values()].map(({ user, ...rest }) => rest),
+      members: [...this.members.values()].map(({ user, ...rest }) => ({ ...rest, owner: isOwner(rest.id) })),
       bots: this.bots.map((b) => ({ id: b.id, name: b.name, difficulty: b.difficulty })),
     };
   }

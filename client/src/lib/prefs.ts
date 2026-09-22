@@ -46,6 +46,8 @@ export interface PrefsState {
   trainingMode: TrainingMode;
   soloCount: number;
   bot: BotDifficulty;
+  /** Zuletzt gewaehlter Ranked-Modus (id aus der Server-Konfiguration) */
+  rankedLadder: string;
   /** Rundgang schon gesehen (oder uebersprungen) */
   tourDone: boolean;
   set: (patch: Partial<Omit<PrefsState, 'set'>>) => void;
@@ -68,6 +70,7 @@ export const usePrefs = create<PrefsState>()(
       trainingMode: 'classic',
       soloCount: 10,
       bot: 'mittel',
+      rankedLadder: 'standard',
       tourDone: false,
       set: (patch) => set(patch),
     }),

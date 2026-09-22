@@ -1,5 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { db } from './db.js';
+import { ranksOf } from './ratings.js';
+import { isOwner, refreshOwners } from './roles.js';
 
 const byId = db.prepare('SELECT * FROM users WHERE id = ?');
 const byDiscord = db.prepare('SELECT * FROM users WHERE discord_id = ?');
@@ -15,9 +17,9 @@ export function publicUser(row) {
     name: row.name,
     avatar: row.avatar,
     guest: Boolean(row.is_guest),
-    rating: row.rating,
-    peakRating: row.peak_rating,
-    rankedGames: row.ranked_games,
+    owner: isOwner(row.id),
+    /** Rang pro Ranked-Modus, siehe game/ladders.js */
+    ranks: ranksOf(row.id),
   };
 }
 
@@ -32,12 +34,21 @@ export function createGuest(name) {
 
 // Discord-Login: bestehenden Discord-Nutzer aktualisieren, sonst einen Gast-Account
 // uebernehmen (Statistiken bleiben erhalten) oder einen neuen Nutzer anlegen.
-export function upsertDiscordUser({ discordId, name, avatar }, guestToUpgrade) {
+// Discord-Konten heissen auf Opal wie ihr Discord-Benutzername (nicht der Anzeigename), damit
+// man sich darueber auch auf Discord findet (Owner 2026-09-22). `name` ist also der Benutzername.
+export function upsertDiscordUser(input, guestToUpgrade) {
+  const user = saveDiscordUser(input, guestToUpgrade);
+  refreshOwners();
+  return user;
+}
+
+function saveDiscordUser({ discordId, name, username = null, avatar }, guestToUpgrade) {
   const now = Date.now();
   const existing = byDiscord.get(discordId);
   if (existing) {
-    db.prepare('UPDATE users SET name = ?, avatar = ?, last_seen = ? WHERE id = ?').run(
+    db.prepare('UPDATE users SET name = ?, discord_username = ?, avatar = ?, last_seen = ? WHERE id = ?').run(
       name,
+      username,
       avatar,
       now,
       existing.id,
@@ -46,15 +57,24 @@ export function upsertDiscordUser({ discordId, name, avatar }, guestToUpgrade) {
   }
   if (guestToUpgrade && guestToUpgrade.is_guest) {
     db.prepare(
-      'UPDATE users SET discord_id = ?, name = ?, avatar = ?, is_guest = 0, last_seen = ? WHERE id = ?',
-    ).run(discordId, name, avatar, now, guestToUpgrade.id);
+      'UPDATE users SET discord_id = ?, name = ?, discord_username = ?, avatar = ?, is_guest = 0, last_seen = ? WHERE id = ?',
+    ).run(discordId, name, username, avatar, now, guestToUpgrade.id);
     return getUser(guestToUpgrade.id);
   }
   const id = randomUUID();
   db.prepare(
-    'INSERT INTO users (id, discord_id, name, avatar, is_guest, created_at, last_seen) VALUES (?, ?, ?, ?, 0, ?, ?)',
-  ).run(id, discordId, name, avatar, now, now);
+    'INSERT INTO users (id, discord_id, name, discord_username, avatar, is_guest, created_at, last_seen) VALUES (?, ?, ?, ?, ?, 0, ?, ?)',
+  ).run(id, discordId, name, username, avatar, now, now);
   return getUser(id);
+}
+
+/** Gibt es schon ein Discord-Konto mit diesem Namen? Gaeste duerfen ihn dann nicht nehmen. */
+export function nameTakenByDiscord(name) {
+  return Boolean(
+    db
+      .prepare('SELECT 1 FROM users WHERE is_guest = 0 AND (lower(name) = lower(?) OR lower(discord_username) = lower(?)) LIMIT 1')
+      .get(name, name),
+  );
 }
 
 export function touchUser(id) {

@@ -5,6 +5,7 @@ import { Glass } from '../glass/Glass';
 import { actions, useGame, type LiveInvite } from '../lib/store';
 import { Avatar } from './Avatar';
 import { Button } from './Button';
+import { UserName } from './UserName';
 
 const MotionGlass = motion.create(Glass);
 
@@ -41,7 +42,9 @@ function IncomingCard({ invite }: { invite: LiveInvite }) {
       <div className="invite__head">
         <Avatar name={invite.from.name} src={invite.from.avatar} size={40} />
         <div>
-          <p className="invite__title">{invite.from.name} fordert dich heraus</p>
+          <p className="invite__title">
+            <UserName name={invite.from.name} owner={invite.from.owner} /> fordert dich heraus
+          </p>
           <p className="invite__sub">
             {invite.intoLobby ? 'Einladung in die Lobby' : '1 gegen 1, startet sofort'} · noch {left} s
           </p>

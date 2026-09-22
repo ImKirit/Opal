@@ -26,7 +26,7 @@ const STEPS: Step[] = [
   {
     target: '[data-tour="ranked"]',
     title: 'Ranked',
-    text: '1 gegen 1 um Punkte. Nach fünf Spielen bekommst du deinen Rang, von Sand bis Prisma. Dafür brauchst du einen Discord-Login.',
+    text: '1 gegen 1 um Punkte, in zwei Modi mit je eigenem Rang: Standard (Auswahl) und Tippen. Nach fünf Spielen steht dein Rang, von Sand bis Prisma. Braucht einen Discord-Login.',
   },
   {
     target: '[data-tour="unranked"]',
@@ -56,12 +56,12 @@ const STEPS: Step[] = [
   {
     target: '.topbar__nav [data-value="freunde"]',
     title: 'Freunde',
-    text: 'Such Leute über ihren Namen und fordere Freunde direkt zu einem Duell heraus.',
+    text: 'Such Leute über ihren Namen, ihren Discord-Namen oder ihr Kürzel und fordere Freunde direkt zu einem Duell heraus. Das zählt nicht für den Rang.',
   },
   {
     target: '.topbar__nav [data-value="rangliste"]',
     title: 'Rangliste',
-    text: 'Die Besten im Ranked. Ein Klick auf einen Namen öffnet das Profil.',
+    text: 'Ranglisten für Ranked Standard und Tippen, dazu Siege, Spielzeit, Tempo und Überleben. Ein Klick auf einen Namen öffnet das Profil.',
   },
   {
     target: '[data-tour="settings"]',

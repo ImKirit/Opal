@@ -1,4 +1,5 @@
 import { db } from './db.js';
+import { isOwner } from './roles.js';
 import { getUser } from './users.js';
 
 // Freundschaften: eine Zeile pro Paar. Wer anfragt, steht in user_id. Solange die andere
@@ -26,12 +27,21 @@ const countOf = db.prepare('SELECT COUNT(*) AS n FROM friendships WHERE user_id 
 const insert = db.prepare("INSERT INTO friendships (user_id, friend_id, status, created_at) VALUES (?, ?, 'pending', ?)");
 const accept = db.prepare("UPDATE friendships SET status = 'accepted' WHERE user_id = ? AND friend_id = ? AND status = 'pending'");
 const removePair = db.prepare('DELETE FROM friendships WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)');
-const search = db.prepare(`
+// Vorschlaege beim Tippen: erst Namen, die mit der Eingabe anfangen (auch Discord-Benutzername),
+// Discord-Konten vor Gaesten, zuletzt Gesehene zuerst. Danach Namen, die sie nur enthalten.
+const searchPrefix = db.prepare(`
   SELECT * FROM users
-  WHERE id != ? AND name LIKE ? ESCAPE '\\'
-  ORDER BY (lower(name) = lower(?)) DESC, is_guest ASC, last_seen DESC
+  WHERE id != ? AND (name LIKE ? ESCAPE '\\' OR discord_username LIKE ? ESCAPE '\\')
+  ORDER BY (lower(name) = lower(?) OR lower(coalesce(discord_username, '')) = lower(?)) DESC, is_guest ASC, last_seen DESC
   LIMIT ?
 `);
+const searchContains = db.prepare(`
+  SELECT * FROM users
+  WHERE id != ? AND name LIKE ? ESCAPE '\\'
+  ORDER BY is_guest ASC, last_seen DESC
+  LIMIT ?
+`);
+const searchByTag = db.prepare('SELECT * FROM users WHERE id != ? AND id LIKE ? ORDER BY last_seen DESC LIMIT ?');
 
 /** Kurzes Kennzeichen aus der ID, damit man gleichnamige Leute auseinanderhalten kann */
 export const tagOf = (id) => id.replace(/-/g, '').slice(0, 4).toUpperCase();
@@ -42,8 +52,7 @@ export function friendCard(row) {
     name: row.name,
     avatar: row.avatar,
     guest: Boolean(row.is_guest),
-    rating: row.rating,
-    rankedGames: row.ranked_games,
+    owner: isOwner(row.id),
     tag: tagOf(row.id),
   };
 }
@@ -102,9 +111,30 @@ export function removeFriendship(a, b) {
   return removePair.run(a, b, b, a).changes > 0;
 }
 
+const escapeLike = (s) => s.replace(/[\\%_]/g, (c) => `\\${c}`);
+
+/**
+ * Suche nach Leuten, schon ab dem ersten Buchstaben (Vorschlaege beim Tippen). Versteht den
+ * Namen (Anfang zuerst, ab zwei Zeichen auch mittendrin), den Discord-Benutzernamen (mit oder
+ * ohne @) und das Kuerzel: "#AB12" oder "Name#AB12".
+ */
 export function searchUsers(meId, query) {
-  const term = String(query ?? '').normalize('NFC').trim().slice(0, 20);
-  if (term.length < 2) return [];
-  const like = `%${term.replace(/[\\%_]/g, (c) => `\\${c}`)}%`;
-  return search.all(meId, like, term, SEARCH_LIMIT);
+  const term = String(query ?? '').normalize('NFC').trim().replace(/^@/, '').slice(0, 40);
+  const tagged = term.match(/^(.*?)\s*#\s*([0-9a-fA-F]{4})$/);
+  if (tagged) {
+    const namePart = tagged[1].trim().toLowerCase();
+    return searchByTag
+      .all(meId, `${tagged[2].toLowerCase()}%`, SEARCH_LIMIT)
+      .filter((row) => !namePart || row.name.toLowerCase().includes(namePart));
+  }
+  if (!term) return [];
+  const found = new Map();
+  const prefix = `${escapeLike(term)}%`;
+  for (const row of searchPrefix.all(meId, prefix, prefix, term, term, SEARCH_LIMIT)) found.set(row.id, row);
+  if (term.length >= 2 && found.size < SEARCH_LIMIT) {
+    for (const row of searchContains.all(meId, `%${escapeLike(term)}%`, SEARCH_LIMIT)) {
+      if (!found.has(row.id)) found.set(row.id, row);
+    }
+  }
+  return [...found.values()].slice(0, SEARCH_LIMIT);
 }

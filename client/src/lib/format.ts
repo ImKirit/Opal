@@ -23,6 +23,17 @@ export function ago(ts: number) {
   return d === 1 ? 'gestern' : `vor ${d} Tagen`;
 }
 
+/** Spielzeit lesbar: "3 Std. 12 Min.", "12 Min.", "45 s" */
+export function duration(ms: number | null | undefined) {
+  if (!ms || ms < 0) return '0 Min.';
+  const totalMin = Math.floor(ms / 60000);
+  if (totalMin < 1) return `${Math.max(1, Math.round(ms / 1000))} s`;
+  const h = Math.floor(totalMin / 60);
+  const min = totalMin % 60;
+  if (h === 0) return `${min} Min.`;
+  return min ? `${h} Std. ${min} Min.` : `${h} Std.`;
+}
+
 export function clock(ms: number) {
   const s = Math.floor(ms / 1000);
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;

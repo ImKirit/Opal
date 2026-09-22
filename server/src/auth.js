@@ -2,7 +2,7 @@ import { createHash, randomBytes } from 'node:crypto';
 import { Router } from 'express';
 import { config, discordEnabled } from './config.js';
 import { db } from './db.js';
-import { createGuest, upsertDiscordUser, validateName } from './users.js';
+import { createGuest, nameTakenByDiscord, upsertDiscordUser, validateName } from './users.js';
 
 const SESSION_COOKIE = 'opal_sid';
 const STATE_COOKIE = 'opal_oauth';
@@ -88,6 +88,9 @@ authRouter.post('/auth/guest', (req, res) => {
   if (guestRateLimited(req.ip)) return res.status(429).json({ error: 'Zu viele Gast-Accounts. Versuch es später noch mal.' });
   const { name, error } = validateName(req.body?.name);
   if (error) return res.status(400).json({ error });
+  if (nameTakenByDiscord(name)) {
+    return res.status(409).json({ error: 'Diesen Namen hat schon ein Discord-Konto. Nimm einen anderen oder melde dich mit Discord an.' });
+  }
   const user = createGuest(name);
   createSession(res, user.id);
   res.json({ ok: true });
@@ -150,7 +153,7 @@ authRouter.get('/auth/discord/callback', async (req, res) => {
 
     const current = userFromCookieHeader(req.headers.cookie);
     const user = upsertDiscordUser(
-      { discordId: me.id, name: (me.global_name || me.username).slice(0, 32), avatar },
+      { discordId: me.id, name: (me.username || me.global_name).slice(0, 32), username: me.username ?? null, avatar },
       current,
     );
     createSession(res, user.id);

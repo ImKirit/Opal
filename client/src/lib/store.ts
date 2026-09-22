@@ -450,8 +450,11 @@ async function run(event: string, payload?: Record<string, unknown>) {
 
 export const actions = {
   joinQueue(kind: 'ranked' | 'unranked') {
-    const { sections, answerMode, difficulty, optionCount } = usePrefs.getState();
-    const payload = { kind, sections: sections ?? [], answerMode, difficulty, optionCount };
+    const { sections, answerMode, difficulty, optionCount, rankedLadder } = usePrefs.getState();
+    const payload =
+      kind === 'ranked'
+        ? { kind, ladder: rankedLadder }
+        : { kind, sections: sections ?? [], answerMode, difficulty, optionCount };
     useGame.setState({ replay: { type: 'queue', payload } });
     return run('queue:join', payload);
   },
