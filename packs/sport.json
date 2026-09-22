@@ -9,40 +9,72 @@
       "id": "fussball",
       "name": "Fußball",
       "questions": [
-        { "q": "Wie oft wurden die deutschen Männer Fußball-Weltmeister?", "a": "4", "w": ["3", "5", "2"], "fact": "1954, 1974, 1990 und 2014.", "d": 1 },
-        { "q": "Wer schoss Deutschland im WM-Finale 2014 zum Titel?", "a": "Mario Götze", "w": ["Thomas Müller", "Miroslav Klose", "André Schürrle"], "alt": ["Götze", "Goetze"], "d": 1 },
-        { "q": "Gegen wen gewann Deutschland das WM-Finale 2014?", "a": "Argentinien", "w": ["Brasilien", "Niederlande", "Frankreich"], "d": 1 },
-        { "q": "In welchem Land fand die WM 2022 statt?", "a": "Katar", "w": ["Saudi-Arabien", "Vereinigte Arabische Emirate", "Russland"], "alt": ["Qatar"], "d": 1 },
-        { "q": "Welcher Spieler hat die meisten Ballon-d'Or-Titel?", "a": "Lionel Messi", "w": ["Cristiano Ronaldo", "Michel Platini", "Johan Cruyff"], "alt": ["Messi"], "fact": "Messi gewann ihn achtmal.", "d": 1 },
-        { "q": "Welcher Verein hat die meisten deutschen Meistertitel?", "a": "FC Bayern München", "w": ["Borussia Dortmund", "1. FC Nürnberg", "Schalke 04"], "alt": ["Bayern", "Bayern München", "FCB"], "d": 1 },
-        { "q": "Wie nennt man den Champions-League-Pokal umgangssprachlich?", "a": "Henkelpott", "w": ["Salatschüssel", "Silberkanne", "Meisterschale"], "fact": "Die „Salatschüssel“ ist dagegen der Spitzname der Bundesliga-Meisterschale.", "d": 2 },
-        { "q": "Welcher Verein gewann die Champions League am häufigsten?", "a": "Real Madrid", "w": ["AC Mailand", "FC Barcelona", "FC Bayern München"], "alt": ["Real"], "d": 1 },
-        { "q": "Seit welchem Jahr gibt es die Bundesliga?", "a": "1963", "w": ["1949", "1954", "1974"], "d": 2 },
-        { "q": "Wie lange dauert ein reguläres Fußballspiel ohne Nachspielzeit?", "a": "90 Minuten", "w": ["80 Minuten", "100 Minuten", "120 Minuten"], "alt": ["90"], "d": 1 },
-        { "q": "Wie nennt man den deutschen WM-Sieg von 1954?", "a": "Das Wunder von Bern", "w": ["Das Märchen von Rom", "Das Wunder von Wembley", "Die Nacht von Paris"], "alt": ["Wunder von Bern"], "d": 1 },
-        { "q": "Wer gewann die Europameisterschaft 2024 in Deutschland?", "a": "Spanien", "w": ["England", "Deutschland", "Frankreich"], "d": 1 },
-        { "q": "Wie viele WM-Titel gewann Pelé als Spieler?", "a": "3", "w": ["1", "2", "4"], "d": 2 },
-        { "q": "Welche Rückennummer steckt in Cristiano Ronaldos Kürzel CR7?", "a": "7", "w": ["9", "10", "11"], "d": 1 }
+        { "q": "Wie oft wurden die deutschen Männer Fußball-Weltmeister?", "a": "4", "w": ["3", "5", "2", "6", "1"], "fact": "1954, 1974, 1990 und 2014.", "d": 1 },
+        { "q": "Wer schoss Deutschland im WM-Finale 2014 zum Titel?", "a": "Mario Götze", "w": ["Thomas Müller", "Miroslav Klose", "André Schürrle", "Toni Kroos", "Mesut Özil"], "alt": ["Götze", "Goetze"], "d": 1 },
+        { "q": "Gegen wen gewann Deutschland das WM-Finale 2014?", "a": "Argentinien", "w": ["Brasilien", "Niederlande", "Frankreich", "Italien", "Spanien"], "d": 1 },
+        { "q": "In welchem Land fand die WM 2022 statt?", "a": "Katar", "w": ["Saudi-Arabien", "Vereinigte Arabische Emirate", "Russland", "Bahrain", "Oman"], "alt": ["Qatar"], "d": 1 },
+        { "q": "Welcher Spieler hat die meisten Ballon-d'Or-Titel?", "a": "Lionel Messi", "w": ["Cristiano Ronaldo", "Michel Platini", "Johan Cruyff", "Zinédine Zidane", "Ronaldinho"], "alt": ["Messi"], "fact": "Messi gewann ihn achtmal.", "d": 1 },
+        { "q": "Welcher Verein hat die meisten deutschen Meistertitel?", "a": "FC Bayern München", "w": ["Borussia Dortmund", "1. FC Nürnberg", "Schalke 04", "Hamburger SV", "Werder Bremen"], "alt": ["Bayern", "Bayern München", "FCB"], "d": 1 },
+        { "q": "Wie nennt man den Champions-League-Pokal umgangssprachlich?", "a": "Henkelpott", "w": ["Salatschüssel", "Silberkanne", "Meisterschale", "Goldene Kanne", "Pokalkelch"], "fact": "Die „Salatschüssel“ ist dagegen der Spitzname der Bundesliga-Meisterschale.", "d": 2 },
+        { "q": "Welcher Verein gewann die Champions League am häufigsten?", "a": "Real Madrid", "w": ["AC Mailand", "FC Barcelona", "FC Bayern München", "Liverpool FC", "Ajax Amsterdam"], "alt": ["Real"], "d": 1 },
+        { "q": "Seit welchem Jahr gibt es die Bundesliga?", "a": "1963", "w": ["1949", "1954", "1974", "1961", "1970"], "d": 2 },
+        { "q": "Wie lange dauert ein reguläres Fußballspiel ohne Nachspielzeit?", "a": "90 Minuten", "w": ["80 Minuten", "100 Minuten", "120 Minuten", "60 Minuten", "70 Minuten"], "alt": ["90"], "d": 1 },
+        { "q": "Wie nennt man den deutschen WM-Sieg von 1954?", "a": "Das Wunder von Bern", "w": ["Das Märchen von Rom", "Das Wunder von Wembley", "Die Nacht von Paris", "Das Wunder von Rio", "Die Schlacht von Basel"], "alt": ["Wunder von Bern"], "d": 1 },
+        { "q": "Wer gewann die Europameisterschaft 2024 in Deutschland?", "a": "Spanien", "w": ["England", "Deutschland", "Frankreich", "Italien", "Portugal"], "d": 1 },
+        { "q": "Wie viele WM-Titel gewann Pelé als Spieler?", "a": "3", "w": ["1", "2", "4", "5", "0"], "d": 2 },
+        { "q": "Welche Rückennummer steckt in Cristiano Ronaldos Kürzel CR7?", "a": "7", "w": ["9", "10", "11", "17", "77"], "d": 1 }
       ]
     },
     {
       "id": "sportarten",
       "name": "Weitere Sportarten",
       "questions": [
-        { "q": "Wie viele Spieler pro Team stehen beim Basketball auf dem Feld?", "a": "5", "w": ["4", "6", "7"], "d": 1 },
-        { "q": "Welche Rückennummer trug Michael Jordan bei den Chicago Bulls meistens?", "a": "23", "w": ["24", "32", "33"], "d": 1 },
-        { "q": "Wie viele Grand-Slam-Turniere gibt es im Tennis pro Jahr?", "a": "4", "w": ["3", "5", "6"], "d": 1 },
-        { "q": "Auf welchem Belag wird in Wimbledon gespielt?", "a": "Rasen", "w": ["Sand", "Hartplatz", "Teppich"], "alt": ["Gras"], "d": 1 },
-        { "q": "Wie viele WM-Titel holte Michael Schumacher in der Formel 1?", "a": "7", "w": ["5", "6", "8"], "d": 1 },
-        { "q": "In welcher Zeit lief Usain Bolt seinen 100-Meter-Weltrekord?", "a": "9,58 Sekunden", "w": ["9,63 Sekunden", "9,69 Sekunden", "9,49 Sekunden"], "alt": ["9,58", "9.58"], "fact": "Das war 2009 bei der WM in Berlin.", "d": 2 },
-        { "q": "Wie lang ist ein Marathon?", "a": "42,195 km", "w": ["40 km", "42,5 km", "45 km"], "alt": ["42,195", "42.195", "42 km"], "d": 1 },
-        { "q": "Wo fanden die Olympischen Sommerspiele 2024 statt?", "a": "Paris", "w": ["Los Angeles", "Tokio", "Madrid"], "d": 1 },
-        { "q": "Welche Farbe hat das Trikot des Führenden bei der Tour de France?", "a": "Gelb", "w": ["Grün", "Rosa", "Weiß"], "d": 1 },
-        { "q": "Wie viele Spieler hat ein Volleyball-Team auf dem Feld?", "a": "6", "w": ["5", "7", "8"], "d": 2 },
-        { "q": "Wie heißt die Scheibe beim Eishockey?", "a": "Puck", "w": ["Disk", "Stone", "Chip"], "d": 1 },
-        { "q": "Was ist das höchstmögliche reguläre Break im Snooker?", "a": "147", "w": ["100", "155", "180"], "d": 3 },
-        { "q": "Wie heißt das Finale der NFL?", "a": "Super Bowl", "w": ["World Series", "Grey Cup", "Big Game Final"], "alt": ["Superbowl"], "d": 1 },
-        { "q": "Welcher Boxer sagte „Schwebe wie ein Schmetterling, stich wie eine Biene“?", "a": "Muhammad Ali", "w": ["Mike Tyson", "Joe Frazier", "George Foreman"], "alt": ["Ali", "Cassius Clay"], "d": 1 }
+        { "q": "Wie viele Spieler pro Team stehen beim Basketball auf dem Feld?", "a": "5", "w": ["4", "6", "7", "3", "11"], "d": 1 },
+        { "q": "Welche Rückennummer trug Michael Jordan bei den Chicago Bulls meistens?", "a": "23", "w": ["24", "32", "33", "8", "99"], "d": 1 },
+        { "q": "Wie viele Grand-Slam-Turniere gibt es im Tennis pro Jahr?", "a": "4", "w": ["3", "5", "6", "2", "8"], "d": 1 },
+        { "q": "Auf welchem Belag wird in Wimbledon gespielt?", "a": "Rasen", "w": ["Sand", "Hartplatz", "Teppich", "Holz", "Beton"], "alt": ["Gras"], "d": 1 },
+        { "q": "Wie viele WM-Titel holte Michael Schumacher in der Formel 1?", "a": "7", "w": ["5", "6", "8", "4", "9"], "d": 1 },
+        { "q": "In welcher Zeit lief Usain Bolt seinen 100-Meter-Weltrekord?", "a": "9,58 Sekunden", "w": ["9,63 Sekunden", "9,69 Sekunden", "9,49 Sekunden", "9,72 Sekunden", "10,01 Sekunden"], "alt": ["9,58", "9.58"], "fact": "Das war 2009 bei der WM in Berlin.", "d": 2 },
+        { "q": "Wie lang ist ein Marathon?", "a": "42,195 km", "w": ["40 km", "42,5 km", "45 km", "41,5 km", "50 km"], "alt": ["42,195", "42.195", "42 km"], "d": 1 },
+        { "q": "Wo fanden die Olympischen Sommerspiele 2024 statt?", "a": "Paris", "w": ["Los Angeles", "Tokio", "Madrid", "Rom", "London"], "d": 1 },
+        { "q": "Welche Farbe hat das Trikot des Führenden bei der Tour de France?", "a": "Gelb", "w": ["Grün", "Rosa", "Weiß", "Rot", "Blau"], "d": 1 },
+        { "q": "Wie viele Spieler hat ein Volleyball-Team auf dem Feld?", "a": "6", "w": ["5", "7", "8", "4", "9"], "d": 2 },
+        { "q": "Wie heißt die Scheibe beim Eishockey?", "a": "Puck", "w": ["Disk", "Stone", "Chip", "Pellet", "Ball"], "d": 1 },
+        { "q": "Was ist das höchstmögliche reguläre Break im Snooker?", "a": "147", "w": ["100", "155", "180", "167", "120"], "d": 3 },
+        { "q": "Wie heißt das Finale der NFL?", "a": "Super Bowl", "w": ["World Series", "Grey Cup", "Big Game Final", "Stanley Cup", "NBA Finals"], "alt": ["Superbowl"], "d": 1 },
+        { "q": "Welcher Boxer sagte „Schwebe wie ein Schmetterling, stich wie eine Biene“?", "a": "Muhammad Ali", "w": ["Mike Tyson", "Joe Frazier", "George Foreman", "Sugar Ray Leonard", "Floyd Mayweather"], "alt": ["Ali", "Cassius Clay"], "d": 1 }
+      ]
+    },
+    {
+      "id": "formel1",
+      "name": "Formel 1",
+      "questions": [
+        { "q": "Welcher Deutsche wurde von 2010 bis 2013 viermal in Folge Formel-1-Weltmeister?", "a": "Sebastian Vettel", "w": ["Nico Rosberg", "Michael Schumacher", "Nico Hülkenberg", "Ralf Schumacher", "Timo Glock"], "alt": ["Vettel"], "d": 1 },
+        { "q": "Welches Formel-1-Team fährt traditionell in Rot?", "a": "Ferrari", "w": ["Red Bull", "McLaren", "Mercedes", "Williams", "Alpine"], "d": 1 },
+        { "q": "In welchem Stadtstaat an der Côte d'Azur fährt die Formel 1 durch die Straßen?", "a": "Monaco", "w": ["Singapur", "Luxemburg", "San Marino", "Andorra", "Liechtenstein"], "d": 1 },
+        { "q": "Welche Flagge sieht der Sieger beim Überqueren der Ziellinie?", "a": "Schwarz-weiß karierte Flagge", "w": ["Rote Flagge", "Grüne Flagge", "Blaue Flagge", "Gelbe Flagge", "Weiße Flagge"], "alt": ["Karierte Flagge", "Zielflagge"], "typed": false, "d": 1 },
+        { "q": "Wer wurde von 2021 bis 2024 viermal in Folge Formel-1-Weltmeister?", "a": "Max Verstappen", "w": ["Lewis Hamilton", "Charles Leclerc", "Lando Norris", "Sergio Pérez", "Fernando Alonso"], "alt": ["Verstappen"], "d": 1 },
+        { "q": "Welche Rennstrecke in der Eifel heißt auch „Grüne Hölle“?", "a": "Nürburgring-Nordschleife", "w": ["Hockenheimring", "Sachsenring", "Lausitzring", "Norisring", "Spa-Francorchamps"], "alt": ["Nürburgring", "Nordschleife"], "d": 2 },
+        { "q": "Welche Rennserie nennt man die Königsklasse des Motorsports?", "a": "Formel 1", "w": ["Formel E", "Rallye-WM", "NASCAR", "DTM", "IndyCar"], "alt": ["F1", "Formel Eins"], "d": 1 },
+        { "q": "Welches 24-Stunden-Rennen findet in Frankreich statt?", "a": "Le Mans", "w": ["Monaco", "Spa", "Daytona", "Sebring", "Nürburgring"], "alt": ["24 Stunden von Le Mans"], "d": 1 },
+        { "q": "Wie lange dauert ein Reifenwechsel beim Boxenstopp in der Formel 1 ungefähr?", "a": "Etwa 2 Sekunden", "w": ["Etwa 10 Sekunden", "Etwa 30 Sekunden", "Etwa 1 Minute", "Etwa 5 Minuten", "Etwa 0,2 Sekunden"], "typed": false, "d": 2 },
+        { "q": "Wie heißt Michael Schumachers Sohn, der ebenfalls Formel 1 fuhr?", "a": "Mick Schumacher", "w": ["Ralf Schumacher", "David Schumacher", "Nico Rosberg", "Max Schumacher", "Tim Schumacher"], "alt": ["Mick"], "d": 1 }
+      ]
+    },
+    {
+      "id": "olympia",
+      "name": "Olympia",
+      "questions": [
+        { "q": "Alle wie viele Jahre finden die Olympischen Sommerspiele statt?", "a": "4", "w": ["2", "3", "5", "6", "8"], "alt": ["vier"], "d": 1 },
+        { "q": "In welcher Stadt fanden 1972 Olympische Sommerspiele in Deutschland statt?", "a": "München", "w": ["Berlin", "Stuttgart", "Hamburg", "Frankfurt", "Köln"], "d": 1 },
+        { "q": "Welcher Schwimmer gewann die meisten olympischen Goldmedaillen?", "a": "Michael Phelps", "w": ["Mark Spitz", "Ian Thorpe", "Ryan Lochte", "Caeleb Dressel", "Katie Ledecky"], "alt": ["Phelps"], "d": 1 },
+        { "q": "Wie viele olympische Goldmedaillen gewann Michael Phelps?", "a": "23", "w": ["18", "21", "28", "14", "32"], "fact": "Insgesamt holte er 28 Medaillen, so viele wie niemand sonst.", "d": 3 },
+        { "q": "Wo finden die Olympischen Sommerspiele 2028 statt?", "a": "Los Angeles", "w": ["Brisbane", "Paris", "Madrid", "Rom", "Tokio"], "alt": ["LA"], "d": 2 },
+        { "q": "Aus welchem Land kam Pierre de Coubertin, der Gründer der modernen Olympischen Spiele?", "a": "Frankreich", "w": ["Griechenland", "Großbritannien", "Schweiz", "Deutschland", "Italien"], "d": 2 },
+        { "q": "Wo fanden 1896 die ersten Olympischen Spiele der Neuzeit statt?", "a": "Athen", "w": ["Paris", "London", "Rom", "Olympia", "Berlin"], "d": 1 },
+        { "q": "Welche Farben haben die olympischen Ringe?", "a": "Blau, Gelb, Schwarz, Grün und Rot", "w": ["Blau, Gelb, Weiß, Grün und Rot", "Rot, Orange, Gelb, Grün und Blau", "Blau, Gelb, Schwarz, Lila und Rot", "Blau, Weiß, Schwarz, Grün und Gold", "Gold, Silber, Bronze, Blau und Rot"], "typed": false, "d": 2 },
+        { "q": "Welche Sportart war 2024 in Paris zum ersten Mal olympisch?", "a": "Breaking", "w": ["Skateboarding", "Surfen", "Sportklettern", "Karate", "Baseball"], "alt": ["Breakdance", "Breakdancing"], "d": 2 },
+        { "q": "Wo fanden die Olympischen Winterspiele 2026 statt?", "a": "Mailand und Cortina", "w": ["Oslo", "München", "Salt Lake City", "Sotschi", "Peking"], "alt": ["Mailand", "Cortina", "Milano Cortina", "Italien"], "typed": false, "d": 2 }
       ]
     }
   ]

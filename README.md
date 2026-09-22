@@ -12,7 +12,7 @@ zusammen, von Allgemeinwissen über Anime bis Parfüm. Oberfläche in echtem Liq
 Lichtbrechung.
 
 [![Spielen](https://img.shields.io/badge/spielen-imkirit.dev%2Fopal-8fcfff)](https://imkirit.dev/opal)
-[![Fragen](https://img.shields.io/badge/fragen-571%20in%2011%20Themen-0b1629)](packs/)
+[![Fragen](https://img.shields.io/badge/fragen-977%20in%2016%20Themen-0b1629)](packs/)
 [![Node](https://img.shields.io/badge/node-%E2%89%A5%2022.13-0b1629)](https://nodejs.org/)
 
 <img src="docs/main-duell.png" width="820" alt="Opal: Duell gegen einen Bot mit Frage, Zeitleiste und drei Antworten">
@@ -28,8 +28,9 @@ vorne moderiert. Opal ist ein Rennen: alle sehen dieselbe Frage, und nur wer zue
 antwortet, bekommt den Punkt. Gefragt werden Dinge, die man gern weiß, etwa wie die Angst
 vor langen Wörtern heißt oder welches Tier würfelförmigen Kot hinterlässt.
 
-Die Fragen kommen aus **Themen statt fester Kategorien**. Du nimmst ein ganzes Thema oder nur
-die Bereiche, die du wirklich kennst, zum Beispiel bei Anime nur One Piece und Naruto. Im
+Die Fragen kommen aus **Themen statt fester Kategorien**. Du nimmst ein fertiges Themenpaket wie
+Wissen oder Nerd, ein ganzes Thema oder nur die Bereiche, die du wirklich kennst, zum Beispiel
+bei Anime nur One Piece und Naruto. Im
 Unranked spielst du die Schnittmenge mit deinem Gegner, im Ranked alle dasselbe Thema
 Allgemein, damit nicht die zufällige Nische entscheidet. Ranked gibt es als **Standard** (aus drei
 Antworten wählen) und **Tippen**, jeweils mit eigenem Rang und eigener Rangliste.
@@ -42,19 +43,20 @@ Antworten wählen) und **Tippen**, jeweils mit eigenem Rang und eigener Ranglist
 
    <img src="docs/tour-1-start.png" width="620" alt="Startseite mit Gast-Anmeldung und Beispielfrage">
 
-2. **Wähl deine Themen.** Oben auf `Themen`: ein Klick auf den Kopf einer Karte schaltet das
-   ganze Thema, die Chips darunter einzelne Bereiche. Oben rechts steht, wie viele Fragen aktiv sind.
+2. **Wähl deine Themen.** Oben auf `Themen`: ein Themenpaket wählt mit einem Klick eine fertige
+   Mischung, darunter schaltet der Kopf einer Karte das ganze Thema und die Chips einzelne
+   Bereiche. Oben rechts steht, wie viele Fragen aktiv sind.
 
    <img src="docs/tour-2-themen.png" width="620" alt="Themenauswahl mit Allgemein und Anime aktiv">
 
 3. **Such dir einen Modus aus.** Unter `Spielen` stehen Ranked, Unranked, Private Lobby und
-   Training. Rechts unter `Deine Runde` legst du fest, ob du aus drei oder vier Antworten
+   Training. Rechts unter `Deine Runde` legst du fest, ob du aus drei bis sechs Antworten
    wählst, selbst tippst oder beides gemischt, und wie schwer die Fragen sein sollen. Für den
    Anfang: Training, `Gegen Bot`, `Mittel`.
 
    <img src="docs/tour-3-spielen.png" width="620" alt="Spielen-Seite mit den vier Modi und der Rundeneinstellung">
 
-4. **Sei schneller als dein Gegner.** Klick die Antwort oder drück `1` bis `4`. Wer zuerst
+4. **Sei schneller als dein Gegner.** Klick die Antwort oder drück `1` bis `6`. Wer zuerst
    richtig liegt, holt den Punkt. Danach kommt unten die Auflösung, grün oder rot, und mit
    `Weiter` (oder `Enter`) geht es zur nächsten Frage, wenn du so weit bist.
 
@@ -77,7 +79,7 @@ Antworten wählen) und **Tippen**, jeweils mit eigenem Rang und eigener Ranglist
 - **Weiter-Knopf wie bei Duolingo.** Nach jeder Frage bleibt die Auflösung stehen, bis du auf
   `Weiter` drückst. Zu zweit oder mehr: hat die erste Person gedrückt, haben die anderen noch
   10 Sekunden.
-- **Schwierigkeit und Antworten.** Gemischt, leicht, mittel oder schwer, dazu drei oder vier
+- **Schwierigkeit und Antworten.** Gemischt, leicht, mittel oder schwer, dazu drei bis sechs
   Antwortmöglichkeiten. Beim Tippen kommen allgemein leichtere Fragen. Die richtige Antwort
   steht jedes Mal auf einem zufälligen Platz.
 - **Tippen mit Nachsicht.** Groß/Klein, Umlaute (`ü`, `ue`, `u`), Akzente, Artikel und kleine
@@ -90,27 +92,34 @@ Antworten wählen) und **Tippen**, jeweils mit eigenem Rang und eigener Ranglist
 - **Unranked.** 1 gegen 1 mit deinen Themen, gespielt wird, was ihr beide ausgewählt habt.
   Dauert die Suche, kannst du nach ein paar Sekunden stattdessen gegen einen Bot spielen.
 - **Private Lobbys.** Bis zu acht Teilnehmer per Code, Bots in drei Stärken. Der Host stellt
-  alles ein: Themen, Antwortmodus, drei oder vier Antworten, Schwierigkeit, 5 bis 30 Fragen,
+  alles ein: Themen, Antwortmodus, drei bis sechs Antworten, Schwierigkeit, 5 bis 30 Fragen,
   Zeit pro Frage, Weiter-Knopf oder automatisch, und kann die Lobby abschließen. Nach dem Spiel
   bleibt die Lobby offen.
 - **Freunde.** Suche mit Vorschlägen ab dem ersten Buchstaben, dazu Kürzel für gleiche Namen
   (`#AB12` oder `Name#AB12`, dein Kürzel steht auf der Freunde-Seite). Hinzufügen geht auch aus
   der Rangliste, nach einem Spiel und im Profil. Sehen, wer online ist oder gerade spielt, und
   Freunde direkt herausfordern: nimmt die andere Person an, startet sofort ein Duell mit deinen Regeln.
-- **Namen wie auf Discord.** Discord-Konten heißen auf Opal wie ihr Discord-Benutzername
-  (nicht der Anzeigename), damit man sich auch auf Discord findet. Gäste können sich keinen
-  Namen geben, den schon ein Discord-Konto trägt.
+- **Namen wie auf Discord.** Discord-Konten zeigen ihren Discord-Anzeigenamen. Fährst du mit der
+  Maus drüber, verwandelt er sich in den Discord-Benutzernamen, ein Klick kopiert ihn, damit man
+  sich auch auf Discord findet. Gäste können sich keinen Namen geben, den schon ein
+  Discord-Konto trägt.
 - **Training.** Klassisch mit 10, 20 oder 30 Fragen, Überleben mit drei Leben, oder gegen
   Kiesel, Prisma oder Obsidian (Bots leicht, mittel, schwer).
 - **Gleichstand.** Bis zu drei Entscheidungsfragen, danach unentschieden.
 
 ### Fragen
 
-- **11 Themen, 571 Fragen.** Allgemein (mit Tieren, Geografie, Wissenschaft, Geschichte,
-  Wörtern und Nischen-Häppchen), Anime, Videospiele, Filme & Serien, Apps & Internet, Musik,
-  Parfüm & Mode, Bekanntheiten, Sport, Essen & Trinken, Charaktere.
+- **16 Themen, 977 Fragen in 76 Bereichen.** Allgemein (mit Tieren, Geografie, Wissenschaft,
+  Geschichte, Wörtern und Nischen-Häppchen), Geschichte, Geografie & Länder, Natur & Weltall, Kunst &
+  Kultur, Marken & Autos, Anime, Videospiele, Filme & Serien, Apps & Internet, Musik, Parfüm &
+  Mode, Bekanntheiten, Sport, Essen & Trinken, Charaktere.
+- **Themenpakete.** Fertige Mischungen auf einen Klick: Wissen, Popkultur, Nerd, Made in
+  Germany, Kindheit und Lifestyle. Danach lässt sich alles wie gewohnt feinjustieren.
 - **Bereiche einzeln wählbar.** Anime hat zum Beispiel One Piece, Naruto, Attack on Titan,
-  Demon Slayer, Studio Ghibli, Dragon Ball und Jujutsu Kaisen als eigene Bereiche.
+  Demon Slayer, Studio Ghibli, Dragon Ball, Jujutsu Kaisen, My Hero Academia und
+  Anime-Klassiker als eigene Bereiche, Sport hat Fußball, Formel 1 und Olympia.
+- **Fünf falsche Antworten pro Frage.** Damit gehen bis zu sechs Antwortmöglichkeiten, bei
+  weniger wird zufällig aus den falschen gezogen.
 - **Wenig Wiederholungen.** Deine zuletzt gesehenen 250 Fragen kommen erst wieder dran, wenn
   sonst zu wenig übrig ist.
 - **Eigene Fragen.** Themen sind JSON-Dateien in `packs/`, `npm run check:packs` prüft sie.
@@ -150,7 +159,7 @@ Antworten wählen) und **Tippen**, jeweils mit eigenem Rang und eigener Ranglist
 
 | Taste | Wirkung |
 |---|---|
-| `1` bis `4` | Antwort wählen (Auswahlfragen) |
+| `1` bis `6` | Antwort wählen (Auswahlfragen) |
 | `Enter` | getippte Antwort abschicken |
 | `Enter` oder `Leertaste` | nach der Auflösung weiter |
 | `←` `→` | im Rundgang zurück und weiter |
@@ -236,7 +245,7 @@ npm run build:live      # dasselbe für den Unterordner /opal/ (so läuft es auf
 npm start               # nur der Server
 npm run typecheck       # TypeScript im Client
 npm run check:packs     # Fragen prüfen: Form, Dubletten, Gedankenstriche
-npm test -w server      # Tipp-Erkennung, Zufallsplatz der richtigen Antwort, Schwierigkeit
+npm test -w server      # Tipp-Erkennung, Zufallsplatz der richtigen Antwort, Schwierigkeit, Themenpakete
 node Claude/scripts/e2e-duel.mjs       # Ende-zu-Ende: Duell, Lobby, Training, Freunde (Server muss laufen)
 node Claude/scripts/e2e-ranked.mjs <url> <db>   # Ranked Standard und Tippen, Ranglisten, Suche (nur Test-DB)
 node Claude/scripts/readme-shots.mjs   # README-Bilder neu erzeugen (Server und Client müssen laufen)
@@ -247,7 +256,8 @@ trägt alle Modi, Matchmaking, Lobbys, Bots, Elo und die Rundeneinstellungen (`g
 liegen daneben in `game/`, Freundschaften in `friends.js`. Ranked-Modi stehen in
 `game/ladders.js`: ein neuer Eintrag dort ergibt Warteschlange, Rang und Rangliste. `client/` ist
 React 19 mit Vite und TypeScript, die Glas-Engine steckt in `client/src/glass/`. Die Fragen
-sind reine JSON-Dateien in `packs/`.
+sind reine JSON-Dateien in `packs/`, die Themenpakete (fertige Mischungen) stehen in
+`server/src/bundles.js`.
 
 ## License
 

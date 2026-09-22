@@ -419,6 +419,58 @@
   margin-top: 10px;
 }
 
+.packs__heading {
+  margin: 28px 0 12px;
+  font-size: var(--t-xl);
+}
+.packs .page-head + .packs__heading {
+  margin-top: 8px;
+}
+
+.bundles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+}
+.modal .bundles {
+  margin-bottom: 16px;
+}
+.bundle {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  padding: 13px 14px;
+  text-align: left;
+  transition: transform 0.2s var(--ease-out);
+}
+.bundle:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.bundle.is-on {
+  box-shadow: inset 0 0 0 1.5px oklch(0.82 0.1 var(--pk-h) / 0.55);
+}
+.bundle__text {
+  display: grid;
+  flex: 1;
+  gap: 2px;
+  min-width: 0;
+}
+.bundle__name {
+  font-family: var(--font-display);
+  font-size: var(--t-lg);
+  font-weight: 650;
+}
+.bundle__desc {
+  font-size: var(--t-xs);
+  line-height: 1.35;
+  color: var(--ink-2);
+}
+.bundle__meta {
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+}
+
 .picker {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1226,6 +1278,16 @@
 .answers--n4 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+/* Fuenf und sechs Antworten: drei Spalten, zwei Reihen, etwas flacher */
+.answers--n5,
+.answers--n6 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.answers--n5 .answer--big,
+.answers--n6 .answer--big {
+  min-height: 66px;
+  font-size: var(--t-md);
+}
 
 .typed {
   display: grid;
@@ -1669,12 +1731,27 @@
   border-radius: 12px;
   text-align: left;
 }
-.friend__who:hover .friend__name {
+.friend__namelink {
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.friend__namelink:hover {
   color: var(--accent);
 }
 .friend__avatar {
   position: relative;
   display: inline-grid;
+  flex: none;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
 }
 /* Punkt fuer den Online-Status unten rechts am Avatar (nur in der Freundesliste, nicht in der Suche) */
 .friend__avatar[class*='is-']::after {
@@ -1867,6 +1944,16 @@ html.is-desktop .invites {
   .answers--n4 {
     grid-template-columns: minmax(0, 1fr);
   }
+  .answers--n5,
+  .answers--n6 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .answers--n5 .answer--big,
+  .answers--n6 .answer--big {
+    min-height: 58px;
+    padding: 10px 12px 10px 10px;
+  }
   .answer--big {
     min-height: 62px;
   }
@@ -1923,6 +2010,27 @@ html.is-desktop .invites {
 }
 
 @media (max-width: 560px) {
+  .bundles {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .bundle {
+    gap: 10px;
+    padding: 11px;
+  }
+  .bundle .pack-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .bundle__name {
+    font-size: var(--t-md);
+  }
+  .bundle__desc {
+    display: none;
+  }
+  .bundle .check {
+    display: none;
+  }
   .side__score {
     font-size: 2rem;
   }

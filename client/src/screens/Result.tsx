@@ -121,7 +121,7 @@ export function Result() {
               <li key={p.id} className={p.id === me.id ? 'is-me' : ''}>
                 <span className="result__place num">{p.placement}.</span>
                 <Avatar name={p.name} isBot={p.isBot} size={32} />
-                <UserName className="result__name" name={p.name} owner={p.owner} />
+                <UserName className="result__name" name={p.name} owner={p.owner} handle={p.handle} />
                 <span className="result__score num">{p.score}</span>
                 <span className="muted num">{seconds(p.avgMs)}</span>
                 <span className="result__add">{!p.isBot && <AddFriendButton userId={p.id} name={p.name} />}</span>

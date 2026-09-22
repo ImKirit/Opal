@@ -29,6 +29,7 @@ export class Lobby {
       name: user.name,
       avatar: user.avatar ?? null,
       guest: Boolean(user.is_guest),
+      handle: user.discord_username ?? null,
       connected: true,
       user,
     });

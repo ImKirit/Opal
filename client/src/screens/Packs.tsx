@@ -1,5 +1,5 @@
 import { Button } from '../components/Button';
-import { PackPicker, selectionSummary } from '../components/PackPicker';
+import { BundleBar, PackPicker, selectionSummary } from '../components/PackPicker';
 import { usePrefs } from '../lib/prefs';
 import { useSession } from '../lib/store';
 
@@ -18,8 +18,8 @@ export function Packs() {
           <p className="eyebrow">Themen</p>
           <h1>Was soll gefragt werden?</h1>
           <p className="page-head__lead">
-            Schalte ganze Themen an oder nimm nur die Bereiche, die du wirklich kennst. Im Unranked spielst du die Schnittmenge
-            mit deinem Gegner.
+            Nimm ein fertiges Themenpaket, schalte ganze Themen an oder nur die Bereiche, die du wirklich kennst. Im Unranked
+            spielst du die Schnittmenge mit deinem Gegner.
           </p>
         </div>
         <div className="packs__summary">
@@ -38,6 +38,9 @@ export function Packs() {
           </div>
         </div>
       </header>
+      <h2 className="packs__heading">Themenpakete</h2>
+      <BundleBar value={sections} onChange={(keys) => set({ sections: keys })} />
+      <h2 className="packs__heading">Einzelne Themen</h2>
       <PackPicker value={sections} onChange={(keys) => set({ sections: keys })} />
     </main>
   );

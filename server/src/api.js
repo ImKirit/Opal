@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { config, discordEnabled } from './config.js';
 import { requireUser, userFromCookieHeader } from './auth.js';
 import { acceptFriend, friendCard, listFriends, relation, removeFriendship, requestFriend, searchUsers } from './friends.js';
+import { bundleMeta } from './bundles.js';
 import { getPackMeta, rankedSections } from './packs.js';
 import { ladderMeta } from './game/ladders.js';
 import { boardList, isBoard, leaderboard, recentMatches, userStats } from './game/persist.js';
@@ -29,7 +30,7 @@ export function createApiRouter(hub) {
 
   api.get('/api/packs', (_req, res) => {
     res.set('Cache-Control', 'public, max-age=300');
-    res.json({ packs: getPackMeta() });
+    res.json({ packs: getPackMeta(), bundles: bundleMeta() });
   });
 
   // ?board=standard | tippen | siege | spielzeit | tempo | ueberleben (siehe boardList)

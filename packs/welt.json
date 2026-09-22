@@ -1,0 +1,95 @@
+{
+  "id": "welt",
+  "name": "Geografie & Länder",
+  "desc": "Hauptstädte, Flüsse, Berge, Rekorde der Erde, Flaggen und alles rund um Deutschland.",
+  "icon": "map",
+  "hue": 232,
+  "sections": [
+    {
+      "id": "hauptstaedte",
+      "name": "Hauptstädte",
+      "questions": [
+        { "q": "Wie heißt die Hauptstadt von Norwegen?", "a": "Oslo", "w": ["Bergen", "Stockholm", "Helsinki", "Trondheim", "Kopenhagen"], "d": 1 },
+        { "q": "Wie heißt die Hauptstadt von Portugal?", "a": "Lissabon", "w": ["Porto", "Madrid", "Faro", "Coimbra", "Sevilla"], "alt": ["Lisboa"], "d": 1 },
+        { "q": "Welche Stadt ist Sitz der Schweizer Regierung?", "a": "Bern", "w": ["Zürich", "Genf", "Basel", "Lausanne", "Luzern"], "fact": "Offiziell heißt Bern nur Bundesstadt, eine Hauptstadt nennt die Verfassung nicht.", "d": 1 },
+        { "q": "Wie heißt die Hauptstadt von Ägypten?", "a": "Kairo", "w": ["Alexandria", "Gizeh", "Luxor", "Assuan", "Tunis"], "d": 1 },
+        { "q": "Wie heißt die Hauptstadt von Argentinien?", "a": "Buenos Aires", "w": ["Córdoba", "Montevideo", "Santiago de Chile", "Rosario", "Lima"], "d": 1 },
+        { "q": "Wie heißt die Hauptstadt von Südkorea?", "a": "Seoul", "w": ["Busan", "Pjöngjang", "Incheon", "Tokio", "Daegu"], "d": 1 },
+        { "q": "Wie heißt die Hauptstadt von Kenia?", "a": "Nairobi", "w": ["Mombasa", "Kampala", "Addis Abeba", "Daressalam", "Kigali"], "d": 2 },
+        { "q": "Wie heißt die Hauptstadt von Vietnam?", "a": "Hanoi", "w": ["Ho-Chi-Minh-Stadt", "Bangkok", "Phnom Penh", "Da Nang", "Vientiane"], "d": 2 },
+        { "q": "Wie heißt die Hauptstadt von Island?", "a": "Reykjavík", "w": ["Akureyri", "Oslo", "Tórshavn", "Nuuk", "Dublin"], "alt": ["Reykjavik"], "d": 2 },
+        { "q": "Wie heißt die Hauptstadt von Nigeria?", "a": "Abuja", "w": ["Lagos", "Accra", "Kano", "Ibadan", "Dakar"], "fact": "Lagos ist viel größer, war aber nur bis 1991 Hauptstadt.", "d": 2 },
+        { "q": "Wie heißt die Hauptstadt von Kasachstan?", "a": "Astana", "w": ["Almaty", "Taschkent", "Bischkek", "Karaganda", "Schymkent"], "fact": "Von 2019 bis 2022 hieß die Stadt Nur-Sultan.", "d": 3 },
+        { "q": "Wie heißt die Hauptstadt von Myanmar?", "a": "Naypyidaw", "w": ["Rangun", "Mandalay", "Bangkok", "Dhaka", "Vientiane"], "alt": ["Naypyitaw", "Nay Pyi Taw"], "d": 3 }
+      ]
+    },
+    {
+      "id": "erde",
+      "name": "Flüsse, Berge, Seen",
+      "questions": [
+        { "q": "Welcher ist der längste Fluss Europas?", "a": "Wolga", "w": ["Donau", "Rhein", "Dnepr", "Ural", "Loire"], "d": 2 },
+        { "q": "Durch wie viele Länder fließt die Donau?", "a": "10", "w": ["6", "8", "12", "14", "5"], "fact": "Kein anderer Fluss der Erde fließt durch so viele Länder.", "d": 3 },
+        { "q": "Welcher ist der höchste Berg Afrikas?", "a": "Kilimandscharo", "w": ["Mount Kenya", "Mount Stanley", "Ras Daschen", "Toubkal", "Kamerunberg"], "alt": ["Kilimanjaro"], "d": 1 },
+        { "q": "Welcher Berg ist der höchste Europas, wenn man den Kaukasus mitzählt?", "a": "Elbrus", "w": ["Mont Blanc", "Matterhorn", "Dufourspitze", "Großglockner", "Ararat"], "d": 3 },
+        { "q": "Welcher ist der größte See der Erde?", "a": "Kaspisches Meer", "w": ["Oberer See", "Baikalsee", "Victoriasee", "Tanganjikasee", "Ladogasee"], "fact": "Trotz des Namens ist es ein See, und zwar ein salziger.", "d": 2 },
+        { "q": "Welcher ist der tiefste See der Erde?", "a": "Baikalsee", "w": ["Tanganjikasee", "Kaspisches Meer", "Lago Maggiore", "Titicacasee", "Crater Lake"], "alt": ["Baikal"], "d": 2 },
+        { "q": "Welcher Kontinent ist der flächenmäßig größte?", "a": "Asien", "w": ["Afrika", "Nordamerika", "Antarktika", "Europa", "Südamerika"], "d": 1 },
+        { "q": "Auf welchem Kontinent liegen die meisten Länder?", "a": "Afrika", "w": ["Asien", "Europa", "Südamerika", "Ozeanien", "Nordamerika"], "d": 2 },
+        { "q": "Wie heißt der höchste Wasserfall der Erde?", "a": "Salto Ángel", "w": ["Niagarafälle", "Victoriafälle", "Iguazú-Fälle", "Rheinfall", "Tugela-Fälle"], "alt": ["Salto Angel", "Angel Falls"], "fact": "Er liegt in Venezuela und stürzt fast 1000 Meter in die Tiefe.", "d": 3 },
+        { "q": "An welches Meer grenzt Deutschland außer an die Ostsee?", "a": "Nordsee", "w": ["Mittelmeer", "Atlantik", "Schwarzes Meer", "Irische See", "Adria"], "d": 1 },
+        { "q": "Welcher Fluss fließt durch Paris?", "a": "Seine", "w": ["Loire", "Rhône", "Garonne", "Themse", "Maas"], "d": 1 },
+        { "q": "Welche Wüste gilt als trockenste der Erde (ohne Polargebiete)?", "a": "Atacama", "w": ["Sahara", "Gobi", "Namib", "Kalahari", "Mojave"], "alt": ["Atacamawüste"], "fact": "An manchen Messstationen dort hat es noch nie Regen gegeben.", "d": 2 }
+      ]
+    },
+    {
+      "id": "rekorde",
+      "name": "Länder-Rekorde",
+      "questions": [
+        { "q": "Welches Land hat mit seinen Überseegebieten die meisten Zeitzonen?", "a": "Frankreich", "w": ["Russland", "USA", "China", "Großbritannien", "Kanada"], "fact": "Frankreich kommt auf 12 Zeitzonen, Russland auf 11.", "d": 3 },
+        { "q": "Welches Land hat die längste Küste der Welt?", "a": "Kanada", "w": ["Russland", "Norwegen", "Indonesien", "Australien", "Chile"], "d": 2 },
+        { "q": "Welches ist das bevölkerungsreichste Land Afrikas?", "a": "Nigeria", "w": ["Ägypten", "Äthiopien", "Südafrika", "Kenia", "Tansania"], "d": 2 },
+        { "q": "Welches Land zieht sich als langer, schmaler Streifen an der Westküste Südamerikas entlang?", "a": "Chile", "w": ["Peru", "Argentinien", "Ecuador", "Uruguay", "Kolumbien"], "d": 1 },
+        { "q": "Welche Stadt hat innerhalb ihrer Stadtgrenzen die meisten Einwohner in der EU?", "a": "Berlin", "w": ["Paris", "Madrid", "Rom", "Wien", "Hamburg"], "fact": "Paris selbst hat nur gut zwei Millionen Einwohner, der Großraum aber viel mehr.", "d": 2 },
+        { "q": "Welches Land liegt komplett innerhalb von Südafrika?", "a": "Lesotho", "w": ["Eswatini", "Botswana", "Namibia", "Simbabwe", "Malawi"], "d": 2 },
+        { "q": "Welches ist das flächenmäßig kleinste Land der EU?", "a": "Malta", "w": ["Luxemburg", "Zypern", "Slowenien", "Belgien", "Estland"], "d": 2 },
+        { "q": "In welchem Land stehen die meisten Pyramiden?", "a": "Sudan", "w": ["Ägypten", "Mexiko", "Peru", "Guatemala", "Libyen"], "fact": "Die nubischen Pyramiden im Sudan sind kleiner, aber zahlreicher als die ägyptischen.", "d": 3 },
+        { "q": "Welches Land besteht aus mehr als 17.000 Inseln?", "a": "Indonesien", "w": ["Philippinen", "Japan", "Malaysia", "Griechenland", "Neuseeland"], "d": 2 },
+        { "q": "Welches Land hat die meisten Einwohner Südamerikas?", "a": "Brasilien", "w": ["Argentinien", "Kolumbien", "Peru", "Venezuela", "Chile"], "d": 1 }
+      ]
+    },
+    {
+      "id": "deutschland",
+      "name": "Deutschland",
+      "questions": [
+        { "q": "Welches ist das flächenmäßig größte Bundesland?", "a": "Bayern", "w": ["Niedersachsen", "Baden-Württemberg", "Nordrhein-Westfalen", "Brandenburg", "Sachsen"], "d": 1 },
+        { "q": "Welches Bundesland hat die meisten Einwohner?", "a": "Nordrhein-Westfalen", "w": ["Bayern", "Baden-Württemberg", "Niedersachsen", "Hessen", "Berlin"], "alt": ["NRW"], "d": 1 },
+        { "q": "Welches ist das kleinste Bundesland?", "a": "Bremen", "w": ["Saarland", "Hamburg", "Berlin", "Schleswig-Holstein", "Thüringen"], "d": 1 },
+        { "q": "Wie heißt die Hauptstadt von Nordrhein-Westfalen?", "a": "Düsseldorf", "w": ["Köln", "Dortmund", "Essen", "Münster", "Bonn"], "d": 1 },
+        { "q": "Wie heißt die Hauptstadt von Niedersachsen?", "a": "Hannover", "w": ["Braunschweig", "Oldenburg", "Osnabrück", "Göttingen", "Wolfsburg"], "d": 1 },
+        { "q": "Wie heißt die Hauptstadt von Schleswig-Holstein?", "a": "Kiel", "w": ["Lübeck", "Flensburg", "Neumünster", "Husum", "Rostock"], "d": 1 },
+        { "q": "Welche ist die größte Insel Deutschlands?", "a": "Rügen", "w": ["Usedom", "Sylt", "Fehmarn", "Föhr", "Helgoland"], "d": 1 },
+        { "q": "Welche Stadt nennt man auch „Elbflorenz“?", "a": "Dresden", "w": ["Leipzig", "Magdeburg", "Meißen", "Hamburg", "Dessau"], "d": 2 },
+        { "q": "In welchem Bundesland steht Schloss Neuschwanstein?", "a": "Bayern", "w": ["Baden-Württemberg", "Thüringen", "Sachsen", "Hessen", "Rheinland-Pfalz"], "fact": "Es war das Vorbild für das Dornröschenschloss von Disney.", "d": 1 },
+        { "q": "Wie heißt der höchste Berg Norddeutschlands?", "a": "Brocken", "w": ["Wurmberg", "Zugspitze", "Feldberg", "Fichtelberg", "Kahler Asten"], "d": 2 },
+        { "q": "Auf welcher Insel liegt der nördlichste Punkt Deutschlands?", "a": "Sylt", "w": ["Föhr", "Amrum", "Helgoland", "Pellworm", "Rügen"], "d": 2 },
+        { "q": "An wie viele Länder grenzt Deutschland?", "a": "9", "w": ["7", "8", "10", "11", "6"], "d": 2 }
+      ]
+    },
+    {
+      "id": "flaggen",
+      "name": "Flaggen & Symbole",
+      "questions": [
+        { "q": "Welche Farben hat die Flagge Italiens?", "a": "Grün, Weiß, Rot", "w": ["Grün, Weiß, Orange", "Blau, Weiß, Rot", "Grün, Gelb, Rot", "Rot, Gelb, Rot", "Schwarz, Gelb, Rot"], "typed": false, "d": 1 },
+        { "q": "Welches Land hat ein Ahornblatt auf der Flagge?", "a": "Kanada", "w": ["USA", "Neuseeland", "Schweden", "Japan", "Norwegen"], "d": 1 },
+        { "q": "Welches Land zeigt eine rote Scheibe auf weißem Grund?", "a": "Japan", "w": ["Südkorea", "China", "Bangladesch", "Palau", "Vietnam"], "d": 1 },
+        { "q": "Welches Land hat einen Drachen auf der Flagge?", "a": "Bhutan", "w": ["China", "Vietnam", "Japan", "Mongolei", "Nepal"], "d": 2 },
+        { "q": "Wie viele Sterne hat die Europaflagge?", "a": "12", "w": ["10", "15", "27", "28", "9"], "fact": "Die Zahl steht für Vollkommenheit, nicht für die Zahl der Mitglieder.", "d": 1 },
+        { "q": "Welches Tier ist das Wappentier Deutschlands?", "a": "Adler", "w": ["Löwe", "Bär", "Hirsch", "Falke", "Pferd"], "alt": ["Bundesadler"], "d": 1 },
+        { "q": "Welches Land hat eine Zeder auf der Flagge?", "a": "Libanon", "w": ["Zypern", "Israel", "Syrien", "Jordanien", "Türkei"], "d": 2 },
+        { "q": "Welche Farben hat die Flagge der Ukraine?", "a": "Blau und Gelb", "w": ["Rot und Weiß", "Blau und Weiß", "Grün und Gelb", "Rot und Blau", "Schwarz und Gelb"], "typed": false, "d": 1 },
+        { "q": "Welches Land zeigt auf der Flagge einen Adler, der auf einem Kaktus eine Schlange frisst?", "a": "Mexiko", "w": ["Spanien", "Peru", "Albanien", "Ägypten", "Kolumbien"], "d": 2 },
+        { "q": "Welches Land trägt einen Davidstern auf der Flagge?", "a": "Israel", "w": ["Jordanien", "Libanon", "Griechenland", "Äthiopien", "Zypern"], "d": 1 }
+      ]
+    }
+  ]
+}

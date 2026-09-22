@@ -12,6 +12,7 @@ const seenPacks = new Set();
 let total = 0;
 
 const FORBIDDEN = /[\u2013\u2014]/; // Gedankenstriche sind im ganzen Projekt tabu
+const WRONG_COUNT = 5;
 
 for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.json'))) {
   let pack;
@@ -39,7 +40,8 @@ for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.json'))) {
       total += 1;
       const at = where(section.id, i);
       if (!q.q || !q.a) errors.push(`${at}: q oder a fehlt`);
-      if (!Array.isArray(q.w) || q.w.length < 2) errors.push(`${at}: mindestens zwei falsche Antworten nötig`);
+      // Fuenf falsche Antworten, damit bis zu sechs Antwortmoeglichkeiten gehen
+      if (!Array.isArray(q.w) || q.w.length !== WRONG_COUNT) errors.push(`${at}: genau ${WRONG_COUNT} falsche Antworten nötig (hat ${q.w?.length ?? 0})`);
       if (q.w?.some((w) => w.trim().toLowerCase() === q.a.trim().toLowerCase())) errors.push(`${at}: richtige Antwort steht auch bei den falschen`);
       if (new Set(q.w).size !== q.w?.length) errors.push(`${at}: doppelte falsche Antwort`);
       if (q.d !== undefined && ![1, 2, 3].includes(q.d)) errors.push(`${at}: d muss 1, 2 oder 3 sein`);

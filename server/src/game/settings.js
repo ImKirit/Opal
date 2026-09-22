@@ -8,8 +8,8 @@ export const QUESTION_COUNTS = new Set([5, 10, 15, 20, 30]);
 export const SOLO_MODES = new Set(['classic', 'survival']);
 /** gemischt = keine Vorliebe, sonst werden Fragen der Stufe bevorzugt (leicht 1, mittel 2, schwer 3) */
 export const DIFFICULTIES = new Set(['gemischt', 'leicht', 'mittel', 'schwer']);
-/** Jede Frage hat genau drei falsche Antworten, mehr als vier Optionen gehen daher nicht */
-export const OPTION_COUNTS = new Set([3, 4]);
+/** Jede Frage hat genau fuenf falsche Antworten (check:packs prueft das), also bis zu sechs Optionen */
+export const OPTION_COUNTS = new Set([3, 4, 5, 6]);
 export const TIME_LIMITS = {
   kurz: { choice: 10000, typed: 18000 },
   normal: { choice: 15000, typed: 25000 },

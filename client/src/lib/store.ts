@@ -7,6 +7,7 @@ import { sound } from './sound';
 import type {
   Ack,
   AppConfig,
+  Bundle,
   Invite,
   LobbyState,
   MatchEnd,
@@ -32,6 +33,7 @@ interface SessionState {
   user: User | null;
   stats: Stats | null;
   packs: Pack[];
+  bundles: Bundle[];
 }
 
 export const useSession = create<SessionState>(() => ({
@@ -41,12 +43,13 @@ export const useSession = create<SessionState>(() => ({
   user: null,
   stats: null,
   packs: [],
+  bundles: [],
 }));
 
 export async function bootstrap() {
   try {
     const [config, me, packs] = await Promise.all([api.config(), api.me(), api.packs()]);
-    useSession.setState({ status: 'ready', error: null, config, user: me.user, stats: me.stats ?? null, packs: packs.packs });
+    useSession.setState({ status: 'ready', error: null, config, user: me.user, stats: me.stats ?? null, packs: packs.packs, bundles: packs.bundles ?? [] });
     normalizeSelection(packs.packs);
     if (me.user) connectSocket();
   } catch (err) {

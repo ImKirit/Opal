@@ -153,7 +153,7 @@ authRouter.get('/auth/discord/callback', async (req, res) => {
 
     const current = userFromCookieHeader(req.headers.cookie);
     const user = upsertDiscordUser(
-      { discordId: me.id, name: (me.username || me.global_name).slice(0, 32), username: me.username ?? null, avatar },
+      { discordId: me.id, name: (me.global_name || me.username).slice(0, 32), username: me.username ?? null, avatar },
       current,
     );
     createSession(res, user.id);

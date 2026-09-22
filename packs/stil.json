@@ -9,38 +9,55 @@
       "id": "parfum",
       "name": "Parfüm",
       "questions": [
-        { "q": "Welches Parfüm machte Marilyn Monroe berühmt?", "a": "Chanel No. 5", "w": ["Shalimar", "Miss Dior", "Opium"], "alt": ["Chanel No 5", "No. 5", "Chanel 5", "Chanel Nr. 5"], "d": 1 },
-        { "q": "Welche Stadt in Südfrankreich gilt als Welthauptstadt des Parfüms?", "a": "Grasse", "w": ["Nizza", "Marseille", "Cannes"], "d": 2 },
-        { "q": "Was enthält mehr Duftöl?", "a": "Eau de Parfum", "w": ["Eau de Toilette", "Eau de Cologne", "Beide gleich viel"], "alt": ["EdP"], "d": 2 },
-        { "q": "Wie nennt man den allerersten Eindruck eines Duftes?", "a": "Kopfnote", "w": ["Herznote", "Basisnote", "Grundnote"], "alt": ["Kopf"], "d": 2 },
-        { "q": "Von welchem Tier stammt Ambra ursprünglich?", "a": "Pottwal", "w": ["Moschushirsch", "Biber", "Zibetkatze"], "alt": ["Wal"], "fact": "Moschus, Bibergeil und Zibet kamen früher aus den anderen drei Tieren. Heute wird fast alles synthetisch hergestellt.", "d": 3 },
-        { "q": "Welches Parfüm steckt in einem Männertorso-Flakon in einer Blechdose?", "a": "Le Male", "w": ["Sauvage", "Invictus", "1 Million"], "alt": ["Jean Paul Gaultier Le Male"], "d": 2 },
-        { "q": "Welches Parfüm hat einen Flakon in Form eines Goldbarrens?", "a": "1 Million", "w": ["Invictus", "Le Male", "Eros"], "alt": ["One Million", "Paco Rabanne 1 Million"], "d": 1 },
-        { "q": "Welches Parfümhaus steht hinter Baccarat Rouge 540?", "a": "Maison Francis Kurkdjian", "w": ["Creed", "Tom Ford", "Byredo"], "alt": ["Francis Kurkdjian", "MFK", "Kurkdjian"], "d": 2 },
-        { "q": "Welche Frucht prägt die Kopfnote von Creed Aventus?", "a": "Ananas", "w": ["Mango", "Kirsche", "Wassermelone"], "d": 2 },
-        { "q": "Welche Note ist typisch für YSL Black Opium?", "a": "Kaffee", "w": ["Meersalz", "Leder", "Gurke"], "d": 2 },
-        { "q": "Welches Parfüm hat einen Flakon in Form eines Stilettos?", "a": "Good Girl", "w": ["La Vie Est Belle", "Flowerbomb", "J'adore"], "alt": ["Carolina Herrera Good Girl"], "d": 2 },
-        { "q": "Aus welchem Holz wird Oud gewonnen?", "a": "Adlerholz", "w": ["Sandelholz", "Zedernholz", "Eichenholz"], "alt": ["Agarholz", "Agarwood", "Aloeholz"], "d": 3 },
-        { "q": "Wer ist das bekannte Werbegesicht von Dior Sauvage?", "a": "Johnny Depp", "w": ["Robert Pattinson", "Jude Law", "Brad Pitt"], "alt": ["Depp"], "d": 1 }
+        { "q": "Welches Parfüm machte Marilyn Monroe berühmt?", "a": "Chanel No. 5", "w": ["Shalimar", "Miss Dior", "Opium", "Arpège", "L'Air du Temps"], "alt": ["Chanel No 5", "No. 5", "Chanel 5", "Chanel Nr. 5"], "d": 1 },
+        { "q": "Welche Stadt in Südfrankreich gilt als Welthauptstadt des Parfüms?", "a": "Grasse", "w": ["Nizza", "Marseille", "Cannes", "Avignon", "Montpellier"], "d": 2 },
+        { "q": "Was enthält mehr Duftöl?", "a": "Eau de Parfum", "w": ["Eau de Toilette", "Eau de Cologne", "Beide gleich viel", "Eau Fraîche", "Bodyspray"], "alt": ["EdP"], "d": 2 },
+        { "q": "Wie nennt man den allerersten Eindruck eines Duftes?", "a": "Kopfnote", "w": ["Herznote", "Basisnote", "Grundnote", "Schlussnote", "Mittelnote"], "alt": ["Kopf"], "d": 2 },
+        { "q": "Von welchem Tier stammt Ambra ursprünglich?", "a": "Pottwal", "w": ["Moschushirsch", "Biber", "Zibetkatze", "Hai", "Seehund"], "alt": ["Wal"], "fact": "Moschus, Bibergeil und Zibet kamen früher aus den anderen drei Tieren. Heute wird fast alles synthetisch hergestellt.", "d": 3 },
+        { "q": "Welches Parfüm steckt in einem Männertorso-Flakon in einer Blechdose?", "a": "Le Male", "w": ["Sauvage", "Invictus", "1 Million", "Acqua di Giò", "Bleu de Chanel"], "alt": ["Jean Paul Gaultier Le Male"], "d": 2 },
+        { "q": "Welches Parfüm hat einen Flakon in Form eines Goldbarrens?", "a": "1 Million", "w": ["Invictus", "Le Male", "Eros", "Bad Boy", "Spicebomb"], "alt": ["One Million", "Paco Rabanne 1 Million"], "d": 1 },
+        { "q": "Welches Parfümhaus steht hinter Baccarat Rouge 540?", "a": "Maison Francis Kurkdjian", "w": ["Creed", "Tom Ford", "Byredo", "Le Labo", "Maison Margiela"], "alt": ["Francis Kurkdjian", "MFK", "Kurkdjian"], "d": 2 },
+        { "q": "Welche Frucht prägt die Kopfnote von Creed Aventus?", "a": "Ananas", "w": ["Mango", "Kirsche", "Wassermelone", "Banane", "Kokosnuss"], "d": 2 },
+        { "q": "Welche Note ist typisch für YSL Black Opium?", "a": "Kaffee", "w": ["Meersalz", "Leder", "Gurke", "Tabak", "Minze"], "d": 2 },
+        { "q": "Welches Parfüm hat einen Flakon in Form eines Stilettos?", "a": "Good Girl", "w": ["La Vie Est Belle", "Flowerbomb", "J'adore", "Coco Mademoiselle", "Black Opium"], "alt": ["Carolina Herrera Good Girl"], "d": 2 },
+        { "q": "Aus welchem Holz wird Oud gewonnen?", "a": "Adlerholz", "w": ["Sandelholz", "Zedernholz", "Eichenholz", "Mahagoni", "Teakholz"], "alt": ["Agarholz", "Agarwood", "Aloeholz"], "d": 3 },
+        { "q": "Wer ist das bekannte Werbegesicht von Dior Sauvage?", "a": "Johnny Depp", "w": ["Robert Pattinson", "Jude Law", "Brad Pitt", "Keanu Reeves", "Ryan Gosling"], "alt": ["Depp"], "d": 1 }
       ]
     },
     {
       "id": "mode",
       "name": "Mode & Marken",
       "questions": [
-        { "q": "Wie viel bekam die Designerin des Nike-Swoosh ursprünglich?", "a": "35 Dollar", "w": ["350 Dollar", "3.500 Dollar", "35.000 Dollar"], "alt": ["35", "35 $"], "fact": "Carolyn Davidson entwarf ihn 1971 als Studentin. Später bekam sie zusätzlich Nike-Aktien.", "d": 2 },
-        { "q": "Wer gründete Adidas?", "a": "Adi Dassler", "w": ["Rudolf Dassler", "Phil Knight", "Horst Dassler"], "alt": ["Adolf Dassler", "Dassler"], "fact": "Sein Bruder Rudolf gründete Puma.", "d": 1 },
-        { "q": "In welcher Stadt haben Adidas und Puma ihren Sitz?", "a": "Herzogenaurach", "w": ["Nürnberg", "Erlangen", "München"], "d": 2 },
-        { "q": "Wie hieß der Gründer von Levi's?", "a": "Levi Strauss", "w": ["Levi Johnson", "Jacob Davis", "Levi Klein"], "alt": ["Strauss", "Strauß", "Levi Strauß"], "fact": "Er stammte aus Buttenheim in Oberfranken.", "d": 1 },
-        { "q": "Womit begann Louis Vuitton?", "a": "Mit Reisekoffern", "w": ["Mit Schuhen", "Mit Hüten", "Mit Parfüm"], "alt": ["Koffer", "Reisekoffer"], "d": 2 },
-        { "q": "Wer machte das „kleine Schwarze“ berühmt?", "a": "Coco Chanel", "w": ["Christian Dior", "Yves Saint Laurent", "Audrey Hepburn"], "alt": ["Chanel"], "d": 1 },
-        { "q": "Welche Farbe hat das Supreme-Logo?", "a": "Rot", "w": ["Schwarz", "Blau", "Grün"], "d": 1 },
-        { "q": "Welche Figur aus der Mythologie zeigt das Versace-Logo?", "a": "Medusa", "w": ["Pegasus", "Zeus", "Sphinx"], "d": 1 },
-        { "q": "Aus welcher Stadt stammte Karl Lagerfeld?", "a": "Hamburg", "w": ["Paris", "Berlin", "Wien"], "fact": "Seine Katze Choupette hatte eigene Werbeverträge.", "d": 2 },
-        { "q": "Aus welchem Land kommt Zara?", "a": "Spanien", "w": ["Italien", "Portugal", "Frankreich"], "d": 1 },
-        { "q": "Aus welchem Land kommt H&M?", "a": "Schweden", "w": ["Dänemark", "Deutschland", "Niederlande"], "d": 1 },
-        { "q": "Welches Luxushaus stellt die Birkin Bag her?", "a": "Hermès", "w": ["Chanel", "Louis Vuitton", "Gucci"], "alt": ["Hermes"], "d": 2 },
-        { "q": "In welcher Stadt wurde Gucci gegründet?", "a": "Florenz", "w": ["Mailand", "Rom", "Venedig"], "d": 2 }
+        { "q": "Wie viel bekam die Designerin des Nike-Swoosh ursprünglich?", "a": "35 Dollar", "w": ["350 Dollar", "3.500 Dollar", "35.000 Dollar", "3,50 Dollar", "350.000 Dollar"], "alt": ["35", "35 $"], "fact": "Carolyn Davidson entwarf ihn 1971 als Studentin. Später bekam sie zusätzlich Nike-Aktien.", "d": 2 },
+        { "q": "Wer gründete Adidas?", "a": "Adi Dassler", "w": ["Rudolf Dassler", "Phil Knight", "Horst Dassler", "Herbert Hainer", "Armin Dassler"], "alt": ["Adolf Dassler", "Dassler"], "fact": "Sein Bruder Rudolf gründete Puma.", "d": 1 },
+        { "q": "In welcher Stadt haben Adidas und Puma ihren Sitz?", "a": "Herzogenaurach", "w": ["Nürnberg", "Erlangen", "München", "Bamberg", "Fürth"], "d": 2 },
+        { "q": "Wie hieß der Gründer von Levi's?", "a": "Levi Strauss", "w": ["Levi Johnson", "Jacob Davis", "Levi Klein", "Leo Strauss", "Levi Brown"], "alt": ["Strauss", "Strauß", "Levi Strauß"], "fact": "Er stammte aus Buttenheim in Oberfranken.", "d": 1 },
+        { "q": "Womit begann Louis Vuitton?", "a": "Mit Reisekoffern", "w": ["Mit Schuhen", "Mit Hüten", "Mit Parfüm", "Mit Uhren", "Mit Schmuck"], "alt": ["Koffer", "Reisekoffer"], "d": 2 },
+        { "q": "Wer machte das „kleine Schwarze“ berühmt?", "a": "Coco Chanel", "w": ["Christian Dior", "Yves Saint Laurent", "Audrey Hepburn", "Donatella Versace", "Vivienne Westwood"], "alt": ["Chanel"], "d": 1 },
+        { "q": "Welche Farbe hat das Supreme-Logo?", "a": "Rot", "w": ["Schwarz", "Blau", "Grün", "Gelb", "Lila"], "d": 1 },
+        { "q": "Welche Figur aus der Mythologie zeigt das Versace-Logo?", "a": "Medusa", "w": ["Pegasus", "Zeus", "Sphinx", "Minotaurus", "Hermes"], "d": 1 },
+        { "q": "Aus welcher Stadt stammte Karl Lagerfeld?", "a": "Hamburg", "w": ["Paris", "Berlin", "Wien", "München", "Köln"], "fact": "Seine Katze Choupette hatte eigene Werbeverträge.", "d": 2 },
+        { "q": "Aus welchem Land kommt Zara?", "a": "Spanien", "w": ["Italien", "Portugal", "Frankreich", "Mexiko", "Griechenland"], "d": 1 },
+        { "q": "Aus welchem Land kommt H&M?", "a": "Schweden", "w": ["Dänemark", "Deutschland", "Niederlande", "Norwegen", "Finnland"], "d": 1 },
+        { "q": "Welches Luxushaus stellt die Birkin Bag her?", "a": "Hermès", "w": ["Chanel", "Louis Vuitton", "Gucci", "Prada", "Dior"], "alt": ["Hermes"], "d": 2 },
+        { "q": "In welcher Stadt wurde Gucci gegründet?", "a": "Florenz", "w": ["Mailand", "Rom", "Venedig", "Neapel", "Turin"], "d": 2 },
+        { "q": "Welche Farbe hat die Sohle von Schuhen von Christian Louboutin?", "a": "Rot", "w": ["Schwarz", "Gold", "Weiß", "Blau", "Pink"], "d": 1 }
+      ]
+    },
+    {
+      "id": "sneaker",
+      "name": "Sneaker",
+      "questions": [
+        { "q": "In welchem Jahr kam der erste Air Jordan heraus?", "a": "1985", "w": ["1980", "1990", "1995", "1978", "2000"], "d": 2 },
+        { "q": "Welche Marke stellt den Chuck Taylor All Star her?", "a": "Converse", "w": ["Vans", "Puma", "Keds", "Reebok", "Fila"], "d": 1 },
+        { "q": "Von welcher Marke stammt der Stan Smith?", "a": "Adidas", "w": ["Puma", "Reebok", "Nike", "Le Coq Sportif", "Lacoste"], "d": 1 },
+        { "q": "Wofür steht „Air“ beim Nike Air Max?", "a": "Ein Luftpolster in der Sohle", "w": ["Leichtes Obermaterial", "Ein Flugzeug-Design", "Luftlöcher im Stoff", "Eine Air-Force-Kooperation", "Den Namen eines Designers"], "typed": false, "d": 1 },
+        { "q": "Welcher Rapper brachte mit Adidas die Yeezy-Reihe heraus?", "a": "Kanye West", "w": ["Travis Scott", "Pharrell Williams", "Jay-Z", "Drake", "Eminem"], "alt": ["Ye", "Kanye"], "d": 1 },
+        { "q": "Welche Marke macht die „Old Skool“ mit dem Seitenstreifen?", "a": "Vans", "w": ["Converse", "DC Shoes", "Etnies", "Puma", "Globe"], "d": 2 },
+        { "q": "Welcher Nike-Schuh von 1982 ist nach dem Flugzeug des US-Präsidenten benannt?", "a": "Air Force 1", "w": ["Air Max 1", "Blazer", "Cortez", "Dunk", "Air Jordan 1"], "alt": ["AF1", "Air Force One"], "d": 2 },
+        { "q": "Aus welchem Land stammt New Balance?", "a": "USA", "w": ["Großbritannien", "Kanada", "Australien", "Neuseeland", "Japan"], "d": 2 },
+        { "q": "Welche Marke hat den „Formstrip“ an der Seite ihrer Schuhe?", "a": "Puma", "w": ["Adidas", "Nike", "Asics", "Reebok", "Fila"], "d": 2 },
+        { "q": "Welche Marke gründete der Bruder von Adidas-Gründer Adi Dassler?", "a": "Puma", "w": ["Reebok", "Asics", "Fila", "Kappa", "Lotto"], "alt": ["Puma SE"], "fact": "Adolf und Rudolf Dassler zerstritten sich, Rudolf gründete 1948 Puma.", "d": 2 }
       ]
     }
   ]

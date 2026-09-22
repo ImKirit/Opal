@@ -53,6 +53,7 @@ export function friendCard(row) {
     avatar: row.avatar,
     guest: Boolean(row.is_guest),
     owner: isOwner(row.id),
+    handle: row.discord_username ?? null,
     tag: tagOf(row.id),
   };
 }

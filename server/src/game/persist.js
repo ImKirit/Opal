@@ -166,7 +166,7 @@ export function recentMatches(userId, limit = 15) {
     .all(userId, limit);
   // Aktueller Name statt dem beim Spiel gespeicherten (Discord-Konten heissen inzwischen wie ihr Benutzername)
   const others = db.prepare(
-    `SELECT mp.user_id, coalesce(u.name, mp.name) AS name, mp.is_bot, mp.score
+    `SELECT mp.user_id, coalesce(u.name, mp.name) AS name, u.discord_username AS handle, mp.is_bot, mp.score
        FROM match_players mp LEFT JOIN users u ON u.id = mp.user_id
       WHERE mp.match_id = ? AND mp.user_id != ? ORDER BY mp.score DESC`,
   );
@@ -187,6 +187,7 @@ export function recentMatches(userId, limit = 15) {
       name: o.name,
       isBot: Boolean(o.is_bot),
       owner: !o.is_bot && isOwner(o.user_id),
+      handle: o.handle ?? null,
       score: o.score,
     })),
   }));
@@ -211,7 +212,7 @@ const STAT_BOARDS = {
     name: 'Siege',
     format: 'count',
     desc: 'Gewonnene Duelle gegen Menschen: Ranked, Unranked, Lobbys und Freunde. Bots zählen nicht.',
-    sql: `SELECT u.id, u.name, u.avatar,
+    sql: `SELECT u.id, u.name, u.avatar, u.discord_username AS handle,
                  SUM(CASE WHEN m.winner_id = u.id THEN 1 ELSE 0 END) AS value, COUNT(*) AS games
             FROM match_players mp JOIN matches m ON m.id = mp.match_id JOIN users u ON u.id = mp.user_id
            WHERE u.is_guest = 0 AND ${VS_HUMANS}
@@ -222,7 +223,7 @@ const STAT_BOARDS = {
     name: 'Spielzeit',
     format: 'duration',
     desc: 'Zeit in allen Spielen zusammen, Training eingeschlossen.',
-    sql: `SELECT u.id, u.name, u.avatar, SUM(${PLAY_MS}) AS value, COUNT(*) AS games
+    sql: `SELECT u.id, u.name, u.avatar, u.discord_username AS handle, SUM(${PLAY_MS}) AS value, COUNT(*) AS games
             FROM match_players mp JOIN matches m ON m.id = mp.match_id JOIN users u ON u.id = mp.user_id
            WHERE u.is_guest = 0
            GROUP BY u.id HAVING value > 0
@@ -232,7 +233,7 @@ const STAT_BOARDS = {
     name: 'Tempo',
     format: 'ms',
     desc: `Durchschnittliche Zeit für richtige Antworten im Training, ab ${TEMPO_MIN_CORRECT} richtigen. Kleiner ist besser.`,
-    sql: `SELECT u.id, u.name, u.avatar,
+    sql: `SELECT u.id, u.name, u.avatar, u.discord_username AS handle,
                  CAST(ROUND(SUM(mp.avg_ms * mp.correct) * 1.0 / SUM(mp.correct)) AS INTEGER) AS value,
                  SUM(mp.correct) AS games
             FROM match_players mp JOIN matches m ON m.id = mp.match_id JOIN users u ON u.id = mp.user_id
@@ -244,7 +245,7 @@ const STAT_BOARDS = {
     name: 'Überleben',
     format: 'count',
     desc: 'Die meisten richtigen Antworten in einem Überleben-Training, bevor die drei Leben weg sind.',
-    sql: `SELECT u.id, u.name, u.avatar, MAX(mp.score) AS value, COUNT(*) AS games, MIN(m.ended_at) AS first
+    sql: `SELECT u.id, u.name, u.avatar, u.discord_username AS handle, MAX(mp.score) AS value, COUNT(*) AS games, MIN(m.ended_at) AS first
             FROM match_players mp JOIN matches m ON m.id = mp.match_id JOIN users u ON u.id = mp.user_id
            WHERE u.is_guest = 0 AND m.kind = 'solo' AND m.variant = 'survival'
            GROUP BY u.id HAVING value > 0
@@ -252,7 +253,7 @@ const STAT_BOARDS = {
   },
 };
 
-const ladderSql = `SELECT u.id, u.name, u.avatar, r.rating AS value, r.games AS games, r.wins AS wins, r.peak_rating AS peak
+const ladderSql = `SELECT u.id, u.name, u.avatar, u.discord_username AS handle, r.rating AS value, r.games AS games, r.wins AS wins, r.peak_rating AS peak
                      FROM ratings r JOIN users u ON u.id = r.user_id
                     WHERE r.ladder = ? AND r.games > 0 AND u.is_guest = 0
                     ORDER BY r.rating DESC, r.games DESC`;
@@ -292,6 +293,7 @@ export function leaderboard(board, { limit = 100, userId = null } = {}) {
     name: r.name,
     avatar: r.avatar,
     owner: isOwner(r.id),
+    handle: r.handle ?? null,
     value: r.value,
     games: r.games ?? null,
     wins: r.wins ?? null,

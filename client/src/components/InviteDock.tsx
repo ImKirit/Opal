@@ -43,7 +43,7 @@ function IncomingCard({ invite }: { invite: LiveInvite }) {
         <Avatar name={invite.from.name} src={invite.from.avatar} size={40} />
         <div>
           <p className="invite__title">
-            <UserName name={invite.from.name} owner={invite.from.owner} /> fordert dich heraus
+            <UserName name={invite.from.name} owner={invite.from.owner} handle={invite.from.handle} /> fordert dich heraus
           </p>
           <p className="invite__sub">
             {invite.intoLobby ? 'Einladung in die Lobby' : '1 gegen 1, startet sofort'} · noch {left} s

@@ -22,6 +22,53 @@ export function selectionSummary(packs: Pack[], keys: string[]) {
   return { questions, parts };
 }
 
+/** Themenpakete: ein Klick waehlt genau diese Bereiche, feinjustiert wird darunter im PackPicker. */
+export function BundleBar({ value, onChange, disabled }: PackPickerProps) {
+  const bundles = useSession((s) => s.bundles);
+  const packs = useSession((s) => s.packs);
+  if (!bundles.length) return null;
+  const selected = new Set(value);
+  const counts = new Map(packs.flatMap((p) => p.sections.map((s) => [s.key, s.count] as const)));
+
+  return (
+    <div className="bundles">
+      {bundles.map((bundle) => {
+        const on = bundle.sections.length === selected.size && bundle.sections.every((k) => selected.has(k));
+        const questions = bundle.sections.reduce((n, k) => n + (counts.get(k) ?? 0), 0);
+        return (
+          <Glass
+            key={bundle.id}
+            as="button"
+            type="button"
+            interactive
+            className={`bundle${on ? ' is-on' : ''}`}
+            radius={18}
+            tone={on ? 'panel' : 'deep'}
+            blur={2}
+            prism={false}
+            disabled={disabled}
+            aria-pressed={on}
+            onClick={() => onChange(bundle.sections)}
+            style={{ '--pk-h': bundle.hue } as React.CSSProperties}
+          >
+            <PackIcon icon={bundle.icon} hue={bundle.hue} size={38} />
+            <span className="bundle__text">
+              <span className="bundle__name">{bundle.name}</span>
+              <span className="bundle__desc">{bundle.desc}</span>
+              <span className="bundle__meta num">{questions} Fragen</span>
+            </span>
+            {on && (
+              <span className="check check--all" aria-hidden="true">
+                <Check size={15} strokeWidth={3} />
+              </span>
+            )}
+          </Glass>
+        );
+      })}
+    </div>
+  );
+}
+
 /** Paketauswahl: ganze Pakete an/aus, darunter einzelne Bereiche. */
 export function PackPicker({ value, onChange, disabled }: PackPickerProps) {
   const packs = useSession((s) => s.packs);

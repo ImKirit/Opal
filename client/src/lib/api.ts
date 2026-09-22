@@ -1,4 +1,4 @@
-import type { AppConfig, BoardResponse, FriendCard, FriendsList, Pack, Profile, Stats, User } from './types';
+import type { AppConfig, BoardResponse, Bundle, FriendCard, FriendsList, Pack, Profile, Stats, User } from './types';
 
 // Leer = gleicher Server wie die Seite. Fuer eine spaetere Desktop-Version mit
 // eingebautem Client kann hier per VITE_SERVER_URL ein fester Server stehen.
@@ -22,7 +22,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 export const api = {
   config: () => request<AppConfig>('/api/config'),
   me: () => request<{ user: User | null; stats?: Stats }>('/api/me'),
-  packs: () => request<{ packs: Pack[] }>('/api/packs'),
+  packs: () => request<{ packs: Pack[]; bundles?: Bundle[] }>('/api/packs'),
   leaderboard: (board: string) => request<BoardResponse>(`/api/leaderboard?board=${encodeURIComponent(board)}`),
   profile: (id: string) => request<Profile>(`/api/users/${encodeURIComponent(id)}`),
   guest: (name: string) => request<{ ok: true }>('/auth/guest', { method: 'POST', body: JSON.stringify({ name }) }),

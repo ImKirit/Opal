@@ -35,6 +35,7 @@ function playerFromUser(row, ladder = null) {
     name: row.name,
     avatar: row.avatar ?? null,
     guest: Boolean(row.is_guest),
+    handle: row.discord_username ?? null,
     rating: ladder ? rankOf(row.id, ladder).rating : null,
     isBot: false,
   };
@@ -174,8 +175,8 @@ export function attachHub(io) {
     const to = getUser(inv.toId);
     return {
       id: inv.id,
-      from: { id: inv.fromId, name: from?.name ?? '?', avatar: from?.avatar ?? null, owner: isOwner(inv.fromId) },
-      to: { id: inv.toId, name: to?.name ?? '?', avatar: to?.avatar ?? null, owner: isOwner(inv.toId) },
+      from: { id: inv.fromId, name: from?.name ?? '?', avatar: from?.avatar ?? null, owner: isOwner(inv.fromId), handle: from?.discord_username ?? null },
+      to: { id: inv.toId, name: to?.name ?? '?', avatar: to?.avatar ?? null, owner: isOwner(inv.toId), handle: to?.discord_username ?? null },
       intoLobby: inv.intoLobby,
       expiresInMs: Math.max(0, inv.expiresAt - Date.now()),
     };

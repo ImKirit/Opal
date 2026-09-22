@@ -54,7 +54,7 @@ function Row({ board, entry, isMe }: { board: BoardInfo; entry: BoardEntry; isMe
     >
       <span className={`board__rank num${entry.rank <= 3 ? ` board__rank--${entry.rank}` : ''}`}>{entry.rank}</span>
       <Avatar name={entry.name} src={entry.avatar} size={36} />
-      <UserName className="board__name" name={entry.name} owner={entry.owner} />
+      <UserName className="board__name" name={entry.name} owner={entry.owner} handle={entry.handle} />
       {board.ladder && <TierBadge rating={entry.value} games={entry.games ?? 0} compact />}
       <span className="board__rating num">{mainValue(board, entry)}</span>
       <span className="board__games muted num">{subValue(board, entry)}</span>

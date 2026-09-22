@@ -1,0 +1,96 @@
+{
+  "id": "natur",
+  "name": "Natur & Weltall",
+  "desc": "Planeten und Sterne, der menschliche Körper, Pflanzen, Meere und das Wetter.",
+  "icon": "leaf",
+  "hue": 120,
+  "sections": [
+    {
+      "id": "weltall",
+      "name": "Weltall",
+      "questions": [
+        { "q": "Wie heißt der größte Mond des Saturn?", "a": "Titan", "w": ["Europa", "Ganymed", "Io", "Enceladus", "Triton"], "fact": "Titan hat als einziger Mond eine dichte Atmosphäre.", "d": 2 },
+        { "q": "Welcher ist der größte Mond im Sonnensystem?", "a": "Ganymed", "w": ["Titan", "Europa", "Erdmond", "Kallisto", "Io"], "fact": "Er ist sogar größer als der Planet Merkur.", "d": 2 },
+        { "q": "Welcher Planet ist für seinen Großen Roten Fleck bekannt?", "a": "Jupiter", "w": ["Mars", "Saturn", "Venus", "Neptun", "Uranus"], "fact": "Der Fleck ist ein Wirbelsturm, in den die Erde hineinpassen würde.", "d": 1 },
+        { "q": "Welcher Planet heißt auch der Rote Planet?", "a": "Mars", "w": ["Venus", "Jupiter", "Merkur", "Saturn", "Neptun"], "d": 1 },
+        { "q": "Welcher Planet dreht sich fast auf der Seite liegend um die Sonne?", "a": "Uranus", "w": ["Neptun", "Saturn", "Venus", "Jupiter", "Merkur"], "d": 2 },
+        { "q": "Wie viele Monde hat der Mars?", "a": "2", "w": ["0", "1", "3", "4", "12"], "fact": "Sie heißen Phobos und Deimos, Furcht und Schrecken.", "d": 2 },
+        { "q": "Seit welchem Jahr gilt Pluto nicht mehr als Planet?", "a": "2006", "w": ["1999", "2001", "2010", "2015", "1994"], "d": 2 },
+        { "q": "Welcher Stern ist der Sonne am nächsten?", "a": "Proxima Centauri", "w": ["Sirius", "Polarstern", "Beteigeuze", "Wega", "Rigel"], "alt": ["Proxima"], "fact": "Sein Licht braucht gut vier Jahre bis zu uns.", "d": 3 },
+        { "q": "Welches Weltraumteleskop startete 2021 und beobachtet vor allem im Infrarot?", "a": "James Webb", "w": ["Hubble", "Kepler", "Spitzer", "Chandra", "Gaia"], "alt": ["James-Webb", "James-Webb-Teleskop", "JWST", "James Webb Teleskop"], "d": 2 },
+        { "q": "Was misst ein Lichtjahr?", "a": "Eine Entfernung", "w": ["Eine Zeitspanne", "Eine Geschwindigkeit", "Eine Helligkeit", "Eine Masse", "Eine Temperatur"], "typed": false, "d": 1 },
+        { "q": "Wie heißt die Raumstation, die seit 1998 im Orbit gebaut wird?", "a": "ISS", "w": ["Mir", "Skylab", "Tiangong", "Saljut", "Gateway"], "alt": ["Internationale Raumstation"], "d": 1 },
+        { "q": "Woraus bestehen die Ringe des Saturn hauptsächlich?", "a": "Eis", "w": ["Eisenstaub", "Gas", "Lava", "Diamanten", "Sand"], "alt": ["Wassereis"], "d": 2 }
+      ]
+    },
+    {
+      "id": "koerper",
+      "name": "Menschlicher Körper",
+      "questions": [
+        { "q": "Wie viele Kammern hat das menschliche Herz?", "a": "4", "w": ["2", "3", "5", "6", "8"], "d": 1 },
+        { "q": "Welcher ist der größte Muskel des Menschen?", "a": "Großer Gesäßmuskel", "w": ["Bizeps", "Herzmuskel", "Zunge", "Kaumuskel", "Zwerchfell"], "alt": ["Gesäßmuskel", "Gluteus maximus", "Po-Muskel"], "d": 2 },
+        { "q": "Welches Organ filtert das Blut und bildet Urin?", "a": "Niere", "w": ["Leber", "Milz", "Blase", "Lunge", "Magen"], "alt": ["Nieren", "Die Nieren"], "d": 1 },
+        { "q": "Wie viel Prozent des Körpers eines Erwachsenen sind ungefähr Wasser?", "a": "60", "w": ["30", "45", "80", "90", "20"], "alt": ["60 Prozent", "60 %"], "d": 2 },
+        { "q": "Welches Organ kann sich besonders gut selbst regenerieren?", "a": "Leber", "w": ["Herz", "Gehirn", "Niere", "Lunge", "Bauchspeicheldrüse"], "d": 2 },
+        { "q": "Wie heißen die feinsten Blutgefäße?", "a": "Kapillaren", "w": ["Arterien", "Venen", "Aorta", "Lymphbahnen", "Alveolen"], "alt": ["Haargefäße"], "d": 2 },
+        { "q": "Wie viele Liter Blut hat ein Erwachsener ungefähr?", "a": "5", "w": ["2", "3", "8", "10", "12"], "alt": ["5 Liter", "fünf"], "d": 1 },
+        { "q": "Welcher Teil des Auges gibt ihm seine Farbe?", "a": "Iris", "w": ["Pupille", "Netzhaut", "Linse", "Hornhaut", "Glaskörper"], "alt": ["Regenbogenhaut"], "d": 1 },
+        { "q": "Wie heißt der längste Knochen im Körper?", "a": "Oberschenkelknochen", "w": ["Schienbein", "Oberarmknochen", "Elle", "Wadenbein", "Speiche"], "alt": ["Femur", "Oberschenkel"], "d": 1 },
+        { "q": "Wie viele Lungenflügel hat der Mensch?", "a": "2", "w": ["1", "3", "4", "5", "6"], "d": 1 },
+        { "q": "Welches Vitamin fehlt bei Skorbut?", "a": "Vitamin C", "w": ["Vitamin A", "Vitamin D", "Vitamin B12", "Vitamin K", "Vitamin E"], "fact": "Seefahrer nahmen deshalb Zitrusfrüchte und Sauerkraut mit an Bord.", "d": 2 },
+        { "q": "In welchem Organ sitzt der Gleichgewichtssinn?", "a": "Im Ohr", "w": ["Im Auge", "In der Nase", "In den Füßen", "Im Magen", "In der Zunge"], "alt": ["Ohr", "Innenohr", "Im Innenohr"], "d": 2 }
+      ]
+    },
+    {
+      "id": "pflanzen",
+      "name": "Pflanzen",
+      "questions": [
+        { "q": "Wie nennt man den Vorgang, bei dem Pflanzen aus Licht Zucker herstellen?", "a": "Fotosynthese", "w": ["Zellatmung", "Osmose", "Gärung", "Verdunstung", "Bestäubung"], "alt": ["Photosynthese"], "d": 1 },
+        { "q": "Welche Baumart wird am höchsten?", "a": "Küstenmammutbaum", "w": ["Eukalyptus", "Riesenmammutbaum", "Douglasie", "Baobab", "Kokospalme"], "alt": ["Küsten-Mammutbaum", "Redwood"], "fact": "Der höchste bekannte Baum heißt Hyperion und ist über 115 Meter hoch.", "d": 3 },
+        { "q": "Welches Gas geben Pflanzen bei der Fotosynthese ab?", "a": "Sauerstoff", "w": ["Kohlendioxid", "Stickstoff", "Methan", "Helium", "Wasserstoff"], "d": 1 },
+        { "q": "Welche Pflanze wächst am schnellsten?", "a": "Bambus", "w": ["Efeu", "Kaktus", "Löwenzahn", "Farn", "Eiche"], "fact": "Manche Arten schaffen fast einen Meter am Tag.", "d": 2 },
+        { "q": "Wie heißt der grüne Farbstoff der Pflanzen?", "a": "Chlorophyll", "w": ["Karotin", "Melanin", "Hämoglobin", "Anthocyan", "Keratin"], "alt": ["Blattgrün"], "d": 1 },
+        { "q": "Aus den Samen welcher Pflanze wird Schokolade gemacht?", "a": "Kakaobaum", "w": ["Kaffeestrauch", "Vanille", "Johannisbrotbaum", "Kokospalme", "Haselnuss"], "alt": ["Kakao", "Kakaopflanze"], "d": 1 },
+        { "q": "Welche Blume verbindet man besonders mit den Niederlanden?", "a": "Tulpe", "w": ["Rose", "Sonnenblume", "Lilie", "Nelke", "Narzisse"], "d": 1 },
+        { "q": "Aus welcher Pflanze wird Tequila gebrannt?", "a": "Agave", "w": ["Kaktus", "Zuckerrohr", "Mais", "Aloe", "Yucca"], "alt": ["Blaue Agave"], "d": 2 },
+        { "q": "Was fängt die Venusfliegenfalle vor allem?", "a": "Insekten", "w": ["Mäuse", "Fische", "Vögel", "Schnecken", "Pilze"], "d": 1 },
+        { "q": "Welcher Baum trägt Eicheln?", "a": "Eiche", "w": ["Buche", "Kastanie", "Linde", "Ahorn", "Birke"], "d": 1 },
+        { "q": "Wie heißt die Wissenschaft von den Pflanzen?", "a": "Botanik", "w": ["Zoologie", "Geologie", "Ökologie", "Mykologie", "Anatomie"], "d": 1 }
+      ]
+    },
+    {
+      "id": "meer",
+      "name": "Meer & Ozeane",
+      "questions": [
+        { "q": "Wie heißt das größte Korallenriff der Erde?", "a": "Great Barrier Reef", "w": ["Belize-Barriereriff", "Ningaloo-Riff", "Great Blue Hole", "Florida-Riff", "Tubbataha-Riff"], "alt": ["Großes Barriereriff"], "d": 1 },
+        { "q": "Welcher ist der größte Fisch der Welt?", "a": "Walhai", "w": ["Weißer Hai", "Riesenhai", "Mondfisch", "Blauwal", "Riesenmanta"], "fact": "Der Blauwal ist größer, aber ein Säugetier.", "d": 2 },
+        { "q": "Wie viele Arme hat ein Seestern meistens?", "a": "5", "w": ["4", "6", "8", "10", "3"], "d": 1 },
+        { "q": "Wie viel Prozent der Erdoberfläche sind mit Wasser bedeckt?", "a": "71", "w": ["50", "60", "80", "90", "40"], "alt": ["71 Prozent", "etwa 70"], "d": 2 },
+        { "q": "In welchem Meer treibt man wegen des vielen Salzes fast von selbst?", "a": "Totes Meer", "w": ["Rotes Meer", "Schwarzes Meer", "Kaspisches Meer", "Mittelmeer", "Ostsee"], "alt": ["Im Toten Meer"], "d": 1 },
+        { "q": "Welches dieser Meerestiere ist ein Säugetier?", "a": "Orca", "w": ["Hai", "Rochen", "Thunfisch", "Muräne", "Barrakuda"], "alt": ["Schwertwal"], "d": 1 },
+        { "q": "Wie nennt man es, wenn das Meer an der Küste zurückweicht?", "a": "Ebbe", "w": ["Flut", "Brandung", "Dünung", "Strömung", "Springflut"], "d": 1 },
+        { "q": "Was verursacht Ebbe und Flut vor allem?", "a": "Die Anziehungskraft des Mondes", "w": ["Der Wind", "Die Erdrotation allein", "Der Golfstrom", "Vulkane unter Wasser", "Die Wärme der Sonne"], "typed": false, "d": 1 },
+        { "q": "Welcher Hai gilt als der schnellste?", "a": "Kurzflossen-Mako", "w": ["Weißer Hai", "Tigerhai", "Hammerhai", "Walhai", "Bullenhai"], "alt": ["Mako", "Makohai", "Mako-Hai"], "d": 3 },
+        { "q": "Welche Meeresströmung bringt Europa milderes Wetter?", "a": "Golfstrom", "w": ["Humboldtstrom", "Kuroshio", "Benguelastrom", "Labradorstrom", "Agulhasstrom"], "d": 2 },
+        { "q": "Welches dieser Tiere hat blaues Blut?", "a": "Krake", "w": ["Hai", "Delfin", "Pinguin", "Robbe", "Thunfisch"], "alt": ["Oktopus", "Octopus"], "fact": "Sein Blut transportiert Sauerstoff mit Kupfer statt mit Eisen.", "d": 2 }
+      ]
+    },
+    {
+      "id": "wetter",
+      "name": "Wetter & Erde",
+      "questions": [
+        { "q": "Mit welcher Skala misst man die Windstärke?", "a": "Beaufort", "w": ["Richter", "Celsius", "Mercalli", "Kelvin", "Mohs"], "alt": ["Beaufortskala", "Beaufort-Skala"], "d": 2 },
+        { "q": "Wie heißt ein tropischer Wirbelsturm über dem Atlantik?", "a": "Hurrikan", "w": ["Taifun", "Zyklon", "Tornado", "Monsun", "Blizzard"], "alt": ["Hurricane"], "fact": "Im Nordwestpazifik heißt derselbe Sturm Taifun, im Indischen Ozean Zyklon.", "d": 2 },
+        { "q": "Wie heißt die innerste Schicht der Erde?", "a": "Innerer Kern", "w": ["Äußerer Kern", "Erdmantel", "Erdkruste", "Lithosphäre", "Asthenosphäre"], "alt": ["Erdkern", "Kern", "Der innere Kern"], "d": 2 },
+        { "q": "Was misst die Richterskala?", "a": "Die Stärke von Erdbeben", "w": ["Die Windstärke", "Die Regenmenge", "Die Lautstärke", "Den Luftdruck", "Die Temperatur"], "typed": false, "d": 1 },
+        { "q": "Wie heißt geschmolzenes Gestein, solange es unter der Erde ist?", "a": "Magma", "w": ["Lava", "Basalt", "Obsidian", "Granit", "Tuff"], "d": 2 },
+        { "q": "Wie entsteht ein Regenbogen?", "a": "Sonnenlicht wird in Regentropfen gebrochen", "w": ["Wolken färben sich ein", "Nordlicht spiegelt sich", "Das Meer spiegelt sich im Himmel", "Staub leuchtet im Wind", "Eis am Boden strahlt"], "typed": false, "d": 1 },
+        { "q": "Was erzeugt Polarlichter?", "a": "Teilchen von der Sonne", "w": ["Mondlicht auf dem Eis", "Blitze über dem Meer", "Vulkanasche", "Sternschnuppen", "Spiegelungen im Schnee"], "typed": false, "d": 2 },
+        { "q": "Welche Wolken bringen Gewitter?", "a": "Cumulonimbus", "w": ["Cirrus", "Stratus", "Altocumulus", "Cirrostratus", "Nimbostratus"], "alt": ["Gewitterwolken"], "d": 3 },
+        { "q": "Wie viele Kontinente zählt man in Deutschland üblicherweise?", "a": "7", "w": ["5", "6", "8", "9", "4"], "d": 2 },
+        { "q": "Wie heißt der Superkontinent, der vor rund 300 Millionen Jahren fast alles Land vereinte?", "a": "Pangaea", "w": ["Gondwana", "Laurasia", "Rodinia", "Atlantis", "Lemuria"], "alt": ["Pangäa", "Pangea"], "d": 2 },
+        { "q": "Wie nennt man eine Wetterlage mit hohem Luftdruck?", "a": "Hochdruckgebiet", "w": ["Tiefdruckgebiet", "Kaltfront", "Warmfront", "Inversion", "Föhn"], "alt": ["Hoch"], "d": 1 }
+      ]
+    }
+  ]
+}

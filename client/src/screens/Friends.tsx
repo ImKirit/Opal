@@ -2,7 +2,7 @@ import { Check, Search, Swords, UserMinus, UserPlus, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Avatar } from '../components/Avatar';
 import { Button } from '../components/Button';
-import { OwnerBadge } from '../components/UserName';
+import { OwnerBadge, UserName } from '../components/UserName';
 import { Glass } from '../glass/Glass';
 import { api } from '../lib/api';
 import { loadFriends, useFriends } from '../lib/friends';
@@ -22,21 +22,28 @@ const PRESENCE_LABEL: Record<Presence, string> = {
 const canChallenge = (p?: Presence) => p === 'online' || p === 'queue' || p === 'lobby';
 
 function Who({ person, presence }: { person: FriendCard; presence?: Presence }) {
+  const open = () => navigate('profil', person.id);
   return (
-    <button type="button" className="friend__who" onClick={() => navigate('profil', person.id)}>
-      <span className={`friend__avatar${presence ? ` is-${presence}` : ''}`}>
+    <div className="friend__who">
+      <button type="button" className={`friend__avatar${presence ? ` is-${presence}` : ''}`} onClick={open} aria-label={`Profil von ${person.name}`}>
         <Avatar name={person.name} src={person.avatar} size={38} dim={presence === 'offline'} />
-      </span>
+      </button>
       <span className="friend__text">
         <span className="friend__name">
-          <span className="friend__nametext">{person.name}</span>
+          {person.handle ? (
+            <UserName className="friend__nametext" name={person.name} handle={person.handle} />
+          ) : (
+            <button type="button" className="friend__nametext friend__namelink" onClick={open}>
+              {person.name}
+            </button>
+          )}
           {person.owner && <OwnerBadge />}
           <span className="friend__tag mono">#{person.tag}</span>
           {person.guest && <span className="friend__guest">Gast</span>}
         </span>
         {presence && <span className={`friend__status is-${presence}`}>{PRESENCE_LABEL[presence]}</span>}
       </span>
-    </button>
+    </div>
   );
 }
 

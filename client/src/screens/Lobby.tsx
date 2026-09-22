@@ -4,7 +4,7 @@ import { Avatar } from '../components/Avatar';
 import { Button } from '../components/Button';
 import { Modal } from '../components/Modal';
 import { PackIcon } from '../components/PackIcon';
-import { PackPicker, selectionSummary } from '../components/PackPicker';
+import { BundleBar, PackPicker, selectionSummary } from '../components/PackPicker';
 import { Segmented } from '../components/Segmented';
 import { Toggle } from '../components/Toggle';
 import { UserName } from '../components/UserName';
@@ -82,7 +82,7 @@ function LobbyView({ lobby, meId }: { lobby: LobbyState; meId: string }) {
               <li key={m.id} className={m.connected ? '' : 'is-away'}>
                 <Avatar name={m.name} src={m.avatar} size={40} dim={!m.connected} />
                 <span className="lobby__name">
-                  <UserName name={m.name} owner={m.owner} />
+                  <UserName name={m.name} owner={m.owner} handle={m.handle} />
                   {m.id === me.id && <span className="muted"> (du)</span>}
                 </span>
                 {m.id === lobby.hostId && (
@@ -193,6 +193,7 @@ function LobbyView({ lobby, meId }: { lobby: LobbyState; meId: string }) {
       </div>
 
       <Modal open={picking} onClose={() => setPicking(false)} title="Themen für die Lobby" width={980}>
+        <BundleBar value={draft} onChange={setDraft} />
         <PackPicker value={draft} onChange={setDraft} />
         <div className="modal__actions">
           <span className="muted num">{selectionSummary(packs, draft).questions} Fragen</span>
@@ -239,10 +240,7 @@ function HostSettings({ lobby }: { lobby: LobbyState }) {
               size="sm"
               value={String(st.optionCount)}
               onChange={(v) => set({ optionCount: Number(v) })}
-              options={[
-                { value: '3', label: '3' },
-                { value: '4', label: '4' },
-              ]}
+              options={['3', '4', '5', '6'].map((n) => ({ value: n, label: n }))}
             />
           </div>
         )}

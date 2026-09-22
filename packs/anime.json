@@ -9,128 +9,168 @@
       "id": "mix",
       "name": "Anime-Mix",
       "questions": [
-        { "q": "Wie heißt das Notizbuch, mit dem Light Yagami Menschen tötet?", "a": "Death Note", "w": ["Life Note", "Soul Book", "Shinigami Diary"], "d": 1 },
-        { "q": "Welches Obst liebt der Todesgott Ryuk aus Death Note?", "a": "Äpfel", "w": ["Kirschen", "Pfirsiche", "Bananen"], "alt": ["Apfel", "Aepfel"], "d": 1 },
-        { "q": "Was ist mit Alphonse Elrics Körper in Fullmetal Alchemist passiert?", "a": "Seine Seele steckt in einer Rüstung", "w": ["Er ist aus Stahl", "Er ist unsichtbar", "Er lebt in einem Kristall"], "typed": false, "d": 2 },
-        { "q": "Welche Fähigkeit hat Anya in Spy x Family?", "a": "Gedankenlesen", "w": ["Unsichtbarkeit", "Zeitreisen", "Telekinese"], "alt": ["Gedanken lesen", "Telepathie"], "d": 1 },
-        { "q": "Welcher Deckname gehört Loid Forger in Spy x Family?", "a": "Twilight", "w": ["Dornenprinzessin", "Nightfall", "Bond"], "d": 2 },
-        { "q": "Wie heißt der Kettensägen-Hund aus Chainsaw Man?", "a": "Pochita", "w": ["Power", "Makima", "Aki"], "d": 2 },
-        { "q": "In welchem Anime heißt der Held Kirito und ist in einem Online-Spiel gefangen?", "a": "Sword Art Online", "w": ["Log Horizon", "No Game No Life", "Overlord"], "alt": ["SAO"], "d": 1 },
-        { "q": "Welcher Anime dreht sich um Volleyball?", "a": "Haikyu!!", "w": ["Kuroko no Basket", "Blue Lock", "Slam Dunk"], "alt": ["Haikyu", "Haikyuu"], "d": 1 },
-        { "q": "Welches Wesen ist Frieren?", "a": "Elfe", "w": ["Mensch", "Zwergin", "Dämonin"], "alt": ["Elf", "eine Elfe"], "d": 1 },
-        { "q": "Wie heißt der Protagonist von Solo Leveling?", "a": "Sung Jinwoo", "w": ["Yoo Jinho", "Baek Yoonho", "Go Gunhee"], "alt": ["Jinwoo", "Sung Jin-Woo", "Jin-Woo", "Sung Jin Woo"], "d": 2 },
-        { "q": "Welche Anime-Serie läuft seit 1969 und gilt als die längste Zeichentrickserie der Welt?", "a": "Sazae-san", "w": ["Doraemon", "Detektiv Conan", "One Piece"], "alt": ["Sazae san"], "d": 3 },
-        { "q": "Wer steuert in Neon Genesis Evangelion die EVA-01?", "a": "Shinji Ikari", "w": ["Rei Ayanami", "Asuka Langley", "Kaworu Nagisa"], "alt": ["Shinji"], "d": 2 },
-        { "q": "Was bedeutet das japanische Wort „Senpai“?", "a": "Älterer Mitschüler oder Kollege", "w": ["Meister im Kampf", "Liebling", "Kleiner Bruder"], "typed": false, "d": 1 },
-        { "q": "In welchem Anime haben rund 80 Prozent der Menschen eine Superkraft?", "a": "My Hero Academia", "w": ["One Punch Man", "Mob Psycho 100", "Tokyo Ghoul"], "alt": ["MHA", "Boku no Hero Academia"], "d": 1 },
-        { "q": "Wie heißt der Held, der jeden Gegner mit einem Schlag besiegt?", "a": "Saitama", "w": ["Genos", "Mob", "King"], "d": 1 },
-        { "q": "In welcher Serie sind Gon und Killua die Hauptfiguren?", "a": "Hunter x Hunter", "w": ["Yu Yu Hakusho", "Bleach", "Fairy Tail"], "alt": ["Hunter Hunter", "HxH", "Hunter X Hunter"], "d": 1 },
-        { "q": "Welcher Anime dreht sich um ein Projekt, das Japans egoistischsten Stürmer sucht?", "a": "Blue Lock", "w": ["Captain Tsubasa", "Inazuma Eleven", "Ao Ashi"], "d": 2 }
+        { "q": "Wie heißt das Notizbuch, mit dem Light Yagami Menschen tötet?", "a": "Death Note", "w": ["Life Note", "Soul Book", "Shinigami Diary", "Kill Book", "Todeskalender"], "d": 1 },
+        { "q": "Welches Obst liebt der Todesgott Ryuk aus Death Note?", "a": "Äpfel", "w": ["Kirschen", "Pfirsiche", "Bananen", "Trauben", "Erdbeeren"], "alt": ["Apfel", "Aepfel"], "d": 1 },
+        { "q": "Was ist mit Alphonse Elrics Körper in Fullmetal Alchemist passiert?", "a": "Seine Seele steckt in einer Rüstung", "w": ["Er ist aus Stahl", "Er ist unsichtbar", "Er lebt in einem Kristall", "Er wurde in eine Katze verwandelt", "Er ist eingefroren"], "typed": false, "d": 2 },
+        { "q": "Welche Fähigkeit hat Anya in Spy x Family?", "a": "Gedankenlesen", "w": ["Unsichtbarkeit", "Zeitreisen", "Telekinese", "Fliegen", "Hellsehen"], "alt": ["Gedanken lesen", "Telepathie"], "d": 1 },
+        { "q": "Welcher Deckname gehört Loid Forger in Spy x Family?", "a": "Twilight", "w": ["Dornenprinzessin", "Nightfall", "Bond", "Ghost", "Phantom"], "d": 2 },
+        { "q": "Wie heißt der Kettensägen-Hund aus Chainsaw Man?", "a": "Pochita", "w": ["Power", "Makima", "Aki", "Denji", "Kobeni"], "d": 2 },
+        { "q": "In welchem Anime heißt der Held Kirito und ist in einem Online-Spiel gefangen?", "a": "Sword Art Online", "w": ["Log Horizon", "No Game No Life", "Overlord", "Accel World", "Re:Zero"], "alt": ["SAO"], "d": 1 },
+        { "q": "Welcher Anime dreht sich um Volleyball?", "a": "Haikyu!!", "w": ["Kuroko no Basket", "Blue Lock", "Slam Dunk", "Ace of Diamond", "Prince of Tennis"], "alt": ["Haikyu", "Haikyuu"], "d": 1 },
+        { "q": "Welches Wesen ist Frieren?", "a": "Elfe", "w": ["Mensch", "Zwergin", "Dämonin", "Hexe", "Drachin"], "alt": ["Elf", "eine Elfe"], "d": 1 },
+        { "q": "Wie heißt der Protagonist von Solo Leveling?", "a": "Sung Jinwoo", "w": ["Yoo Jinho", "Baek Yoonho", "Go Gunhee", "Kim Dokja", "Jin Mori"], "alt": ["Jinwoo", "Sung Jin-Woo", "Jin-Woo", "Sung Jin Woo"], "d": 2 },
+        { "q": "Welche Anime-Serie läuft seit 1969 und gilt als die längste Zeichentrickserie der Welt?", "a": "Sazae-san", "w": ["Doraemon", "Detektiv Conan", "One Piece", "Pokémon", "Chibi Maruko-chan"], "alt": ["Sazae san"], "d": 3 },
+        { "q": "Wer steuert in Neon Genesis Evangelion die EVA-01?", "a": "Shinji Ikari", "w": ["Rei Ayanami", "Asuka Langley", "Kaworu Nagisa", "Toji Suzuhara", "Misato Katsuragi"], "alt": ["Shinji"], "d": 2 },
+        { "q": "Was bedeutet das japanische Wort „Senpai“?", "a": "Älterer Mitschüler oder Kollege", "w": ["Meister im Kampf", "Liebling", "Kleiner Bruder", "Jüngerer Mitschüler", "Lehrer"], "typed": false, "d": 1 },
+        { "q": "In welchem Anime haben rund 80 Prozent der Menschen eine Superkraft?", "a": "My Hero Academia", "w": ["One Punch Man", "Mob Psycho 100", "Tokyo Ghoul", "Dr. Stone", "Assassination Classroom"], "alt": ["MHA", "Boku no Hero Academia"], "d": 1 },
+        { "q": "Wie heißt der Held, der jeden Gegner mit einem Schlag besiegt?", "a": "Saitama", "w": ["Genos", "Mob", "King", "Garou", "Bang"], "d": 1 },
+        { "q": "In welcher Serie sind Gon und Killua die Hauptfiguren?", "a": "Hunter x Hunter", "w": ["Yu Yu Hakusho", "Bleach", "Fairy Tail", "Naruto", "Magi"], "alt": ["Hunter Hunter", "HxH", "Hunter X Hunter"], "d": 1 },
+        { "q": "Welcher Anime dreht sich um ein Projekt, das Japans egoistischsten Stürmer sucht?", "a": "Blue Lock", "w": ["Captain Tsubasa", "Inazuma Eleven", "Ao Ashi", "Haikyu!!", "Hajime no Ippo"], "d": 2 }
       ]
     },
     {
       "id": "onepiece",
       "name": "One Piece",
       "questions": [
-        { "q": "Wer ist der Autor von One Piece?", "a": "Eiichiro Oda", "w": ["Akira Toriyama", "Masashi Kishimoto", "Tite Kubo"], "alt": ["Oda"], "d": 1 },
-        { "q": "Was ist Ruffys großer Traum?", "a": "König der Piraten werden", "w": ["Größter Schwertkämpfer werden", "Alle Meere kartografieren", "Admiral der Marine werden"], "alt": ["Piratenkönig", "König der Piraten"], "d": 1 },
-        { "q": "Mit wie vielen Schwertern kämpft Zorro?", "a": "3", "w": ["1", "2", "4"], "fact": "Eines davon hält er beim Kämpfen im Mund.", "d": 1 },
-        { "q": "Welches Tier ist Chopper?", "a": "Rentier", "w": ["Waschbär", "Hund", "Tanuki"], "fact": "Chopper ist ein Rentier mit blauer Nase, das von einer Teufelsfrucht menschlich wurde.", "d": 1 },
-        { "q": "Welche Aufgabe hat Sanji in der Strohhutbande?", "a": "Koch", "w": ["Navigator", "Arzt", "Scharfschütze"], "alt": ["Smutje", "Chefkoch"], "d": 1 },
-        { "q": "Von wem hat Ruffy seinen Strohhut?", "a": "Shanks", "w": ["Garp", "Gol D. Roger", "Ace"], "alt": ["Rothaar Shanks", "Rothaar-Shanks"], "fact": "Davor gehörte der Hut Gol D. Roger.", "d": 1 },
-        { "q": "Wie heißt das zweite Schiff der Strohhutbande?", "a": "Thousand Sunny", "w": ["Flying Lamb", "Red Force", "Moby Dick"], "alt": ["Sunny", "Thousand Sunny Go"], "d": 2 },
-        { "q": "Welche Rolle hat Nami an Bord?", "a": "Navigatorin", "w": ["Köchin", "Ärztin", "Archäologin"], "alt": ["Navigator", "Navigation"], "d": 1 },
-        { "q": "Welches Mitglied der Strohhutbande ist ein Skelett?", "a": "Brook", "w": ["Franky", "Jinbei", "Lysop"], "fact": "Brook ist der Musiker der Bande.", "d": 1 },
-        { "q": "Welche Rolle hat Lysop in der Bande?", "a": "Scharfschütze", "w": ["Schiffszimmermann", "Steuermann", "Koch"], "alt": ["Schütze", "Sniper"], "d": 2 },
-        { "q": "Welche Rolle hat Nico Robin in der Crew?", "a": "Archäologin", "w": ["Navigatorin", "Ärztin", "Musikerin"], "alt": ["Archäologe"], "d": 2 }
+        { "q": "Wer ist der Autor von One Piece?", "a": "Eiichiro Oda", "w": ["Akira Toriyama", "Masashi Kishimoto", "Tite Kubo", "Hiro Mashima", "Yoshihiro Togashi"], "alt": ["Oda"], "d": 1 },
+        { "q": "Was ist Ruffys großer Traum?", "a": "König der Piraten werden", "w": ["Größter Schwertkämpfer werden", "Alle Meere kartografieren", "Admiral der Marine werden", "Das All Blue finden", "Ein tapferer Krieger der Meere werden"], "alt": ["Piratenkönig", "König der Piraten"], "d": 1 },
+        { "q": "Mit wie vielen Schwertern kämpft Zorro?", "a": "3", "w": ["1", "2", "4", "5", "6"], "fact": "Eines davon hält er beim Kämpfen im Mund.", "d": 1 },
+        { "q": "Welches Tier ist Chopper?", "a": "Rentier", "w": ["Waschbär", "Hund", "Tanuki", "Bär", "Elch"], "fact": "Chopper ist ein Rentier mit blauer Nase, das von einer Teufelsfrucht menschlich wurde.", "d": 1 },
+        { "q": "Welche Aufgabe hat Sanji in der Strohhutbande?", "a": "Koch", "w": ["Navigator", "Arzt", "Scharfschütze", "Kapitän", "Musiker"], "alt": ["Smutje", "Chefkoch"], "d": 1 },
+        { "q": "Von wem hat Ruffy seinen Strohhut?", "a": "Shanks", "w": ["Garp", "Gol D. Roger", "Ace", "Mihawk", "Buggy"], "alt": ["Rothaar Shanks", "Rothaar-Shanks"], "fact": "Davor gehörte der Hut Gol D. Roger.", "d": 1 },
+        { "q": "Wie heißt das zweite Schiff der Strohhutbande?", "a": "Thousand Sunny", "w": ["Flying Lamb", "Red Force", "Moby Dick", "Oro Jackson", "Baratie"], "alt": ["Sunny", "Thousand Sunny Go"], "d": 2 },
+        { "q": "Welche Rolle hat Nami an Bord?", "a": "Navigatorin", "w": ["Köchin", "Ärztin", "Archäologin", "Kapitänin", "Schiffszimmerin"], "alt": ["Navigator", "Navigation"], "d": 1 },
+        { "q": "Welches Mitglied der Strohhutbande ist ein Skelett?", "a": "Brook", "w": ["Franky", "Jinbei", "Lysop", "Chopper", "Sanji"], "fact": "Brook ist der Musiker der Bande.", "d": 1 },
+        { "q": "Welche Rolle hat Lysop in der Bande?", "a": "Scharfschütze", "w": ["Schiffszimmermann", "Steuermann", "Koch", "Arzt", "Musiker"], "alt": ["Schütze", "Sniper"], "d": 2 },
+        { "q": "Welche Rolle hat Nico Robin in der Crew?", "a": "Archäologin", "w": ["Navigatorin", "Ärztin", "Musikerin", "Köchin", "Steuerfrau"], "alt": ["Archäologe"], "d": 2 }
       ]
     },
     {
       "id": "naruto",
       "name": "Naruto",
       "questions": [
-        { "q": "Wer ist der Autor von Naruto?", "a": "Masashi Kishimoto", "w": ["Eiichiro Oda", "Hajime Isayama", "Tite Kubo"], "alt": ["Kishimoto"], "d": 1 },
-        { "q": "Welches Gericht liebt Naruto über alles?", "a": "Ramen", "w": ["Sushi", "Onigiri", "Dango"], "alt": ["Nudelsuppe", "Ramen-Nudeln"], "fact": "Am liebsten aus dem Ichiraku.", "d": 1 },
-        { "q": "Welches Wesen ist in Naruto versiegelt?", "a": "Der Neunschwänzige Fuchs", "w": ["Der Einschwänzige", "Der Achtschwänzige", "Der Sechsschwänzige"], "alt": ["Kyuubi", "Kurama", "Neunschwänziger Fuchs", "Neunschwänziger", "Fuchs"], "d": 1 },
-        { "q": "Aus welchem Clan stammt Sasuke?", "a": "Uchiha", "w": ["Hyuga", "Senju", "Nara"], "d": 1 },
-        { "q": "Wie heißt Narutos Heimatdorf?", "a": "Konoha", "w": ["Suna", "Kiri", "Iwa"], "alt": ["Konohagakure", "Dorf versteckt hinter den Blättern"], "d": 1 },
-        { "q": "Wer ist Narutos Vater?", "a": "Minato Namikaze", "w": ["Jiraiya", "Kakashi Hatake", "Hiruzen Sarutobi"], "alt": ["Minato", "Vierter Hokage"], "d": 2 },
-        { "q": "Welcher Spitzname gehört Kakashi?", "a": "Kopierninja", "w": ["Weißer Reißzahn", "Gelber Blitz", "Legendärer Sannin"], "alt": ["Kopier-Ninja", "Copy Ninja"], "fact": "Weißer Reißzahn war sein Vater, Gelber Blitz sein Lehrer Minato.", "d": 2 },
-        { "q": "Wie heißt Narutos rotierende Chakra-Kugel?", "a": "Rasengan", "w": ["Chidori", "Amaterasu", "Kagebunshin"], "d": 1 },
-        { "q": "Welche Organisation trägt schwarze Mäntel mit roten Wolken?", "a": "Akatsuki", "w": ["Anbu", "Kara", "Otogakure"], "d": 1 },
-        { "q": "Welche Schwanzbestie ist in Gaara versiegelt?", "a": "Shukaku", "w": ["Kurama", "Gyuki", "Matatabi"], "alt": ["Einschwänziger", "Ichibi"], "d": 2 }
+        { "q": "Wer ist der Autor von Naruto?", "a": "Masashi Kishimoto", "w": ["Eiichiro Oda", "Hajime Isayama", "Tite Kubo", "Akira Toriyama", "Yusuke Murata"], "alt": ["Kishimoto"], "d": 1 },
+        { "q": "Welches Gericht liebt Naruto über alles?", "a": "Ramen", "w": ["Sushi", "Onigiri", "Dango", "Curry", "Tempura"], "alt": ["Nudelsuppe", "Ramen-Nudeln"], "fact": "Am liebsten aus dem Ichiraku.", "d": 1 },
+        { "q": "Welches Wesen ist in Naruto versiegelt?", "a": "Der Neunschwänzige Fuchs", "w": ["Der Einschwänzige", "Der Achtschwänzige", "Der Sechsschwänzige", "Der Siebenschwänzige", "Der Dreischwänzige"], "alt": ["Kyuubi", "Kurama", "Neunschwänziger Fuchs", "Neunschwänziger", "Fuchs"], "d": 1 },
+        { "q": "Aus welchem Clan stammt Sasuke?", "a": "Uchiha", "w": ["Hyuga", "Senju", "Nara", "Uzumaki", "Aburame"], "d": 1 },
+        { "q": "Wie heißt Narutos Heimatdorf?", "a": "Konoha", "w": ["Suna", "Kiri", "Iwa", "Kumo", "Ame"], "alt": ["Konohagakure", "Dorf versteckt hinter den Blättern"], "d": 1 },
+        { "q": "Wer ist Narutos Vater?", "a": "Minato Namikaze", "w": ["Jiraiya", "Kakashi Hatake", "Hiruzen Sarutobi", "Orochimaru", "Might Guy"], "alt": ["Minato", "Vierter Hokage"], "d": 2 },
+        { "q": "Welcher Spitzname gehört Kakashi?", "a": "Kopierninja", "w": ["Weißer Reißzahn", "Gelber Blitz", "Legendärer Sannin", "Grüne Bestie", "Schlangensannin"], "alt": ["Kopier-Ninja", "Copy Ninja"], "fact": "Weißer Reißzahn war sein Vater, Gelber Blitz sein Lehrer Minato.", "d": 2 },
+        { "q": "Wie heißt Narutos rotierende Chakra-Kugel?", "a": "Rasengan", "w": ["Chidori", "Amaterasu", "Kagebunshin", "Kirin", "Susanoo"], "d": 1 },
+        { "q": "Welche Organisation trägt schwarze Mäntel mit roten Wolken?", "a": "Akatsuki", "w": ["Anbu", "Kara", "Otogakure", "Ne", "Shinobi-Allianz"], "d": 1 },
+        { "q": "Welche Schwanzbestie ist in Gaara versiegelt?", "a": "Shukaku", "w": ["Kurama", "Gyuki", "Matatabi", "Isobu", "Chomei"], "alt": ["Einschwänziger", "Ichibi"], "d": 2 }
       ]
     },
     {
       "id": "aot",
       "name": "Attack on Titan",
       "questions": [
-        { "q": "Wer ist der Autor von Attack on Titan?", "a": "Hajime Isayama", "w": ["Gege Akutami", "Koyoharu Gotouge", "Kentaro Miura"], "alt": ["Isayama"], "d": 2 },
-        { "q": "Wie heißen die drei Mauern von außen nach innen?", "a": "Maria, Rose, Sina", "w": ["Sina, Rose, Maria", "Rose, Maria, Sina", "Maria, Sina, Rose"], "typed": false, "d": 2 },
-        { "q": "Wer gilt als stärkster Soldat der Menschheit?", "a": "Levi", "w": ["Erwin", "Mikasa", "Hange"], "alt": ["Levi Ackerman", "Levi Ackermann"], "d": 1 },
-        { "q": "Was schenkte Eren Mikasa, das sie fast immer trägt?", "a": "Einen roten Schal", "w": ["Eine Kette", "Ein Messer", "Einen Mantel"], "alt": ["Schal", "roter Schal"], "d": 1 },
-        { "q": "Welche Titanenkraft erbt Armin?", "a": "Kolossaler Titan", "w": ["Gepanzerter Titan", "Weiblicher Titan", "Tier-Titan"], "alt": ["Kolosstitan", "Kolossal-Titan", "Colossal Titan"], "d": 2 },
-        { "q": "Wie heißt die Einheit, die außerhalb der Mauern auf Erkundung geht?", "a": "Aufklärungstrupp", "w": ["Militärpolizei", "Garnison", "Ausbildungskorps"], "alt": ["Aufklärungslegion", "Survey Corps", "Scouts"], "d": 1 },
-        { "q": "Welches Studio animierte die finale Staffel?", "a": "MAPPA", "w": ["Wit Studio", "ufotable", "Bones"], "fact": "Die ersten drei Staffeln stammen von Wit Studio.", "d": 3 },
-        { "q": "Wie lautet Erens Nachname in der deutschen Fassung?", "a": "Jäger", "w": ["Ackermann", "Arlert", "Smith"], "alt": ["Jaeger", "Yeager"], "d": 2 }
+        { "q": "Wer ist der Autor von Attack on Titan?", "a": "Hajime Isayama", "w": ["Gege Akutami", "Koyoharu Gotouge", "Kentaro Miura", "Kaiu Shirai", "Sui Ishida"], "alt": ["Isayama"], "d": 2 },
+        { "q": "Wie heißen die drei Mauern von außen nach innen?", "a": "Maria, Rose, Sina", "w": ["Sina, Rose, Maria", "Rose, Maria, Sina", "Maria, Sina, Rose", "Rose, Sina, Maria", "Sina, Maria, Rose"], "typed": false, "d": 2 },
+        { "q": "Wer gilt als stärkster Soldat der Menschheit?", "a": "Levi", "w": ["Erwin", "Mikasa", "Hange", "Reiner", "Eren"], "alt": ["Levi Ackerman", "Levi Ackermann"], "d": 1 },
+        { "q": "Was schenkte Eren Mikasa, das sie fast immer trägt?", "a": "Einen roten Schal", "w": ["Eine Kette", "Ein Messer", "Einen Mantel", "Einen Ring", "Einen Hut"], "alt": ["Schal", "roter Schal"], "d": 1 },
+        { "q": "Welche Titanenkraft erbt Armin?", "a": "Kolossaler Titan", "w": ["Gepanzerter Titan", "Weiblicher Titan", "Tier-Titan", "Karren-Titan", "Gründer-Titan"], "alt": ["Kolosstitan", "Kolossal-Titan", "Colossal Titan"], "d": 2 },
+        { "q": "Wie heißt die Einheit, die außerhalb der Mauern auf Erkundung geht?", "a": "Aufklärungstrupp", "w": ["Militärpolizei", "Garnison", "Ausbildungskorps", "Marleyer Armee", "Stadtwache"], "alt": ["Aufklärungslegion", "Survey Corps", "Scouts"], "d": 1 },
+        { "q": "Welches Studio animierte die finale Staffel?", "a": "MAPPA", "w": ["Wit Studio", "ufotable", "Bones", "Kyoto Animation", "Production I.G"], "fact": "Die ersten drei Staffeln stammen von Wit Studio.", "d": 3 },
+        { "q": "Wie lautet Erens Nachname in der deutschen Fassung?", "a": "Jäger", "w": ["Ackermann", "Arlert", "Smith", "Braus", "Zoe"], "alt": ["Jaeger", "Yeager"], "d": 2 },
+        { "q": "Welches Abzeichen trägt der Aufklärungstrupp?", "a": "Die Flügel der Freiheit", "w": ["Zwei Rosen", "Ein Einhorn", "Ein Schwert", "Ein Löwe", "Ein Drache"], "alt": ["Flügel der Freiheit", "Flügel"], "typed": false, "d": 2 },
+        { "q": "Wie lautet Mikasas Nachname?", "a": "Ackerman", "w": ["Jäger", "Arlert", "Braus", "Leonhart", "Zoe"], "alt": ["Ackermann"], "d": 1 }
       ]
     },
     {
       "id": "demonslayer",
       "name": "Demon Slayer",
       "questions": [
-        { "q": "Wie heißt der Protagonist von Demon Slayer?", "a": "Tanjiro Kamado", "w": ["Zenitsu Agatsuma", "Inosuke Hashibira", "Giyu Tomioka"], "alt": ["Tanjiro"], "d": 1 },
-        { "q": "Wie heißt Tanjiros Schwester, die zur Dämonin wird?", "a": "Nezuko", "w": ["Kanao", "Shinobu", "Mitsuri"], "alt": ["Nezuko Kamado"], "d": 1 },
-        { "q": "Was trägt Nezuko im Mund?", "a": "Ein Bambusrohr", "w": ["Einen Stoffknebel", "Eine Blume", "Einen Holzlöffel"], "alt": ["Bambus", "Bambusrohr", "Bambusstück"], "d": 1 },
-        { "q": "Welche Atemtechnik nutzt Zenitsu?", "a": "Donner", "w": ["Wasser", "Bestie", "Flamme"], "alt": ["Donneratmung", "Atmung des Donners"], "d": 1 },
-        { "q": "Welche Maske trägt Inosuke?", "a": "Einen Wildschweinkopf", "w": ["Eine Fuchsmaske", "Eine Tengu-Maske", "Eine Oni-Maske"], "alt": ["Wildschwein", "Wildschweinkopf", "Eber"], "d": 1 },
-        { "q": "Wie heißt der allererste Dämon?", "a": "Muzan Kibutsuji", "w": ["Akaza", "Kokushibo", "Doma"], "alt": ["Muzan"], "d": 2 },
-        { "q": "Wie heißen die stärksten Dämonenjäger?", "a": "Hashira", "w": ["Kizuki", "Oni", "Shinobi"], "alt": ["Säulen"], "fact": "Die Kizuki sind dagegen die zwölf stärksten Dämonen.", "d": 2 },
-        { "q": "Welche Atemtechnik lernt Tanjiro zuerst?", "a": "Wasser", "w": ["Sonne", "Flamme", "Wind"], "alt": ["Wasseratmung", "Atmung des Wassers"], "d": 2 },
-        { "q": "Welches Studio animiert Demon Slayer?", "a": "ufotable", "w": ["MAPPA", "Toei Animation", "Madhouse"], "fact": "Der Film „Mugen Train“ wurde 2020 zum erfolgreichsten Kinofilm in Japan.", "d": 2 }
+        { "q": "Wie heißt der Protagonist von Demon Slayer?", "a": "Tanjiro Kamado", "w": ["Zenitsu Agatsuma", "Inosuke Hashibira", "Giyu Tomioka", "Kyojuro Rengoku", "Sanemi Shinazugawa"], "alt": ["Tanjiro"], "d": 1 },
+        { "q": "Wie heißt Tanjiros Schwester, die zur Dämonin wird?", "a": "Nezuko", "w": ["Kanao", "Shinobu", "Mitsuri", "Aoi", "Tamayo"], "alt": ["Nezuko Kamado"], "d": 1 },
+        { "q": "Was trägt Nezuko im Mund?", "a": "Ein Bambusrohr", "w": ["Einen Stoffknebel", "Eine Blume", "Einen Holzlöffel", "Eine Schriftrolle", "Ein Taschentuch"], "alt": ["Bambus", "Bambusrohr", "Bambusstück"], "d": 1 },
+        { "q": "Welche Atemtechnik nutzt Zenitsu?", "a": "Donner", "w": ["Wasser", "Bestie", "Flamme", "Nebel", "Stein"], "alt": ["Donneratmung", "Atmung des Donners"], "d": 1 },
+        { "q": "Welche Maske trägt Inosuke?", "a": "Einen Wildschweinkopf", "w": ["Eine Fuchsmaske", "Eine Tengu-Maske", "Eine Oni-Maske", "Einen Bärenkopf", "Einen Wolfskopf"], "alt": ["Wildschwein", "Wildschweinkopf", "Eber"], "d": 1 },
+        { "q": "Wie heißt der allererste Dämon?", "a": "Muzan Kibutsuji", "w": ["Akaza", "Kokushibo", "Doma", "Rui", "Enmu"], "alt": ["Muzan"], "d": 2 },
+        { "q": "Wie heißen die stärksten Dämonenjäger?", "a": "Hashira", "w": ["Kizuki", "Oni", "Shinobi", "Kakushi", "Tsuguko"], "alt": ["Säulen"], "fact": "Die Kizuki sind dagegen die zwölf stärksten Dämonen.", "d": 2 },
+        { "q": "Welche Atemtechnik lernt Tanjiro zuerst?", "a": "Wasser", "w": ["Sonne", "Flamme", "Wind", "Donner", "Nebel"], "alt": ["Wasseratmung", "Atmung des Wassers"], "d": 2 },
+        { "q": "Welches Studio animiert Demon Slayer?", "a": "ufotable", "w": ["MAPPA", "Toei Animation", "Madhouse", "Studio Pierrot", "A-1 Pictures"], "fact": "Der Film „Mugen Train“ wurde 2020 zum erfolgreichsten Kinofilm in Japan.", "d": 2 },
+        { "q": "Welche Farbe hat die Klinge von Tanjiros Schwert?", "a": "Schwarz", "w": ["Blau", "Rot", "Gelb", "Grün", "Weiß"], "d": 2 }
       ]
     },
     {
       "id": "ghibli",
       "name": "Studio Ghibli",
       "questions": [
-        { "q": "Welcher Regisseur ist Mitgründer von Studio Ghibli?", "a": "Hayao Miyazaki", "w": ["Makoto Shinkai", "Mamoru Hosoda", "Satoshi Kon"], "alt": ["Miyazaki"], "d": 1 },
-        { "q": "Welcher Ghibli-Film gewann 2003 den Oscar?", "a": "Chihiros Reise ins Zauberland", "w": ["Prinzessin Mononoke", "Das wandelnde Schloss", "Mein Nachbar Totoro"], "alt": ["Chihiro", "Chihiros Reise", "Spirited Away"], "d": 1 },
-        { "q": "Wie heißt Kikis schwarze Katze?", "a": "Jiji", "w": ["Luna", "Salem", "Mimi"], "d": 2 },
-        { "q": "In welchem Film fährt ein Katzenbus?", "a": "Mein Nachbar Totoro", "w": ["Ponyo", "Das Königreich der Katzen", "Arrietty"], "alt": ["Totoro"], "d": 1 },
-        { "q": "Wie heißt die maskierte Geistergestalt aus Chihiros Reise?", "a": "Ohngesicht", "w": ["Haku", "Yubaba", "Kamaji"], "alt": ["No-Face", "Kaonashi", "Ohne Gesicht", "Ohngesicht"], "d": 2 },
-        { "q": "Welcher Ghibli-Film gewann 2024 den Oscar?", "a": "Der Junge und der Reiher", "w": ["Wie der Wind sich hebt", "Arrietty", "Ponyo"], "alt": ["The Boy and the Heron"], "d": 2 },
-        { "q": "Was für ein Wesen ist Ponyo ursprünglich?", "a": "Ein Fischmädchen", "w": ["Eine Katze", "Ein Vogel", "Ein Frosch"], "alt": ["Fisch", "Goldfisch", "Fischmädchen"], "d": 1 },
-        { "q": "Wie heißt der Feuerdämon in „Das wandelnde Schloss“?", "a": "Calcifer", "w": ["Haku", "Howl", "Markl"], "alt": ["Calzifer"], "d": 2 }
+        { "q": "Welcher Regisseur ist Mitgründer von Studio Ghibli?", "a": "Hayao Miyazaki", "w": ["Makoto Shinkai", "Mamoru Hosoda", "Satoshi Kon", "Hideaki Anno", "Mamoru Oshii"], "alt": ["Miyazaki"], "d": 1 },
+        { "q": "Welcher Ghibli-Film gewann 2003 den Oscar?", "a": "Chihiros Reise ins Zauberland", "w": ["Prinzessin Mononoke", "Das wandelnde Schloss", "Mein Nachbar Totoro", "Ponyo", "Nausicaä aus dem Tal der Winde"], "alt": ["Chihiro", "Chihiros Reise", "Spirited Away"], "d": 1 },
+        { "q": "Wie heißt Kikis schwarze Katze?", "a": "Jiji", "w": ["Luna", "Salem", "Mimi", "Kuro", "Tama"], "d": 2 },
+        { "q": "In welchem Film fährt ein Katzenbus?", "a": "Mein Nachbar Totoro", "w": ["Ponyo", "Das Königreich der Katzen", "Arrietty", "Kikis kleiner Lieferservice", "Porco Rosso"], "alt": ["Totoro"], "d": 1 },
+        { "q": "Wie heißt die maskierte Geistergestalt aus Chihiros Reise?", "a": "Ohngesicht", "w": ["Haku", "Yubaba", "Kamaji", "Zeniba", "Bou"], "alt": ["No-Face", "Kaonashi", "Ohne Gesicht", "Ohngesicht"], "d": 2 },
+        { "q": "Welcher Ghibli-Film gewann 2024 den Oscar?", "a": "Der Junge und der Reiher", "w": ["Wie der Wind sich hebt", "Arrietty", "Ponyo", "Chihiros Reise ins Zauberland", "Die Chroniken von Erdsee"], "alt": ["The Boy and the Heron"], "d": 2 },
+        { "q": "Was für ein Wesen ist Ponyo ursprünglich?", "a": "Ein Fischmädchen", "w": ["Eine Katze", "Ein Vogel", "Ein Frosch", "Ein Meerschweinchen", "Eine Robbe"], "alt": ["Fisch", "Goldfisch", "Fischmädchen"], "d": 1 },
+        { "q": "Wie heißt der Feuerdämon in „Das wandelnde Schloss“?", "a": "Calcifer", "w": ["Haku", "Howl", "Markl", "Totoro", "Jiji"], "alt": ["Calzifer"], "d": 2 },
+        { "q": "Wie heißt die schwebende Stadt in „Das Schloss im Himmel“?", "a": "Laputa", "w": ["Atlantis", "Avalon", "Walhall", "Shangri-La", "El Dorado"], "d": 2 },
+        { "q": "Welcher Ghibli-Film von 1992 handelt von einem Piloten mit Schweinegesicht?", "a": "Porco Rosso", "w": ["Ponyo", "Kikis kleiner Lieferservice", "Wie der Wind sich hebt", "Das Schloss im Himmel", "Nausicaä"], "d": 2 }
       ]
     },
     {
       "id": "dragonball",
       "name": "Dragon Ball",
       "questions": [
-        { "q": "Wer erschuf Dragon Ball?", "a": "Akira Toriyama", "w": ["Eiichiro Oda", "Masashi Kishimoto", "Rumiko Takahashi"], "alt": ["Toriyama"], "d": 1 },
-        { "q": "Wie viele Dragonballs muss man sammeln?", "a": "7", "w": ["5", "6", "9"], "d": 1 },
-        { "q": "Wie heißt der Drache, der auf der Erde Wünsche erfüllt?", "a": "Shenlong", "w": ["Porunga", "Bahamut", "Ryuk"], "alt": ["Shenron"], "fact": "Porunga ist sein Gegenstück auf dem Planeten Namek.", "d": 1 },
-        { "q": "Wie lautet Son-Gokus Saiyajin-Name?", "a": "Kakarott", "w": ["Raditz", "Bardock", "Tarble"], "alt": ["Kakarot"], "d": 2 },
-        { "q": "Wie heißt Gokus berühmteste Energieattacke?", "a": "Kamehameha", "w": ["Final Flash", "Makankosappo", "Galick Gun"], "d": 1 },
-        { "q": "Welche Haarfarbe hat ein Super-Saiyajin der ersten Stufe?", "a": "Blond", "w": ["Blau", "Rot", "Silber"], "alt": ["Gold", "Gelb", "goldblond"], "d": 1 },
-        { "q": "Wie heißt Gokus erster Sohn?", "a": "Son-Gohan", "w": ["Son-Goten", "Trunks", "Pan"], "alt": ["Gohan", "Son Gohan"], "d": 1 },
-        { "q": "Welchen Titel trägt Vegeta?", "a": "Prinz der Saiyajins", "w": ["König der Namekianer", "Gott der Zerstörung", "Kaioshin"], "alt": ["Saiyajin-Prinz", "Prinz"], "d": 1 },
-        { "q": "Zu welchem Volk gehört Piccolo?", "a": "Namekianer", "w": ["Saiyajins", "Erdlinge", "Androiden"], "alt": ["Namekian", "Namek", "Namekaner"], "d": 2 }
+        { "q": "Wer erschuf Dragon Ball?", "a": "Akira Toriyama", "w": ["Eiichiro Oda", "Masashi Kishimoto", "Rumiko Takahashi", "Hirohiko Araki", "Naoko Takeuchi"], "alt": ["Toriyama"], "d": 1 },
+        { "q": "Wie viele Dragonballs muss man sammeln?", "a": "7", "w": ["5", "6", "9", "3", "8"], "d": 1 },
+        { "q": "Wie heißt der Drache, der auf der Erde Wünsche erfüllt?", "a": "Shenlong", "w": ["Porunga", "Bahamut", "Ryuk", "Kurama", "Smaug"], "alt": ["Shenron"], "fact": "Porunga ist sein Gegenstück auf dem Planeten Namek.", "d": 1 },
+        { "q": "Wie lautet Son-Gokus Saiyajin-Name?", "a": "Kakarott", "w": ["Raditz", "Bardock", "Tarble", "Nappa", "Broly"], "alt": ["Kakarot"], "d": 2 },
+        { "q": "Wie heißt Gokus berühmteste Energieattacke?", "a": "Kamehameha", "w": ["Final Flash", "Makankosappo", "Galick Gun", "Rasengan", "Big Bang Attack"], "d": 1 },
+        { "q": "Welche Haarfarbe hat ein Super-Saiyajin der ersten Stufe?", "a": "Blond", "w": ["Blau", "Rot", "Silber", "Schwarz", "Grün"], "alt": ["Gold", "Gelb", "goldblond"], "d": 1 },
+        { "q": "Wie heißt Gokus erster Sohn?", "a": "Son-Gohan", "w": ["Son-Goten", "Trunks", "Pan", "Krillin", "Bra"], "alt": ["Gohan", "Son Gohan"], "d": 1 },
+        { "q": "Welchen Titel trägt Vegeta?", "a": "Prinz der Saiyajins", "w": ["König der Namekianer", "Gott der Zerstörung", "Kaioshin", "Kaiser des Universums", "Wächter der Erde"], "alt": ["Saiyajin-Prinz", "Prinz"], "d": 1 },
+        { "q": "Zu welchem Volk gehört Piccolo?", "a": "Namekianer", "w": ["Saiyajins", "Erdlinge", "Androiden", "Majins", "Tsufurujin"], "alt": ["Namekian", "Namek", "Namekaner"], "d": 2 },
+        { "q": "Wie heißt der alte Meister mit dem Schildkrötenpanzer?", "a": "Muten Roshi", "w": ["Meister Kaio", "Whis", "Piccolo", "Beerus", "Tenshinhan"], "alt": ["Herr der Schildkröten", "Master Roshi", "Kame-Sennin"], "d": 1 }
       ]
     },
     {
       "id": "jjk",
       "name": "Jujutsu Kaisen",
       "questions": [
-        { "q": "Wer ist der Autor von Jujutsu Kaisen?", "a": "Gege Akutami", "w": ["Hajime Isayama", "Tatsuki Fujimoto", "Kohei Horikoshi"], "alt": ["Akutami"], "d": 2 },
-        { "q": "Was verschluckt Yuji Itadori zu Beginn?", "a": "Einen Finger von Sukuna", "w": ["Ein verfluchtes Auge", "Einen Zahn", "Eine Schriftrolle"], "alt": ["Finger", "Sukunas Finger", "Sukuna Finger"], "d": 1 },
-        { "q": "Was trägt Satoru Gojo meistens über den Augen?", "a": "Eine Augenbinde", "w": ["Eine Maske", "Ein Monokel", "Nichts"], "alt": ["Augenbinde", "Binde", "Sonnenbrille"], "d": 1 },
-        { "q": "Wie heißt Gojos Gebietserweiterung?", "a": "Unendliche Leere", "w": ["Bösartiger Schrein", "Selbstverkörperung der Vollkommenheit", "Chimären-Schattengarten"], "alt": ["Unlimited Void", "Muryokusho"], "d": 2 },
-        { "q": "Womit kämpft Nobara Kugisaki?", "a": "Hammer und Nägel", "w": ["Schwert und Schild", "Puppen", "Pfeil und Bogen"], "typed": false, "d": 1 },
-        { "q": "Welche Technik nutzt Megumi Fushiguro?", "a": "Zehn Schatten", "w": ["Unendlichkeit", "Fluchsprache", "Blutmanipulation"], "alt": ["Zehn-Schatten-Technik", "Ten Shadows"], "d": 2 },
-        { "q": "Welchen Beinamen trägt Sukuna?", "a": "König der Flüche", "w": ["Fürst der Schatten", "Herr der Dämonen", "Gott der Zerstörung"], "alt": ["Fluchkönig", "King of Curses"], "d": 1 },
-        { "q": "Wie nennt man es, wenn ein Zauberer einen eigenen, tödlichen Raum erschafft?", "a": "Gebietserweiterung", "w": ["Umgekehrte Fluchtechnik", "Black Flash", "Himmlische Einschränkung"], "alt": ["Domain Expansion", "Domänenerweiterung"], "d": 2 }
+        { "q": "Wer ist der Autor von Jujutsu Kaisen?", "a": "Gege Akutami", "w": ["Hajime Isayama", "Tatsuki Fujimoto", "Kohei Horikoshi", "Yuki Tabata", "Koyoharu Gotouge"], "alt": ["Akutami"], "d": 2 },
+        { "q": "Was verschluckt Yuji Itadori zu Beginn?", "a": "Einen Finger von Sukuna", "w": ["Ein verfluchtes Auge", "Einen Zahn", "Eine Schriftrolle", "Eine Perle", "Einen Schlüssel"], "alt": ["Finger", "Sukunas Finger", "Sukuna Finger"], "d": 1 },
+        { "q": "Was trägt Satoru Gojo meistens über den Augen?", "a": "Eine Augenbinde", "w": ["Eine Maske", "Ein Monokel", "Nichts", "Einen Helm", "Ein Stirnband"], "alt": ["Augenbinde", "Binde", "Sonnenbrille"], "d": 1 },
+        { "q": "Wie heißt Gojos Gebietserweiterung?", "a": "Unendliche Leere", "w": ["Bösartiger Schrein", "Selbstverkörperung der Vollkommenheit", "Chimären-Schattengarten", "Endloser Garten", "Leere Hölle"], "alt": ["Unlimited Void", "Muryokusho"], "d": 2 },
+        { "q": "Womit kämpft Nobara Kugisaki?", "a": "Hammer und Nägel", "w": ["Schwert und Schild", "Puppen", "Pfeil und Bogen", "Fächer", "Kettensäge"], "typed": false, "d": 1 },
+        { "q": "Welche Technik nutzt Megumi Fushiguro?", "a": "Zehn Schatten", "w": ["Unendlichkeit", "Fluchsprache", "Blutmanipulation", "Konstruktion", "Ratio-Technik"], "alt": ["Zehn-Schatten-Technik", "Ten Shadows"], "d": 2 },
+        { "q": "Welchen Beinamen trägt Sukuna?", "a": "König der Flüche", "w": ["Fürst der Schatten", "Herr der Dämonen", "Gott der Zerstörung", "Kaiser der Nacht", "Meister der Seelen"], "alt": ["Fluchkönig", "King of Curses"], "d": 1 },
+        { "q": "Wie nennt man es, wenn ein Zauberer einen eigenen, tödlichen Raum erschafft?", "a": "Gebietserweiterung", "w": ["Umgekehrte Fluchtechnik", "Black Flash", "Himmlische Einschränkung", "Fluchenergie-Explosion", "Schattenbann"], "alt": ["Domain Expansion", "Domänenerweiterung"], "d": 2 },
+        { "q": "Welcher Zauberer gilt in Jujutsu Kaisen als „der Stärkste“?", "a": "Satoru Gojo", "w": ["Ryomen Sukuna", "Yuta Okkotsu", "Kento Nanami", "Yuji Itadori", "Toji Fushiguro"], "alt": ["Gojo"], "d": 1 },
+        { "q": "Welcher Fluchgeist kann durch Berühren der Seele Körper verformen?", "a": "Mahito", "w": ["Jogo", "Hanami", "Dagon", "Choso", "Geto"], "d": 3 }
+      ]
+    },
+    {
+      "id": "mha",
+      "name": "My Hero Academia",
+      "questions": [
+        { "q": "Wie heißt der Held von My Hero Academia?", "a": "Izuku Midoriya", "w": ["Katsuki Bakugo", "Shoto Todoroki", "Tenya Iida", "Ochaco Uraraka", "Eijiro Kirishima"], "alt": ["Deku", "Midoriya", "Izuku"], "d": 1 },
+        { "q": "Welche Kraft erbt Izuku von All Might?", "a": "One For All", "w": ["All For One", "Engine", "Explosion", "Zero Gravity", "Hellflame"], "d": 1 },
+        { "q": "Was kann Katsuki Bakugo mit seinen Händen erzeugen?", "a": "Explosionen", "w": ["Eis", "Säure", "Klebstoff", "Blitze", "Wasser"], "alt": ["Explosion"], "d": 1 },
+        { "q": "Welche zwei Elemente beherrscht Shoto Todoroki?", "a": "Eis und Feuer", "w": ["Wasser und Luft", "Blitz und Feuer", "Erde und Eis", "Licht und Schatten", "Wind und Wasser"], "alt": ["Feuer und Eis"], "typed": false, "d": 1 },
+        { "q": "Wie heißt die Heldenschule, auf die Izuku geht?", "a": "U.A.", "w": ["Shiketsu", "Ketsubutsu", "Isamu", "Seiai", "Hosu"], "alt": ["UA", "U.A. High", "Yuei"], "d": 2 },
+        { "q": "Wer ist der Vater von Shoto Todoroki?", "a": "Endeavor", "w": ["All Might", "Hawks", "Best Jeanist", "Eraserhead", "Mirko"], "d": 2 },
+        { "q": "Wer ist Klassenlehrer der Klasse 1-A?", "a": "Shota Aizawa", "w": ["Toshinori Yagi", "Present Mic", "Midnight", "Nezu", "Cementoss"], "alt": ["Aizawa", "Eraserhead", "Eraser Head"], "d": 2 },
+        { "q": "Wer zeichnete den Manga My Hero Academia?", "a": "Kohei Horikoshi", "w": ["Gege Akutami", "Hajime Isayama", "Tatsuki Fujimoto", "Yusuke Murata", "Masashi Kishimoto"], "alt": ["Horikoshi"], "d": 2 },
+        { "q": "Welche Fähigkeit hat Ochaco Uraraka?", "a": "Schwerelosigkeit", "w": ["Explosionen", "Unsichtbarkeit", "Verhärtung", "Eis", "Säure"], "alt": ["Zero Gravity", "Schwerkraft aufheben"], "d": 2 },
+        { "q": "Wer ist der Erzfeind von All Might?", "a": "All For One", "w": ["Stain", "Dabi", "Overhaul", "Himiko Toga", "Kurogiri"], "d": 2 }
+      ]
+    },
+    {
+      "id": "klassiker",
+      "name": "Anime-Klassiker",
+      "questions": [
+        { "q": "Wie heißt Sailor Moon in der deutschen Fassung mit Vornamen?", "a": "Bunny", "w": ["Luna", "Minako", "Ami", "Rei", "Makoto"], "alt": ["Bunny Tsukino"], "d": 2 },
+        { "q": "Wie heißt die schwarze Katze von Sailor Moon?", "a": "Luna", "w": ["Artemis", "Diana", "Jiji", "Mimi", "Salem"], "d": 2 },
+        { "q": "In welchem Anime schrumpft der Detektiv Shinichi Kudo zum Grundschüler?", "a": "Detektiv Conan", "w": ["Death Note", "Monster", "Kindaichi", "Psycho-Pass", "Erased"], "alt": ["Conan"], "d": 1 },
+        { "q": "Was für ein Wesen ist Doraemon?", "a": "Eine Roboterkatze", "w": ["Ein Hund", "Ein Außerirdischer", "Ein Hase", "Ein Drache", "Ein Geist"], "alt": ["Roboterkatze", "Katze", "Roboter"], "typed": false, "d": 1 },
+        { "q": "Wie heißt „Die tollen Fußballstars“ im japanischen Original?", "a": "Captain Tsubasa", "w": ["Inazuma Eleven", "Blue Lock", "Ao Ashi", "Whistle!", "Shoot!"], "d": 2 },
+        { "q": "Welcher spätere Ghibli-Gründer arbeitete in den 1970ern an der Anime-Serie „Heidi“ mit?", "a": "Hayao Miyazaki", "w": ["Makoto Shinkai", "Mamoru Hosoda", "Satoshi Kon", "Hideaki Anno", "Katsuhiro Otomo"], "alt": ["Miyazaki"], "d": 3 },
+        { "q": "Welcher Anime-Film von 1988 spielt im zerstörten Neo-Tokio?", "a": "Akira", "w": ["Ghost in the Shell", "Perfect Blue", "Paprika", "Ninja Scroll", "Metropolis"], "d": 2 },
+        { "q": "Wie heißt der Kopfgeldjäger im Mittelpunkt von „Cowboy Bebop“?", "a": "Spike Spiegel", "w": ["Jet Black", "Vicious", "Faye Valentine", "Edward", "Vash"], "alt": ["Spike"], "d": 2 },
+        { "q": "In welchem Anime wird mit Karten namens Duel Monsters gekämpft?", "a": "Yu-Gi-Oh!", "w": ["Digimon", "Beyblade", "Cardcaptor Sakura", "Bakugan", "Pokémon"], "alt": ["Yugioh", "Yu-Gi-Oh", "YuGiOh"], "d": 1 },
+        { "q": "Wie heißen die digitalen Monster, deren Anime 1999 startete?", "a": "Digimon", "w": ["Pokémon", "Monster Rancher", "Tamagotchi", "Medabots", "Yo-kai Watch"], "d": 1 }
       ]
     }
   ]

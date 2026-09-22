@@ -5,7 +5,7 @@ import { PackIcon } from '../components/PackIcon';
 import { selectionSummary } from '../components/PackPicker';
 import { Segmented } from '../components/Segmented';
 import { TierBadge, TierLadder } from '../components/TierBadge';
-import { OwnerBadge } from '../components/UserName';
+import { UserName } from '../components/UserName';
 import { Glass } from '../glass/Glass';
 import { percent, seconds } from '../lib/format';
 import { rankIn, useLadders } from '../lib/ladders';
@@ -14,6 +14,8 @@ import { navigate } from '../lib/route';
 import { actions, useSession } from '../lib/store';
 import type { AnswerMode, BotDifficulty, Difficulty, OptionCount, User } from '../lib/types';
 import { useSticky } from '../lib/useSticky';
+
+const OPTION_WORD: Record<OptionCount, string> = { 3: 'Drei', 4: 'Vier', 5: 'Fünf', 6: 'Sechs' };
 
 export const DIFFICULTY_EXPLAIN: Record<Difficulty, string> = {
   gemischt: 'Fragen aller Stufen, bunt gemischt.',
@@ -87,7 +89,7 @@ function HubView({ user }: { user: User }) {
         <div>
           <p className="eyebrow">Spielen</p>
           <h1>
-            Hallo {user.name}.{user.owner && <OwnerBadge />}
+            Hallo <UserName name={user.name} owner={user.owner} handle={user.handle} />
           </h1>
         </div>
         {stats && stats.duels + stats.trainingPlayed > 0 && (
@@ -257,7 +259,7 @@ function HubView({ user }: { user: User }) {
               ]}
             />
             <p className="setup__explain">
-              {prefs.answerMode === 'choice' && `${prefs.optionCount === 4 ? 'Vier' : 'Drei'} Antworten zur Wahl, ein Versuch pro Frage.`}
+              {prefs.answerMode === 'choice' && `${OPTION_WORD[prefs.optionCount]} Antworten zur Wahl, ein Versuch pro Frage.`}
               {prefs.answerMode === 'typed' &&
                 'Du tippst die Antwort selbst, kleine Tippfehler zählen trotzdem. Jeder falsche Versuch kostet 3 Sekunden. Die Fragen sind hier leichter.'}
               {prefs.answerMode === 'mixed' && 'Mal Auswahl, mal Tippen. Getippt wird nur bei leichten Fragen.'}
@@ -270,10 +272,7 @@ function HubView({ user }: { user: User }) {
                   size="sm"
                   value={String(prefs.optionCount)}
                   onChange={(v) => prefs.set({ optionCount: Number(v) as OptionCount })}
-                  options={[
-                    { value: '3', label: '3' },
-                    { value: '4', label: '4' },
-                  ]}
+                  options={['3', '4', '5', '6'].map((n) => ({ value: n, label: n }))}
                 />
               </div>
             )}

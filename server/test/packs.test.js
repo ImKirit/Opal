@@ -1,8 +1,16 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { BUNDLES, bundleMeta } from '../src/bundles.js';
 import { buildRound, difficultyPenalty, loadPacks, pickQuestions } from '../src/packs.js';
 
-const question = { q: 'Test?', a: 'Richtig', w: ['Falsch A', 'Falsch B', 'Falsch C'], alt: [], d: 1, typed: true };
+const question = {
+  q: 'Test?',
+  a: 'Richtig',
+  w: ['Falsch A', 'Falsch B', 'Falsch C', 'Falsch D', 'Falsch E'],
+  alt: [],
+  d: 1,
+  typed: true,
+};
 
 function positions(optionCount, rounds = 30000) {
   const counts = new Array(optionCount).fill(0);
@@ -30,9 +38,27 @@ test('richtige Antwort landet bei 4 Optionen gleich oft auf jedem Platz', () => 
   }
 });
 
+test('richtige Antwort landet bei 6 Optionen gleich oft auf jedem Platz', () => {
+  const rounds = 36000;
+  for (const n of positions(6, rounds)) {
+    assert.ok(Math.abs(n - rounds / 6) < rounds * 0.03, `Platz ${n} weicht zu stark ab`);
+  }
+});
+
+test('alle Fragen haben fuenf falsche Antworten, 5 und 6 Optionen gehen ueberall', () => {
+  for (const pack of loadPacks()) {
+    for (const section of pack.sections) {
+      for (const q of pickQuestions([section.key], 500)) {
+        assert.equal(q.w.length, 5, `${q.id} hat ${q.w.length} falsche Antworten`);
+        assert.equal(buildRound(q, 'choice', 6).options.length, 6);
+      }
+    }
+  }
+});
+
 test('Optionen sind immer verschieden und enthalten nur bekannte Antworten', () => {
   for (let i = 0; i < 500; i++) {
-    const { options } = buildRound(question, 'choice', 4);
+    const { options } = buildRound(question, 'choice', 6);
     assert.equal(new Set(options).size, options.length);
     for (const o of options) assert.ok([question.a, ...question.w].includes(o));
   }
@@ -64,4 +90,19 @@ test('pickQuestions bevorzugt die gewaehlte Schwierigkeit', () => {
   const hard = pickQuestions(sections, 5, { difficulty: 'schwer' });
   const avg = hard.reduce((sum, q) => sum + q.d, 0) / hard.length;
   assert.ok(avg >= 2, `schwer sollte im Schnitt mindestens mittel sein, war ${avg}`);
+});
+
+test('Themenpakete zeigen nur auf Themen und Bereiche, die es gibt', () => {
+  const packs = loadPacks();
+  const keys = new Set(packs.flatMap((p) => p.sections.map((s) => s.key)));
+  const ids = new Set(packs.map((p) => p.id));
+  for (const bundle of BUNDLES) {
+    for (const item of bundle.items) {
+      assert.ok(item.includes('/') ? keys.has(item) : ids.has(item), `${bundle.id}: ${item} gibt es nicht`);
+    }
+  }
+  for (const bundle of bundleMeta()) {
+    const count = bundle.sections.reduce((n, key) => n + pickQuestions([key], 1000).length, 0);
+    assert.ok(count >= 40, `${bundle.id} hat nur ${count} Fragen`);
+  }
 });

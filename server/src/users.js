@@ -18,6 +18,8 @@ export function publicUser(row) {
     avatar: row.avatar,
     guest: Boolean(row.is_guest),
     owner: isOwner(row.id),
+    /** Discord-Benutzername (nur Discord-Konten, sonst null) */
+    handle: row.discord_username ?? null,
     /** Rang pro Ranked-Modus, siehe game/ladders.js */
     ranks: ranksOf(row.id),
   };
@@ -34,8 +36,9 @@ export function createGuest(name) {
 
 // Discord-Login: bestehenden Discord-Nutzer aktualisieren, sonst einen Gast-Account
 // uebernehmen (Statistiken bleiben erhalten) oder einen neuen Nutzer anlegen.
-// Discord-Konten heissen auf Opal wie ihr Discord-Benutzername (nicht der Anzeigename), damit
-// man sich darueber auch auf Discord findet (Owner 2026-09-22). `name` ist also der Benutzername.
+// Discord-Konten zeigen ihren Discord-Anzeigenamen (`name`), der Benutzername (`discord_username`)
+// erscheint beim Drueberfahren und laesst sich kopieren, damit man sich auf Discord findet
+// (Owner 2026-09-22, zweite Fassung).
 export function upsertDiscordUser(input, guestToUpgrade) {
   const user = saveDiscordUser(input, guestToUpgrade);
   refreshOwners();

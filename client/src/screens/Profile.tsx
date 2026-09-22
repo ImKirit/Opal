@@ -107,7 +107,7 @@ export function Profile() {
         <div className="profile__who">
           <p className="eyebrow">{user.guest ? 'Gast' : 'Discord'}</p>
           <h1>
-            <UserName name={user.name} owner={user.owner} />
+            <UserName name={user.name} owner={user.owner} handle={user.handle} />
           </h1>
         </div>
         {isMe ? (

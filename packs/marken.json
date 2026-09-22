@@ -1,0 +1,62 @@
+{
+  "id": "marken",
+  "name": "Marken & Autos",
+  "desc": "Logos, bekannte Marken, Autos und wie große Firmen angefangen haben.",
+  "icon": "car",
+  "hue": 95,
+  "sections": [
+    {
+      "id": "logos",
+      "name": "Logos & Marken",
+      "questions": [
+        { "q": "Welches Tier zeigt das Logo von Ferrari?", "a": "Ein Pferd", "w": ["Ein Stier", "Ein Löwe", "Ein Adler", "Ein Jaguar", "Eine Schlange"], "alt": ["Pferd"], "fact": "Das springende Pferd stammt vom Flugzeug eines italienischen Kampfpiloten.", "d": 1 },
+        { "q": "Welches Tier zeigt das Logo von Lamborghini?", "a": "Einen Stier", "w": ["Ein Pferd", "Einen Löwen", "Einen Panther", "Einen Adler", "Einen Skorpion"], "alt": ["Stier"], "fact": "Gründer Ferruccio Lamborghini war im Sternzeichen Stier geboren.", "d": 1 },
+        { "q": "Welches Obst zeigt das Logo von Apple?", "a": "Einen angebissenen Apfel", "w": ["Eine Birne", "Eine Kirsche", "Eine Orange", "Eine Banane", "Eine Traube"], "alt": ["Apfel"], "typed": false, "d": 1 },
+        { "q": "Wie viele Ringe hat das Audi-Logo?", "a": "4", "w": ["3", "5", "6", "2", "8"], "fact": "Die Ringe stehen für vier Firmen, die 1932 zur Auto Union verschmolzen.", "d": 1 },
+        { "q": "Welche Farben hat das Google-Logo?", "a": "Blau, Rot, Gelb und Grün", "w": ["Rot, Gelb und Blau", "Blau, Grün und Lila", "Nur Blau", "Schwarz und Weiß", "Rot, Orange und Gelb"], "typed": false, "d": 1 },
+        { "q": "Welches Tier zeigt das Logo von Peugeot?", "a": "Einen Löwen", "w": ["Einen Adler", "Ein Pferd", "Einen Tiger", "Einen Stier", "Einen Wolf"], "alt": ["Löwe"], "d": 1 },
+        { "q": "Welche Firma hat eine zweischwänzige Meerjungfrau im Logo?", "a": "Starbucks", "w": ["Costa Coffee", "Tchibo", "Nespresso", "Dunkin'", "Lavazza"], "d": 1 },
+        { "q": "Welcher Sportartikel-Hersteller setzt auf drei Streifen?", "a": "Adidas", "w": ["Puma", "Nike", "Reebok", "Asics", "Umbro"], "d": 1 },
+        { "q": "Wofür steht BMW?", "a": "Bayerische Motoren Werke", "w": ["Berliner Motoren Werke", "Bayerische Metall Werke", "Bremer Motoren Werke", "Badische Motoren Werke", "Bayerische Maschinen Werke"], "d": 1 },
+        { "q": "Aus welchem Land stammt IKEA?", "a": "Schweden", "w": ["Norwegen", "Dänemark", "Finnland", "Niederlande", "Deutschland"], "d": 1 },
+        { "q": "Wofür stehen die Buchstaben von IKEA?", "a": "Ingvar Kamprad, Elmtaryd, Agunnaryd", "w": ["International Kitchen and Esthetic Appliances", "Ingvar Kamprad, Eigenes Angebot", "Innovativ, Kreativ, Einfach, Anders", "Ingvar Karlsson, Elmhult, Aktiebolag", "Inredning, Kök, Elektronik, Arbete"], "typed": false, "fact": "Gründer, Hof seiner Familie und Heimatdorf.", "d": 3 }
+      ]
+    },
+    {
+      "id": "autos",
+      "name": "Autos",
+      "questions": [
+        { "q": "Aus welchem Land kommt Volvo?", "a": "Schweden", "w": ["Norwegen", "Finnland", "Dänemark", "Deutschland", "Niederlande"], "d": 1 },
+        { "q": "Aus welchem Land kommt Škoda?", "a": "Tschechien", "w": ["Polen", "Slowakei", "Ungarn", "Russland", "Rumänien"], "d": 1 },
+        { "q": "In welcher Stadt hat Volkswagen seinen Sitz?", "a": "Wolfsburg", "w": ["Ingolstadt", "Stuttgart", "München", "Braunschweig", "Hannover"], "d": 1 },
+        { "q": "In welcher Stadt hat Audi seinen Sitz?", "a": "Ingolstadt", "w": ["Wolfsburg", "Stuttgart", "München", "Zwickau", "Regensburg"], "d": 2 },
+        { "q": "Wie hieß das meistgebaute Auto der DDR?", "a": "Trabant", "w": ["Wartburg", "Lada", "Škoda Octavia", "Moskwitsch", "Barkas"], "alt": ["Trabi", "Trabbi"], "d": 1 },
+        { "q": "Welche Firma baute das Model T, das Autos für viele erschwinglich machte?", "a": "Ford", "w": ["General Motors", "Chrysler", "Cadillac", "Dodge", "Buick"], "d": 1 },
+        { "q": "Wer baute 1886 das erste praxistaugliche Automobil mit Benzinmotor?", "a": "Carl Benz", "w": ["Gottlieb Daimler", "Henry Ford", "Rudolf Diesel", "Nikolaus Otto", "Ferdinand Porsche"], "alt": ["Benz", "Karl Benz"], "fact": "Seine Frau Bertha machte damit 1888 die erste lange Autofahrt der Welt.", "d": 2 },
+        { "q": "Aus welchem Land stammt Toyota?", "a": "Japan", "w": ["Südkorea", "China", "USA", "Taiwan", "Malaysia"], "d": 1 },
+        { "q": "Welche Marke baut den 911?", "a": "Porsche", "w": ["BMW", "Mercedes-Benz", "Audi", "Ferrari", "Opel"], "d": 1 },
+        { "q": "Wofür steht die Abkürzung PS?", "a": "Pferdestärke", "w": ["Power Speed", "Pedalstärke", "Pleuelsystem", "Personenstärke", "Pumpensystem"], "alt": ["Pferdestärken"], "d": 1 },
+        { "q": "Welche Marke trägt einen dreizackigen Stern im Logo?", "a": "Mercedes-Benz", "w": ["BMW", "Maserati", "Opel", "Volvo", "Citroën"], "alt": ["Mercedes"], "d": 1 },
+        { "q": "Aus welchem Land kommt Hyundai?", "a": "Südkorea", "w": ["Japan", "China", "Taiwan", "Vietnam", "Thailand"], "d": 1 }
+      ]
+    },
+    {
+      "id": "firmen",
+      "name": "Firmengeschichte",
+      "questions": [
+        { "q": "Welche Firma hieß früher „Blue Ribbon Sports“?", "a": "Nike", "w": ["Adidas", "Puma", "Reebok", "New Balance", "Asics"], "d": 3 },
+        { "q": "Womit begann Nokia im Jahr 1865?", "a": "Mit einer Papierfabrik", "w": ["Mit Handys", "Mit Fernsehern", "Mit Autos", "Mit Möbeln", "Mit Kameras"], "alt": ["Papier", "Papierfabrik"], "typed": false, "d": 2 },
+        { "q": "Wie heißt der Mutterkonzern von Google seit 2015?", "a": "Alphabet", "w": ["Meta", "Omega", "ABC Holdings", "Googleplex", "Calico"], "d": 2 },
+        { "q": "Wie heißt der Konzern hinter Facebook seit 2021?", "a": "Meta", "w": ["Alphabet", "Horizon", "Oculus", "FB Group", "Instagram Inc."], "alt": ["Meta Platforms"], "d": 1 },
+        { "q": "Welche Firma geht auf die Erfinderin des Kaffeefilters zurück?", "a": "Melitta", "w": ["Tchibo", "Jacobs", "Dallmayr", "WMF", "Krups"], "fact": "Melitta Bentz nahm 1908 dafür Löschpapier aus dem Schulheft ihres Sohnes.", "d": 2 },
+        { "q": "Wer gründete Amazon?", "a": "Jeff Bezos", "w": ["Elon Musk", "Larry Page", "Jack Ma", "Bill Gates", "Tim Cook"], "alt": ["Bezos"], "d": 1 },
+        { "q": "Welches Getränk erfand ein Apotheker 1886 in Atlanta?", "a": "Coca-Cola", "w": ["Pepsi", "Fanta", "Sprite", "Dr Pepper", "Red Bull"], "alt": ["Cola", "Coca Cola"], "d": 2 },
+        { "q": "Welche Firma entwickelte die PlayStation?", "a": "Sony", "w": ["Nintendo", "Sega", "Microsoft", "Panasonic", "Philips"], "d": 1 },
+        { "q": "Aus welchem Land stammt Red Bull?", "a": "Österreich", "w": ["Deutschland", "Schweiz", "USA", "Großbritannien", "Niederlande"], "fact": "Vorbild war der thailändische Energydrink Krating Daeng.", "d": 2 },
+        { "q": "Welche Farbe hat die Verpackung von Milka?", "a": "Lila", "w": ["Blau", "Rot", "Grün", "Gelb", "Braun"], "alt": ["Violett"], "d": 1 },
+        { "q": "Aus welchem Land kommt Lego?", "a": "Dänemark", "w": ["Schweden", "Norwegen", "Deutschland", "Niederlande", "Finnland"], "d": 1 },
+        { "q": "Was bedeutet der Name Lego ursprünglich?", "a": "Spiel gut", "w": ["Leicht gebaut", "Lege los", "Kleiner Stein", "Lerne gern", "Bau groß"], "fact": "Er kommt vom dänischen „leg godt“.", "d": 2 }
+      ]
+    }
+  ]
+}

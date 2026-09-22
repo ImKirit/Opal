@@ -1,0 +1,97 @@
+{
+  "id": "kultur",
+  "name": "Kunst & Kultur",
+  "desc": "Malerei, Bücher, Märchen und Sagen, Mythologie und klassische Musik.",
+  "icon": "palette",
+  "hue": 312,
+  "sections": [
+    {
+      "id": "kunst",
+      "name": "Malerei & Kunst",
+      "questions": [
+        { "q": "Welcher Maler schnitt sich einen Teil seines Ohres ab?", "a": "Vincent van Gogh", "w": ["Pablo Picasso", "Claude Monet", "Paul Gauguin", "Salvador Dalí", "Edvard Munch"], "alt": ["van Gogh"], "d": 1 },
+        { "q": "Wer malte die schmelzenden Uhren in „Die Beständigkeit der Erinnerung“?", "a": "Salvador Dalí", "w": ["René Magritte", "Pablo Picasso", "Joan Miró", "Max Ernst", "Frida Kahlo"], "alt": ["Dali", "Dalí", "Salvador Dali"], "d": 1 },
+        { "q": "Wer malte die Decke der Sixtinischen Kapelle?", "a": "Michelangelo", "w": ["Raffael", "Leonardo da Vinci", "Donatello", "Botticelli", "Tizian"], "fact": "Er arbeitete rund vier Jahre daran, die meiste Zeit im Stehen mit dem Kopf im Nacken.", "d": 1 },
+        { "q": "Welche mexikanische Malerin ist für ihre Selbstporträts berühmt?", "a": "Frida Kahlo", "w": ["Georgia O'Keeffe", "Tamara de Lempicka", "Artemisia Gentileschi", "Berthe Morisot", "Mary Cassatt"], "alt": ["Kahlo", "Frida"], "d": 1 },
+        { "q": "Welcher Kunststil ist nach einem Bild von Claude Monet benannt?", "a": "Impressionismus", "w": ["Expressionismus", "Kubismus", "Surrealismus", "Realismus", "Pointillismus"], "fact": "Das Bild heißt „Impression, soleil levant“, auf Deutsch „Impression, Sonnenaufgang“.", "d": 2 },
+        { "q": "Mit welchem Kunststil verbindet man Pablo Picasso vor allem?", "a": "Kubismus", "w": ["Impressionismus", "Barock", "Pop-Art", "Dadaismus", "Jugendstil"], "d": 1 },
+        { "q": "Wer malte „Das Mädchen mit dem Perlenohrring“?", "a": "Jan Vermeer", "w": ["Rembrandt", "Peter Paul Rubens", "Frans Hals", "Jan van Eyck", "Hieronymus Bosch"], "alt": ["Vermeer", "Johannes Vermeer"], "d": 2 },
+        { "q": "Wessen Bilder von Suppendosen wurden zu Ikonen der Pop-Art?", "a": "Andy Warhol", "w": ["Roy Lichtenstein", "Keith Haring", "Jean-Michel Basquiat", "David Hockney", "Jeff Koons"], "alt": ["Warhol"], "d": 1 },
+        { "q": "In welchem Museum hängt die Mona Lisa?", "a": "Louvre", "w": ["Uffizien", "Prado", "Rijksmuseum", "Eremitage", "Metropolitan Museum"], "alt": ["Im Louvre"], "d": 1 },
+        { "q": "Welcher Streetart-Künstler ließ ein Bild direkt nach der Versteigerung zerschreddern?", "a": "Banksy", "w": ["Invader", "Shepard Fairey", "Keith Haring", "Blek le Rat", "Os Gêmeos"], "fact": "Das Bild „Girl with Balloon“ hieß danach „Love is in the Bin“.", "d": 1 },
+        { "q": "Wie heißt Gustav Klimts berühmtes goldenes Bild eines Paares?", "a": "Der Kuss", "w": ["Die Umarmung", "Das Liebespaar", "Die Braut", "Der Tanz", "Die Hochzeit"], "alt": ["Kuss"], "d": 2 },
+        { "q": "Welche zwei Farben ergeben gemischt Orange?", "a": "Rot und Gelb", "w": ["Rot und Blau", "Gelb und Blau", "Rot und Weiß", "Gelb und Grün", "Blau und Schwarz"], "typed": false, "d": 1 }
+      ]
+    },
+    {
+      "id": "literatur",
+      "name": "Bücher & Literatur",
+      "questions": [
+        { "q": "Wer schrieb „Faust“?", "a": "Johann Wolfgang von Goethe", "w": ["Friedrich Schiller", "Heinrich Heine", "Thomas Mann", "Gotthold Ephraim Lessing", "Theodor Fontane"], "alt": ["Goethe"], "d": 1 },
+        { "q": "Wer schrieb „Die Verwandlung“, in der ein Mann als Käfer aufwacht?", "a": "Franz Kafka", "w": ["Hermann Hesse", "Thomas Mann", "Bertolt Brecht", "Stefan Zweig", "Günter Grass"], "alt": ["Kafka"], "d": 1 },
+        { "q": "Wie heißt der Hobbit, der in „Der Hobbit“ auf Abenteuerreise geht?", "a": "Bilbo Beutlin", "w": ["Frodo Beutlin", "Samweis Gamdschie", "Meriadoc Brandybock", "Thorin Eichenschild", "Peregrin Tuk"], "alt": ["Bilbo", "Bilbo Baggins"], "d": 1 },
+        { "q": "Wer schrieb den Roman „1984“?", "a": "George Orwell", "w": ["Aldous Huxley", "Ray Bradbury", "H. G. Wells", "Franz Kafka", "Philip K. Dick"], "alt": ["Orwell"], "d": 1 },
+        { "q": "Wer erfand den Detektiv Sherlock Holmes?", "a": "Arthur Conan Doyle", "w": ["Agatha Christie", "Edgar Allan Poe", "Charles Dickens", "Wilkie Collins", "Raymond Chandler"], "alt": ["Conan Doyle", "Sir Arthur Conan Doyle"], "d": 1 },
+        { "q": "Welches Tier zähmt der kleine Prinz?", "a": "Einen Fuchs", "w": ["Einen Hund", "Eine Schlange", "Ein Schaf", "Einen Vogel", "Eine Katze"], "alt": ["Fuchs"], "fact": "Von ihm stammt der Satz „Man sieht nur mit dem Herzen gut“.", "d": 2 },
+        { "q": "Wer schrieb „Buddenbrooks“ und „Der Zauberberg“?", "a": "Thomas Mann", "w": ["Heinrich Mann", "Hermann Hesse", "Erich Maria Remarque", "Günter Grass", "Klaus Mann"], "d": 2 },
+        { "q": "Welcher Roman von Erich Maria Remarque spielt im Ersten Weltkrieg?", "a": "Im Westen nichts Neues", "w": ["Der Untertan", "Die Blechtrommel", "Berlin Alexanderplatz", "Der Steppenwolf", "Das Parfum"], "d": 2 },
+        { "q": "Welches Buch von Patrick Süskind handelt von einem Mörder mit außergewöhnlichem Geruchssinn?", "a": "Das Parfum", "w": ["Der Vorleser", "Die unendliche Geschichte", "Momo", "Tintenherz", "Der Name der Rose"], "alt": ["Parfum", "Das Parfüm"], "d": 2 },
+        { "q": "Wer schrieb „Die unendliche Geschichte“?", "a": "Michael Ende", "w": ["Cornelia Funke", "Otfried Preußler", "Erich Kästner", "Astrid Lindgren", "Paul Maar"], "alt": ["Ende"], "d": 1 },
+        { "q": "Wie heißt der Kapitän der Nautilus bei Jules Verne?", "a": "Kapitän Nemo", "w": ["Kapitän Ahab", "Kapitän Hook", "Kapitän Flint", "Kapitän Smollett", "Kapitän Blaubär"], "alt": ["Nemo", "Captain Nemo"], "d": 2 },
+        { "q": "Wer schrieb „Pippi Langstrumpf“?", "a": "Astrid Lindgren", "w": ["Selma Lagerlöf", "Cornelia Funke", "Enid Blyton", "Tove Jansson", "Kirsten Boie"], "alt": ["Lindgren"], "d": 1 }
+      ]
+    },
+    {
+      "id": "maerchen",
+      "name": "Märchen & Sagen",
+      "questions": [
+        { "q": "Welche Brüder sammelten die bekanntesten deutschen Märchen?", "a": "Die Brüder Grimm", "w": ["Die Brüder Mann", "Die Brüder Wright", "Die Brüder Humboldt", "Die Brüder Schlegel", "Die Brüder Lumière"], "alt": ["Brüder Grimm", "Grimm", "Gebrüder Grimm"], "d": 1 },
+        { "q": "Wie lange schläft Dornröschen?", "a": "100 Jahre", "w": ["7 Jahre", "10 Jahre", "50 Jahre", "1000 Jahre", "30 Jahre"], "alt": ["100", "hundert Jahre"], "d": 1 },
+        { "q": "Womit wird Schneewittchen am Ende vergiftet?", "a": "Mit einem Apfel", "w": ["Mit einer Birne", "Mit einem Kuchen", "Mit Wein", "Mit einer Rose", "Mit Brot"], "alt": ["Apfel", "Einem Apfel", "Vergifteter Apfel"], "fact": "Vorher hatte es die Königin schon mit einem Schnürriemen und einem giftigen Kamm versucht.", "d": 1 },
+        { "q": "Was verliert Aschenputtel auf der Treppe?", "a": "Einen Schuh", "w": ["Einen Handschuh", "Ihre Krone", "Einen Ring", "Ihre Kette", "Einen Schleier"], "alt": ["Schuh", "Pantoffel", "Einen Pantoffel"], "d": 1 },
+        { "q": "Wer lässt ihr langes Haar vom Turm herunter?", "a": "Rapunzel", "w": ["Schneewittchen", "Dornröschen", "Frau Holle", "Rotkäppchen", "Gretel"], "d": 1 },
+        { "q": "Was spinnt Rumpelstilzchen aus Stroh?", "a": "Gold", "w": ["Silber", "Seide", "Wolle", "Garn", "Diamanten"], "d": 1 },
+        { "q": "Wie viele Geißlein hat die Geiß im Grimm-Märchen?", "a": "7", "w": ["3", "5", "6", "9", "12"], "alt": ["sieben"], "d": 1 },
+        { "q": "Welche Tiere ziehen als Bremer Stadtmusikanten los?", "a": "Esel, Hund, Katze und Hahn", "w": ["Pferd, Hund, Katze und Hahn", "Esel, Schwein, Katze und Hahn", "Esel, Hund, Maus und Huhn", "Kuh, Hund, Katze und Gans", "Esel, Ziege, Hund und Hahn"], "typed": false, "d": 1 },
+        { "q": "Wie heißt der Held der Nibelungensage, der den Drachen Fafnir tötet?", "a": "Siegfried", "w": ["Beowulf", "Hagen", "Gunther", "Ragnar", "Artus"], "alt": ["Sigurd"], "d": 2 },
+        { "q": "Wie heißt das Schwert von König Artus?", "a": "Excalibur", "w": ["Durendal", "Balmung", "Andúril", "Tizona", "Joyeuse"], "d": 1 },
+        { "q": "Wie wird der Froschkönig im Märchen der Brüder Grimm erlöst?", "a": "Die Prinzessin wirft ihn an die Wand", "w": ["Durch einen Kuss", "Durch einen Zaubertrank", "Durch ein Lied", "Durch einen goldenen Ring", "Durch drei Wünsche"], "typed": false, "fact": "Der Kuss kam erst in späteren Fassungen dazu.", "d": 3 }
+      ]
+    },
+    {
+      "id": "mythologie",
+      "name": "Mythologie",
+      "questions": [
+        { "q": "Wer ist der Göttervater der griechischen Mythologie?", "a": "Zeus", "w": ["Poseidon", "Hades", "Apollon", "Ares", "Kronos"], "d": 1 },
+        { "q": "Wer ist der griechische Gott des Meeres?", "a": "Poseidon", "w": ["Zeus", "Hermes", "Ares", "Hephaistos", "Dionysos"], "d": 1 },
+        { "q": "Wie heißt der nordische Gott mit dem Hammer?", "a": "Thor", "w": ["Odin", "Loki", "Freyr", "Heimdall", "Tyr"], "d": 1 },
+        { "q": "Wie heißt der Göttervater der nordischen Mythologie?", "a": "Odin", "w": ["Thor", "Loki", "Baldur", "Freyr", "Ymir"], "alt": ["Wotan", "Wodan"], "d": 1 },
+        { "q": "Welches Wesen hat den Körper eines Löwen und den Kopf eines Menschen?", "a": "Sphinx", "w": ["Greif", "Zentaur", "Minotaurus", "Chimäre", "Harpyie"], "d": 1 },
+        { "q": "Welcher Held schlug der Medusa den Kopf ab?", "a": "Perseus", "w": ["Herakles", "Achilles", "Theseus", "Odysseus", "Jason"], "d": 2 },
+        { "q": "An welcher Stelle war Achilles verwundbar?", "a": "An der Ferse", "w": ["Am Nacken", "Am Herzen", "Am Knie", "An der Stirn", "An der Schulter"], "alt": ["Ferse", "Achillesferse"], "d": 1 },
+        { "q": "Wie heißt das geflügelte Pferd der griechischen Sage?", "a": "Pegasus", "w": ["Einhorn", "Bukephalos", "Sleipnir", "Kentaur", "Hippogreif"], "alt": ["Pegasos"], "d": 1 },
+        { "q": "Wie viele Beine hat Odins Pferd Sleipnir?", "a": "8", "w": ["4", "6", "10", "3", "12"], "d": 2 },
+        { "q": "Welcher ägyptische Gott wird mit Schakalkopf dargestellt?", "a": "Anubis", "w": ["Horus", "Osiris", "Thot", "Re", "Sobek"], "d": 2 },
+        { "q": "Welcher Titan musste zur Strafe den Himmel tragen?", "a": "Atlas", "w": ["Prometheus", "Kronos", "Hyperion", "Okeanos", "Tantalos"], "d": 2 },
+        { "q": "Wie heißt das Reich der Götter in der nordischen Mythologie?", "a": "Asgard", "w": ["Midgard", "Utgard", "Jötunheim", "Helheim", "Muspelheim"], "d": 2 }
+      ]
+    },
+    {
+      "id": "klassik",
+      "name": "Klassische Musik",
+      "questions": [
+        { "q": "Welcher Komponist wurde taub und komponierte trotzdem weiter?", "a": "Ludwig van Beethoven", "w": ["Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Georg Friedrich Händel", "Joseph Haydn", "Frédéric Chopin"], "alt": ["Beethoven"], "d": 1 },
+        { "q": "Wer komponierte „Eine kleine Nachtmusik“?", "a": "Wolfgang Amadeus Mozart", "w": ["Ludwig van Beethoven", "Johann Strauss", "Franz Schubert", "Antonio Vivaldi", "Joseph Haydn"], "alt": ["Mozart"], "d": 1 },
+        { "q": "Wer komponierte „Die vier Jahreszeiten“?", "a": "Antonio Vivaldi", "w": ["Johann Sebastian Bach", "Giuseppe Verdi", "Georg Friedrich Händel", "Claudio Monteverdi", "Arcangelo Corelli"], "alt": ["Vivaldi"], "d": 1 },
+        { "q": "Wie viele Sinfonien vollendete Beethoven?", "a": "9", "w": ["5", "7", "10", "12", "41"], "alt": ["neun"], "d": 2 },
+        { "q": "Wer schrieb den Walzer „An der schönen blauen Donau“?", "a": "Johann Strauss", "w": ["Franz Lehár", "Richard Strauss", "Joseph Lanner", "Carl Michael Ziehrer", "Emmerich Kálmán"], "alt": ["Johann Strauß", "Strauss", "Johann Strauss Sohn"], "d": 2 },
+        { "q": "Welches Instrument spielt der Konzertmeister im Orchester?", "a": "Violine", "w": ["Cello", "Klavier", "Flöte", "Trompete", "Harfe"], "alt": ["Geige", "Erste Geige"], "d": 2 },
+        { "q": "Wer komponierte den Hochzeitsmarsch aus „Ein Sommernachtstraum“?", "a": "Felix Mendelssohn Bartholdy", "w": ["Richard Wagner", "Robert Schumann", "Johannes Brahms", "Franz Liszt", "Edvard Grieg"], "alt": ["Mendelssohn", "Felix Mendelssohn"], "fact": "Der andere berühmte Hochzeitsmarsch, „Treulich geführt“, stammt von Wagner.", "d": 3 },
+        { "q": "In welcher Stadt wurde Johann Sebastian Bach geboren?", "a": "Eisenach", "w": ["Leipzig", "Weimar", "Dresden", "Arnstadt", "Köthen"], "d": 3 },
+        { "q": "Wer komponierte die Oper „Die Zauberflöte“?", "a": "Wolfgang Amadeus Mozart", "w": ["Giuseppe Verdi", "Richard Wagner", "Giacomo Puccini", "Carl Maria von Weber", "Gioachino Rossini"], "alt": ["Mozart"], "d": 1 },
+        { "q": "Wie heißt der Stab, mit dem ein Dirigent den Takt angibt?", "a": "Taktstock", "w": ["Notenstab", "Notenzeiger", "Zauberstab", "Taktbesen", "Stimmgabel"], "alt": ["Dirigentenstab"], "d": 2 },
+        { "q": "Wer komponierte den „Boléro“?", "a": "Maurice Ravel", "w": ["Claude Debussy", "Georges Bizet", "Camille Saint-Saëns", "Erik Satie", "Hector Berlioz"], "alt": ["Ravel"], "d": 2 }
+      ]
+    }
+  ]
+}

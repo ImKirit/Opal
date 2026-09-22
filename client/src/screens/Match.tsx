@@ -35,7 +35,7 @@ function PlayerSide({ player, score, match, align, isMe }: { player: MatchPlayer
       <Avatar name={player.name} src={player.avatar} isBot={player.isBot} size={52} dim={!player.connected} />
       <div className="side__info">
         <span className="side__name">
-          <UserName name={player.name} owner={player.owner} />
+          <UserName name={player.name} owner={player.owner} handle={player.handle} />
           {isMe && <span className="muted"> (du)</span>}
         </span>
         <span className="side__status">
@@ -137,7 +137,7 @@ function Scoreboard({ match, meId }: { match: MatchView; meId: string }) {
         {ranked.map((p) => (
           <li key={p.id} className={`${p.id === meId ? 'is-me' : ''}${match.reveal?.winnerId === p.id ? ' is-scored' : ''}${p.left ? ' is-gone' : ''}`}>
             <Avatar name={p.name} src={p.avatar} isBot={p.isBot} size={30} dim={!p.connected} />
-            <UserName className="group__name" name={p.name} owner={p.owner} />
+            <UserName className="group__name" name={p.name} owner={p.owner} handle={p.handle} />
             <span className="group__score num">{scores[p.id]?.score ?? 0}</span>
           </li>
         ))}

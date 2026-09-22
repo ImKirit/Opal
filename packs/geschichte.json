@@ -1,0 +1,97 @@
+{
+  "id": "geschichte",
+  "name": "Geschichte",
+  "desc": "Von Pharaonen bis zur Mondlandung: Antike, Mittelalter, Neuzeit, 20. Jahrhundert und deutsche Geschichte.",
+  "icon": "landmark",
+  "hue": 60,
+  "sections": [
+    {
+      "id": "antike",
+      "name": "Antike",
+      "questions": [
+        { "q": "Welches der sieben antiken Weltwunder steht als einziges noch?", "a": "Cheops-Pyramide", "w": ["Koloss von Rhodos", "Leuchtturm von Alexandria", "Hängende Gärten der Semiramis", "Zeus-Statue von Olympia", "Artemistempel von Ephesos"], "alt": ["Cheopspyramide", "Pyramide von Gizeh", "Große Pyramide"], "fact": "Sie war rund 3800 Jahre lang das höchste Bauwerk der Welt.", "d": 1 },
+        { "q": "An welchem Ort fanden die Olympischen Spiele der Antike statt?", "a": "Olympia", "w": ["Athen", "Sparta", "Delphi", "Korinth", "Theben"], "d": 1 },
+        { "q": "Wer war der Lehrer von Alexander dem Großen?", "a": "Aristoteles", "w": ["Platon", "Sokrates", "Pythagoras", "Homer", "Herodot"], "d": 2 },
+        { "q": "Welcher Fluss war die Lebensader des alten Ägypten?", "a": "Nil", "w": ["Euphrat", "Tigris", "Jordan", "Kongo", "Niger"], "d": 1 },
+        { "q": "Welche Sprache sprachen die alten Römer?", "a": "Latein", "w": ["Griechisch", "Etruskisch", "Romanisch", "Italienisch", "Gallisch"], "d": 1 },
+        { "q": "Welcher Feldherr zog mit Kriegselefanten über die Alpen?", "a": "Hannibal", "w": ["Julius Caesar", "Alexander der Große", "Spartacus", "Attila", "Scipio"], "fact": "Er kam aus Karthago im heutigen Tunesien.", "d": 2 },
+        { "q": "Wer wurde an den Iden des März 44 v. Chr. ermordet?", "a": "Julius Caesar", "w": ["Augustus", "Nero", "Marcus Antonius", "Cicero", "Pompeius"], "alt": ["Caesar", "Cäsar"], "d": 2 },
+        { "q": "Wie heißt die Bilderschrift der alten Ägypter?", "a": "Hieroglyphen", "w": ["Keilschrift", "Runen", "Linear B", "Sanskrit", "Kyrillisch"], "d": 1 },
+        { "q": "Welches Volk erfand die Keilschrift?", "a": "Sumerer", "w": ["Ägypter", "Phönizier", "Griechen", "Perser", "Hethiter"], "fact": "Die Zeichen wurden mit einem Schilfrohr in feuchte Tontafeln gedrückt.", "d": 3 },
+        { "q": "Welcher Vulkan verschüttete im Jahr 79 Pompeji?", "a": "Vesuv", "w": ["Ätna", "Stromboli", "Vulcano", "Santorin", "Hekla"], "d": 1 },
+        { "q": "Welches Tier säugte der Sage nach Romulus und Remus?", "a": "Eine Wölfin", "w": ["Eine Bärin", "Eine Ziege", "Eine Hirschkuh", "Eine Löwin", "Eine Kuh"], "alt": ["Wölfin", "Wolf"], "d": 1 },
+        { "q": "Welche Stadt war Hauptstadt des Byzantinischen Reiches?", "a": "Konstantinopel", "w": ["Rom", "Athen", "Alexandria", "Antiochia", "Ravenna"], "alt": ["Byzanz", "Istanbul"], "d": 2 }
+      ]
+    },
+    {
+      "id": "mittelalter",
+      "name": "Mittelalter",
+      "questions": [
+        { "q": "Wer wurde im Jahr 800 in Rom zum Kaiser gekrönt?", "a": "Karl der Große", "w": ["Otto der Große", "Friedrich Barbarossa", "Ludwig der Fromme", "Pippin der Jüngere", "Heinrich IV."], "alt": ["Karl", "Charlemagne"], "d": 2 },
+        { "q": "Wie nennt man die große Pestwelle Mitte des 14. Jahrhunderts?", "a": "Schwarzer Tod", "w": ["Roter Tod", "Weiße Pest", "Große Grippe", "Graue Seuche", "Blaue Krankheit"], "alt": ["Der Schwarze Tod", "Schwarze Tod", "Pest"], "fact": "Sie tötete in wenigen Jahren wohl ein Drittel der Menschen in Europa.", "d": 1 },
+        { "q": "In welchem Jahr fand die Schlacht bei Hastings statt?", "a": "1066", "w": ["1016", "1099", "1166", "1215", "966"], "d": 2 },
+        { "q": "Wie nennt man die Kriegszüge christlicher Heere ins Heilige Land?", "a": "Kreuzzüge", "w": ["Feldzüge des Papstes", "Pilgerkriege", "Glaubensfahrten", "Rosenkriege", "Reconquista"], "alt": ["Kreuzzug"], "d": 1 },
+        { "q": "Welcher Kaiser trug den Beinamen „Barbarossa“?", "a": "Friedrich I.", "w": ["Otto I.", "Karl IV.", "Heinrich VI.", "Friedrich II.", "Maximilian I."], "alt": ["Friedrich der Erste", "Friedrich 1.", "Friedrich I"], "fact": "„Barbarossa“ ist italienisch und heißt Rotbart.", "d": 2 },
+        { "q": "Welche Frau führte im Hundertjährigen Krieg französische Truppen an und wurde 1431 verbrannt?", "a": "Jeanne d'Arc", "w": ["Katharina von Medici", "Eleonore von Aquitanien", "Marie Antoinette", "Anne Boleyn", "Hildegard von Bingen"], "alt": ["Johanna von Orleans", "Jeanne d Arc", "Jeanne dArc", "Johanna von Orléans"], "d": 2 },
+        { "q": "Welches Dokument beschränkte 1215 die Macht des englischen Königs?", "a": "Magna Carta", "w": ["Bill of Rights", "Goldene Bulle", "Edikt von Nantes", "Habeas Corpus Act", "Domesday Book"], "d": 2 },
+        { "q": "Wie hieß der mächtige Bund norddeutscher Handelsstädte?", "a": "Hanse", "w": ["Zunft", "Gilde", "Liga", "Kontor", "Union"], "alt": ["Die Hanse"], "fact": "Deshalb tragen Hamburg und Bremen bis heute „Hansestadt“ im Namen.", "d": 2 },
+        { "q": "Was waren die Wikinger vor allem?", "a": "Seefahrer aus Skandinavien", "w": ["Reiter aus der Steppe", "Mönche aus Irland", "Ritter aus Frankreich", "Händler aus Venedig", "Bauern aus den Alpen"], "typed": false, "d": 1 },
+        { "q": "In welcher französischen Stadt residierten im 14. Jahrhundert die Päpste?", "a": "Avignon", "w": ["Paris", "Lyon", "Reims", "Orléans", "Marseille"], "d": 3 },
+        { "q": "Wer gründete 1206 das Mongolische Reich?", "a": "Dschingis Khan", "w": ["Kublai Khan", "Attila", "Timur", "Ögedei Khan", "Batu Khan"], "alt": ["Dschingis-Khan", "Genghis Khan", "Temüdschin"], "d": 2 }
+      ]
+    },
+    {
+      "id": "neuzeit",
+      "name": "Neuzeit",
+      "questions": [
+        { "q": "Welcher Seefahrer erreichte 1498 als erster Europäer auf dem Seeweg Indien?", "a": "Vasco da Gama", "w": ["Christoph Kolumbus", "Ferdinand Magellan", "Amerigo Vespucci", "Bartolomeu Dias", "James Cook"], "alt": ["da Gama"], "d": 2 },
+        { "q": "Wer leitete die erste Weltumsegelung, starb aber unterwegs?", "a": "Ferdinand Magellan", "w": ["James Cook", "Francis Drake", "Vasco da Gama", "Christoph Kolumbus", "Juan Sebastián Elcano"], "alt": ["Magellan", "Fernando Magellan"], "fact": "Nur eines von fünf Schiffen kam 1522 zurück, unter dem Kommando von Elcano.", "d": 2 },
+        { "q": "In welchem Jahr erklärten die USA ihre Unabhängigkeit?", "a": "1776", "w": ["1789", "1765", "1812", "1783", "1791"], "d": 1 },
+        { "q": "Welches Gebäude stürmten die Pariser am 14. Juli 1789?", "a": "Die Bastille", "w": ["Den Louvre", "Schloss Versailles", "Notre-Dame", "Die Tuilerien", "Den Élysée-Palast"], "alt": ["Bastille"], "fact": "Drinnen saßen damals nur noch sieben Gefangene.", "d": 1 },
+        { "q": "Welche Königin wurde 1793 in Paris hingerichtet?", "a": "Marie Antoinette", "w": ["Katharina die Große", "Maria Theresia", "Elisabeth I.", "Kleopatra", "Anne Boleyn"], "d": 1 },
+        { "q": "In welcher Schlacht wurde Napoleon 1815 endgültig besiegt?", "a": "Waterloo", "w": ["Leipzig", "Austerlitz", "Jena", "Trafalgar", "Borodino"], "d": 1 },
+        { "q": "Welcher Krieg dauerte von 1618 bis 1648?", "a": "Dreißigjähriger Krieg", "w": ["Siebenjähriger Krieg", "Hundertjähriger Krieg", "Nordischer Krieg", "Spanischer Erbfolgekrieg", "Deutscher Krieg"], "alt": ["Dreissigjähriger Krieg", "30-jähriger Krieg", "Der Dreißigjährige Krieg"], "d": 1 },
+        { "q": "Welche Maschine von James Watt trieb die Industrielle Revolution an?", "a": "Die verbesserte Dampfmaschine", "w": ["Der Elektromotor", "Die Glühbirne", "Der mechanische Webstuhl", "Der Telegraf", "Der Verbrennungsmotor"], "typed": false, "d": 2 },
+        { "q": "In welchem Land begann die Industrielle Revolution?", "a": "Großbritannien", "w": ["Deutschland", "Frankreich", "USA", "Niederlande", "Belgien"], "alt": ["England", "Vereinigtes Königreich", "Grossbritannien"], "d": 1 },
+        { "q": "Welcher US-Präsident erklärte 1863 die Sklaven in den Südstaaten für frei?", "a": "Abraham Lincoln", "w": ["George Washington", "Thomas Jefferson", "Ulysses S. Grant", "Andrew Johnson", "Theodore Roosevelt"], "alt": ["Lincoln"], "d": 2 },
+        { "q": "Welcher Herrscher setzte sich 1804 in Paris selbst die Kaiserkrone auf?", "a": "Napoleon Bonaparte", "w": ["Ludwig XVI.", "Wilhelm I.", "Franz II.", "Karl X.", "Louis-Philippe"], "alt": ["Napoleon", "Napoleon I."], "d": 2 }
+      ]
+    },
+    {
+      "id": "jh20",
+      "name": "20. Jahrhundert",
+      "questions": [
+        { "q": "Wer entdeckte 1928 das Penicillin?", "a": "Alexander Fleming", "w": ["Louis Pasteur", "Robert Koch", "Marie Curie", "Edward Jenner", "Paul Ehrlich"], "alt": ["Fleming"], "fact": "Er fand es, weil eine Schimmelpilz-Kultur zufällig auf seinen Bakterienplatten wuchs.", "d": 1 },
+        { "q": "In welchem Jahr begann der Erste Weltkrieg?", "a": "1914", "w": ["1912", "1916", "1918", "1905", "1939"], "d": 1 },
+        { "q": "In welchem Jahr endete der Zweite Weltkrieg in Europa?", "a": "1945", "w": ["1944", "1946", "1943", "1939", "1949"], "d": 1 },
+        { "q": "Welches Ereignis löste 1914 den Ersten Weltkrieg aus?", "a": "Das Attentat von Sarajevo", "w": ["Der Untergang der Titanic", "Der Sturm auf die Bastille", "Die Oktoberrevolution", "Der Überfall auf Polen", "Der Bau des Suezkanals"], "typed": false, "d": 2 },
+        { "q": "Welche Frau gewann als erste einen Nobelpreis?", "a": "Marie Curie", "w": ["Bertha von Suttner", "Mutter Teresa", "Rosalind Franklin", "Lise Meitner", "Selma Lagerlöf"], "alt": ["Curie"], "fact": "Sie bekam sogar zwei: 1903 für Physik und 1911 für Chemie.", "d": 2 },
+        { "q": "Wer hielt 1963 die Rede „I Have a Dream“?", "a": "Martin Luther King", "w": ["Malcolm X", "John F. Kennedy", "Nelson Mandela", "Barack Obama", "Rosa Parks"], "alt": ["Martin Luther King Jr.", "MLK"], "d": 1 },
+        { "q": "Wie viele Jahre saß Nelson Mandela im Gefängnis?", "a": "27", "w": ["10", "15", "20", "35", "5"], "d": 2 },
+        { "q": "In welchem Jahr zerfiel die Sowjetunion?", "a": "1991", "w": ["1989", "1990", "1993", "1985", "1995"], "d": 2 },
+        { "q": "Welche Stadt traf am 6. August 1945 die erste Atombombe im Krieg?", "a": "Hiroshima", "w": ["Nagasaki", "Tokio", "Osaka", "Kyoto", "Okinawa"], "d": 1 },
+        { "q": "Mit welcher Rakete flogen die Apollo-Astronauten zum Mond?", "a": "Saturn V", "w": ["Atlas", "Falcon 9", "Sojus", "Ariane 5", "Titan II"], "alt": ["Saturn 5", "Saturn Five"], "d": 2 },
+        { "q": "In welchem Jahr landete Apollo 11 auf dem Mond?", "a": "1969", "w": ["1965", "1967", "1971", "1972", "1961"], "d": 1 },
+        { "q": "Wie nennt man die Konfrontation zwischen den USA und der Sowjetunion nach 1945?", "a": "Kalter Krieg", "w": ["Sechstagekrieg", "Blitzkrieg", "Grabenkrieg", "Großer Krieg", "Burenkrieg"], "alt": ["Der Kalte Krieg"], "d": 1 }
+      ]
+    },
+    {
+      "id": "deutschland",
+      "name": "Deutsche Geschichte",
+      "questions": [
+        { "q": "Wer war der erste Bundeskanzler der Bundesrepublik?", "a": "Konrad Adenauer", "w": ["Willy Brandt", "Ludwig Erhard", "Helmut Schmidt", "Theodor Heuss", "Kurt Georg Kiesinger"], "alt": ["Adenauer"], "d": 1 },
+        { "q": "In welchem Jahr wurde die Berliner Mauer gebaut?", "a": "1961", "w": ["1949", "1953", "1956", "1965", "1971"], "d": 1 },
+        { "q": "Welcher Kanzler kniete 1970 in Warschau am Ehrenmal nieder?", "a": "Willy Brandt", "w": ["Helmut Kohl", "Konrad Adenauer", "Helmut Schmidt", "Gerhard Schröder", "Ludwig Erhard"], "alt": ["Brandt"], "d": 2 },
+        { "q": "Wer war Bundeskanzler bei der Wiedervereinigung 1990?", "a": "Helmut Kohl", "w": ["Helmut Schmidt", "Gerhard Schröder", "Willy Brandt", "Angela Merkel", "Hans-Dietrich Genscher"], "alt": ["Kohl"], "d": 1 },
+        { "q": "In welcher Stadt wurde 1949 das Grundgesetz beschlossen?", "a": "Bonn", "w": ["Frankfurt am Main", "Berlin", "Weimar", "Köln", "Karlsruhe"], "d": 2 },
+        { "q": "Wie heißt die erste deutsche Demokratie von 1919 bis 1933?", "a": "Weimarer Republik", "w": ["Bonner Republik", "Norddeutscher Bund", "Deutscher Bund", "Kaiserreich", "Rheinbund"], "d": 1 },
+        { "q": "In welchem Jahr wurde das Deutsche Kaiserreich gegründet?", "a": "1871", "w": ["1848", "1866", "1815", "1890", "1918"], "fact": "Die Kaiserproklamation fand ausgerechnet im Spiegelsaal von Versailles statt.", "d": 2 },
+        { "q": "Wer war der erste Reichskanzler des Kaiserreichs?", "a": "Otto von Bismarck", "w": ["Wilhelm II.", "Paul von Hindenburg", "Friedrich Ebert", "Leo von Caprivi", "Gustav Stresemann"], "alt": ["Bismarck"], "d": 1 },
+        { "q": "Wer war die erste Bundeskanzlerin Deutschlands?", "a": "Angela Merkel", "w": ["Ursula von der Leyen", "Annegret Kramp-Karrenbauer", "Renate Künast", "Andrea Nahles", "Hannelore Kraft"], "alt": ["Merkel"], "d": 1 },
+        { "q": "Wie hieß die Staatspartei der DDR?", "a": "SED", "w": ["SPD", "KPD", "PDS", "NSDAP", "FDJ"], "d": 2 },
+        { "q": "Wie nannte man den Staatssicherheitsdienst der DDR kurz?", "a": "Stasi", "w": ["Gestapo", "KGB", "Securitate", "NVA", "Vopo"], "d": 1 },
+        { "q": "In welcher Stadt wurde die Frauenkirche nach der Wiedervereinigung wiederaufgebaut?", "a": "Dresden", "w": ["Leipzig", "München", "Berlin", "Hamburg", "Magdeburg"], "d": 2 }
+      ]
+    }
+  ]
+}

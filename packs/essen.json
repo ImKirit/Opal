@@ -9,22 +9,54 @@
       "id": "essen",
       "name": "Essen & Trinken",
       "questions": [
-        { "q": "Nach wem soll die Pizza Margherita benannt sein?", "a": "Nach einer italienischen Königin", "w": ["Nach einer Bäckerin aus Rom", "Nach einem Gänseblümchen", "Nach einer Opernsängerin"], "alt": ["Königin Margherita", "Margherita von Savoyen", "Königin"], "fact": "Die Farben Rot, Weiß und Grün sollen die italienische Flagge zeigen.", "d": 2 },
-        { "q": "Was ist die Tomate botanisch gesehen?", "a": "Eine Beere", "w": ["Ein Gemüse", "Eine Nuss", "Eine Wurzel"], "typed": false, "d": 2 },
-        { "q": "Welche dieser Früchte ist botanisch KEINE Beere?", "a": "Erdbeere", "w": ["Banane", "Tomate", "Heidelbeere"], "fact": "Die Erdbeere ist eine Sammelnussfrucht, die kleinen Kerne sind die eigentlichen Früchte.", "d": 2 },
-        { "q": "Welches Lebensmittel verdirbt praktisch nie?", "a": "Honig", "w": ["Reis", "Schokolade", "Nudeln"], "fact": "In ägyptischen Gräbern wurde jahrtausendealter, noch essbarer Honig gefunden.", "d": 1 },
-        { "q": "Welches ist das teuerste Gewürz der Welt?", "a": "Safran", "w": ["Vanille", "Kardamom", "Zimt"], "d": 1 },
-        { "q": "Aus welchem Land stammt Kimchi?", "a": "Korea", "w": ["Japan", "China", "Vietnam"], "alt": ["Südkorea"], "d": 1 },
-        { "q": "Aus welcher spanischen Region stammt die Paella?", "a": "Valencia", "w": ["Katalonien", "Andalusien", "Madrid"], "d": 2 },
-        { "q": "Wer erfand das Gummibärchen?", "a": "Hans Riegel", "w": ["Heinrich Haribo", "Karl Katjes", "August Trolli"], "alt": ["Riegel"], "fact": "1922 hießen sie noch Tanzbären.", "d": 2 },
-        { "q": "Was bedeutet „Tiramisu“ übersetzt?", "a": "Zieh mich hoch", "w": ["Süßer Traum", "Kaffee mit Creme", "Mein Schatz"], "alt": ["Heb mich hoch"], "d": 2 },
-        { "q": "Mit welcher Skala misst man die Schärfe von Chilis?", "a": "Scoville", "w": ["Richter", "Kelvin", "Beaufort"], "alt": ["Scoville-Skala"], "d": 1 },
-        { "q": "Welches Getränk wird nach Wasser weltweit am meisten getrunken?", "a": "Tee", "w": ["Kaffee", "Bier", "Cola"], "d": 2 },
-        { "q": "In welcher Stadt wurde die Currywurst erfunden?", "a": "Berlin", "w": ["Hamburg", "Köln", "Bochum"], "fact": "Herta Heuwer verkaufte sie 1949 zum ersten Mal.", "d": 1 },
-        { "q": "Aus welchem Land stammt Nutella?", "a": "Italien", "w": ["Frankreich", "Schweiz", "Belgien"], "d": 1 },
-        { "q": "Was ist das grüne Wasabi in vielen europäischen Sushi-Läden meistens in Wahrheit?", "a": "Gefärbter Meerrettich", "w": ["Grüner Senf", "Avocadocreme", "Erbsenpüree"], "alt": ["Meerrettich"], "d": 2 },
-        { "q": "Welche Nuss steckt im Marzipan?", "a": "Mandel", "w": ["Haselnuss", "Walnuss", "Cashew"], "alt": ["Mandeln"], "d": 1 },
-        { "q": "Aus welchem Land stammt das Kipferl, der Vorfahr des Croissants?", "a": "Österreich", "w": ["Frankreich", "Belgien", "Schweiz"], "alt": ["Oesterreich"], "d": 2 }
+        { "q": "Nach wem soll die Pizza Margherita benannt sein?", "a": "Nach einer italienischen Königin", "w": ["Nach einer Bäckerin aus Rom", "Nach einem Gänseblümchen", "Nach einer Opernsängerin", "Nach einer Heiligen", "Nach einer Pizzabäckerin aus Mailand"], "alt": ["Königin Margherita", "Margherita von Savoyen", "Königin"], "fact": "Die Farben Rot, Weiß und Grün sollen die italienische Flagge zeigen.", "d": 2 },
+        { "q": "Was ist die Tomate botanisch gesehen?", "a": "Eine Beere", "w": ["Ein Gemüse", "Eine Nuss", "Eine Wurzel", "Eine Steinfrucht", "Ein Samen"], "typed": false, "d": 2 },
+        { "q": "Welche dieser Früchte ist botanisch KEINE Beere?", "a": "Erdbeere", "w": ["Banane", "Tomate", "Heidelbeere", "Weintraube", "Johannisbeere"], "fact": "Die Erdbeere ist eine Sammelnussfrucht, die kleinen Kerne sind die eigentlichen Früchte.", "d": 2 },
+        { "q": "Welches Lebensmittel verdirbt praktisch nie?", "a": "Honig", "w": ["Reis", "Schokolade", "Nudeln", "Brot", "Butter"], "fact": "In ägyptischen Gräbern wurde jahrtausendealter, noch essbarer Honig gefunden.", "d": 1 },
+        { "q": "Welches ist das teuerste Gewürz der Welt?", "a": "Safran", "w": ["Vanille", "Kardamom", "Zimt", "Pfeffer", "Muskat"], "d": 1 },
+        { "q": "Aus welchem Land stammt Kimchi?", "a": "Korea", "w": ["Japan", "China", "Vietnam", "Thailand", "Indonesien"], "alt": ["Südkorea"], "d": 1 },
+        { "q": "Aus welcher spanischen Region stammt die Paella?", "a": "Valencia", "w": ["Katalonien", "Andalusien", "Madrid", "Galicien", "Baskenland"], "d": 2 },
+        { "q": "Wer erfand das Gummibärchen?", "a": "Hans Riegel", "w": ["Heinrich Haribo", "Karl Katjes", "August Trolli", "Richard Gummi", "Otto Bär"], "alt": ["Riegel"], "fact": "1922 hießen sie noch Tanzbären.", "d": 2 },
+        { "q": "Was bedeutet „Tiramisu“ übersetzt?", "a": "Zieh mich hoch", "w": ["Süßer Traum", "Kaffee mit Creme", "Mein Schatz", "Kleiner Kuchen", "Sahnetraum"], "alt": ["Heb mich hoch"], "d": 2 },
+        { "q": "Mit welcher Skala misst man die Schärfe von Chilis?", "a": "Scoville", "w": ["Richter", "Kelvin", "Beaufort", "Celsius", "Mohs"], "alt": ["Scoville-Skala"], "d": 1 },
+        { "q": "Welches Getränk wird nach Wasser weltweit am meisten getrunken?", "a": "Tee", "w": ["Kaffee", "Bier", "Cola", "Milch", "Orangensaft"], "d": 2 },
+        { "q": "In welcher Stadt wurde die Currywurst erfunden?", "a": "Berlin", "w": ["Hamburg", "Köln", "Bochum", "Essen", "Dortmund"], "fact": "Herta Heuwer verkaufte sie 1949 zum ersten Mal.", "d": 1 },
+        { "q": "Aus welchem Land stammt Nutella?", "a": "Italien", "w": ["Frankreich", "Schweiz", "Belgien", "Deutschland", "Österreich"], "d": 1 },
+        { "q": "Was ist das grüne Wasabi in vielen europäischen Sushi-Läden meistens in Wahrheit?", "a": "Gefärbter Meerrettich", "w": ["Grüner Senf", "Avocadocreme", "Erbsenpüree", "Grüner Tee", "Spinatpaste"], "alt": ["Meerrettich"], "d": 2 },
+        { "q": "Welche Nuss steckt im Marzipan?", "a": "Mandel", "w": ["Haselnuss", "Walnuss", "Cashew", "Macadamia", "Erdnuss"], "alt": ["Mandeln"], "d": 1 },
+        { "q": "Aus welchem Land stammt das Kipferl, der Vorfahr des Croissants?", "a": "Österreich", "w": ["Frankreich", "Belgien", "Schweiz", "Italien", "Niederlande"], "alt": ["Oesterreich"], "d": 2 }
+      ]
+    },
+    {
+      "id": "getraenke",
+      "name": "Getränke",
+      "questions": [
+        { "q": "Aus welchem Land kommt Scotch Whisky?", "a": "Schottland", "w": ["Irland", "USA", "Kanada", "Japan", "Wales"], "d": 1 },
+        { "q": "Von welcher Pflanze stammen die Blätter für echten Tee?", "a": "Teestrauch", "w": ["Teebaum", "Minze", "Kamille", "Rooibos", "Mate"], "alt": ["Teepflanze", "Camellia sinensis"], "d": 2 },
+        { "q": "Wie heißt der japanische Reiswein?", "a": "Sake", "w": ["Soju", "Shochu", "Makgeolli", "Baijiu", "Raki"], "d": 1 },
+        { "q": "Aus welchem Obst wird Cidre gemacht?", "a": "Äpfeln", "w": ["Birnen", "Trauben", "Kirschen", "Quitten", "Pflaumen"], "alt": ["Apfel", "Äpfel"], "d": 1 },
+        { "q": "Welche Kaffeesorte wird weltweit am meisten angebaut?", "a": "Arabica", "w": ["Robusta", "Liberica", "Excelsa", "Kopi Luwak", "Stenophylla"], "d": 2 },
+        { "q": "Wie heißt das Getränk aus vergorener Milch, das aus dem Kaukasus stammt?", "a": "Kefir", "w": ["Ayran", "Lassi", "Buttermilch", "Kombucha", "Kwass"], "d": 2 },
+        { "q": "Wie heißt ein Espresso mit einem Klecks Milchschaum?", "a": "Espresso macchiato", "w": ["Cappuccino", "Latte macchiato", "Americano", "Ristretto", "Lungo"], "alt": ["Macchiato"], "d": 2 },
+        { "q": "Wie heißt die Vorschrift von 1516, welche Zutaten ins Bier dürfen?", "a": "Reinheitsgebot", "w": ["Biergesetz", "Braurecht", "Malzordnung", "Hopfengesetz", "Zunftrecht"], "d": 1 },
+        { "q": "In welchem Land wird pro Kopf am meisten Kaffee getrunken?", "a": "Finnland", "w": ["Italien", "USA", "Brasilien", "Kolumbien", "Deutschland"], "d": 3 },
+        { "q": "Wie heißt der Tee aus Südamerika, der aus einer Kalebasse getrunken wird?", "a": "Mate", "w": ["Rooibos", "Chai", "Matcha", "Earl Grey", "Hibiskus"], "alt": ["Mate-Tee", "Yerba Mate"], "d": 2 }
+      ]
+    },
+    {
+      "id": "weltkueche",
+      "name": "Küche der Welt",
+      "questions": [
+        { "q": "Aus welchem Land stammen Tacos?", "a": "Mexiko", "w": ["Spanien", "Argentinien", "Peru", "Kuba", "Chile"], "d": 1 },
+        { "q": "Was ist die Hauptzutat von Hummus?", "a": "Kichererbsen", "w": ["Linsen", "Bohnen", "Erbsen", "Auberginen", "Joghurt"], "d": 1 },
+        { "q": "Aus welchem Land stammt das Gulasch?", "a": "Ungarn", "w": ["Österreich", "Tschechien", "Polen", "Rumänien", "Kroatien"], "d": 1 },
+        { "q": "Welche Stadt gilt als Heimat der Pizza?", "a": "Neapel", "w": ["Rom", "Mailand", "Venedig", "Florenz", "Palermo"], "d": 1 },
+        { "q": "Aus welchem Land stammt die Nudelsuppe Pho?", "a": "Vietnam", "w": ["Thailand", "China", "Japan", "Korea", "Laos"], "d": 1 },
+        { "q": "Was bedeutet „Dim Sum“ wörtlich ungefähr?", "a": "Das Herz berühren", "w": ["Kleine Teigtasche", "Gedämpftes Essen", "Guten Appetit", "Teezeit", "Viele Farben"], "typed": false, "d": 3 },
+        { "q": "Aus welcher Region stammt Couscous?", "a": "Nordafrika", "w": ["Nahost", "Südeuropa", "Westafrika", "Indien", "Mittelamerika"], "alt": ["Maghreb", "Marokko", "Algerien", "Tunesien"], "d": 2 },
+        { "q": "Aus welchem Land kommt Smørrebrød?", "a": "Dänemark", "w": ["Norwegen", "Schweden", "Island", "Finnland", "Niederlande"], "d": 2 },
+        { "q": "Wie heißt das indische Fladenbrot aus dem Tandoor-Ofen?", "a": "Naan", "w": ["Chapati", "Pita", "Tortilla", "Lavash", "Injera"], "alt": ["Nan"], "d": 2 },
+        { "q": "Was ist Tofu?", "a": "Geronnene Sojamilch", "w": ["Gepresster Reis", "Fermentierter Fisch", "Getrockneter Pilz", "Käse aus Kuhmilch", "Kichererbsenmus"], "typed": false, "d": 2 }
       ]
     }
   ]

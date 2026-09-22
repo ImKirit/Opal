@@ -4,7 +4,7 @@ export type BotDifficulty = 'leicht' | 'mittel' | 'schwer';
 export type SoloMode = 'classic' | 'survival';
 /** gemischt = keine Vorliebe, sonst werden Fragen dieser Stufe bevorzugt */
 export type Difficulty = 'gemischt' | 'leicht' | 'mittel' | 'schwer';
-export type OptionCount = 3 | 4;
+export type OptionCount = 3 | 4 | 5 | 6;
 export type TimeLimit = 'kurz' | 'normal' | 'lang';
 export type ContinueMode = 'button' | 'auto';
 
@@ -23,6 +23,8 @@ export interface User {
   guest: boolean;
   /** Macher von Opal (Server legt das per Discord-ID fest) */
   owner?: boolean;
+  /** Discord-Benutzername, erscheint beim Drueberfahren (nur Discord-Konten) */
+  handle?: string | null;
   /** Rang pro Ranked-Modus (Schluessel wie in AppConfig.ladders) */
   ranks: Record<string, Rank>;
 }
@@ -79,6 +81,16 @@ export interface Pack {
   sections: PackSection[];
 }
 
+/** Themenpaket: fertige Zusammenstellung von Bereichen */
+export interface Bundle {
+  id: string;
+  name: string;
+  desc: string;
+  icon: string;
+  hue: number;
+  sections: string[];
+}
+
 export interface AppConfig {
   version: string;
   discordEnabled: boolean;
@@ -95,6 +107,7 @@ export interface MatchPlayer {
   isBot: boolean;
   guest: boolean;
   owner?: boolean;
+  handle?: string | null;
   rating: number | null;
   connected: boolean;
   left: boolean;
@@ -174,6 +187,7 @@ export interface EndSummary {
   name: string;
   isBot: boolean;
   owner?: boolean;
+  handle?: string | null;
   score: number;
   correct: number;
   wrong: number;
@@ -219,7 +233,7 @@ export interface LobbyState {
   playing: boolean;
   locked: boolean;
   settings: LobbySettings;
-  members: { id: string; name: string; avatar: string | null; guest: boolean; connected: boolean; owner?: boolean }[];
+  members: { id: string; name: string; avatar: string | null; guest: boolean; connected: boolean; owner?: boolean; handle?: string | null }[];
   bots: { id: string; name: string; difficulty: BotDifficulty }[];
 }
 
@@ -240,6 +254,7 @@ export interface BoardEntry {
   name: string;
   avatar: string | null;
   owner?: boolean;
+  handle?: string | null;
   value: number;
   games: number | null;
   wins: number | null;
@@ -265,7 +280,7 @@ export interface RecentMatch {
   score: number;
   placement: number;
   ratingDelta: number | null;
-  opponents: { id: string; name: string; isBot: boolean; owner?: boolean; score: number }[];
+  opponents: { id: string; name: string; isBot: boolean; owner?: boolean; handle?: string | null; score: number }[];
 }
 
 export interface Profile {
@@ -285,6 +300,7 @@ export interface FriendCard {
   avatar: string | null;
   guest: boolean;
   owner?: boolean;
+  handle?: string | null;
   /** Kurzes Kennzeichen aus der ID, fuer gleichnamige Leute */
   tag: string;
   presence?: Presence;
@@ -302,6 +318,7 @@ export interface InvitePerson {
   name: string;
   avatar: string | null;
   owner?: boolean;
+  handle?: string | null;
 }
 
 export interface Invite {
