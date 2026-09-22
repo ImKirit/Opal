@@ -1,4 +1,4 @@
-import { Check, Copy, Crown, Keyboard, ListChecks, LogOut, Play, Plus, Shuffle, UserMinus, X } from 'lucide-react';
+import { Check, Copy, Crown, Keyboard, ListChecks, Lock, LogOut, Play, Plus, Shuffle, UserMinus, X } from 'lucide-react';
 import { useState } from 'react';
 import { Avatar } from '../components/Avatar';
 import { Button } from '../components/Button';
@@ -6,11 +6,13 @@ import { Modal } from '../components/Modal';
 import { PackIcon } from '../components/PackIcon';
 import { PackPicker, selectionSummary } from '../components/PackPicker';
 import { Segmented } from '../components/Segmented';
+import { Toggle } from '../components/Toggle';
 import { Glass } from '../glass/Glass';
-import { ANSWER_MODE_LABEL } from '../lib/format';
+import { ANSWER_MODE_LABEL, CONTINUE_MODE_LABEL, DIFFICULTY_LABEL, TIME_LIMIT_LABEL } from '../lib/format';
 import { usePrefs } from '../lib/prefs';
 import { actions, toast, useGame, useSession } from '../lib/store';
-import type { AnswerMode, BotDifficulty, LobbyState } from '../lib/types';
+import type { AnswerMode, BotDifficulty, ContinueMode, Difficulty, LobbyState, TimeLimit } from '../lib/types';
+import { DIFFICULTY_EXPLAIN } from './Hub';
 import { useSticky } from '../lib/useSticky';
 
 export function Lobby() {
@@ -55,7 +57,11 @@ function LobbyView({ lobby, meId }: { lobby: LobbyState; meId: string }) {
               {copied ? <Check size={18} /> : <Copy size={18} />}
             </button>
           </div>
-          <p className="muted">Schick diesen Code an deine Leute. Sie geben ihn unter Spielen bei „Private Lobby“ ein.</p>
+          <p className="muted">
+            {lobby.locked
+              ? 'Die Lobby ist abgeschlossen, mit dem Code kommt gerade niemand rein.'
+              : 'Schick diesen Code an deine Leute. Sie geben ihn unter Spielen bei „Private Lobby“ ein.'}
+          </p>
         </div>
         <Button variant="ghost" icon={<LogOut size={16} />} onClick={() => void actions.leaveLobby()}>
           Lobby verlassen
@@ -126,40 +132,10 @@ function LobbyView({ lobby, meId }: { lobby: LobbyState; meId: string }) {
 
         <Glass className="lobby__settings" radius={30} bezel={24} tone="deep" blur={2}>
           <h2>Regeln</h2>
-          <div className="setup__block">
-            <span className="field-label">Antworten</span>
-            {isHost ? (
-              <Segmented<AnswerMode>
-                label="Antwortmodus"
-                block
-                value={lobby.settings.answerMode}
-                onChange={(v) => void actions.lobbySettings({ answerMode: v })}
-                options={[
-                  { value: 'choice', label: 'Auswahl', icon: <ListChecks size={15} /> },
-                  { value: 'typed', label: 'Tippen', icon: <Keyboard size={15} /> },
-                  { value: 'mixed', label: 'Gemischt', icon: <Shuffle size={15} /> },
-                ]}
-              />
-            ) : (
-              <p>{ANSWER_MODE_LABEL[lobby.settings.answerMode]}</p>
-            )}
-          </div>
-          <div className="setup__block">
-            <span className="field-label">Fragen pro Spiel</span>
-            {isHost ? (
-              <Segmented<string>
-                label="Fragen pro Spiel"
-                value={String(lobby.settings.questionCount)}
-                onChange={(v) => void actions.lobbySettings({ questionCount: Number(v) })}
-                options={['5', '10', '15', '20'].map((n) => ({ value: n, label: n }))}
-              />
-            ) : (
-              <p className="num">{lobby.settings.questionCount}</p>
-            )}
-          </div>
+          {isHost ? <HostSettings lobby={lobby} /> : <RulesSummary lobby={lobby} />}
           <div className="setup__block">
             <div className="setup__row">
-              <span className="field-label">Pakete</span>
+              <span className="field-label">Themen</span>
               <span className="muted num">{summary.questions} Fragen</span>
             </div>
             <ul className="setup__packs">
@@ -184,7 +160,7 @@ function LobbyView({ lobby, meId }: { lobby: LobbyState; meId: string }) {
                     setPicking(true);
                   }}
                 >
-                  Pakete wählen
+                  Themen wählen
                 </Button>
                 <Button size="sm" variant="ghost" onClick={() => void actions.lobbySettings({ sections: mySections })}>
                   Meine Auswahl übernehmen
@@ -215,7 +191,7 @@ function LobbyView({ lobby, meId }: { lobby: LobbyState; meId: string }) {
         </Glass>
       </div>
 
-      <Modal open={picking} onClose={() => setPicking(false)} title="Pakete für die Lobby" width={980}>
+      <Modal open={picking} onClose={() => setPicking(false)} title="Themen für die Lobby" width={980}>
         <PackPicker value={draft} onChange={setDraft} />
         <div className="modal__actions">
           <span className="muted num">{selectionSummary(packs, draft).questions} Fragen</span>
@@ -232,5 +208,141 @@ function LobbyView({ lobby, meId }: { lobby: LobbyState; meId: string }) {
         </div>
       </Modal>
     </main>
+  );
+}
+
+/** Alle Einstellungen, die der Host fuer die Runde festlegt. Aenderungen sehen alle sofort. */
+function HostSettings({ lobby }: { lobby: LobbyState }) {
+  const st = lobby.settings;
+  const set = (patch: Record<string, unknown>) => void actions.lobbySettings(patch);
+  return (
+    <>
+      <div className="setup__block">
+        <span className="field-label">Antworten</span>
+        <Segmented<AnswerMode>
+          label="Antwortmodus"
+          block
+          value={st.answerMode}
+          onChange={(v) => set({ answerMode: v })}
+          options={[
+            { value: 'choice', label: 'Auswahl', icon: <ListChecks size={15} /> },
+            { value: 'typed', label: 'Tippen', icon: <Keyboard size={15} /> },
+            { value: 'mixed', label: 'Gemischt', icon: <Shuffle size={15} /> },
+          ]}
+        />
+        {st.answerMode !== 'typed' && (
+          <div className="setup__row">
+            <span className="setup__explain">Antwortmöglichkeiten</span>
+            <Segmented<string>
+              label="Antwortmöglichkeiten"
+              size="sm"
+              value={String(st.optionCount)}
+              onChange={(v) => set({ optionCount: Number(v) })}
+              options={[
+                { value: '3', label: '3' },
+                { value: '4', label: '4' },
+              ]}
+            />
+          </div>
+        )}
+      </div>
+      <div className="setup__block">
+        <span className="field-label">Schwierigkeit</span>
+        <Segmented<Difficulty>
+          label="Schwierigkeit"
+          size="sm"
+          block
+          value={st.difficulty}
+          onChange={(v) => set({ difficulty: v })}
+          options={(Object.keys(DIFFICULTY_LABEL) as Difficulty[]).map((d) => ({ value: d, label: DIFFICULTY_LABEL[d] }))}
+        />
+        <p className="setup__explain">{DIFFICULTY_EXPLAIN[st.difficulty]}</p>
+      </div>
+      <div className="setup__block">
+        <span className="field-label">Fragen pro Spiel</span>
+        <Segmented<string>
+          label="Fragen pro Spiel"
+          size="sm"
+          block
+          value={String(st.questionCount)}
+          onChange={(v) => set({ questionCount: Number(v) })}
+          options={['5', '10', '15', '20', '30'].map((n) => ({ value: n, label: n }))}
+        />
+      </div>
+      <div className="setup__block">
+        <span className="field-label">Zeit pro Frage</span>
+        <Segmented<TimeLimit>
+          label="Zeit pro Frage"
+          size="sm"
+          block
+          value={st.timeLimit}
+          onChange={(v) => set({ timeLimit: v })}
+          options={[
+            { value: 'kurz', label: 'Kurz' },
+            { value: 'normal', label: 'Normal' },
+            { value: 'lang', label: 'Lang' },
+          ]}
+        />
+        <p className="setup__explain">{TIME_LIMIT_LABEL[st.timeLimit]}</p>
+      </div>
+      <div className="setup__block">
+        <span className="field-label">Nach jeder Frage</span>
+        <Segmented<ContinueMode>
+          label="Nach jeder Frage"
+          size="sm"
+          block
+          value={st.continueMode}
+          onChange={(v) => set({ continueMode: v })}
+          options={[
+            { value: 'button', label: 'Weiter-Knopf' },
+            { value: 'auto', label: 'Automatisch' },
+          ]}
+        />
+        <p className="setup__explain">
+          {st.continueMode === 'button'
+            ? 'Alle drücken auf Weiter. Wer zuerst drückt, gibt den anderen noch 10 Sekunden.'
+            : 'Die Auflösung steht ein paar Sekunden, dann kommt die nächste Frage von selbst.'}
+        </p>
+      </div>
+      <Toggle
+        checked={st.locked}
+        onChange={(v) => set({ locked: v })}
+        label="Lobby abschließen"
+        hint="Niemand Neues kommt mehr rein, auch nicht mit dem Code."
+      />
+    </>
+  );
+}
+
+/** Was Mitspieler ohne Host-Rechte sehen: die Regeln zum Nachlesen. */
+function RulesSummary({ lobby }: { lobby: LobbyState }) {
+  const st = lobby.settings;
+  const rows: [string, string][] = [
+    [
+      'Antworten',
+      st.answerMode === 'typed' ? ANSWER_MODE_LABEL.typed : `${ANSWER_MODE_LABEL[st.answerMode]}, ${st.optionCount} Optionen`,
+    ],
+    ['Schwierigkeit', DIFFICULTY_LABEL[st.difficulty]],
+    ['Fragen', String(st.questionCount)],
+    ['Zeit pro Frage', TIME_LIMIT_LABEL[st.timeLimit]],
+    ['Nach jeder Frage', CONTINUE_MODE_LABEL[st.continueMode]],
+  ];
+  return (
+    <dl className="rules">
+      {rows.map(([k, v]) => (
+        <div key={k}>
+          <dt>{k}</dt>
+          <dd>{v}</dd>
+        </div>
+      ))}
+      {st.locked && (
+        <div>
+          <dt>
+            <Lock size={13} /> Lobby
+          </dt>
+          <dd>abgeschlossen</dd>
+        </div>
+      )}
+    </dl>
   );
 }

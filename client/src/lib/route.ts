@@ -1,18 +1,21 @@
 import { useSyncExternalStore } from 'react';
 
-// Hash-Routing (#/pakete): funktioniert auf jedem Server-Pfad und spaeter auch in Electron.
+// Hash-Routing (#/themen): funktioniert auf jedem Server-Pfad und spaeter auch in Electron.
 
-export type RouteName = 'spielen' | 'pakete' | 'rangliste' | 'profil';
+export type RouteName = 'spielen' | 'themen' | 'freunde' | 'rangliste' | 'profil';
 
 export interface Route {
   name: RouteName;
   param: string | null;
 }
 
-const NAMES: RouteName[] = ['spielen', 'pakete', 'rangliste', 'profil'];
+const NAMES: RouteName[] = ['spielen', 'themen', 'freunde', 'rangliste', 'profil'];
+/** Alte Adressen, die weiter funktionieren sollen ("Pakete" heisst jetzt "Themen") */
+const ALIASES: Record<string, RouteName> = { pakete: 'themen' };
 
 function parse(hash: string): Route {
-  const [first, second] = hash.replace(/^#\/?/, '').split('/');
+  const [raw, second] = hash.replace(/^#\/?/, '').split('/');
+  const first = ALIASES[raw] ?? raw;
   const name = (NAMES as string[]).includes(first) ? (first as RouteName) : 'spielen';
   return { name, param: second ? decodeURIComponent(second) : null };
 }

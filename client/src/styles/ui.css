@@ -145,6 +145,22 @@
   background: oklch(1 0 0 / 0.07);
 }
 
+/* Zaehler in der Navigation, zum Beispiel offene Freundschaftsanfragen */
+.nav-badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 17px;
+  height: 17px;
+  margin-left: 5px;
+  padding: 0 5px;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+
 /* Desktop-App: oben 36px fuer Titelleiste und Fensterknoepfe, dort laesst sich das Fenster ziehen */
 html.is-desktop body {
   padding-top: 36px;
@@ -840,4 +856,90 @@ html[data-ambient='on'] .backdrop__light--c {
   .page {
     padding-bottom: 120px;
   }
+}
+
+/* ---------- Rundgang ---------- */
+
+.tour {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+}
+/* Lichtkegel: ein Loch im abgedunkelten Rest, gleitet von Ziel zu Ziel */
+.tour__spot {
+  position: fixed;
+  border-radius: 26px;
+  box-shadow:
+    0 0 0 2px color-mix(in oklab, var(--accent) 70%, transparent),
+    0 0 36px 4px var(--accent-glow),
+    0 0 0 200vmax oklch(0.1 0.03 var(--bg-h) / 0.66);
+  pointer-events: none;
+  transition:
+    left 0.42s var(--ease-out),
+    top 0.42s var(--ease-out),
+    width 0.42s var(--ease-out),
+    height 0.42s var(--ease-out);
+}
+.tour__spot.is-empty {
+  box-shadow: 0 0 0 200vmax oklch(0.1 0.03 var(--bg-h) / 0.66);
+}
+.tour__arrow {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.tour__arrow path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 6px var(--accent-glow));
+  animation: tour-draw 0.5s 0.25s var(--ease-out) forwards;
+}
+.tour__arrow marker path {
+  fill: var(--accent);
+  stroke: none;
+  animation: none;
+  stroke-dasharray: none;
+}
+@keyframes tour-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.tour__card-wrap {
+  position: fixed;
+  width: min(340px, 100vw - 32px);
+  transition:
+    left 0.42s var(--ease-out),
+    top 0.42s var(--ease-out);
+}
+.tour__card {
+  display: grid;
+  gap: 8px;
+  padding: 18px 18px 14px;
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 35%, transparent),
+    0 30px 60px -20px oklch(0 0 0 / 0.75);
+}
+.tour__title {
+  font-size: var(--t-xl);
+}
+.tour__text {
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+.tour__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+.tour__spacer {
+  flex: 1;
 }

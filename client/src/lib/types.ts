@@ -2,6 +2,11 @@ export type AnswerMode = 'choice' | 'typed' | 'mixed';
 export type MatchKind = 'solo' | 'bot' | 'unranked' | 'ranked' | 'private';
 export type BotDifficulty = 'leicht' | 'mittel' | 'schwer';
 export type SoloMode = 'classic' | 'survival';
+/** gemischt = keine Vorliebe, sonst werden Fragen dieser Stufe bevorzugt */
+export type Difficulty = 'gemischt' | 'leicht' | 'mittel' | 'schwer';
+export type OptionCount = 3 | 4;
+export type TimeLimit = 'kurz' | 'normal' | 'lang';
+export type ContinueMode = 'button' | 'auto';
 
 export interface User {
   id: string;
@@ -80,6 +85,10 @@ export interface MatchInfo {
   variant: string | null;
   answerMode: AnswerMode;
   soloMode: SoloMode | null;
+  difficulty?: Difficulty;
+  optionCount?: OptionCount;
+  timeLimit?: TimeLimit;
+  continueMode?: ContinueMode;
   total: number | null;
   players: MatchPlayer[];
 }
@@ -101,6 +110,7 @@ export interface QuestionPayload {
   scores: Scores;
   resolved?: boolean;
   locked?: boolean;
+  skipped?: boolean;
 }
 
 export interface RevealPayload {
@@ -112,8 +122,18 @@ export interface RevealPayload {
   answer: string;
   correctIndex: number;
   fact: string | null;
+  /** IDs derer, die uebersprungen haben */
+  skipped: string[];
   scores: Scores;
-  nextInMs: number;
+  /** Nach dieser Frage ist Schluss */
+  last: boolean;
+  continueMode: ContinueMode;
+  /** Nur bei continueMode "auto" */
+  nextInMs: number | null;
+  /** Wer schon auf Weiter gedrueckt hat (Bots und Abwesende sofort) */
+  ready: string[];
+  /** Die erste Person hat gedrueckt: so lange warten die anderen noch */
+  autoInMs: number | null;
 }
 
 export interface EndSummary {
@@ -149,6 +169,11 @@ export interface LobbySettings {
   sections: string[];
   answerMode: AnswerMode;
   questionCount: number;
+  difficulty: Difficulty;
+  optionCount: OptionCount;
+  timeLimit: TimeLimit;
+  continueMode: ContinueMode;
+  locked: boolean;
 }
 
 export interface LobbyState {
@@ -156,6 +181,7 @@ export interface LobbyState {
   hostId: string;
   max: number;
   playing: boolean;
+  locked: boolean;
   settings: LobbySettings;
   members: { id: string; name: string; avatar: string | null; guest: boolean; connected: boolean }[];
   bots: { id: string; name: string; difficulty: BotDifficulty }[];
@@ -166,6 +192,8 @@ export interface QueueStatus {
   since: number;
   waiting: number;
   answerMode: AnswerMode;
+  difficulty: Difficulty;
+  optionCount: OptionCount;
 }
 
 export interface LeaderboardEntry {
@@ -197,6 +225,45 @@ export interface Profile {
   user: User;
   stats: Stats;
   matches: RecentMatch[];
+}
+
+/** Was Freunde ueber jemanden sehen */
+export type Presence = 'offline' | 'online' | 'queue' | 'lobby' | 'playing';
+/** Beziehung aus meiner Sicht */
+export type Relation = 'none' | 'friend' | 'outgoing' | 'incoming';
+
+export interface FriendCard {
+  id: string;
+  name: string;
+  avatar: string | null;
+  guest: boolean;
+  rating: number;
+  rankedGames: number;
+  /** Kurzes Kennzeichen aus der ID, fuer gleichnamige Leute */
+  tag: string;
+  presence?: Presence;
+  relation?: Relation;
+}
+
+export interface FriendsList {
+  friends: FriendCard[];
+  incoming: FriendCard[];
+  outgoing: FriendCard[];
+}
+
+export interface InvitePerson {
+  id: string;
+  name: string;
+  avatar: string | null;
+}
+
+export interface Invite {
+  id: string;
+  from: InvitePerson;
+  to: InvitePerson;
+  /** true: die Anfrage holt einen in eine bestehende Lobby, sonst startet direkt ein Duell */
+  intoLobby: boolean;
+  expiresInMs: number;
 }
 
 export interface Ack {

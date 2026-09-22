@@ -1,15 +1,56 @@
+import { Check, UserPlus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Avatar } from '../components/Avatar';
 import { Button } from '../components/Button';
 import { TierBadge } from '../components/TierBadge';
 import { Glass } from '../glass/Glass';
 import { api } from '../lib/api';
+import { loadFriends, useFriends } from '../lib/friends';
 import { ago, KIND_LABEL, percent, seconds, signed } from '../lib/format';
 import { useRoute } from '../lib/route';
-import { logout, useSession } from '../lib/store';
+import { logout, toast, useSession } from '../lib/store';
 import type { Profile as ProfileData } from '../lib/types';
 
 const RESULT_LABEL = { win: 'Sieg', loss: 'Niederlage', draw: 'Unentschieden', solo: 'Training' } as const;
+
+/** Freundschaft von fremden Profilen aus: hinzufuegen, annehmen oder Stand anzeigen */
+function FriendButton({ userId, name }: { userId: string; name: string }) {
+  const list = useFriends();
+  const [busy, setBusy] = useState(false);
+  const act = async (fn: () => Promise<unknown>, done?: string) => {
+    setBusy(true);
+    try {
+      await fn();
+      if (done) toast(done, 'good');
+      await loadFriends();
+    } catch (err) {
+      toast((err as Error).message, 'error');
+    } finally {
+      setBusy(false);
+    }
+  };
+  if (!list.loaded) return null;
+  if (list.friends.some((f) => f.id === userId)) {
+    return (
+      <span className="friend__done">
+        <Check size={15} /> Befreundet
+      </span>
+    );
+  }
+  if (list.outgoing.some((f) => f.id === userId)) return <span className="friend__done">Anfrage gesendet</span>;
+  if (list.incoming.some((f) => f.id === userId)) {
+    return (
+      <Button size="sm" variant="primary" loading={busy} onClick={() => act(() => api.friendAccept(userId), `Du bist jetzt mit ${name} befreundet.`)}>
+        Anfrage annehmen
+      </Button>
+    );
+  }
+  return (
+    <Button size="sm" icon={<UserPlus size={15} />} loading={busy} onClick={() => act(() => api.friendRequest(userId))}>
+      Als Freund hinzufügen
+    </Button>
+  );
+}
 
 export function Profile() {
   const route = useRoute();
@@ -65,10 +106,12 @@ export function Profile() {
           {!user.guest && <p className="muted num">Bestwert {user.peakRating} Punkte</p>}
         </div>
         {!user.guest && <TierBadge rating={user.rating} games={user.rankedGames} />}
-        {isMe && (
+        {isMe ? (
           <Button size="sm" variant="ghost" onClick={() => void logout()}>
             Abmelden
           </Button>
+        ) : (
+          me && <FriendButton userId={user.id} name={user.name} />
         )}
       </Glass>
 

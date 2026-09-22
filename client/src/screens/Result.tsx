@@ -63,6 +63,7 @@ export function Result() {
   return (
     <main className="page result">
       <MotionGlass
+        hero
         className={`result__card result__card--${tone}`}
         radius={36}
         bezel={30}

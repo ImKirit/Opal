@@ -57,6 +57,7 @@ export class Lobby {
       hostId: this.hostId,
       max: LOBBY_MAX,
       playing: Boolean(this.match),
+      locked: Boolean(this.settings.locked),
       settings: this.settings,
       members: [...this.members.values()].map(({ user, ...rest }) => rest),
       bots: this.bots.map((b) => ({ id: b.id, name: b.name, difficulty: b.difficulty })),

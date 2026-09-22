@@ -88,12 +88,25 @@ function shuffle(arr) {
   return arr;
 }
 
+const DIFFICULTY_TARGET = { leicht: 1, mittel: 2, schwer: 3 };
+
+/**
+ * Wie schlecht eine Frage zur gewuenschten Schwierigkeit passt (0 = passt genau).
+ * Beim Tippen rutscht alles eine Stufe leichter: Selbst schreiben ist schwerer als Auswaehlen.
+ */
+export function difficultyPenalty(d, difficulty = 'gemischt', typed = false) {
+  const target = DIFFICULTY_TARGET[difficulty];
+  if (!target) return typed && d >= 3 ? 2 : 0;
+  return Math.abs(d - (typed ? Math.max(1, target - 1) : target));
+}
+
 /**
  * Zieht Fragen aus den gewaehlten Bereichen. Bereiche werden reihum gemischt, damit ein
- * grosses Paket ein kleines nicht verdraengt. Kuerzlich gesehene Fragen kommen nur, wenn
- * sonst zu wenig uebrig ist.
+ * grosses Paket ein kleines nicht verdraengt. Danach zaehlt in dieser Reihenfolge: Frage
+ * laesst sich im gewuenschten Modus spielen, Schwierigkeit passt, Frage wurde nicht
+ * kuerzlich gesehen. Fehlt etwas, wird mit der naechstbesten Frage aufgefuellt.
  */
-export function pickQuestions(sections, count, { answerMode = 'choice', exclude = new Set() } = {}) {
+export function pickQuestions(sections, count, { answerMode = 'choice', difficulty = 'gemischt', exclude = new Set() } = {}) {
   const buckets = sections
     .map((key) => shuffle([...(sectionIndex.get(key) ?? [])]))
     .filter((b) => b.length);
@@ -105,21 +118,27 @@ export function pickQuestions(sections, count, { answerMode = 'choice', exclude 
     for (const bucket of shuffle(buckets.filter((b) => b.length))) ordered.push(bucket.pop());
   }
 
-  const score = (q) => (exclude.has(q.id) ? 2 : 0) + (wantTyped && !q.typed ? 1 : 0);
-  // Stabil nach "Frische" sortieren, die Zufallsreihenfolge innerhalb gleicher Stufe bleibt
+  const score = (q) =>
+    (wantTyped && !q.typed ? 20 : 0) + difficultyPenalty(q.d, difficulty, wantTyped) * 3 + (exclude.has(q.id) ? 2 : 0);
+  // Stabil sortieren, die Zufallsreihenfolge innerhalb gleicher Stufe bleibt
   const ranked = ordered.map((q, i) => ({ q, i, s: score(q) })).sort((a, b) => a.s - b.s || a.i - b.i);
   return ranked.slice(0, count).map((r) => r.q);
 }
 
-/** Baut aus einer Frage die konkrete Runde: Modus, Optionen, Index der richtigen Option. */
-export function buildRound(question, answerMode) {
+/**
+ * Baut aus einer Frage die konkrete Runde: Modus, Optionen, Index der richtigen Option.
+ * Die richtige Antwort landet durch das Mischen gleichverteilt auf jedem Platz.
+ * Im gemischten Modus wird nur bei leichten Fragen getippt.
+ */
+export function buildRound(question, answerMode, optionCount = 3) {
   let mode = 'choice';
   if (answerMode === 'typed' && question.typed) mode = 'typed';
-  if (answerMode === 'mixed' && question.typed && Math.random() < 0.5) mode = 'typed';
+  if (answerMode === 'mixed' && question.typed && question.d <= 1 && Math.random() < 0.5) mode = 'typed';
 
   if (mode === 'typed') return { mode, options: null, correctIndex: -1 };
 
-  const wrong = shuffle([...question.w]).slice(0, 2);
+  const wrongCount = Math.max(2, Math.min(optionCount - 1, question.w.length));
+  const wrong = shuffle([...question.w]).slice(0, wrongCount);
   const options = shuffle([question.a, ...wrong]);
   return { mode, options, correctIndex: options.indexOf(question.a) };
 }

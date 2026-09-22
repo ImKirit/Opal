@@ -6,12 +6,13 @@
 
 **Wer zuerst richtig liegt, holt den Punkt.**
 
-Fun-Fact-Quizduelle in Echtzeit im Browser: Ranked mit Elo, Unranked, private Lobbys per Code
-und Training allein oder gegen Bots. Die Fragen stellst du dir aus Paketen zusammen, von
-Allgemeinwissen über Anime bis Parfüm. Oberfläche in echtem Liquid Glass mit Lichtbrechung.
+Fun-Fact-Quizduelle in Echtzeit im Browser: Ranked mit Elo, Unranked, private Lobbys per Code,
+Duelle gegen Freunde und Training allein oder gegen Bots. Die Fragen stellst du dir aus Themen
+zusammen, von Allgemeinwissen über Anime bis Parfüm. Oberfläche in echtem Liquid Glass mit
+Lichtbrechung.
 
 [![Spielen](https://img.shields.io/badge/spielen-imkirit.dev%2Fopal-8fcfff)](https://imkirit.dev/opal)
-[![Fragen](https://img.shields.io/badge/fragen-571%20in%2011%20Paketen-0b1629)](packs/)
+[![Fragen](https://img.shields.io/badge/fragen-571%20in%2011%20Themen-0b1629)](packs/)
 [![Node](https://img.shields.io/badge/node-%E2%89%A5%2022.13-0b1629)](https://nodejs.org/)
 
 <img src="docs/main-duell.png" width="820" alt="Opal: Duell gegen einen Bot mit Frage, Zeitleiste und drei Antworten">
@@ -27,75 +28,96 @@ vorne moderiert. Opal ist ein Rennen: alle sehen dieselbe Frage, und nur wer zue
 antwortet, bekommt den Punkt. Gefragt werden Dinge, die man gern weiß, etwa wie die Angst
 vor langen Wörtern heißt oder welches Tier würfelförmigen Kot hinterlässt.
 
-Themen sind **Pakete statt fester Kategorien**. Du nimmst ein ganzes Paket oder nur die
-Bereiche, die du wirklich kennst, zum Beispiel bei Anime nur One Piece und Naruto. Im
-Unranked spielst du die Schnittmenge mit deinem Gegner, im Ranked alle dasselbe
-Allgemein-Paket, damit nicht die zufällige Nische entscheidet.
+Die Fragen kommen aus **Themen statt fester Kategorien**. Du nimmst ein ganzes Thema oder nur
+die Bereiche, die du wirklich kennst, zum Beispiel bei Anime nur One Piece und Naruto. Im
+Unranked spielst du die Schnittmenge mit deinem Gegner, im Ranked alle dasselbe Thema
+Allgemein, damit nicht die zufällige Nische entscheidet.
 
 ## Getting started
 
 1. **Starte Opal und melde dich an.** Mit Discord oder als Gast mit einem Namen. Gäste
-   können alles außer Ranked. Die Beispielfrage rechts lässt sich sofort ausprobieren.
+   können alles außer Ranked. Die Beispielfrage rechts lässt sich sofort ausprobieren. Beim
+   ersten Besuch zeigt ein kurzer Rundgang mit Pfeilen, wo alles ist.
 
    <img src="docs/tour-1-start.png" width="620" alt="Startseite mit Gast-Anmeldung und Beispielfrage">
 
-2. **Wähl deine Pakete.** Oben auf `Pakete`: ein Klick auf den Kopf einer Karte schaltet das
-   ganze Paket, die Chips darunter einzelne Bereiche. Oben rechts steht, wie viele Fragen aktiv sind.
+2. **Wähl deine Themen.** Oben auf `Themen`: ein Klick auf den Kopf einer Karte schaltet das
+   ganze Thema, die Chips darunter einzelne Bereiche. Oben rechts steht, wie viele Fragen aktiv sind.
 
-   <img src="docs/tour-2-pakete.png" width="620" alt="Paketauswahl mit Allgemein und Anime aktiv">
+   <img src="docs/tour-2-themen.png" width="620" alt="Themenauswahl mit Allgemein und Anime aktiv">
 
 3. **Such dir einen Modus aus.** Unter `Spielen` stehen Ranked, Unranked, Private Lobby und
-   Training. Rechts unter `Deine Runde` legst du fest, ob du aus drei Antworten wählst, selbst
-   tippst oder beides gemischt. Für den Anfang: Training, `Gegen Bot`, `Mittel`.
+   Training. Rechts unter `Deine Runde` legst du fest, ob du aus drei oder vier Antworten
+   wählst, selbst tippst oder beides gemischt, und wie schwer die Fragen sein sollen. Für den
+   Anfang: Training, `Gegen Bot`, `Mittel`.
 
    <img src="docs/tour-3-spielen.png" width="620" alt="Spielen-Seite mit den vier Modi und der Rundeneinstellung">
 
-4. **Sei schneller als dein Gegner.** Klick die Antwort oder drück `1`, `2` oder `3`. Wer zuerst
-   richtig liegt, holt den Punkt, danach gibt es die Auflösung mit einem Fun Fact.
+4. **Sei schneller als dein Gegner.** Klick die Antwort oder drück `1` bis `4`. Wer zuerst
+   richtig liegt, holt den Punkt. Danach kommt unten die Auflösung, grün oder rot, und mit
+   `Weiter` (oder `Enter`) geht es zur nächsten Frage, wenn du so weit bist.
 
-   <img src="docs/tour-4-aufloesung.png" width="620" alt="Auflösung: Du warst schneller, mit Fun Fact">
+   <img src="docs/tour-4-aufloesung.png" width="620" alt="Auflösung: Punkt für dich, mit grünem Weiter-Knopf">
 
-5. **Optional:** Lobby erstellen und den fünfstelligen Code an Freunde schicken, oder mit
-   Discord-Login ins Ranked.
+5. **Mit Freunden spielen:** unter `Freunde` Leute per Name suchen, Anfrage schicken und sie
+   danach direkt herausfordern. Oder eine Lobby erstellen und den fünfstelligen Code schicken.
+   Mit Discord-Login geht es ins Ranked.
 
 ## Features
 
 ### Spielen
 
 - **Wer zuerst richtig liegt.** Die Reaktionszeit misst der Server, nicht der Browser. Bei
-  Auswahlfragen hast du einen Versuch, beim Tippen beliebig viele.
+  Auswahlfragen hast du einen Versuch, beim Tippen beliebig viele, aber jeder falsche kostet
+  3 Sekunden deiner Zeit.
+- **Überspringen.** Weißt du es nicht, lässt du die Frage aus. Sind alle durch, geht es sofort
+  weiter, Bots antworten dann direkt.
+- **Weiter-Knopf wie bei Duolingo.** Nach jeder Frage bleibt die Auflösung stehen, bis du auf
+  `Weiter` drückst. Zu zweit oder mehr: hat die erste Person gedrückt, haben die anderen noch
+  10 Sekunden.
+- **Schwierigkeit und Antworten.** Gemischt, leicht, mittel oder schwer, dazu drei oder vier
+  Antwortmöglichkeiten. Beim Tippen kommen allgemein leichtere Fragen. Die richtige Antwort
+  steht jedes Mal auf einem zufälligen Platz.
 - **Tippen mit Nachsicht.** Groß/Klein, Umlaute (`ü`, `ue`, `u`), Akzente, Artikel und kleine
   Tippfehler werden verziehen, Zahlen müssen exakt stimmen.
 - **Ranked mit Elo.** 1 gegen 1, neun Fragen, Start bei 1000 Punkten, Rangstufen von Sand über
   Quarz, Kristall, Saphir und Diamant bis Prisma. Die ersten fünf Spiele sind die Einstufung.
-- **Unranked.** 1 gegen 1 mit deinen Paketen, gespielt wird, was ihr beide ausgewählt habt.
+- **Unranked.** 1 gegen 1 mit deinen Themen, gespielt wird, was ihr beide ausgewählt habt.
   Dauert die Suche, kannst du nach ein paar Sekunden stattdessen gegen einen Bot spielen.
-- **Private Lobbys.** Bis zu acht Teilnehmer per Code, Bots in drei Stärken, der Host wählt
-  Pakete, Antwortmodus und 5 bis 20 Fragen. Nach dem Spiel bleibt die Lobby offen.
+- **Private Lobbys.** Bis zu acht Teilnehmer per Code, Bots in drei Stärken. Der Host stellt
+  alles ein: Themen, Antwortmodus, drei oder vier Antworten, Schwierigkeit, 5 bis 30 Fragen,
+  Zeit pro Frage, Weiter-Knopf oder automatisch, und kann die Lobby abschließen. Nach dem Spiel
+  bleibt die Lobby offen.
+- **Freunde.** Leute per Name suchen (ein kurzes Kürzel hilft bei gleichen Namen), Anfrage
+  schicken, sehen wer online ist oder gerade spielt, und Freunde direkt herausfordern. Nimmt
+  die andere Person an, startet sofort ein Duell mit deinen Regeln.
 - **Training.** Klassisch mit 10, 20 oder 30 Fragen, Überleben mit drei Leben, oder gegen
   Kiesel, Prisma oder Obsidian (Bots leicht, mittel, schwer).
 - **Gleichstand.** Bis zu drei Entscheidungsfragen, danach unentschieden.
 
 ### Fragen
 
-- **11 Pakete, 571 Fragen.** Allgemein (mit Tieren, Geografie, Wissenschaft, Geschichte,
+- **11 Themen, 571 Fragen.** Allgemein (mit Tieren, Geografie, Wissenschaft, Geschichte,
   Wörtern und Nischen-Häppchen), Anime, Videospiele, Filme & Serien, Apps & Internet, Musik,
   Parfüm & Mode, Bekanntheiten, Sport, Essen & Trinken, Charaktere.
 - **Bereiche einzeln wählbar.** Anime hat zum Beispiel One Piece, Naruto, Attack on Titan,
   Demon Slayer, Studio Ghibli, Dragon Ball und Jujutsu Kaisen als eigene Bereiche.
 - **Wenig Wiederholungen.** Deine zuletzt gesehenen 250 Fragen kommen erst wieder dran, wenn
   sonst zu wenig übrig ist.
-- **Eigene Fragen.** Pakete sind JSON-Dateien in `packs/`, `npm run check:packs` prüft sie.
+- **Eigene Fragen.** Themen sind JSON-Dateien in `packs/`, `npm run check:packs` prüft sie.
 
 ### Aussehen und mehr
 
 - **Echtes Liquid Glass.** Glasflächen brechen den Hintergrund an der gewölbten Kante nach dem
-  Brechungsgesetz, mit leichter Prisma-Farbaufspaltung. In Chrome, Edge und der Desktop-App voll,
-  in Firefox und Safari automatisch als schlichtes Glas.
+  Brechungsgesetz. Drei Stufen: `Leicht` (Standard, Lichtbrechung auf Fragen, Antworten und
+  Fenstern, der Rest mattes Glas), `Stark` (überall, mit Prisma-Farbaufspaltung) und `Aus`. In
+  Chrome, Edge und der Desktop-App voll, in Firefox und Safari automatisch als mattes Glas.
 - **Farbthemen.** Tiefsee (Standard), Mitternacht, Lagune, Amethyst, Rosé, Glut, Graphit oder
   eigene Farbtöne für Hintergrund und Akzent.
 - **Profil und Rangliste.** Duelle, Siege, Trefferquote, Antwortzeit, beste Serie,
   Überleben-Rekord und die letzten Spiele.
+- **Rundgang.** Beim ersten Besuch zeigt ein Lichtkegel mit Pfeilen, wo Ranked, Training,
+  Themen, Freunde, Rangliste und Einstellungen sind. Jederzeit wieder über die Einstellungen.
 - **Handy-tauglich.** Unter 880 px wandert die Navigation als Tab-Leiste nach unten.
 - **Wiedereinstieg.** Nach Reload oder Verbindungsabbruch geht das Spiel weiter, 20 Sekunden hat man Zeit.
 
@@ -103,20 +125,24 @@ Allgemein-Paket, damit nicht die zufällige Nische entscheidet.
 
 | | |
 |---|---|
-| **Ergebnis** mit Statistik und Platzierung | **Tippen** mit durchgestrichenen Fehlversuchen |
+| **Rundgang** beim ersten Besuch | **Freunde** mit Herausforderung |
+| <img src="docs/main-rundgang.png" width="420" alt="Rundgang mit Lichtkegel auf Ranked und Pfeil zur Erklärung"> | <img src="docs/main-freunde.png" width="420" alt="Freunde-Seite mit einer Herausforderung oben rechts"> |
+| **Ergebnis** mit Statistik und Platzierung | **Tippen** mit durchgestrichenen Fehlversuchen und 3 Sekunden Strafe |
 | <img src="docs/main-ergebnis.png" width="420" alt="Ergebnis-Screen nach einem Sieg"> | <img src="docs/main-tippen.png" width="420" alt="Tipp-Frage mit einem Fehlversuch"> |
-| **Private Lobby** mit Code und Bots | **Einstellungen** mit Farbthemen und Glasqualität |
-| <img src="docs/main-lobby.png" width="420" alt="Private Lobby mit zwei Bots"> | <img src="docs/main-einstellungen.png" width="420" alt="Einstellungen mit Farbthemen"> |
+| **Private Lobby** mit allen Host-Einstellungen | **Einstellungen** mit Farbthemen und Glasstufe |
+| <img src="docs/main-lobby.png" width="420" alt="Private Lobby mit zwei Bots und den Regeln des Hosts"> | <img src="docs/main-einstellungen.png" width="420" alt="Einstellungen mit Farbthemen"> |
 | **Thema Rosé** statt Tiefsee | **Am Handy** |
-| <img src="docs/main-thema-rose.png" width="420" alt="Spielen-Seite im Farbthema Rosé"> | <img src="docs/main-handy.png" width="420" alt="Frage in der Handy-Ansicht"> |
+| <img src="docs/main-thema-rose.png" width="420" alt="Spielen-Seite im Farbthema Rosé"> | <img src="docs/main-handy.png" width="420" alt="Auflösung mit Weiter-Knopf in der Handy-Ansicht"> |
 
 ## Tasten
 
 | Taste | Wirkung |
 |---|---|
-| `1` `2` `3` | Antwort wählen (Auswahlfragen) |
+| `1` bis `4` | Antwort wählen (Auswahlfragen) |
 | `Enter` | getippte Antwort abschicken |
-| `Esc` | Dialog schließen |
+| `Enter` oder `Leertaste` | nach der Auflösung weiter |
+| `←` `→` | im Rundgang zurück und weiter |
+| `Esc` | Dialog oder Rundgang schließen |
 
 ## Discord-Login einrichten
 
@@ -155,11 +181,12 @@ Wer als Gast gespielt hat und dann Discord verbindet, behält seine Statistiken.
 
 ```
 server/data/
-└─ opal.db           SQLite: Spieler, Sessions, beendete Spiele, Elo
+└─ opal.db           SQLite: Spieler, Sessions, beendete Spiele, Elo, Freundschaften
 packs/
 └─ *.json             Fragenpakete, werden beim Serverstart geladen
 Browser
-└─ localStorage       opal.prefs: Farbthema, Glasqualität, Töne, deine Paketauswahl
+└─ localStorage       opal.prefs: Farbthema, Glasstufe, Töne, deine Themenauswahl und Runde,
+                      ob du den Rundgang schon gesehen hast
 ```
 
 Im Browser liegt nur ein Session-Cookie (`opal_sid`, httpOnly). Die Antworten der Fragen
@@ -195,13 +222,15 @@ npm run build           # Client nach client/dist, der Server liefert ihn dann s
 npm run build:live      # dasselbe für den Unterordner /opal/ (so läuft es auf imkirit.dev)
 npm start               # nur der Server
 npm run typecheck       # TypeScript im Client
-npm run check:packs     # Fragenpakete prüfen: Form, Dubletten, Gedankenstriche
-npm test -w server      # Tests der Tipp-Erkennung
+npm run check:packs     # Fragen prüfen: Form, Dubletten, Gedankenstriche
+npm test -w server      # Tipp-Erkennung, Zufallsplatz der richtigen Antwort, Schwierigkeit
+node Claude/scripts/e2e-duel.mjs       # Ende-zu-Ende: Duell, Lobby, Training, Freunde (Server muss laufen)
 node Claude/scripts/readme-shots.mjs   # README-Bilder neu erzeugen (Server und Client müssen laufen)
 ```
 
 `server/` ist Node mit Express 5 und Socket.IO. Eine einzige Spiel-Engine (`game/match.js`)
-trägt alle Modi, Matchmaking, Lobbys, Bots und Elo liegen daneben in `game/`. `client/` ist
+trägt alle Modi, Matchmaking, Lobbys, Bots, Elo und die Rundeneinstellungen (`game/settings.js`)
+liegen daneben in `game/`, Freundschaften in `friends.js`. `client/` ist
 React 19 mit Vite und TypeScript, die Glas-Engine steckt in `client/src/glass/`. Die Fragen
 sind reine JSON-Dateien in `packs/`.
 

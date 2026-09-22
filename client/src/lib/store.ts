@@ -1,11 +1,13 @@
 import { io, type Socket } from 'socket.io-client';
 import { create } from 'zustand';
 import { api, BASE_PATH, SERVER_URL } from './api';
+import { loadFriends, refreshFriendsSoon, resetFriends } from './friends';
 import { usePrefs } from './prefs';
 import { sound } from './sound';
 import type {
   Ack,
   AppConfig,
+  Invite,
   LobbyState,
   MatchEnd,
   MatchInfo,
@@ -86,6 +88,7 @@ export async function logout() {
   socket = null;
   useSession.setState({ user: null, stats: null });
   useGame.setState({ ...initialGame });
+  resetFriends();
 }
 
 // ---------------------------------------------------------------------------
@@ -94,11 +97,24 @@ export async function logout() {
 
 export interface Feedback {
   index: number;
+  /** Fuer diese Frage kann ich nichts mehr tun */
   locked: boolean;
   wrongChoice: number | null;
   wrongTexts: string[];
   shake: number;
+  skipped: boolean;
+  /** Eigene Zeit durch Tipp-Strafen aufgebraucht */
+  timedOut: boolean;
+  /** Zaehlt die Tipp-Strafen, fuer die "-3 s"-Anzeige */
+  penalties: number;
 }
+
+export type RevealView = RevealPayload & {
+  /** Zeitpunkt, zu dem es automatisch weitergeht (Wartezeit nach dem ersten Weiter) */
+  autoAt: number | null;
+  /** Zeitpunkt, ab dem Tasten den Weiter-Knopf ausloesen (gegen versehentliches Durchklicken) */
+  shownAt: number;
+};
 
 export interface MatchView {
   info: MatchInfo;
@@ -106,7 +122,7 @@ export interface MatchView {
   startsAt: number;
   scores: Scores;
   question: (QuestionPayload & { deadline: number }) | null;
-  reveal: RevealPayload | null;
+  reveal: RevealView | null;
   feedback: Feedback;
   attempts: Record<string, number>;
   typing: Record<string, number>;
@@ -124,6 +140,8 @@ export interface Toast {
   tone: 'info' | 'error' | 'good';
 }
 
+export type LiveInvite = Invite & { expiresAt: number };
+
 type Replay =
   | { type: 'solo'; payload: Record<string, unknown> }
   | { type: 'queue'; payload: Record<string, unknown> }
@@ -139,6 +157,10 @@ interface GameState {
   replay: Replay;
   toasts: Toast[];
   settingsOpen: boolean;
+  /** Match-Anfragen von Freunden an mich */
+  invites: LiveInvite[];
+  /** Meine laufende Anfrage an jemanden */
+  outgoingInvite: LiveInvite | null;
 }
 
 const initialGame: GameState = {
@@ -151,11 +173,28 @@ const initialGame: GameState = {
   replay: null,
   toasts: [],
   settingsOpen: false,
+  invites: [],
+  outgoingInvite: null,
 };
 
 export const useGame = create<GameState>(() => ({ ...initialGame }));
 
-const emptyFeedback = (index: number): Feedback => ({ index, locked: false, wrongChoice: null, wrongTexts: [], shake: 0 });
+const emptyFeedback = (index: number): Feedback => ({
+  index,
+  locked: false,
+  wrongChoice: null,
+  wrongTexts: [],
+  shake: 0,
+  skipped: false,
+  timedOut: false,
+  penalties: 0,
+});
+
+const toRevealView = (r: RevealPayload): RevealView => ({
+  ...r,
+  autoAt: r.autoInMs != null ? Date.now() + r.autoInMs : null,
+  shownAt: Date.now(),
+});
 
 let toastId = 0;
 export function toast(text: string, tone: Toast['tone'] = 'info') {
@@ -171,20 +210,27 @@ function patchMatch(fn: (m: MatchView) => Partial<MatchView>) {
   useGame.setState((s) => (s.match ? { match: { ...s.match, ...fn(s.match) } } : {}));
 }
 
-function applySync(payload: MatchInfo & { state: string; scores: Scores; question: QuestionPayload | null }) {
-  const { state, scores, question, ...info } = payload;
+type SyncPayload = MatchInfo & { state: string; scores: Scores; question: QuestionPayload | null; reveal: RevealPayload | null };
+
+function applySync(payload: SyncPayload) {
+  const { state, scores, question, reveal, ...info } = payload;
+  const phase = state === 'countdown' ? 'countdown' : question?.resolved && reveal ? 'reveal' : 'question';
   useGame.setState({
     queue: null,
     found: false,
     result: null,
     match: {
       info,
-      phase: state === 'countdown' ? 'countdown' : question?.resolved ? 'reveal' : 'question',
+      phase,
       startsAt: Date.now() + 1500,
       scores,
       question: question ? { ...question, deadline: Date.now() + question.remainingMs } : null,
-      reveal: null,
-      feedback: { ...emptyFeedback(question?.index ?? -1), locked: Boolean(question?.locked) },
+      reveal: phase === 'reveal' && reveal ? toRevealView(reveal) : null,
+      feedback: {
+        ...emptyFeedback(question?.index ?? -1),
+        locked: Boolean(question?.locked),
+        skipped: Boolean(question?.skipped),
+      },
       attempts: {},
       typing: {},
       history: {},
@@ -209,7 +255,8 @@ export function connectSocket() {
 
   s.on('connect', () => {
     useGame.setState({ connected: true });
-    s.emit('match:sync', {}, (ack: Ack & { match?: Parameters<typeof applySync>[0] | null }) => {
+    void loadFriends();
+    s.emit('match:sync', {}, (ack: Ack & { match?: SyncPayload | null }) => {
       if (ack?.match) applySync(ack.match);
       else if (useGame.getState().match) useGame.setState({ match: null });
     });
@@ -270,14 +317,32 @@ export function connectSocket() {
     })),
   );
 
-  s.on('match:feedback', (f: { index: number; choice?: number; text?: string }) => {
-    sound.wrong();
-    patchMatch((m) => {
-      if (m.feedback.index !== f.index) return {};
-      if (f.choice != null) return { feedback: { ...m.feedback, locked: true, wrongChoice: f.choice } };
-      return { feedback: { ...m.feedback, wrongTexts: [...m.feedback.wrongTexts, f.text ?? ''], shake: m.feedback.shake + 1 } };
-    });
-  });
+  s.on(
+    'match:feedback',
+    (f: { index: number; choice?: number; text?: string; skipped?: boolean; timedOut?: boolean; penaltyMs?: number; remainingMs?: number }) => {
+      if (f.skipped) sound.click();
+      else sound.wrong();
+      patchMatch((m) => {
+        if (m.feedback.index !== f.index) return {};
+        if (f.skipped) return { feedback: { ...m.feedback, locked: true, skipped: true } };
+        if (f.choice != null) return { feedback: { ...m.feedback, locked: true, wrongChoice: f.choice } };
+        const feedback = {
+          ...m.feedback,
+          wrongTexts: f.text ? [...m.feedback.wrongTexts, f.text] : m.feedback.wrongTexts,
+          shake: f.text ? m.feedback.shake + 1 : m.feedback.shake,
+          penalties: m.feedback.penalties + (f.penaltyMs ? 1 : 0),
+          timedOut: m.feedback.timedOut || Boolean(f.timedOut),
+          locked: m.feedback.locked || Boolean(f.timedOut),
+        };
+        // Tipp-Strafe: eigene Restzeit kommt vom Server, der Balken springt entsprechend
+        const question =
+          m.question && f.remainingMs != null
+            ? { ...m.question, remainingMs: f.remainingMs, deadline: Date.now() + f.remainingMs }
+            : m.question;
+        return { feedback, question };
+      });
+    },
+  );
 
   s.on('match:attempt', ({ playerId }: { playerId: string }) =>
     patchMatch((m) => ({ attempts: { ...m.attempts, [playerId]: Date.now() } })),
@@ -291,8 +356,16 @@ export function connectSocket() {
     const me = myId();
     if (r.winnerId && r.winnerId === me) sound.correct();
     else if (r.winnerId) sound.lost();
-    patchMatch((m) => ({ phase: 'reveal', reveal: r, scores: r.scores, history: { ...m.history, [r.index]: r.winnerId } }));
+    patchMatch((m) => ({ phase: 'reveal', reveal: toRevealView(r), scores: r.scores, history: { ...m.history, [r.index]: r.winnerId } }));
   });
+
+  s.on('match:ready', ({ index, ready, autoInMs }: { index: number; ready: string[]; autoInMs: number | null }) =>
+    patchMatch((m) =>
+      m.reveal && m.reveal.index === index
+        ? { reveal: { ...m.reveal, ready, autoInMs, autoAt: autoInMs != null ? Date.now() + autoInMs : null } }
+        : {},
+    ),
+  );
 
   s.on('match:presence', ({ playerId, connected, left }: { playerId: string; connected: boolean; left?: boolean }) =>
     patchMatch((m) => ({
@@ -322,6 +395,37 @@ export function connectSocket() {
   });
 
   s.on('match:sync', applySync);
+
+  // ----- Freunde und Match-Anfragen -----
+  s.on('friends:changed', ({ reason, from }: { reason: string; from?: string }) => {
+    refreshFriendsSoon();
+    if (reason === 'request' && from) toast(`${from} möchte mit dir befreundet sein.`);
+    if (reason === 'accepted' && from) toast(`${from} ist jetzt mit dir befreundet.`, 'good');
+  });
+
+  s.on('invite:received', (inv: Invite) => {
+    const live = { ...inv, expiresAt: Date.now() + inv.expiresInMs };
+    const had = useGame.getState().invites.some((i) => i.id === inv.id);
+    useGame.setState((st) => ({ invites: [...st.invites.filter((i) => i.id !== inv.id), live] }));
+    if (!had) sound.found();
+  });
+
+  s.on('invite:closed', ({ id, reason, by }: { id: string; reason: string; by: string | null }) => {
+    const { outgoingInvite } = useGame.getState();
+    const mine = outgoingInvite?.id === id;
+    useGame.setState((st) => ({
+      invites: st.invites.filter((i) => i.id !== id),
+      outgoingInvite: mine ? null : st.outgoingInvite,
+    }));
+    if (!mine) return;
+    const name = by ?? outgoingInvite.to.name;
+    if (reason === 'declined') toast(`${name} hat abgelehnt.`);
+    else if (reason === 'expired') toast(`${outgoingInvite.to.name} hat nicht rechtzeitig geantwortet.`);
+    else if (reason === 'offline') toast(`${outgoingInvite.to.name} ist offline gegangen.`);
+    else if (reason === 'busy') toast(`${outgoingInvite.to.name} spielt gerade schon.`);
+  });
+
+  s.on('lobby:notice', ({ text }: { text: string }) => toast(text, 'error'));
   return s;
 }
 
@@ -346,8 +450,8 @@ async function run(event: string, payload?: Record<string, unknown>) {
 
 export const actions = {
   joinQueue(kind: 'ranked' | 'unranked') {
-    const { sections, answerMode } = usePrefs.getState();
-    const payload = { kind, sections: sections ?? [], answerMode };
+    const { sections, answerMode, difficulty, optionCount } = usePrefs.getState();
+    const payload = { kind, sections: sections ?? [], answerMode, difficulty, optionCount };
     useGame.setState({ replay: { type: 'queue', payload } });
     return run('queue:join', payload);
   },
@@ -355,10 +459,12 @@ export const actions = {
   queueBot: () => run('queue:bot', { difficulty: usePrefs.getState().bot }),
 
   startTraining() {
-    const { sections, answerMode, trainingMode, soloCount, bot } = usePrefs.getState();
+    const { sections, answerMode, trainingMode, soloCount, bot, difficulty, optionCount } = usePrefs.getState();
     const payload = {
       sections: sections ?? [],
       answerMode,
+      difficulty,
+      optionCount,
       soloMode: trainingMode === 'survival' ? 'survival' : 'classic',
       questionCount: soloCount,
       bot: trainingMode === 'bot' ? bot : null,
@@ -376,8 +482,8 @@ export const actions = {
   },
 
   createLobby() {
-    const { sections, answerMode } = usePrefs.getState();
-    return run('lobby:create', { sections: sections ?? [], answerMode });
+    const { sections, answerMode, difficulty, optionCount } = usePrefs.getState();
+    return run('lobby:create', { sections: sections ?? [], answerMode, difficulty, optionCount });
   },
   joinLobby: (code: string) => run('lobby:join', { code }),
   leaveLobby: () => run('lobby:leave'),
@@ -396,7 +502,38 @@ export const actions = {
   typing(index: number) {
     socket?.emit('match:typing', { index });
   },
+  skip(index: number) {
+    socket?.emit('match:skip', { index });
+  },
+  /** Weiter-Knopf nach der Aufloesung. Sofort lokal als bereit markieren, der Server bestaetigt. */
+  continueMatch(index: number) {
+    const me = myId();
+    patchMatch((m) =>
+      m.reveal && m.reveal.index === index && me && !m.reveal.ready.includes(me)
+        ? { reveal: { ...m.reveal, ready: [...m.reveal.ready, me] } }
+        : {},
+    );
+    socket?.emit('match:continue', { index });
+  },
   leaveMatch: () => run('match:leave'),
+
+  /** Freund zu einem Duell herausfordern. Meine aktuelle Runde (Themen, Modus, ...) gilt dafür. */
+  async invite(userId: string) {
+    const { sections, answerMode, difficulty, optionCount } = usePrefs.getState();
+    const ack = await run('invite:send', { userId, settings: { sections: sections ?? [], answerMode, difficulty, optionCount } });
+    const inv = ack.invite as Invite | undefined;
+    if (ack.ok && inv) useGame.setState({ outgoingInvite: { ...inv, expiresAt: Date.now() + inv.expiresInMs } });
+    return ack;
+  },
+  cancelInvite() {
+    const inv = useGame.getState().outgoingInvite;
+    useGame.setState({ outgoingInvite: null });
+    if (inv) void run('invite:cancel', { id: inv.id });
+  },
+  async respondInvite(id: string, accept: boolean) {
+    useGame.setState((st) => ({ invites: st.invites.filter((i) => i.id !== id) }));
+    return run('invite:respond', { id, accept });
+  },
   dismissResult: () => useGame.setState({ result: null }),
   openSettings: (open = true) => useGame.setState({ settingsOpen: open }),
 };

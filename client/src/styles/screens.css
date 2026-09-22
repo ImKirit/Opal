@@ -346,9 +346,38 @@
   align-items: baseline;
   justify-content: space-between;
 }
+.setup__row:has(.seg) {
+  align-items: center;
+  gap: 12px;
+}
 .setup__explain {
   font-size: var(--t-sm);
   color: var(--ink-3);
+}
+.rules {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+}
+.rules > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+.rules dt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-sm);
+  color: var(--ink-3);
+}
+.rules dd {
+  margin: 0;
+  font-weight: 560;
+  text-align: right;
 }
 .setup__packs {
   display: grid;
@@ -1101,6 +1130,7 @@
   box-shadow: 0 0 12px oklch(0.73 0.16 18 / 0.5);
 }
 .timer__num {
+  position: relative;
   width: 2.2ch;
   font-family: var(--font-display);
   font-size: var(--t-lg);
@@ -1109,6 +1139,15 @@
 }
 .timer.is-urgent .timer__num {
   color: var(--bad);
+}
+.timer__penalty {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: var(--t-md);
+  white-space: nowrap;
+  color: var(--bad);
+  pointer-events: none;
 }
 @keyframes drain {
   from {
@@ -1123,6 +1162,9 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+}
+.answers--n4 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .typed {
@@ -1191,44 +1233,153 @@
   background: color-mix(in oklab, var(--bad) 14%, transparent);
 }
 
-.reveal {
+/* Aufloesung wie bei Duolingo: Leiste unten, gruen oder rot, grosser Weiter-Knopf */
+.next {
+  position: fixed;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 30;
   display: grid;
-  gap: 8px;
-  overflow: hidden;
-  padding: 18px 22px 22px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  width: min(1000px, 100% - 2 * var(--gutter));
+  padding: 18px 18px 18px 20px;
+  translate: -50% 0;
 }
-.reveal__headline {
-  font-family: var(--font-display);
-  font-size: var(--t-xl);
-  font-weight: 700;
+.next--good {
+  --glass-fill: color-mix(in oklab, var(--good-deep) 30%, color-mix(in oklab, var(--bg-0) 70%, transparent));
+  box-shadow:
+    0 0 0 1px oklch(0.86 0.14 160 / 0.35),
+    0 24px 60px -20px oklch(0.6 0.14 160 / 0.55);
 }
-.reveal--good .reveal__headline {
-  color: var(--good);
+.next--bad {
+  --glass-fill: color-mix(in oklab, var(--bad-deep) 28%, color-mix(in oklab, var(--bg-0) 70%, transparent));
+  box-shadow:
+    0 0 0 1px oklch(0.73 0.16 18 / 0.35),
+    0 24px 60px -20px oklch(0.52 0.16 18 / 0.55);
 }
-.reveal--bad .reveal__headline {
-  color: oklch(0.82 0.11 18);
+.next__icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  color: var(--bg-0);
+  background: var(--good);
+  box-shadow: 0 0 24px oklch(0.86 0.14 160 / 0.45);
 }
-.reveal__answer {
-  color: var(--ink-2);
+.next--bad .next__icon {
+  background: var(--bad);
+  box-shadow: 0 0 24px oklch(0.73 0.16 18 / 0.4);
 }
-.reveal__answer strong {
-  color: var(--ink);
-}
-.reveal__fact {
+.next__body {
   display: grid;
   gap: 4px;
+  min-width: 0;
+}
+.next__headline {
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  font-weight: 720;
+  color: var(--good);
+}
+.next--bad .next__headline {
+  color: oklch(0.84 0.1 18);
+}
+.next__time {
+  font-size: var(--t-md);
+  font-weight: 560;
+  color: var(--ink-3);
+}
+.next__answer {
   color: var(--ink-2);
 }
-.reveal__next {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--accent);
+.next__answer strong {
+  color: var(--ink);
+}
+.next__fact {
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+.next__action {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+.next__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 190px;
+  height: 58px;
+  padding: 0 26px;
+  border-radius: 18px;
+  font-family: var(--font-display);
+  font-size: var(--t-lg);
+  font-weight: 740;
+  letter-spacing: 0.01em;
+  color: oklch(0.2 0.05 160);
+  background: var(--good);
+  /* fester Unterbau wie bei Duolingo, beim Druecken sinkt der Knopf hinein */
+  box-shadow:
+    0 5px 0 var(--good-deep),
+    0 12px 26px -10px oklch(0.6 0.14 160 / 0.7);
+  transition:
+    transform 0.12s var(--ease-out),
+    box-shadow 0.12s var(--ease-out),
+    opacity 0.2s;
+}
+.next--bad .next__btn {
+  color: oklch(0.22 0.06 18);
+  background: var(--bad);
+  box-shadow:
+    0 5px 0 var(--bad-deep),
+    0 12px 26px -10px oklch(0.52 0.16 18 / 0.7);
+}
+.next__btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+.next__btn:active:not(:disabled) {
+  transform: translateY(5px);
+  box-shadow: 0 0 0 var(--good-deep);
+}
+.next--bad .next__btn:active:not(:disabled) {
+  box-shadow: 0 0 0 var(--bad-deep);
+}
+.next__btn:disabled {
+  cursor: default;
   opacity: 0.6;
+  transform: translateY(5px);
+  box-shadow: none;
+}
+.next__btn:focus-visible {
+  outline: 3px solid oklch(1 0 0 / 0.7);
+  outline-offset: 3px;
+}
+.next__hint {
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+}
+.next__auto {
+  display: grid;
+  gap: 8px;
+  width: 190px;
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  text-align: center;
+}
+.next__bar {
+  height: 6px;
+  border-radius: 6px;
+  background: var(--good);
   transform-origin: left;
   animation: shrink linear forwards;
+}
+.next--bad .next__bar {
+  background: var(--bad);
 }
 @keyframes shrink {
   from {
@@ -1237,6 +1388,21 @@
   to {
     transform: scaleX(0);
   }
+}
+/* Platz schaffen, damit die Leiste auf kleinen Bildschirmen nichts dauerhaft verdeckt */
+.match:has(.next) {
+  padding-bottom: 170px;
+}
+
+.round__actions {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 36px;
+}
+.round__wait {
+  align-self: center;
+  font-size: var(--t-sm);
+  color: var(--ink-3);
 }
 
 .countdown {
@@ -1367,6 +1533,220 @@
   gap: 10px;
 }
 
+/* ---------- Freunde ---------- */
+
+.friends__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: 18px;
+}
+.friends__card {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+}
+.friends__card h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--t-xl);
+}
+.friends__card .count {
+  padding: 1px 9px;
+  border-radius: 999px;
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  background: oklch(1 0 0 / 0.07);
+}
+.friends__search {
+  flex: none;
+  gap: 10px;
+  height: 50px;
+}
+.friends__search input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: 0;
+  outline: none;
+  font-size: var(--t-lg);
+}
+.friends__hint {
+  font-size: var(--t-sm);
+  color: var(--ink-3);
+}
+.friends__section {
+  display: grid;
+  gap: 10px;
+}
+.friends__section + .friends__section {
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.friends__list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.friend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px 6px 6px;
+  border-radius: 16px;
+  background: oklch(1 0 0 / 0.03);
+}
+.friend__who {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 12px;
+  min-width: 0;
+  padding: 2px;
+  border-radius: 12px;
+  text-align: left;
+}
+.friend__who:hover .friend__name {
+  color: var(--accent);
+}
+.friend__avatar {
+  position: relative;
+  display: inline-grid;
+}
+/* Punkt fuer den Online-Status unten rechts am Avatar */
+.friend__avatar::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2.5px var(--bg-1);
+}
+.friend__avatar.is-online::after,
+.friend__avatar.is-lobby::after,
+.friend__avatar.is-queue::after {
+  background: var(--good);
+}
+.friend__avatar.is-playing::after {
+  background: var(--gold);
+}
+.friend__avatar.is-offline::after {
+  background: oklch(0.55 0.02 250);
+}
+.friend__text {
+  display: grid;
+  min-width: 0;
+}
+.friend__name {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  overflow: hidden;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: color 0.2s;
+}
+.friend__tag {
+  font-size: 0.66rem;
+  font-weight: 400;
+  color: var(--ink-3);
+}
+.friend__guest {
+  padding: 0 6px;
+  border-radius: 6px;
+  font-size: 0.66rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  background: oklch(1 0 0 / 0.07);
+}
+.friend__status {
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+}
+.friend__status.is-online,
+.friend__status.is-lobby,
+.friend__status.is-queue {
+  color: var(--good);
+}
+.friend__status.is-playing {
+  color: var(--gold);
+}
+.friend__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.friend__done {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding-right: 8px;
+  font-size: var(--t-sm);
+  color: var(--ink-3);
+}
+.icon-btn.is-danger {
+  color: var(--bad);
+  background: color-mix(in oklab, var(--bad) 16%, transparent);
+}
+
+/* ---------- Match-Anfragen (oben rechts) ---------- */
+
+.invites {
+  position: fixed;
+  top: 98px;
+  right: max(var(--gutter), calc((100vw - var(--page-w)) / 2));
+  z-index: 110;
+  display: grid;
+  gap: 10px;
+  width: min(360px, 100% - 2 * var(--gutter));
+  pointer-events: none;
+}
+html.is-desktop .invites {
+  top: 134px;
+}
+.invite {
+  display: grid;
+  gap: 12px;
+  overflow: hidden;
+  padding: 16px;
+  pointer-events: auto;
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 30%, transparent),
+    0 24px 50px -18px oklch(0 0 0 / 0.7);
+}
+.invite__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.invite__title {
+  font-weight: 650;
+}
+.invite__sub {
+  font-size: var(--t-sm);
+  color: var(--ink-3);
+}
+.invite__bar {
+  height: 4px;
+  border-radius: 4px;
+  background: var(--accent);
+  transform-origin: left;
+  animation: shrink linear forwards;
+}
+.invite--out .invite__bar {
+  background: var(--ink-3);
+}
+.invite__actions {
+  display: flex;
+  gap: 8px;
+}
+
 /* ---------- Schmale Bildschirme ---------- */
 
 @media (max-width: 1080px) {
@@ -1395,11 +1775,40 @@
   .lobby__grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .answers {
+  .friends__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .invites {
+    top: 84px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+  .answers,
+  .answers--n4 {
     grid-template-columns: minmax(0, 1fr);
   }
   .answer--big {
     min-height: 62px;
+  }
+  .next {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 12px 14px;
+    padding: 16px;
+  }
+  .next__icon {
+    width: 42px;
+    height: 42px;
+  }
+  .next__action {
+    grid-column: 1 / -1;
+  }
+  .next__btn,
+  .next__auto {
+    width: 100%;
+  }
+  .match:has(.next) {
+    padding-bottom: 260px;
   }
   .board__row {
     grid-template-columns: 30px 34px minmax(0, 1fr) auto 54px;

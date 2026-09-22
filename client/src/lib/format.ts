@@ -30,6 +30,17 @@ export function clock(ms: number) {
 
 export const ANSWER_MODE_LABEL = { choice: 'Auswahl', typed: 'Tippen', mixed: 'Gemischt' } as const;
 
+export const DIFFICULTY_LABEL = { gemischt: 'Gemischt', leicht: 'Leicht', mittel: 'Mittel', schwer: 'Schwer' } as const;
+
+/** Muss zu TIME_LIMITS in server/src/game/settings.js passen */
+export const TIME_LIMIT_LABEL = {
+  kurz: 'Kurz (10 s, Tippen 18 s)',
+  normal: 'Normal (15 s, Tippen 25 s)',
+  lang: 'Lang (22 s, Tippen 35 s)',
+} as const;
+
+export const CONTINUE_MODE_LABEL = { button: 'Weiter-Knopf', auto: 'Automatisch' } as const;
+
 export const KIND_LABEL = {
   solo: 'Training',
   bot: 'Gegen Bot',

@@ -61,6 +61,17 @@ const migrations = [
   CREATE INDEX idx_users_rating ON users(rating DESC);
   CREATE INDEX idx_sessions_user ON sessions(user_id);
   `,
+  // v2: Freunde. Eine Zeile pro Paar, angelegt von der anfragenden Person (user_id).
+  `
+  CREATE TABLE friendships (
+    user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    friend_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    status TEXT NOT NULL CHECK (status IN ('pending', 'accepted')),
+    created_at INTEGER NOT NULL,
+    PRIMARY KEY (user_id, friend_id)
+  );
+  CREATE INDEX idx_friendships_friend ON friendships(friend_id);
+  `,
 ];
 
 const current = db.prepare('PRAGMA user_version').get().user_version;

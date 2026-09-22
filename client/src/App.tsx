@@ -3,12 +3,15 @@ import { useEffect } from 'react';
 import { Background } from './components/Background';
 import { Button } from './components/Button';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { InviteDock } from './components/InviteDock';
 import { Toasts } from './components/Toasts';
 import { TopBar } from './components/TopBar';
+import { Tour } from './components/Tour';
 import { GlassDefs } from './glass/GlassDefs';
 import { useRoute } from './lib/route';
 import { bootstrap, useGame, useSession } from './lib/store';
 import { useThemeVariables } from './lib/theme';
+import { Friends } from './screens/Friends';
 import { Hub } from './screens/Hub';
 import { Landing } from './screens/Landing';
 import { Leaderboard } from './screens/Leaderboard';
@@ -79,8 +82,11 @@ export function App() {
     case 'lobby':
       content = <Lobby />;
       break;
-    case 'pakete':
+    case 'themen':
       content = <Packs />;
+      break;
+    case 'freunde':
+      content = <Friends />;
       break;
     case 'rangliste':
       content = <Leaderboard />;
@@ -117,6 +123,8 @@ export function App() {
       </div>
       <QueueOverlay />
       <SettingsSheet />
+      {withChrome && <InviteDock />}
+      <Tour />
       <Toasts />
     </>
   );

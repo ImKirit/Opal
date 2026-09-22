@@ -15,10 +15,10 @@ export function Packs() {
     <main className="page packs">
       <header className="page-head">
         <div>
-          <p className="eyebrow">Pakete</p>
+          <p className="eyebrow">Themen</p>
           <h1>Was soll gefragt werden?</h1>
           <p className="page-head__lead">
-            Schalte ganze Pakete an oder nimm nur die Bereiche, die du wirklich kennst. Im Unranked spielst du die Schnittmenge
+            Schalte ganze Themen an oder nimm nur die Bereiche, die du wirklich kennst. Im Unranked spielst du die Schnittmenge
             mit deinem Gegner.
           </p>
         </div>

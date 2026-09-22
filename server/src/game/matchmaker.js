@@ -2,8 +2,9 @@
 //
 // Ranked: fester Fragenpool, Gegner nach Elo. Das erlaubte Elo-Fenster waechst mit der
 // Wartezeit, damit bei wenig Betrieb trotzdem Spiele zustande kommen.
-// Unranked: eigene Paketauswahl. Gespielt wird die Schnittmenge beider Auswahlen.
-// Nach 20 Sekunden Wartezeit wird der Antwortmodus egal (dann "gemischt").
+// Unranked: eigene Themenauswahl. Gespielt wird die Schnittmenge beider Auswahlen.
+// Antwortmodus, Schwierigkeit und Zahl der Optionen muessen passen. Nach 20 Sekunden
+// Wartezeit werden sie egal (dann gemischt, gemischt und 3 Optionen).
 
 const TICK_MS = 2000;
 const RELAX_MODE_AFTER_MS = 20000;
@@ -22,12 +23,14 @@ export class Matchmaker {
     return this.entries.has(userId);
   }
 
-  join(user, { kind, sections, answerMode }) {
+  join(user, { kind, sections, answerMode, difficulty = 'gemischt', optionCount = 3 }) {
     const entry = {
       user,
       kind,
       sections: new Set(sections),
       answerMode,
+      difficulty,
+      optionCount,
       joinedAt: Date.now(),
     };
     this.entries.set(user.id, entry);
@@ -69,7 +72,11 @@ export class Matchmaker {
       const shared = [...entry.sections].filter((s) => other.sections.has(s));
       if (!shared.length) continue;
       const relaxed = now - entry.joinedAt > RELAX_MODE_AFTER_MS && now - other.joinedAt > RELAX_MODE_AFTER_MS;
-      if (entry.answerMode !== other.answerMode && !relaxed) continue;
+      const same =
+        entry.answerMode === other.answerMode &&
+        entry.difficulty === other.difficulty &&
+        entry.optionCount === other.optionCount;
+      if (!same && !relaxed) continue;
       // Wer am laengsten wartet, kommt zuerst dran
       if (other.joinedAt < bestScore) {
         best = other;
@@ -82,12 +89,14 @@ export class Matchmaker {
     this.entries.delete(best.user.id);
 
     const shared = [...entry.sections].filter((s) => best.sections.has(s));
-    const answerMode = entry.answerMode === best.answerMode ? entry.answerMode : 'mixed';
+    const pick = (key, fallback) => (entry[key] === best[key] ? entry[key] : fallback);
     this.onMatch({
       kind: entry.kind,
       users: [best.user, entry.user],
       sections: entry.kind === 'ranked' ? [...entry.sections] : shared,
-      answerMode,
+      answerMode: pick('answerMode', 'mixed'),
+      difficulty: pick('difficulty', 'gemischt'),
+      optionCount: pick('optionCount', 3),
     });
     return true;
   }
@@ -109,6 +118,8 @@ export class Matchmaker {
       since: entry.joinedAt,
       waiting,
       answerMode: entry.answerMode,
+      difficulty: entry.difficulty,
+      optionCount: entry.optionCount,
     });
   }
 }

@@ -1,4 +1,4 @@
-import type { AppConfig, LeaderboardEntry, Pack, Profile, Stats, User } from './types';
+import type { AppConfig, FriendCard, FriendsList, LeaderboardEntry, Pack, Profile, Stats, User } from './types';
 
 // Leer = gleicher Server wie die Seite. Fuer eine spaetere Desktop-Version mit
 // eingebautem Client kann hier per VITE_SERVER_URL ein fester Server stehen.
@@ -28,4 +28,12 @@ export const api = {
   guest: (name: string) => request<{ ok: true }>('/auth/guest', { method: 'POST', body: JSON.stringify({ name }) }),
   logout: () => request<{ ok: true }>('/auth/logout', { method: 'POST' }),
   discordUrl: () => `${ROOT}/auth/discord`,
+
+  friends: () => request<FriendsList>('/api/friends'),
+  searchUsers: (q: string) => request<{ users: FriendCard[] }>(`/api/friends/search?q=${encodeURIComponent(q)}`),
+  friendRequest: (userId: string) =>
+    request<{ ok: true; status: 'pending' | 'accepted' }>('/api/friends/request', { method: 'POST', body: JSON.stringify({ userId }) }),
+  friendAccept: (userId: string) => request<{ ok: true }>('/api/friends/accept', { method: 'POST', body: JSON.stringify({ userId }) }),
+  /** Ablehnen, Zurueckziehen und Entfreunden */
+  friendRemove: (userId: string) => request<{ ok: true }>(`/api/friends/${encodeURIComponent(userId)}`, { method: 'DELETE' }),
 };

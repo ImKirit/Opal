@@ -1,19 +1,19 @@
 // Ranked-Test ohne Discord: zwei Gaeste werden direkt in der lokalen Datenbank zu
 // "Discord-Konten" gemacht. Nur gegen die lokale Dev-Datenbank benutzen!
-// Aufruf aus dem Projekt-Root: node Claude/scripts/e2e-ranked.mjs
+// Aufruf aus dem Projekt-Root: node Claude/scripts/e2e-ranked.mjs [serverUrl] [pfadZurDatenbank]
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { io } from 'socket.io-client';
 
-const SERVER = 'http://localhost:3130';
+const SERVER = process.argv[2] || 'http://localhost:3130';
 const answers = new Map();
 for (const f of fs.readdirSync('packs')) {
   const pack = JSON.parse(fs.readFileSync(path.join('packs', f), 'utf8'));
   for (const s of pack.sections) for (const q of s.questions) answers.set(q.q, q.a);
 }
-const db = new DatabaseSync('server/data/opal.db');
+const db = new DatabaseSync(process.argv[3] || 'server/data/opal.db');
 let failures = 0;
 const check = (ok, label) => {
   console.log(`${ok ? 'OK  ' : 'FAIL'} ${label}`);
@@ -40,6 +40,8 @@ for (const p of [a, b]) {
     const payload = q.mode === 'typed' ? { index: q.index, text: p === a ? ans : 'weiss nicht' } : { index: q.index, choice: p === a ? q.options.indexOf(ans) : (q.options.indexOf(ans) + 1) % 3 };
     setTimeout(() => p.socket.emit('match:answer', payload), p === a ? 300 : 600);
   });
+  // Weiter-Knopf nach jeder Aufloesung
+  p.socket.on('match:reveal', (r) => setTimeout(() => p.socket.emit('match:continue', { index: r.index }), 150));
 }
 const end = new Promise((r) => a.socket.once('match:end', r));
 const ack1 = await new Promise((r) => a.socket.emit('queue:join', { kind: 'ranked' }, r));

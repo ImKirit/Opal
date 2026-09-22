@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import type { GlassQuality } from '../glass/registry';
-import type { AnswerMode, BotDifficulty } from './types';
+import type { AnswerMode, BotDifficulty, Difficulty, OptionCount } from './types';
 
 export interface ThemePreset {
   id: string;
@@ -25,20 +24,30 @@ export const THEMES: ThemePreset[] = [
 
 export type TrainingMode = 'classic' | 'survival' | 'bot';
 
+/**
+ * Glasstufe. Leicht: echte Lichtbrechung nur auf den wichtigen Flaechen (Kopfzeile, Fragekarte,
+ * Antworten, Fenster), der Rest ist mattes Glas. Stark: Lichtbrechung plus Farbsaum ueberall.
+ */
+export type GlassLevel = 'light' | 'strong' | 'off';
+
 export interface PrefsState {
   themeId: string;
   bgHue: number;
   accentHue: number;
   chroma: number;
-  glass: GlassQuality;
+  glass: GlassLevel;
   sound: boolean;
   ambient: boolean;
   /** null = noch nie gewaehlt, dann gilt das Allgemein-Paket */
   sections: string[] | null;
   answerMode: AnswerMode;
+  difficulty: Difficulty;
+  optionCount: OptionCount;
   trainingMode: TrainingMode;
   soloCount: number;
   bot: BotDifficulty;
+  /** Rundgang schon gesehen (oder uebersprungen) */
+  tourDone: boolean;
   set: (patch: Partial<Omit<PrefsState, 'set'>>) => void;
 }
 
@@ -49,19 +58,29 @@ export const usePrefs = create<PrefsState>()(
       bgHue: THEMES[0].bgHue,
       accentHue: THEMES[0].accentHue,
       chroma: THEMES[0].chroma,
-      glass: 'full',
+      glass: 'light',
       sound: true,
       ambient: false,
       sections: null,
       answerMode: 'choice',
+      difficulty: 'gemischt',
+      optionCount: 3,
       trainingMode: 'classic',
       soloCount: 10,
       bot: 'mittel',
+      tourDone: false,
       set: (patch) => set(patch),
     }),
     {
       name: 'opal.prefs',
-      version: 1,
+      version: 2,
+      migrate: (persisted, version) => {
+        const state = (persisted ?? {}) as Record<string, unknown>;
+        // Version 1 kannte full, lite und flat. Alle starten mit der neuen leichten Stufe,
+        // wer vorher Schlicht hatte, behaelt Aus.
+        if (version < 2) state.glass = state.glass === 'flat' ? 'off' : 'light';
+        return state as unknown as PrefsState;
+      },
       storage: createJSONStorage(() => {
         try {
           localStorage.setItem('opal.probe', '1');

@@ -43,7 +43,7 @@ function DemoQuestion() {
   const sample = SAMPLES[i];
 
   return (
-    <Glass className="demo" radius={32} bezel={28} tone="panel" blur={2}>
+    <Glass className="demo" radius={32} bezel={28} tone="panel" blur={2} hero>
       <div className="demo__meta">
         <span className="eyebrow">Beispielfrage</span>
         <span className="demo__pack">{sample.pack}</span>
@@ -58,6 +58,7 @@ function DemoQuestion() {
           return (
             <Glass
               key={opt}
+              hero
               as="button"
               type="button"
               interactive
@@ -131,11 +132,11 @@ export function Landing() {
           Wer zuerst richtig liegt, holt den Punkt.
         </h1>
         <p className="landing__lead">
-          Fun-Fact-Duelle in Echtzeit: Ranked, gegen Freunde oder allein im Training. Du stellst dir die Fragen aus Paketen
+          Fun-Fact-Duelle in Echtzeit: Ranked, gegen Freunde oder allein im Training. Du stellst dir die Fragen aus Themen
           zusammen, von Allgemeinwissen über Anime bis Parfüm.
         </p>
 
-        <Glass className="login" radius={28} tone="deep" blur={3}>
+        <Glass className="login" radius={28} tone="deep" blur={3} hero>
           {config?.discordEnabled ? (
             <Button variant="primary" size="lg" block icon={<LogIn size={18} />} onClick={() => (window.location.href = api.discordUrl())}>
               Mit Discord anmelden

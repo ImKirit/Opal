@@ -41,6 +41,7 @@ export function Modal({ open, onClose, title, width = 560, children }: ModalProp
         >
           <MotionGlass
             ref={panel}
+            hero
             role="dialog"
             aria-modal="true"
             aria-label={title}

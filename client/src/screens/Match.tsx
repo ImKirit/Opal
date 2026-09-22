@@ -1,4 +1,4 @@
-import { Check, CornerDownLeft, Flag, Heart, X } from 'lucide-react';
+import { ArrowRight, Check, CornerDownLeft, Flag, Heart, SkipForward, X } from 'lucide-react';
 import { AnimatePresence, motion, useAnimate } from 'motion/react';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Avatar } from '../components/Avatar';
@@ -163,17 +163,33 @@ function Timer({ match }: { match: MatchView }) {
   }, [secs, running]);
 
   const from = Math.min(1, q.remainingMs / q.duration);
+  const penalties = match.feedback.index === q.index ? match.feedback.penalties : 0;
+  const stopped = !running || match.feedback.locked;
   return (
-    <div className={`timer${secs <= 3 && running ? ' is-urgent' : ''}`}>
+    <div className={`timer${secs <= 3 && !stopped ? ' is-urgent' : ''}`}>
       <div className="timer__track">
+        {/* Neuer Schluessel bei jeder Strafe: die Animation startet dann mit der neuen Restzeit */}
         <div
-          key={q.index}
-          className={`timer__fill${running ? '' : ' is-paused'}`}
-          style={{ '--from': from, animationDuration: `${q.remainingMs}ms` } as React.CSSProperties}
+          key={`${q.index}-${q.remainingMs}`}
+          className={`timer__fill${stopped ? ' is-paused' : ''}`}
+          style={{ '--from': from, animationDuration: `${Math.max(1, q.remainingMs)}ms` } as React.CSSProperties}
         />
       </div>
       <span className="timer__num num" aria-label={`${secs} Sekunden`}>
         {running ? secs : ''}
+        <AnimatePresence>
+          {penalties > 0 && (
+            <motion.span
+              key={penalties}
+              className="timer__penalty"
+              initial={{ opacity: 0, y: 0, scale: 0.8 }}
+              animate={{ opacity: [0, 1, 1, 0], y: -26, scale: 1 }}
+              transition={{ duration: 1.1, times: [0, 0.15, 0.7, 1] }}
+            >
+              -3 s
+            </motion.span>
+          )}
+        </AnimatePresence>
       </span>
     </div>
   );
@@ -195,7 +211,7 @@ function ChoiceAnswers({ match }: { match: MatchView }) {
   }, [locked, q.index, q.options?.length]);
 
   return (
-    <div className="answers">
+    <div className={`answers answers--n${q.options!.length}`}>
       {q.options!.map((opt, i) => {
         let state = '';
         if (reveal && reveal.index === q.index) {
@@ -207,6 +223,7 @@ function ChoiceAnswers({ match }: { match: MatchView }) {
         return (
           <MotionGlass
             key={`${q.index}-${i}`}
+            hero
             as="button"
             type="button"
             interactive
@@ -239,7 +256,7 @@ function TypedAnswer({ match }: { match: MatchView }) {
   const lastTyping = useRef(0);
   const lastSent = useRef('');
   const [shaker, animate] = useAnimate();
-  const open = match.phase === 'question';
+  const open = match.phase === 'question' && !match.feedback.locked;
 
   useEffect(() => {
     setText('');
@@ -265,7 +282,7 @@ function TypedAnswer({ match }: { match: MatchView }) {
   return (
     <form className="typed" onSubmit={submit}>
       <div ref={shaker}>
-        <Glass className="typed__field" radius={24} bezel={20} tone="deep" blur={1}>
+        <Glass className="typed__field" radius={24} bezel={20} tone="deep" blur={1} hero>
           <input
             ref={input}
             value={text}
@@ -277,7 +294,9 @@ function TypedAnswer({ match }: { match: MatchView }) {
                 actions.typing(q.index);
               }
             }}
-            placeholder={open ? 'Antwort eintippen' : ''}
+            placeholder={
+              open ? 'Antwort eintippen' : match.feedback.timedOut ? 'Deine Zeit ist um' : match.feedback.skipped ? 'Übersprungen' : ''
+            }
             maxLength={80}
             autoComplete="off"
             autoCorrect="off"
@@ -290,7 +309,7 @@ function TypedAnswer({ match }: { match: MatchView }) {
         </Glass>
       </div>
       {match.feedback.wrongTexts.length > 0 && (
-        <ul className="typed__misses" aria-label="Falsche Versuche">
+        <ul className="typed__misses" aria-label="Falsche Versuche, jeder kostet 3 Sekunden">
           {match.feedback.wrongTexts.slice(-5).map((t, i) => (
             <li key={`${t}-${i}`}>{t}</li>
           ))}
@@ -300,47 +319,135 @@ function TypedAnswer({ match }: { match: MatchView }) {
   );
 }
 
-function RevealBanner({ match, meId }: { match: MatchView; meId: string }) {
+function SkipButton({ match }: { match: MatchView }) {
+  const q = match.question!;
+  const solo = match.info.kind === 'solo';
+  if (match.phase !== 'question') return <div className="round__actions" aria-hidden="true" />;
+  const waiting = match.feedback.locked && !solo;
+  return (
+    <div className="round__actions">
+      {waiting ? (
+        <span className="round__wait">
+          {match.feedback.skipped ? 'Übersprungen.' : match.feedback.timedOut ? 'Deine Zeit ist um.' : 'Eingeloggt.'} Die anderen sind noch dran.
+        </span>
+      ) : (
+        <Button
+          size="sm"
+          variant="ghost"
+          icon={<SkipForward size={15} />}
+          disabled={match.feedback.locked}
+          onClick={() => actions.skip(q.index)}
+        >
+          Weiß ich nicht, überspringen
+        </Button>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Aufloesung wie bei Duolingo: Leiste unten in Gruen (Punkt fuer mich) oder Rot, mit der
+ * richtigen Antwort, dem Fakt und einem grossen Weiter-Knopf (Enter oder Leertaste).
+ */
+function ContinuePanel({ match, meId }: { match: MatchView; meId: string }) {
   const r = match.reveal!;
   const q = match.question;
   const solo = match.info.kind === 'solo';
   const winner = match.info.players.find((p) => p.id === r.winnerId);
+  const good = r.winnerId === meId;
+  const auto = r.continueMode === 'auto';
+  const imReady = r.ready.includes(meId);
+  const humans = match.info.players.filter((p) => !p.isBot && !p.left);
+  const waitingFor = humans.filter((p) => !r.ready.includes(p.id));
+  const now = useNow(Boolean(r.autoAt) || auto, 250);
+  const autoLeft = r.autoAt ? Math.max(0, Math.ceil((r.autoAt - now) / 1000)) : null;
+
   let headline: string;
-  let tone: 'good' | 'bad' | 'none';
-  if (r.winnerId === meId) {
-    headline = solo ? `Richtig · ${seconds(r.ms)}` : `Du warst schneller · ${seconds(r.ms)}`;
-    tone = 'good';
-  } else if (winner) {
-    headline = `${winner.name} war schneller · ${seconds(r.ms)}`;
-    tone = 'bad';
-  } else {
-    headline = solo ? (match.feedback.locked || match.feedback.wrongTexts.length ? 'Leider falsch' : 'Die Zeit ist um') : 'Niemand hatte es';
-    tone = 'none';
-  }
+  if (good) headline = solo ? 'Richtig!' : 'Punkt für dich!';
+  else if (winner) headline = `${winner.name} war schneller`;
+  else if (match.feedback.skipped) headline = 'Übersprungen';
+  else if (match.feedback.locked || match.feedback.wrongTexts.length) headline = 'Leider falsch';
+  else headline = solo ? 'Die Zeit ist um' : 'Niemand hatte es';
+
+  const sub = good
+    ? r.ms != null
+      ? `in ${seconds(r.ms)}`
+      : null
+    : winner && r.ms != null
+      ? `in ${seconds(r.ms)}`
+      : null;
+
+  const go = () => {
+    if (!imReady) actions.continueMatch(r.index);
+  };
+
+  // Enter und Leertaste druecken Weiter, aber erst kurz nach dem Erscheinen: sonst rutscht man
+  // mit dem Enter vom Abschicken der Tipp-Antwort direkt durch.
+  useEffect(() => {
+    if (auto) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.repeat || (e.key !== 'Enter' && e.key !== ' ')) return;
+      if (Date.now() - r.shownAt < 450) return;
+      e.preventDefault();
+      if (!r.ready.includes(meId)) actions.continueMatch(r.index);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [auto, r.index, r.ready, r.shownAt, meId]);
+
+  const label = r.last ? 'Zum Ergebnis' : 'Weiter';
 
   return (
     <MotionGlass
-      className={`reveal reveal--${tone}`}
-      radius={24}
+      hero
+      className={`next next--${good ? 'good' : 'bad'}`}
+      radius={28}
+      bezel={24}
       tone="deep"
-      blur={2}
-      initial={{ opacity: 0, y: 16, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ type: 'spring', stiffness: 360, damping: 28 }}
+      blur={3}
+      role="status"
+      initial={{ opacity: 0, y: 60 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 40, transition: { duration: 0.18 } }}
+      transition={{ type: 'spring', stiffness: 380, damping: 32 }}
     >
-      <p className="reveal__headline">{headline}</p>
-      {(q?.mode === 'typed' || tone !== 'good') && (
-        <p className="reveal__answer">
-          Richtig ist: <strong>{r.answer}</strong>
+      <span className="next__icon" aria-hidden="true">
+        {good ? <Check size={28} strokeWidth={3} /> : <X size={28} strokeWidth={3} />}
+      </span>
+      <div className="next__body">
+        <p className="next__headline">
+          {headline}
+          {sub && <span className="next__time num"> {sub}</span>}
         </p>
-      )}
-      {r.fact && (
-        <p className="reveal__fact">
-          <span className="eyebrow">Gut zu wissen</span>
-          {r.fact}
-        </p>
-      )}
-      <div className="reveal__next" style={{ animationDuration: `${r.nextInMs}ms` }} />
+        {(q?.mode === 'typed' || !good) && (
+          <p className="next__answer">
+            Richtig ist: <strong>{r.answer}</strong>
+          </p>
+        )}
+        {r.fact && <p className="next__fact">{r.fact}</p>}
+      </div>
+      <div className="next__action">
+        {auto ? (
+          <div className="next__auto" aria-label="Es geht gleich automatisch weiter">
+            <span>Gleich geht es weiter</span>
+            <div className="next__bar" style={{ animationDuration: `${r.nextInMs ?? 3000}ms` }} />
+          </div>
+        ) : (
+          <>
+            <button type="button" className="next__btn" onClick={go} disabled={imReady} autoFocus>
+              {imReady ? (waitingFor.length ? 'Warte …' : label) : label}
+              {!imReady && <ArrowRight size={20} strokeWidth={2.6} />}
+            </button>
+            <span className="next__hint">
+              {imReady && waitingFor.length
+                ? `Warte auf ${waitingFor.length === 1 ? waitingFor[0].name : `${waitingFor.length} Leute`}${autoLeft != null ? `, noch ${autoLeft} s` : ''}`
+                : !imReady && autoLeft != null
+                  ? `Die anderen sind bereit, noch ${autoLeft} s`
+                  : 'Enter oder Leertaste'}
+            </span>
+          </>
+        )}
+      </div>
     </MotionGlass>
   );
 }
@@ -394,7 +501,7 @@ export function Match() {
 
   return (
     <main className="match" style={q ? ({ '--q-h': q.hue } as React.CSSProperties) : undefined}>
-      <Glass className="match__top" radius={28} bezel={22} tone="panel" blur={3}>
+      <Glass className="match__top" radius={28} bezel={22} tone="panel" blur={3} hero>
         <Scoreboard match={match} meId={meId} />
       </Glass>
 
@@ -404,6 +511,7 @@ export function Match() {
         ) : (
           <div className="round" key={q.index}>
             <MotionGlass
+              hero
               className="qcard"
               radius={34}
               bezel={30}
@@ -425,11 +533,16 @@ export function Match() {
             </MotionGlass>
 
             {q.mode === 'choice' ? <ChoiceAnswers match={match} /> : <TypedAnswer match={match} />}
-
-            <AnimatePresence>{match.phase === 'reveal' && match.reveal && <RevealBanner match={match} meId={meId} />}</AnimatePresence>
+            <SkipButton match={match} />
           </div>
         )}
       </div>
+
+      <AnimatePresence>
+        {match.phase === 'reveal' && match.reveal && q && match.reveal.index === q.index && (
+          <ContinuePanel key={match.reveal.index} match={match} meId={meId} />
+        )}
+      </AnimatePresence>
 
       <footer className="match__foot">
         <Button

@@ -4,9 +4,9 @@ import { Modal } from '../components/Modal';
 import { Segmented } from '../components/Segmented';
 import { Toggle } from '../components/Toggle';
 import { glassRefractionSupported } from '../glass/Glass';
-import type { GlassQuality } from '../glass/registry';
 import { api } from '../lib/api';
-import { THEMES, usePrefs } from '../lib/prefs';
+import { THEMES, usePrefs, type GlassLevel } from '../lib/prefs';
+import { navigate } from '../lib/route';
 import { actions, logout, useGame, useSession } from '../lib/store';
 
 export function SettingsSheet() {
@@ -73,22 +73,43 @@ export function SettingsSheet() {
 
       <section className="settings__block">
         <h3>Glas</h3>
-        <Segmented<GlassQuality>
-          label="Glasqualität"
+        <Segmented<GlassLevel>
+          label="Glasstufe"
           block
-          value={glassRefractionSupported ? prefs.glass : 'flat'}
+          value={glassRefractionSupported ? prefs.glass : 'off'}
           onChange={(v) => prefs.set({ glass: v })}
           options={[
-            { value: 'full', label: 'Prisma', disabled: !glassRefractionSupported },
-            { value: 'lite', label: 'Lichtbrechung', disabled: !glassRefractionSupported },
-            { value: 'flat', label: 'Schlicht' },
+            { value: 'light', label: 'Leicht', disabled: !glassRefractionSupported },
+            { value: 'strong', label: 'Stark', disabled: !glassRefractionSupported },
+            { value: 'off', label: 'Aus' },
           ]}
         />
         <p className="settings__hint">
-          {glassRefractionSupported
-            ? 'Prisma bricht das Licht am Rand zusätzlich in Farben auf. Auf schwachen Rechnern ist Schlicht am flüssigsten.'
-            : 'Dein Browser kann keine echte Lichtbrechung. In Chrome, Edge oder der Desktop-App siehst du das volle Glas.'}
+          {!glassRefractionSupported
+            ? 'Dein Browser kann keine echte Lichtbrechung. In Chrome, Edge oder der Desktop-App siehst du das volle Glas.'
+            : prefs.glass === 'strong'
+              ? 'Stark: echtes Liquid Glass auf jeder Fläche, mit Farbsaum am Rand. Sieht am besten aus, braucht aber einen kräftigen Rechner.'
+              : prefs.glass === 'off'
+                ? 'Aus: mattes Glas ohne Lichtbrechung. Am flüssigsten.'
+                : 'Leicht (Standard): Lichtbrechung auf Fragen, Antworten und Fenstern, der Rest bleibt mattes Glas. Flüssig auch auf schwächeren Rechnern.'}
         </p>
+      </section>
+
+      <section className="settings__block">
+        <h3>Hilfe</h3>
+        <div className="settings__row">
+          <Button
+            size="sm"
+            onClick={() => {
+              prefs.set({ tourDone: false });
+              actions.openSettings(false);
+              navigate('spielen');
+            }}
+          >
+            Rundgang ansehen
+          </Button>
+        </div>
+        <p className="settings__hint">Zeigt noch einmal mit Pfeilen, wo Ranked, Training, Themen, Freunde und die Rangliste sind.</p>
       </section>
 
       <section className="settings__block">

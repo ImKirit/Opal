@@ -1,18 +1,26 @@
+import { randomUUID } from 'node:crypto';
 import { userFromCookieHeader } from '../auth.js';
-import { countQuestions, rankedSections, sanitizeSections } from '../packs.js';
+import { friendIds, relation } from '../friends.js';
+import { countQuestions, rankedSections } from '../packs.js';
 import { getUser, touchUser } from '../users.js';
 import { createBot, isBotDifficulty } from './bot.js';
 import { LOBBY_MAX, LobbyRegistry } from './lobbies.js';
 import { Match } from './match.js';
 import { Matchmaker } from './matchmaker.js';
+import { DEFAULT_SETTINGS, readSettings, SOLO_MODES } from './settings.js';
 
-const ANSWER_MODES = new Set(['choice', 'typed', 'mixed']);
-const QUESTION_COUNTS = new Set([5, 10, 15, 20, 30]);
-const SOLO_MODES = new Set(['classic', 'survival']);
-const RANKED_SETTINGS = { answerMode: 'mixed', questionCount: 9 };
+// Ranked ist fuer alle gleich: fester Pool, gemischter Antwortmodus, feste Schwierigkeit
+const RANKED_SETTINGS = { ...DEFAULT_SETTINGS, answerMode: 'mixed', questionCount: 9 };
 const UNRANKED_COUNT = 10;
+/** Was man vor Training und Unranked selbst waehlen darf */
+const PLAYER_FIELDS = ['sections', 'answerMode', 'questionCount', 'difficulty', 'optionCount'];
+/** Was der Lobby-Host einstellen darf */
+const LOBBY_FIELDS = [...PLAYER_FIELDS, 'timeLimit', 'continueMode', 'locked'];
 const LOBBY_DISCONNECT_MS = 30000;
 const MIN_POOL = 5;
+/** So lange gilt eine Match-Anfrage an Freunde */
+const INVITE_MS = 30000;
+const MAX_OUTGOING_INVITES = 3;
 
 const fail = (ack, error) => typeof ack === 'function' && ack({ ok: false, error });
 const done = (ack, data = {}) => typeof ack === 'function' && ack({ ok: true, ...data });
@@ -79,12 +87,12 @@ export function attachHub(io) {
   const matchmaker = new Matchmaker({
     emitToUser,
     getRating: (userId) => getUser(userId)?.rating ?? 1000,
-    onMatch: ({ kind, users, sections, answerMode }) => {
+    onMatch: ({ kind, users, sections, answerMode, difficulty, optionCount }) => {
       const players = users.map((u) => playerFromUser(getUser(u.id) ?? u));
       const settings =
         kind === 'ranked'
-          ? { sections, ...RANKED_SETTINGS }
-          : { sections, answerMode, questionCount: UNRANKED_COUNT };
+          ? { ...RANKED_SETTINGS, sections }
+          : { ...DEFAULT_SETTINGS, sections, answerMode, difficulty, optionCount, questionCount: UNRANKED_COUNT };
       for (const u of users) emitToUser(u.id, 'queue:found', { kind });
       startMatch({ kind, players, settings });
     },
@@ -122,15 +130,66 @@ export function attachHub(io) {
     return rankedSections();
   }
 
-  function readSettings(input, base) {
-    const out = { ...base };
-    if (input && 'sections' in input) {
-      const sections = sanitizeSections(input.sections);
-      if (sections.length) out.sections = sections;
+  /** Startet das Spiel einer Lobby. Liefert eine Fehlermeldung oder null. */
+  function startLobbyMatch(l) {
+    if (l.size < 2) return 'Es braucht mindestens zwei Teilnehmer. Lade jemanden ein oder nimm einen Bot dazu.';
+    if (countQuestions(l.settings.sections) < MIN_POOL) return 'Zu wenige Fragen in der Auswahl.';
+    const players = [
+      ...[...l.members.values()].filter((m) => socketsOf(m.id) > 0).map((m) => playerFromUser(getUser(m.id) ?? m.user)),
+      ...l.bots.map((b) => ({ ...b })),
+    ];
+    if (players.length < 2) return 'Es sind zu wenige Teilnehmer online.';
+    const match = startMatch({ kind: 'private', players, settings: { ...l.settings }, lobby: l });
+    if (!match) return 'Zu wenige Fragen in der Auswahl.';
+    l.match = match;
+    broadcastLobby(l);
+    return null;
+  }
+
+  // ---------- Online-Status und Freunde ----------
+
+  /** Was Freunde ueber jemanden sehen: offline, online, queue, lobby oder playing */
+  function presence(userId) {
+    if (socketsOf(userId) === 0) return 'offline';
+    if (activeMatch(userId)) return 'playing';
+    if (matchmaker.has(userId)) return 'queue';
+    if (lobbyOf.has(userId)) return 'lobby';
+    return 'online';
+  }
+
+  function notifyFriends(userId) {
+    for (const id of friendIds(userId)) emitToUser(id, 'friends:changed', { reason: 'presence' });
+  }
+
+  // ---------- Match-Anfragen an Freunde ----------
+
+  const invites = new Map(); // inviteId -> Einladung
+
+  function publicInvite(inv) {
+    const from = getUser(inv.fromId);
+    const to = getUser(inv.toId);
+    return {
+      id: inv.id,
+      from: { id: inv.fromId, name: from?.name ?? '?', avatar: from?.avatar ?? null },
+      to: { id: inv.toId, name: to?.name ?? '?', avatar: to?.avatar ?? null },
+      intoLobby: inv.intoLobby,
+      expiresInMs: Math.max(0, inv.expiresAt - Date.now()),
+    };
+  }
+
+  function closeInvite(inv, reason, byName = null) {
+    if (invites.get(inv.id) !== inv) return;
+    invites.delete(inv.id);
+    clearTimeout(inv.timer);
+    const payload = { id: inv.id, reason, by: byName };
+    emitToUser(inv.fromId, 'invite:closed', payload);
+    emitToUser(inv.toId, 'invite:closed', payload);
+  }
+
+  function closeInvitesOf(userId, reason) {
+    for (const inv of [...invites.values()]) {
+      if (inv.fromId === userId || inv.toId === userId) closeInvite(inv, reason);
     }
-    if (input && ANSWER_MODES.has(input.answerMode)) out.answerMode = input.answerMode;
-    if (input && QUESTION_COUNTS.has(Number(input.questionCount))) out.questionCount = Number(input.questionCount);
-    return out;
   }
 
   // Vor einer neuen Aktivitaet alles Alte sauber beenden
@@ -153,6 +212,9 @@ export function attachHub(io) {
     const userId = socket.data.userId;
     const me = () => getUser(userId);
     socket.join(`user:${userId}`);
+    if (socketsOf(userId) === 1) notifyFriends(userId);
+    // Offene Anfragen an diese Person nach einem Neuladen wieder zeigen
+    for (const inv of invites.values()) if (inv.toId === userId) socket.emit('invite:received', publicInvite(inv));
 
     // Wiedereinstieg nach Reload oder Verbindungsabbruch
     clearTimeout(lobbyLeaveTimers.get(userId));
@@ -175,18 +237,21 @@ export function attachHub(io) {
       const kind = payload?.kind === 'ranked' ? 'ranked' : 'unranked';
       if (kind === 'ranked' && user.is_guest) return fail(ack, 'Ranked braucht einen Discord-Login.');
 
-      let sections;
-      let answerMode;
-      if (kind === 'ranked') {
-        sections = rankedSections();
-        answerMode = RANKED_SETTINGS.answerMode;
-      } else {
-        sections = sanitizeSections(payload?.sections);
-        answerMode = ANSWER_MODES.has(payload?.answerMode) ? payload.answerMode : 'choice';
-        if (countQuestions(sections) < MIN_POOL) return fail(ack, `Wähle Pakete mit mindestens ${MIN_POOL} Fragen aus.`);
+      const wanted =
+        kind === 'ranked'
+          ? { ...RANKED_SETTINGS, sections: rankedSections() }
+          : readSettings(payload, { sections: [] }, PLAYER_FIELDS);
+      if (kind === 'unranked' && countQuestions(wanted.sections) < MIN_POOL) {
+        return fail(ack, `Wähle Themen mit mindestens ${MIN_POOL} Fragen aus.`);
       }
       clearActivity(userId);
-      matchmaker.join(user, { kind, sections, answerMode });
+      matchmaker.join(user, {
+        kind,
+        sections: wanted.sections,
+        answerMode: wanted.answerMode,
+        difficulty: wanted.difficulty,
+        optionCount: wanted.optionCount,
+      });
       done(ack);
     });
 
@@ -205,7 +270,14 @@ export function attachHub(io) {
         kind: 'bot',
         variant: difficulty,
         players: [playerFromUser(me()), createBot(difficulty)],
-        settings: { sections: [...entry.sections], answerMode: entry.answerMode, questionCount: UNRANKED_COUNT },
+        settings: {
+          ...DEFAULT_SETTINGS,
+          sections: [...entry.sections],
+          answerMode: entry.answerMode,
+          difficulty: entry.difficulty,
+          optionCount: entry.optionCount,
+          questionCount: UNRANKED_COUNT,
+        },
       });
       if (!match) return fail(ack, 'Zu wenige Fragen in deiner Auswahl.');
       done(ack);
@@ -216,15 +288,13 @@ export function attachHub(io) {
       const user = me();
       if (!user) return fail(ack, 'Nicht angemeldet.');
       if (activeMatch(userId)) return fail(ack, 'Du bist gerade in einem Spiel.');
-      const sections = sanitizeSections(payload?.sections);
-      if (countQuestions(sections) < MIN_POOL) return fail(ack, `Wähle Pakete mit mindestens ${MIN_POOL} Fragen aus.`);
-      const answerMode = ANSWER_MODES.has(payload?.answerMode) ? payload.answerMode : 'choice';
+      const picked = readSettings(payload, { sections: [] }, PLAYER_FIELDS);
+      if (countQuestions(picked.sections) < MIN_POOL) return fail(ack, `Wähle Themen mit mindestens ${MIN_POOL} Fragen aus.`);
       const soloMode = SOLO_MODES.has(payload?.soloMode) ? payload.soloMode : 'classic';
-      const questionCount = QUESTION_COUNTS.has(Number(payload?.questionCount)) ? Number(payload.questionCount) : 10;
       const bot = isBotDifficulty(payload?.bot) ? payload.bot : null;
 
       clearActivity(userId);
-      const settings = { sections, answerMode, questionCount, soloMode: bot ? 'classic' : soloMode };
+      const settings = { ...picked, soloMode: bot ? 'classic' : soloMode };
       const match = bot
         ? startMatch({ kind: 'bot', variant: bot, players: [playerFromUser(user), createBot(bot)], settings })
         : startMatch({ kind: 'solo', variant: soloMode, players: [playerFromUser(user)], settings });
@@ -238,7 +308,7 @@ export function attachHub(io) {
       if (!user) return fail(ack, 'Nicht angemeldet.');
       if (activeMatch(userId)) return fail(ack, 'Du bist gerade in einem Spiel.');
       clearActivity(userId);
-      const settings = readSettings(payload, { sections: defaultSections(), answerMode: 'choice', questionCount: 10 });
+      const settings = readSettings(payload, { sections: defaultSections(), locked: false }, LOBBY_FIELDS);
       const created = lobbies.create(user, settings);
       enterLobby(user, created);
       done(ack, { code: created.code });
@@ -252,6 +322,7 @@ export function attachHub(io) {
       if (!target) return fail(ack, 'Diese Lobby gibt es nicht (mehr).');
       if (lobbyOf.get(userId) === target) return done(ack, { code: target.code });
       if (target.match) return fail(ack, 'In dieser Lobby läuft gerade ein Spiel.');
+      if (target.settings.locked) return fail(ack, 'Diese Lobby ist abgeschlossen. Der Host muss sie erst öffnen.');
       if (target.size >= LOBBY_MAX) return fail(ack, 'Die Lobby ist voll.');
       clearActivity(userId);
       target.addMember(user);
@@ -275,7 +346,7 @@ export function attachHub(io) {
     socket.on('lobby:settings', (payload, ack) => {
       const l = hostLobby(ack);
       if (!l) return;
-      l.settings = readSettings(payload, l.settings);
+      l.settings = readSettings(payload, l.settings, LOBBY_FIELDS);
       broadcastLobby(l);
       done(ack);
     });
@@ -308,23 +379,102 @@ export function attachHub(io) {
     socket.on('lobby:start', (_payload, ack) => {
       const l = hostLobby(ack);
       if (!l) return;
-      if (l.size < 2) return fail(ack, 'Es braucht mindestens zwei Teilnehmer. Lade jemanden ein oder nimm einen Bot dazu.');
-      if (countQuestions(l.settings.sections) < MIN_POOL) return fail(ack, 'Zu wenige Fragen in der Auswahl.');
-      const players = [
-        ...[...l.members.values()].filter((m) => socketsOf(m.id) > 0).map((m) => playerFromUser(getUser(m.id) ?? m.user)),
-        ...l.bots.map((b) => ({ ...b })),
-      ];
-      if (players.length < 2) return fail(ack, 'Es sind zu wenige Teilnehmer online.');
-      const match = startMatch({ kind: 'private', players, settings: { ...l.settings }, lobby: l });
-      if (!match) return fail(ack, 'Zu wenige Fragen in der Auswahl.');
-      l.match = match;
-      broadcastLobby(l);
+      const error = startLobbyMatch(l);
+      if (error) return fail(ack, error);
       done(ack);
+    });
+
+    // ----- Match-Anfragen an Freunde -----
+    socket.on('invite:send', (payload, ack) => {
+      const user = me();
+      const target = getUser(String(payload?.userId ?? ''));
+      if (!user || !target) return fail(ack, 'Diese Person gibt es nicht.');
+      if (relation(userId, target.id) !== 'friend') return fail(ack, 'Herausfordern kannst du nur Freunde.');
+      if (socketsOf(target.id) === 0) return fail(ack, `${target.name} ist gerade nicht online.`);
+      if (activeMatch(userId)) return fail(ack, 'Du bist gerade in einem Spiel.');
+      if (activeMatch(target.id)) return fail(ack, `${target.name} spielt gerade.`);
+      const existing = [...invites.values()].find((i) => i.fromId === userId && i.toId === target.id);
+      if (existing) return done(ack, { invite: publicInvite(existing) });
+      if ([...invites.values()].filter((i) => i.fromId === userId).length >= MAX_OUTGOING_INVITES) {
+        return fail(ack, 'Du hast schon genug offene Anfragen. Warte kurz auf eine Antwort.');
+      }
+      const inv = {
+        id: randomUUID(),
+        fromId: userId,
+        toId: target.id,
+        // Sitzt man schon in einer Lobby, holt die Anfrage die Person dort hinein
+        intoLobby: lobbyOf.has(userId),
+        settings: readSettings(payload?.settings, { sections: defaultSections(), locked: false }, PLAYER_FIELDS),
+        expiresAt: Date.now() + INVITE_MS,
+        timer: null,
+      };
+      inv.timer = setTimeout(() => closeInvite(inv, 'expired'), INVITE_MS);
+      invites.set(inv.id, inv);
+      emitToUser(target.id, 'invite:received', publicInvite(inv));
+      done(ack, { invite: publicInvite(inv) });
+    });
+
+    socket.on('invite:cancel', (payload, ack) => {
+      const inv = invites.get(payload?.id);
+      if (inv && inv.fromId === userId) closeInvite(inv, 'cancelled', me()?.name);
+      done(ack);
+    });
+
+    socket.on('invite:respond', (payload, ack) => {
+      const inv = invites.get(payload?.id);
+      if (!inv || inv.toId !== userId) return fail(ack, 'Diese Anfrage ist abgelaufen.');
+      const user = me();
+      const inviter = getUser(inv.fromId);
+      if (!payload?.accept) {
+        closeInvite(inv, 'declined', user?.name);
+        return done(ack);
+      }
+      if (!user || !inviter || socketsOf(inviter.id) === 0) {
+        closeInvite(inv, 'expired');
+        return fail(ack, `${inviter?.name ?? 'Die Person'} ist nicht mehr online.`);
+      }
+      if (activeMatch(inviter.id)) {
+        closeInvite(inv, 'busy');
+        return fail(ack, `${inviter.name} spielt inzwischen schon.`);
+      }
+      if (activeMatch(userId)) return fail(ack, 'Du bist gerade in einem Spiel.');
+
+      const existing = lobbyOf.get(inviter.id);
+      if (existing) {
+        if (existing.match) return fail(ack, 'In der Lobby läuft gerade ein Spiel. Versuch es gleich nochmal.');
+        if (existing.size >= LOBBY_MAX) return fail(ack, 'Die Lobby ist voll.');
+        closeInvite(inv, 'accepted', user.name);
+        clearActivity(userId);
+        existing.addMember(user);
+        enterLobby(user, existing);
+        return done(ack, { code: existing.code });
+      }
+
+      // Keine Lobby: neue Lobby des Einladenden, beide rein, Spiel startet sofort.
+      // Nach dem Spiel bleiben beide in der Lobby und koennen direkt nochmal.
+      closeInvite(inv, 'accepted', user.name);
+      clearActivity(inviter.id);
+      clearActivity(userId);
+      const lobby = lobbies.create(inviter, inv.settings);
+      enterLobby(inviter, lobby);
+      lobby.addMember(user);
+      enterLobby(user, lobby);
+      const error = startLobbyMatch(lobby);
+      if (error) emitToUser(inviter.id, 'lobby:notice', { text: error });
+      done(ack, { code: lobby.code });
     });
 
     // ----- Im Spiel -----
     socket.on('match:answer', (payload) => {
       activeMatch(userId)?.submit(userId, payload);
+    });
+
+    socket.on('match:skip', (payload) => {
+      activeMatch(userId)?.skip(userId, payload);
+    });
+
+    socket.on('match:continue', (payload) => {
+      activeMatch(userId)?.continue(userId, payload);
     });
 
     socket.on('match:typing', (payload) => {
@@ -347,6 +497,8 @@ export function attachHub(io) {
 
     socket.on('disconnect', () => {
       if (socketsOf(userId) > 0) return; // noch ein anderer Tab offen
+      notifyFriends(userId);
+      closeInvitesOf(userId, 'offline');
       matchmaker.leave(userId);
       activeMatch(userId)?.handleDisconnect(userId);
       const l = lobbyOf.get(userId);
@@ -365,6 +517,8 @@ export function attachHub(io) {
   });
 
   return {
+    presence,
+    notify: emitToUser,
     stats: () => ({
       matches: matches.size,
       lobbies: lobbies.lobbies.size,

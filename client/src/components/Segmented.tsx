@@ -60,6 +60,7 @@ export function Segmented<T extends string>({
             title={o.title}
             disabled={o.disabled}
             className={`seg__opt${active ? ' is-active' : ''}`}
+            data-value={o.value}
             style={{ height }}
             onClick={() => {
               if (active) return;
@@ -81,6 +82,7 @@ export function Segmented<T extends string>({
                 bezel={9}
                 blur={0}
                 prism={false}
+                hero
                 tone="clear"
                 transition={{ type: 'spring', stiffness: 460, damping: 32, mass: 0.9 }}
                 aria-hidden="true"

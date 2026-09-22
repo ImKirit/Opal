@@ -27,6 +27,7 @@ export function QueueOverlay() {
       {queue && (
         <motion.div className="queue" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <MotionGlass
+            hero
             className="queue__card"
             radius={34}
             bezel={28}

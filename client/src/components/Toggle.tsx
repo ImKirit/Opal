@@ -33,6 +33,7 @@ export function Toggle({ checked, onChange, label, hint }: ToggleProps) {
           magnify={1.15}
           blur={0}
           prism={false}
+          hero
           tone="clear"
           transition={{ type: 'spring', stiffness: 600, damping: 30 }}
         />

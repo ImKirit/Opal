@@ -1,8 +1,9 @@
 // Erzeugt alle README-Bilder in docs/ neu. Braucht laufenden Server und Client.
 // Aufruf aus dem Projekt-Root: node Claude/scripts/readme-shots.mjs [http://localhost:5174]
-// Achtung: legt Spiele in der lokalen Datenbank an (Gast "Kirit", Trainings gegen Bots).
+// Achtung: legt Spiele in der lokalen Datenbank an (Gaeste "Kirit" und "Mila", Trainings gegen
+// Bots, eine Freundschaft). Am besten vorher und nachher die Dev-Datenbank leeren.
 
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawn } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -20,7 +21,8 @@ for (const f of fs.readdirSync(path.join(root, 'packs'))) {
 
 const helpers = `
   window.__A = ${JSON.stringify(answers)};
-  window.__btn = (t) => [...document.querySelectorAll('button')].find((b) => b.textContent.trim().includes(t));
+  window.__btn = (t, root = document) => [...root.querySelectorAll('button')].find((b) => b.textContent.trim().includes(t));
+  window.__key = (k) => window.dispatchEvent(new KeyboardEvent('keydown', { key: k, bubbles: true }));
   window.__set = (inp, v) => { Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(inp, v); inp.dispatchEvent(new Event('input', { bubbles: true })); };
   window.__solve = () => {
     const t = document.querySelector('.qcard__text')?.textContent; const a = window.__A[t]; if (!a) return 'keine Frage';
@@ -30,8 +32,12 @@ const helpers = `
     if (inp && !inp.disabled) { window.__set(inp, a); inp.closest('form').requestSubmit(); return 'tipp'; }
     return 'gesperrt';
   };
-  window.__auto = (on) => { clearInterval(window.__t); if (!on) return 'aus'; let last = ''; window.__t = setInterval(() => {
-    const t = document.querySelector('.qcard__text')?.textContent; if (t && t !== last && !document.querySelector('.reveal')) { last = t; setTimeout(window.__solve, 900 + Math.random() * 5200); } }, 250); return 'an'; };
+  // Spielt ein Duell von selbst: antwortet nach einer Pause und drueckt danach auf Weiter
+  window.__auto = (on) => { clearInterval(window.__t); if (!on) return 'aus'; let last = ''; let pressed = -1; window.__t = setInterval(() => {
+    const next = document.querySelector('.next__btn');
+    const t = document.querySelector('.qcard__text')?.textContent;
+    if (next && !next.disabled && pressed !== t) { pressed = t; setTimeout(() => next.click(), 1400); return; }
+    if (t && t !== last && !next) { last = t; setTimeout(window.__solve, 900 + Math.random() * 5200); } }, 250); return 'an'; };
   'helfer da';
 `;
 
@@ -43,12 +49,26 @@ const steps = [
   { wait: 400 },
   { shot: 'tour-1-start' },
   { eval: "__btn('Los').click(); 'login'" },
-  { wait: 2500 },
-  { eval: "location.hash = '#/pakete'; 'pakete'" },
+  { wait: 3000 },
+  { eval: helpers },
+  { eval: "__key('ArrowRight'); 'rundgang'" },
+  { wait: 1400 },
+  { shot: 'main-rundgang' },
+  { eval: "__key('Escape'); 'rundgang aus'" },
+  { wait: 600 },
+  // Freunde: "Mila" (friend-helper.mjs) schickt eine Anfrage und fordert danach heraus
+  { eval: "location.hash = '#/freunde'; 'freunde'" },
+  { wait: 7000 },
+  { eval: "(__btn('Annehmen', document.querySelector('.friends__grid')) ?? { click() {} }).click(); 'annehmen'" },
+  { wait: 5500 },
+  { shot: 'main-freunde' },
+  { eval: "(__btn('Ablehnen', document.querySelector('.invites')) ?? { click() {} }).click(); 'ablehnen'" },
+  { wait: 800 },
+  { eval: "location.hash = '#/themen'; 'themen'" },
   { wait: 1400 },
   { eval: "document.querySelectorAll('.pack__head')[1].click(); 'anime'" },
   { wait: 800 },
-  { shot: 'tour-2-pakete' },
+  { shot: 'tour-2-themen' },
   { eval: "location.hash = '#/spielen'; 'spielen'" },
   { size: [1440, 1060, false] },
   { wait: 1200 },
@@ -62,8 +82,8 @@ const steps = [
   { eval: '__solve()' },
   { wait: 1300 },
   { shot: 'tour-4-aufloesung' },
-  { eval: '__auto(true)' },
-  { wait: 105000 },
+  { eval: "__btn('Weiter', document.querySelector('.next'))?.click(); __auto(true)" },
+  { wait: 130000 },
   { eval: "__auto(false); document.querySelector('.result') ? 'ergebnis' : 'noch im spiel'" },
   { wait: 2000 },
   { shot: 'main-ergebnis' },
@@ -82,9 +102,11 @@ const steps = [
   { wait: 1200 },
   { eval: "__btn('Lobby erstellen').click(); 'lobby'" },
   { wait: 1500 },
+  { size: [1440, 1180, false] },
   { eval: "__btn('Leicht').click(); setTimeout(() => __btn('Bot dazu').click(), 300); setTimeout(() => __btn('Schwer').click(), 900); setTimeout(() => __btn('Bot dazu').click(), 1300); 'bots'" },
   { wait: 2200 },
   { shot: 'main-lobby' },
+  { size: [1440, 900, false] },
   { eval: "__btn('Lobby verlassen').click(); 'weg'" },
   { wait: 1200 },
   { eval: "document.querySelector('[aria-label=\"Einstellungen\"]').click(); setTimeout(() => __btn('Rosé').click(), 600); 'rose'" },
@@ -101,13 +123,25 @@ const steps = [
   { eval: helpers },
   { eval: "__btn('Klassisch').click(); setTimeout(() => __btn('Auswahl').click(), 300); setTimeout(() => __btn('Training starten').click(), 800); 'start'" },
   { wait: 6000 },
+  { eval: "document.querySelector('.answers .answer')?.click(); 'antwort'" },
+  { wait: 1300 },
   { shot: 'main-handy' },
   { eval: "__btn('Training beenden').click(); setTimeout(() => __btn('Wirklich').click(), 300); 'ende'" },
   { wait: 1500 },
 ];
 
+// Zweite Person fuer die Freunde-Bilder, laeuft parallel und beendet sich selbst
+const helper = spawn(process.execPath, [path.join(root, 'Claude/scripts/friend-helper.mjs'), 'Kirit', BASE, 'Mila'], {
+  env: { ...process.env, HELPER_MS: '70000', HELPER_START_DELAY: '10500' },
+  stdio: 'ignore',
+});
+
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'opal-readme-'));
 const stepsFile = path.join(tmp, 'steps.json');
 fs.writeFileSync(stepsFile, JSON.stringify(steps));
-execFileSync(process.execPath, [path.join(root, 'Claude/scripts/shots.mjs'), stepsFile, out], { stdio: 'inherit' });
-fs.rmSync(tmp, { recursive: true, force: true });
+try {
+  execFileSync(process.execPath, [path.join(root, 'Claude/scripts/shots.mjs'), stepsFile, out], { stdio: 'inherit' });
+} finally {
+  helper.kill();
+  fs.rmSync(tmp, { recursive: true, force: true });
+}

@@ -25,8 +25,10 @@ type GlassProps = {
   tone?: GlassTone;
   /** Lichtreflex folgt dem Zeiger (fuer klickbare Flaechen) */
   interactive?: boolean;
-  /** Prisma-Farbaufspaltung am Rand. Fuer lange Listen aus, das spart Rechenzeit. */
+  /** Prisma-Farbaufspaltung am Rand (nur Stufe Stark). Fuer lange Listen aus, das spart Rechenzeit. */
   prism?: boolean;
+  /** Wichtige Flaeche: behaelt auch in der leichten Stufe die echte Lichtbrechung */
+  hero?: boolean;
   className?: string;
   style?: CSSProperties;
   children?: ReactNode;
@@ -59,6 +61,7 @@ export function Glass({
   tone = 'panel',
   interactive = false,
   prism = true,
+  hero = false,
   className = '',
   style,
   children,
@@ -68,8 +71,9 @@ export function Glass({
 }: GlassProps) {
   const innerRef = useRef<HTMLElement | null>(null);
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
-  const prefQuality = usePrefs((s) => s.glass);
-  const quality: GlassQuality = !refractionSupported ? 'flat' : prefQuality === 'full' && !prism ? 'lite' : prefQuality;
+  const level = usePrefs((s) => s.glass);
+  const quality: GlassQuality =
+    !refractionSupported || level === 'off' ? 'flat' : level === 'strong' ? (prism ? 'full' : 'lite') : hero ? 'lite' : 'flat';
   const [filterId, setFilterId] = useState<string | null>(null);
 
   useLayoutEffect(() => {

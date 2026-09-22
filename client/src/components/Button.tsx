@@ -54,6 +54,7 @@ export function Button({
       bezel={size === 'lg' ? 14 : 10}
       blur={variant === 'primary' ? 0.5 : 1}
       tone={variant === 'primary' ? 'accent' : 'panel'}
+      hero={variant === 'primary'}
       className={classes}
       disabled={disabled || loading}
       {...rest}
